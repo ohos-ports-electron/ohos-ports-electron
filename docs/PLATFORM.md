@@ -1,31 +1,35 @@
 # Electron OH 包查询平台
 
-本平台复用上游 ohos-ports 查询页，托管于 `mzsylr/ohos-ports`，展示 npm 组织 `@ohos-ports-electron` 的公开包。
+本平台复用上游 ohos-ports 查询页，托管于 `ohos-ports-electron/ohos-ports-electron`，展示 npm 组织 `@ohos-ports-electron` 的公开包。
 
 | 用途 | 地址 |
 | --- | --- |
-| GitHub 仓库 | https://github.com/mzsylr/ohos-ports |
-| 网站（完成首次部署后可访问） | https://mzsylr.github.io/ohos-ports/ |
+| GitHub 仓库 | https://github.com/ohos-ports-electron/ohos-ports-electron |
+| 网站（完成首次部署后可访问） | https://ohos-ports-electron.github.io/ohos-ports-electron/ |
 | npm 组织公开页 | https://www.npmjs.com/org/ohos-ports-electron |
 | npm 组织管理入口（需有权限的账号登录） | https://www.npmjs.com/settings/ohos-ports-electron/packages |
 
 ## 首次上线
 
-1. 将平台分支的改动提交并推送到 `mzsylr/ohos-ports`，通过 Pull Request 合入 `main`。
+1. 确认平台代码已合入组织仓库 `ohos-ports-electron/ohos-ports-electron` 的 `main`。
 2. 打开仓库 **Settings → Pages**，将 **Build and deployment → Source** 设为 **GitHub Actions**。
 3. 打开 **Actions**。如果 Fork 仓库提示需要启用工作流，先启用。
 4. 选择 **Refresh and deploy Electron OH package site**，点击 **Run workflow**，分支选择 `main`。
-5. 工作流成功后，访问 https://mzsylr.github.io/ohos-ports/ 。若合入时 Pages 尚未启用导致第一次部署失败，完成第 2 步后重新运行即可。
+5. 工作流成功后，访问 https://ohos-ports-electron.github.io/ohos-ports-electron/ 。若合入时 Pages 尚未启用导致第一次部署失败，完成第 2 步后重新运行即可。
 
-本地准备好代码后可使用以下命令提交（先检查 diff）：
+团队后续修改建议从最新 `main` 创建分支，通过 Pull Request 合入：
 
 ```bash
-cd /Users/guyun/Desktop/pc-tool/ohos-ports
+cd /Users/guyun/Desktop/pc-tool/ohos-ports-electron
+git switch main
+git pull --ff-only
+git switch -c feat/package-site-update
+# 在此分支完成页面或数据采集逻辑的修改后，检查并提交：
 git diff --check
-git add README.md docs/index.html docs/app.js docs/update-packages.py docs/data/index.json docs/data/packages.jsonl docs/PLATFORM.md .github/workflows/pages-deploy.yml .github/workflows/update-packages.yml
-git commit -m "feat: add Electron OH npm package site"
-git push -u origin feat/electron-oh-package-site
-gh pr create --repo mzsylr/ohos-ports --base main --head feat/electron-oh-package-site --title "Add Electron OH npm package site" --body "Display public packages from @ohos-ports-electron and refresh data in the GitHub Pages deployment workflow."
+git add README.md docs/index.html docs/app.js docs/update-packages.py docs/data/index.json docs/data/packages.jsonl docs/PLATFORM.md .github/workflows/pages-deploy.yml
+git commit -m "feat: update Electron OH package site"
+git push -u origin feat/package-site-update
+gh pr create --repo ohos-ports-electron/ohos-ports-electron --base main --head feat/package-site-update --title "Update Electron OH package site" --body "Update the Electron OH npm package site."
 ```
 
 如果推送工作流文件时 GitHub 提示认证缺少 `workflow` 权限，使用 `gh auth refresh -h github.com -s workflow` 按提示完成授权后重试推送。也可以使用已具备对应权限的 Git 客户端提交。
@@ -36,14 +40,14 @@ gh pr create --repo mzsylr/ohos-ports --base main --head feat/electron-oh-packag
 
 工作流依次执行：检出源码、配置 Python、采集 npm 数据、上传 `docs/`、部署 GitHub Pages。它使用 GitHub 自动提供的 `GITHUB_TOKEN`，无需配置 `PAT_TOKEN` 或 `NPM_TOKEN`，无需向源码仓库自动提交。运行时采集结果保存在本次部署的 artifact 中；仓库中提交的数据只是本地预览的快照。
 
-工作流仅允许 `mzsylr/ohos-ports` 的 `main` 分支部署。通过 GitHub Pages 的 `github-pages` environment 和仓库设置管理部署权限。网站地址不受 npm 组织名称影响，GitHub 账号和 npm 组织无需同名。
+工作流仅允许 `ohos-ports-electron/ohos-ports-electron` 的 `main` 分支部署。通过 GitHub Pages 的 `github-pages` environment 和仓库设置管理部署权限。网站地址不受 npm 组织名称影响，GitHub 账号和 npm 组织无需同名。
 
 ## 本地刷新与预览
 
 需要 Python 3.9 或更高版本（推荐 3.12），不需要额外的 Python 包。
 
 ```bash
-cd /Users/guyun/Desktop/pc-tool/ohos-ports
+cd /Users/guyun/Desktop/pc-tool/ohos-ports-electron
 NPM_ORG=ohos-ports-electron python3 docs/update-packages.py --skip-readme
 python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 ```

@@ -1,7 +1,7 @@
 # ohos-ports
 
 > **本 Fork 的 Electron OH 查询平台**：展示 npm 组织 `@ohos-ports-electron` 的公开包。
-> 计划部署地址：<https://mzsylr.github.io/ohos-ports/>；首次启用方法见 [平台建设与部署](docs/PLATFORM.md)。
+> 计划部署地址：<https://ohos-ports-electron.github.io/ohos-ports-electron/>；首次启用方法见 [平台建设与部署](docs/PLATFORM.md)。
 > 网站工作流只采集公开包信息并部署页面，不执行 npm 发布。以下内容保留为上游适配项目说明。
 
 ## 项目介绍
