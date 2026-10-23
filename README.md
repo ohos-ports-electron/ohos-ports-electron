@@ -4,6 +4,13 @@
 > 计划部署地址：<https://ohos-ports-electron.github.io/ohos-ports-electron/>；首次启用方法见 [平台建设与部署](docs/PLATFORM.md)。
 > 网站工作流只采集公开包信息并部署页面，不执行 npm 发布。以下内容保留为上游适配项目说明。
 
+## better-sqlite3 的 Electron OH 适配
+
+`@ohos-ports-electron/better-sqlite3@13.0.3-electron-oh.0` 的构建脚本、补丁、依赖锁、
+许可材料、测试和发行工具位于 [ports/better-sqlite3/13.0.3/electron-oh](ports/better-sqlite3/13.0.3/electron-oh)。
+组织仓库的完整入口与命令见 [构建与发行指南](ports/better-sqlite3/13.0.3/electron-oh/ORGANIZATION.md)，
+后续发行采用 [两阶段流程](ports/better-sqlite3/13.0.3/electron-oh/pipeline/README.md)。
+
 ## 项目介绍
 
 ohos-ports 致力于将 npm 生态中的三方库移植到 OpenHarmony（以下简称鸿蒙）平台。

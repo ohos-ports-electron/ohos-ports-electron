@@ -1,0 +1,25 @@
+{
+  "name": "@ohos-ports-electron/better-sqlite3",
+  "version": "13.0.3-electron-oh.0",
+  "dist": {
+    "shasum": "4361648fd6d77d075cd9b796295d7c6561c7c61e",
+    "tarball": "https://registry.npmjs.org/@ohos-ports-electron/better-sqlite3/-/better-sqlite3-13.0.3-electron-oh.0.tgz",
+    "fileCount": 65,
+    "integrity": "sha512-dWxAIsvBuM9P+6ivD1w2l1pyIHdKSUqeO/l7gMyBi0db2rIi5D8EQl6D10TgVLazBhXAMB2c4S1MQpiOz5uxnQ==",
+    "signatures": [
+      {
+        "sig": "MEUCIQD/KpVRq+zgV0MT3Qj5bUSN6UPf2F8T7tcdHKUM8SQv7wIgM77GikVenuZzg9/DYISwOSKAEjqOI3LdceyvFjqQMOE=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEYCIQDxZWX/0je/5X4XdPnR8qqw1CN2APUScuDobGNLsaaGnAIhAMse7qoSY9+oWQB7lBHuObTg80D+3wUv+bZaXU2nRcfG"
+      }
+    ],
+    "unpackedSize": 15497490
+  },
+  "dist-tags": {
+    "latest": "13.0.3-electron-oh.0",
+    "electron-oh": "13.0.3-electron-oh.0"
+  }
+}

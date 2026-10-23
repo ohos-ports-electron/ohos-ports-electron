@@ -18,6 +18,9 @@ permissions:
 jobs:
   # 检测哪些目录的文件有变化，截取出 ports/<name>/<version> 这一级
   detect-changes:
+    # This inherited workflow publishes Node packages in the upstream scope.
+    # The Electron organization uses its separate build/release entry points.
+    if: github.repository == 'ohos-ports/ohos-ports'
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -45,7 +48,7 @@ jobs:
   # 对于发生变化的目录，进去执行里面的 build.sh 和 publish.sh
   build-and-publish:
     needs: detect-changes
-    if: needs.detect-changes.outputs.matrix != '[]'
+    if: github.repository == 'ohos-ports/ohos-ports' && needs.detect-changes.outputs.matrix != '[]'
     strategy:
       matrix:
         dir: ${{ fromJson(needs.detect-changes.outputs.matrix) }}

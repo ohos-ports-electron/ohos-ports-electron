@@ -1,0 +1,8 @@
+{
+  "packageName": "@ohos-ports-electron/better-sqlite3",
+  "packageVersion": "13.0.3-electron-oh.0",
+  "distTag": "electron-oh",
+  "registry": "https://registry.npmjs.org/",
+  "baselinePackage": "@ohos-ports/better-sqlite3@13.0.3",
+  "signatureMode": "hap-consumer-signing"
+}

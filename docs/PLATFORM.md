@@ -62,7 +62,7 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 
 ## 网站与包构建分别维护
 
-本次仅修改网站、数据采集及页面部署。`ports/` 下的补丁、构建脚本和 npm 发布脚本仍按各自流程维护；网站不会自动改名或发布这些包。原有 `.github/workflows/ci.yml` 仍可能在 `ports/` 变化时触发，接入新 scope 的自动发布前应单独检查其中的发布目标和认证。
+网站、数据采集及页面部署与 `ports/` 下的补丁、构建和 npm 发行分别维护。继承的 `.github/workflows/ci.yml` 已限制为原 `ohos-ports/ohos-ports` 仓库运行；组织仓库的 better-sqlite3 Electron OH 入口见 [构建与发行指南](../ports/better-sqlite3/13.0.3/electron-oh/ORGANIZATION.md)。独立 Electron 工作流只做检查、构建或发行准备，npm 暂存上传使用显式开启的单独入口。
 
 如需新增查询列，例如 Electron 版本、架构、验证报告，应采用包中明确发布的元数据或人工维护的映射，不能仅凭包名推断已验证的兼容范围。
 

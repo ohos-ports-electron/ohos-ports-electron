@@ -1,0 +1,76 @@
+# Organization build/preparation only; npm publication remains a separate explicit operation.
+# No npm credential and no publication in this workflow.
+name: Electron OH two-stage preparation
+on:
+  pull_request:
+    paths:
+      - 'ports/better-sqlite3/13.0.3/electron-oh/**'
+      - 'ports/better-sqlite3/13.0.3/patchs/0003-electron-oh-package.patch'
+  workflow_dispatch:
+    inputs:
+      ports_commit:
+        description: Full official ohos-ports baseline commit SHA
+        required: true
+        default: c46fc11a3891ba1cf823b85ffc9ce46af47b270b
+permissions:
+  contents: read
+env:
+  ADAPTER: ports/better-sqlite3/13.0.3/electron-oh
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 "$ADAPTER/pipeline/test-pipeline.py"
+      - run: python3 -m compileall -q -x '(^|/)\._' "$ADAPTER"
+  build:
+    if: github.event_name == 'workflow_dispatch' && github.repository == 'ohos-ports-electron/ohos-ports-electron' && github.ref == 'refs/heads/main'
+    needs: contracts
+    # Register a trusted runner with Python >=3.12 and matching NDK/runtime/shim.
+    # Its environment supplies OHOS_NDK, ELECTRON_OH_SHIM, ELECTRON_OH_RUNTIME_LIBRARY.
+    runs-on: [self-hosted, electron-oh-build]
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 "$ADAPTER/pipeline/build.py" --output "$RUNNER_TEMP/electron-oh-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-bundle
+          path: ${{ runner.temp }}/electron-oh-${{ github.run_id }}-${{ github.run_attempt }}
+          include-hidden-files: true
+          if-no-files-found: error
+  prepare:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-bundle
+          path: build-bundle
+      - uses: actions/checkout@v4
+        with:
+          repository: ohos-ports/ohos-ports
+          ref: ${{ inputs.ports_commit }}
+          path: ports-baseline
+      - name: Prepare recipe and exact artifact without an SDK or npm token
+        env:
+          PORTS_COMMIT: ${{ inputs.ports_commit }}
+        run: >-
+          python3 "$ADAPTER/pipeline/release.py" prepare
+          --bundle build-bundle --ports-repo ports-baseline
+          --ports-ref "$PORTS_COMMIT" --output release-materials
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-materials-awaiting-runtime-review
+          path: release-materials
+          include-hidden-files: true
+          if-no-files-found: error
+# First builds lack device evidence. Validate the exact candidate on both hosts,
+# import it with the frozen adapter + reviewed evidence into a NEW bundle, prepare
+# again, then use release.py stage [--execute] in a protected release environment.

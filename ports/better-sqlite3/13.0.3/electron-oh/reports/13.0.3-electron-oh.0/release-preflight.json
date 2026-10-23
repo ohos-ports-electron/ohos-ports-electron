@@ -1,0 +1,6 @@
+{
+  "status": "ready-for-maintainer-publication",
+  "candidateSha256": "1351315b34263c9c0f8931b5489b4943ba788a2825deab8360b517b5fe67a2aa",
+  "errors": [],
+  "note": "Report URLs require human review; this tool does not authenticate approvals or publish."
+}
