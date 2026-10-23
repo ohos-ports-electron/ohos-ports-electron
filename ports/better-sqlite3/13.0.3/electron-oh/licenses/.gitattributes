@@ -1,2 +1,0 @@
-# Preserve upstream license bytes, including their original whitespace.
-*.txt -text -whitespace
