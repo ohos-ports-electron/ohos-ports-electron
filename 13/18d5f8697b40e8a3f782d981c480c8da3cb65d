@@ -1,0 +1,36 @@
+.github/workflows/pages-deploy.yml
+  s_d14a75e11ec91e::t_4cc4ef9e23c607 1,8-12,21,25,31-39,41
+README.md
+  s_d14a75e11ec91e::t_b0c621c9e68c02 3-6,213
+docs/PLATFORM.md
+  s_d14a75e11ec91e::t_82a59fe7f44131 1-65
+docs/app.js
+  s_d14a75e11ec91e::t_83c5d81b9f3861 1-172
+docs/data/index.json
+  s_d14a75e11ec91e::t_db76114bdda4a4 2-8
+docs/data/packages.jsonl
+  s_d14a75e11ec91e::t_06b9ea4aa6c83a 1
+docs/index.html
+  s_d14a75e11ec91e::t_a644552786109e 6,57-59,65-67,71-73,77,79-80,83,93-94,96,99
+docs/update-packages.py
+  s_d14a75e11ec91e::t_a0c7469b6d18c6 3,6-8,15,18,21,28-29,33-34,203,217-219,252,257,281-282,367,372,380-382,405-407,413,415,419,435,437-439,462-464,473,478-479
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "1318d5f8697b40e8a3f782d981c480c8da3cb65d",
+  "prompts": {},
+  "sessions": {
+    "s_d14a75e11ec91e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1667c-d8c0-7933-beea-e432d7597279",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
