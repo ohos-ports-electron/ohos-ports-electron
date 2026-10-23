@@ -1,0 +1,150 @@
+.github/workflows/ci.yml
+  s_d14a75e11ec91e::t_55eef03c0580bc 51
+  s_d14a75e11ec91e::t_2ae40ea98895bd 21-23,94
+ports/better-sqlite3/13.0.3/electron-oh/pipeline/release.py
+  s_d14a75e11ec91e::t_2f69b953e041d7 85
+  s_d14a75e11ec91e::t_c409830ed88cd7 1-84,86-177
+distribution/ohos-ports-electron/publish.py
+  s_d14a75e11ec91e::t_2ae40ea98895bd 1-70
+README.md
+  s_d14a75e11ec91e::t_bc1bc177b56e7e 7-13
+docs/PLATFORM.md
+  s_d14a75e11ec91e::t_53a66849dc5e8f 65
+ports/better-sqlite3/13.0.3/electron-oh/tests/test-stage-entry.py
+  s_d14a75e11ec91e::t_c409830ed88cd7 1-58
+ports/better-sqlite3/13.0.3/electron-oh/build-electron-oh.sh
+  s_d14a75e11ec91e::t_894ac3901db9e5 5
+  s_d14a75e11ec91e::t_2ae40ea98895bd 1-4
+.github/workflows/better-sqlite3-electron-oh-checks.yml
+  s_d14a75e11ec91e::t_c409830ed88cd7 39
+  s_d14a75e11ec91e::t_2ae40ea98895bd 1-33,35,37-38,40-52
+  s_d14a75e11ec91e::t_91a6d74c6caa41 34,36
+ports/better-sqlite3/13.0.3/electron-oh/publish-electron-oh.sh
+  s_d14a75e11ec91e::t_2ae40ea98895bd 1-6,8
+  s_d14a75e11ec91e::t_c409830ed88cd7 7,9
+distribution/ohos-ports-electron/.gitignore
+  s_d14a75e11ec91e::t_53a66849dc5e8f 1-2
+.github/workflows/better-sqlite3-electron-oh-build.yml
+  s_d14a75e11ec91e::t_2ae40ea98895bd 1-39
+ports/better-sqlite3/13.0.3/electron-oh/README.md
+  s_d14a75e11ec91e::t_bc1bc177b56e7e 1-225
+ports/better-sqlite3/13.0.3/electron-oh/ORGANIZATION.md
+  s_d14a75e11ec91e::t_894ac3901db9e5 34-35
+  s_d14a75e11ec91e::t_bc1bc177b56e7e 1-33,36-87
+ports/better-sqlite3/13.0.3/electron-oh/pipeline/common.py
+  s_d14a75e11ec91e::t_bc1bc177b56e7e 1-133,136-139
+  s_d14a75e11ec91e::t_894ac3901db9e5 134-135
+.github/workflows/better-sqlite3-electron-oh-two-stage.yml
+  s_d14a75e11ec91e::t_6e3563a7e71987 1-76
+distribution/ohos-ports-electron/README.md
+  s_d14a75e11ec91e::t_c9f27adf0d8173 1-32
+distribution/ohos-ports-electron/RELEASE_AUTHORIZATION.md
+  s_d14a75e11ec91e::t_fd528a918e3378 1-25
+distribution/ohos-ports-electron/profile.json
+  s_d14a75e11ec91e::t_2e664d6e5d2e50 1-8
+ports/better-sqlite3/13.0.3/electron-oh/.gitignore
+  s_d14a75e11ec91e::t_5e9e889c3e72d1 1-4
+ports/better-sqlite3/13.0.3/electron-oh/RELEASE.md
+  s_d14a75e11ec91e::t_c678983cc39d77 1-121
+ports/better-sqlite3/13.0.3/electron-oh/electron-oh.lock.json
+  s_d14a75e11ec91e::t_ccd9b3070635a1 1-18
+ports/better-sqlite3/13.0.3/electron-oh/examples/main.cjs
+  s_d14a75e11ec91e::t_c6421325af453a 1-18
+ports/better-sqlite3/13.0.3/electron-oh/licenses/.gitattributes
+  s_d14a75e11ec91e::t_71987f34ff9959 1-2
+ports/better-sqlite3/13.0.3/electron-oh/licenses/Electron-OH-shim-af515cbf8594-LICENSE.txt
+  s_d14a75e11ec91e::t_95bcd762d6fd75 1-21
+ports/better-sqlite3/13.0.3/electron-oh/licenses/Node-v22.17.0-LICENSE.txt
+  s_d14a75e11ec91e::t_61271ef4bf90a9 1-2641
+ports/better-sqlite3/13.0.3/electron-oh/licenses/OHOS-NDK-6.0.2.130-LLVM-NOTICE.txt
+  s_d14a75e11ec91e::t_56792e3448ed6c 1-3099
+ports/better-sqlite3/13.0.3/electron-oh/licenses/OHOS-NDK-6.0.2.130-NATIVE-NOTICE.txt
+  s_d14a75e11ec91e::t_e5cadb6e62175f 1-13236
+ports/better-sqlite3/13.0.3/electron-oh/licenses/node-addon-api-8.9.2-LICENSE.txt
+  s_d14a75e11ec91e::t_732e609d2d53e6 1-9
+ports/better-sqlite3/13.0.3/electron-oh/node-api-headers.lock.json
+  s_d14a75e11ec91e::t_f795339dbef1ec 1-6
+ports/better-sqlite3/13.0.3/electron-oh/pipeline/README.md
+  s_d14a75e11ec91e::t_56aeaec7bfe796 1-132
+ports/better-sqlite3/13.0.3/electron-oh/pipeline/build.py
+  s_d14a75e11ec91e::t_197c87ea4e21f7 1-105
+ports/better-sqlite3/13.0.3/electron-oh/pipeline/ci-two-stage.yml
+  s_d14a75e11ec91e::t_a2d2d2d8cfc987 1-76
+ports/better-sqlite3/13.0.3/electron-oh/pipeline/test-pipeline.py
+  s_d14a75e11ec91e::t_d97586055da060 1-132
+ports/better-sqlite3/13.0.3/electron-oh/release-evidence.example.json
+  s_d14a75e11ec91e::t_8ad0d3f808a5f8 1-11
+ports/better-sqlite3/13.0.3/electron-oh/release-materials.lock.json
+  s_d14a75e11ec91e::t_37c3e00c7af383 1-80
+ports/better-sqlite3/13.0.3/electron-oh/reports/13.0.3-electron-oh.0/publication.json
+  s_d14a75e11ec91e::t_ff7edbc5be3862 1-27
+ports/better-sqlite3/13.0.3/electron-oh/reports/13.0.3-electron-oh.0/registry-metadata.json
+  s_d14a75e11ec91e::t_450b14dcde1ac2 1-25
+ports/better-sqlite3/13.0.3/electron-oh/reports/13.0.3-electron-oh.0/release-evidence.json
+  s_d14a75e11ec91e::t_1fc2f7ef4d5f55 1-22
+ports/better-sqlite3/13.0.3/electron-oh/reports/13.0.3-electron-oh.0/release-preflight.json
+  s_d14a75e11ec91e::t_72390572e8d08d 1-6
+ports/better-sqlite3/13.0.3/electron-oh/tests/database-smoke.cjs
+  s_d14a75e11ec91e::t_d92bafa8018b24 1-31
+ports/better-sqlite3/13.0.3/electron-oh/tests/electron-oh-smoke.cjs
+  s_d14a75e11ec91e::t_f23c19cac8297c 1-22
+ports/better-sqlite3/13.0.3/electron-oh/tests/node-smoke.cjs
+  s_d14a75e11ec91e::t_e824ece2187695 1-12
+ports/better-sqlite3/13.0.3/electron-oh/tests/test-package-contract.py
+  s_d14a75e11ec91e::t_6a83fdad56c320 1-64
+ports/better-sqlite3/13.0.3/electron-oh/tests/test-publication.py
+  s_d14a75e11ec91e::t_7a2535a8d92279 1-59
+ports/better-sqlite3/13.0.3/electron-oh/tests/test-release-guard.py
+  s_d14a75e11ec91e::t_b1932b3bcff65a 1-82
+ports/better-sqlite3/13.0.3/electron-oh/tests/verify-package.py
+  s_d14a75e11ec91e::t_90aa38718766c1 1-62
+ports/better-sqlite3/13.0.3/electron-oh/tools/check-release.py
+  s_d14a75e11ec91e::t_937167bfc23c3b 1-113
+ports/better-sqlite3/13.0.3/electron-oh/tools/ci-build-electron-oh.py
+  s_d14a75e11ec91e::t_6f5f6f7681d18a 1-70
+ports/better-sqlite3/13.0.3/electron-oh/tools/electron_oh.py
+  s_d14a75e11ec91e::t_6df214e90aa109 1-215
+ports/better-sqlite3/13.0.3/electron-oh/tools/prepare-electron-oh-deps.py
+  s_d14a75e11ec91e::t_83ea9272ea02c8 1-80
+ports/better-sqlite3/13.0.3/electron-oh/tools/release_materials.py
+  s_d14a75e11ec91e::t_58eb83d2bf24b7 1-46
+ports/better-sqlite3/13.0.3/patchs/0003-electron-oh-package.patch
+  s_d14a75e11ec91e::t_b9391e46578d66 1-25
+ports/better-sqlite3/13.0.3/publish.sh
+  s_d14a75e11ec91e::t_6e1bbdc07e1b82 5-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "d01ca5e16452ea76190cd719b75a6a28b47aca86",
+  "prompts": {},
+  "sessions": {
+    "s_d14a75e11ec91e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1667c-d8c0-7933-beea-e432d7597279",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 884,
+      "total_deletions": 11,
+      "overridden_lines": 0,
+      "turn_models": {
+        "t_2ae40ea98895bd": "gpt-6.1-sol",
+        "t_2f69b953e041d7": "gpt-6.1-sol",
+        "t_53a66849dc5e8f": "gpt-6.1-sol",
+        "t_55eef03c0580bc": "gpt-6.1-sol",
+        "t_894ac3901db9e5": "gpt-6.1-sol",
+        "t_91a6d74c6caa41": "gpt-6.1-sol",
+        "t_bc1bc177b56e7e": "gpt-6.1-sol",
+        "t_c409830ed88cd7": "gpt-6.1-sol"
+      },
+      "model_totals": {
+        "gpt-6.1-sol": {
+          "additions": 884,
+          "deletions": 11
+        }
+      }
+    }
+  }
+}
