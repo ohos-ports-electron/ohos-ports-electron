@@ -1,34 +1,37 @@
 #!/usr/bin/env python3
 """
-通过 npm Registry API 查询 @ohos-ports scope 下所有已发布的包。
+通过 npm Registry API 查询指定 npm scope 下所有公开发布的包。
 
 策略：
-1. GET /-/user/ohos-ports/package — 一次请求获取全部包名列表
-2. 并发 GET /@ohos-ports/<name> — 获取每个包的 packument（dist-tags + description + deprecated）
-3. 从 dist-tags 判断 stable/beta
+1. GET /-/user/<NPM_ORG>/package — 获取包名列表并过滤目标 scope
+2. 并发获取每个包的 packument（dist-tags + description + deprecated）
+3. 保留 latest、beta 和 electron-oh 标签
 
 输出：
 - docs/data/packages.jsonl（每行一个包）
 - docs/data/index.json（统计摘要）
 - README.md ports 表格（仅 ports/ 目录下的包）
 
-用法：python3 docs/update-packages.py
+用法：python3 docs/update-packages.py [--skip-readme]
 环境变量：
   NPM_REGISTRY - 默认 https://registry.npmjs.org
-  NPM_ORG     - 默认 ohos-ports
+  NPM_ORG     - 默认 ohos-ports-electron（不带 @）
 """
 
+import argparse
 import json
 import os
 import re
 import time
 import urllib.request
 import urllib.error
-from datetime import date
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 REGISTRY = os.environ.get("NPM_REGISTRY", "https://registry.npmjs.org")
-NPM_ORG = os.environ.get("NPM_ORG", "ohos-ports")
+NPM_ORG = os.environ.get("NPM_ORG", "ohos-ports-electron").lstrip("@")
+NPM_SCOPE = f"@{NPM_ORG}/"
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_DIR = os.path.dirname(SCRIPT_DIR)
 PORTS_DIR = os.path.join(REPO_DIR, "ports")
@@ -197,7 +200,7 @@ def fetch_package_detail(name, cache=None):
     deprecated_msg = latest_info.get("deprecated", "")
 
     # 查找原始包名：优先使用缓存，仅对新增包查询 npm
-    short_name = name.replace("@ohos-ports/", "")
+    short_name = name.removeprefix(NPM_SCOPE)
     cached = cache.get(name) if cache else None
     if cached:
         original_name = cached["original_name"]
@@ -211,6 +214,9 @@ def fetch_package_detail(name, cache=None):
         "short_name": short_name,
         "original_name": original_name,
         "original_npm_url": original_npm_url,
+        "latest_version": latest,
+        "electron_oh_version": dist_tags.get("electron-oh"),
+        "dist_tags": dist_tags,
         "stable_version": stable_version,
         "beta_version": beta_version,
         "description": description,
@@ -243,12 +249,12 @@ def load_original_name_cache():
 
 
 def search_packages(cache=None):
-    """查询 @ohos-ports 下所有包，返回完整数据列表"""
+    """查询目标 scope 的公开包，返回完整数据列表"""
     # Step 1: 一次请求获取全部包名列表
     print(f"  Fetching package list from /-/user/{NPM_ORG}/package ...")
     url = f"{REGISTRY}/-/user/{NPM_ORG}/package"
     data = fetch_json(url)
-    package_names = sorted(data.keys())
+    package_names = sorted(name for name in data if name.startswith(NPM_SCOPE))
     print(f"  Found {len(package_names)} packages")
 
     # 统计缓存命中情况
@@ -272,6 +278,8 @@ def search_packages(cache=None):
 
     packages.sort(key=lambda x: x["name"])
     print(f"  Successfully fetched {len(packages)}/{len(package_names)} packages")
+    if len(packages) != len(package_names):
+        raise RuntimeError("部分包采集失败，本次不生成或部署不完整的数据；请重试")
     return packages
 
 
@@ -356,12 +364,12 @@ def infer_platform_original_names(packages):
 
 
 def generate_output(packages, ports_map):
-    """生成 packages.jsonl + index.json，数据无变化时跳过写入"""
+    """生成包明细及统计摘要，并记录本次成功同步的北京时间"""
     os.makedirs(DATA_DIR, exist_ok=True)
 
     result = []
     for p in packages:
-        short_name = p.get("short_name") or p["name"].replace("@ohos-ports/", "")
+        short_name = p.get("short_name") or p["name"].removeprefix(NPM_SCOPE)
         is_ci = short_name in ports_map
 
         entry = {
@@ -369,6 +377,9 @@ def generate_output(packages, ports_map):
             "short_name": short_name,
             "original_name": p.get("original_name", short_name),
             "original_npm_url": p.get("original_npm_url"),
+            "latest_version": p["latest_version"],
+            "electron_oh_version": p["electron_oh_version"],
+            "dist_tags": p["dist_tags"],
             "stable_version": p["stable_version"],
             "beta_version": p["beta_version"],
             "description": p["description"],
@@ -391,23 +402,21 @@ def generate_output(packages, ports_map):
         with open(JSONL_PATH, "r", encoding="utf-8") as f:
             old_jsonl = f.read()
 
-    if new_jsonl == old_jsonl:
-        print("  No changes, skipping write")
-        return result
-
-    # 数据有变化才写入
-    with open(JSONL_PATH, "w", encoding="utf-8") as f:
-        f.write(new_jsonl)
+    if new_jsonl != old_jsonl:
+        with open(JSONL_PATH, "w", encoding="utf-8") as f:
+            f.write(new_jsonl)
 
     ci_count = sum(1 for p in result if p["source"] == "CI发布")
     local_count = len(result) - ci_count
     deprecated_count = sum(1 for p in result if p["deprecated"])
     index_data = {
+        "npm_org": NPM_ORG,
         "total": len(result),
+        "electron_oh_count": sum(1 for p in result if p["electron_oh_version"]),
         "ci_count": ci_count,
         "local_count": local_count,
         "deprecated_count": deprecated_count,
-        "last_updated": str(date.today()),
+        "last_updated": datetime.now(ZoneInfo("Asia/Shanghai")).isoformat(timespec="seconds"),
     }
     with open(INDEX_PATH, "w", encoding="utf-8") as f:
         json.dump(index_data, f, ensure_ascii=False, indent=2)
@@ -423,9 +432,11 @@ def update_readme(ports_map, packages):
 
     lines = ["| 包名 | 版本 | 安装 |", "|------|------|------|"]
     for name in sorted(ports_map.keys()):
-        npm_name = f"@ohos-ports/{name}"
+        npm_name = f"{NPM_SCOPE}{name}"
         pkg = next((p for p in packages if p["name"] == npm_name), None)
-        version = (pkg["stable_version"] if pkg else None) or (pkg["beta_version"] if pkg else None) or ports_map[name]
+        if pkg is None:
+            continue
+        version = pkg["latest_version"] or pkg["electron_oh_version"] or pkg["beta_version"] or "—"
         lines.append(f"| {npm_name} | {version} | `npm i {npm_name}` |")
 
     new_table = "\n".join(lines)
@@ -448,6 +459,9 @@ def update_readme(ports_map, packages):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="刷新 npm 组织公开包列表")
+    parser.add_argument("--skip-readme", action="store_true", help="只刷新页面数据，不改写 README")
+    args = parser.parse_args()
     print(f"Registry: {REGISTRY}")
     ports_map = get_ports_packages()
     print(f"Ports: {len(ports_map)} - {list(ports_map.keys())}")
@@ -456,12 +470,13 @@ def main():
     cache = load_original_name_cache()
     print(f"  Cached: {len(cache)} packages")
 
-    print("\nSearching @ohos-ports packages...")
+    print(f"\nSearching {NPM_SCOPE} packages...")
     packages = search_packages(cache)
 
     print("\nGenerating output...")
     result = generate_output(packages, ports_map)
-    update_readme(ports_map, packages)
+    if not args.skip_readme:
+        update_readme(ports_map, packages)
 
     print(f"\nDone! {len(result)} packages")
 

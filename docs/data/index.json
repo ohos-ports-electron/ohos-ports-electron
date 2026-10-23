@@ -1,7 +1,9 @@
 {
-  "total": 3014,
-  "ci_count": 10,
-  "local_count": 3004,
-  "deprecated_count": 337,
-  "last_updated": "2026-10-22"
+  "npm_org": "ohos-ports-electron",
+  "total": 1,
+  "electron_oh_count": 1,
+  "ci_count": 1,
+  "local_count": 0,
+  "deprecated_count": 0,
+  "last_updated": "2026-10-23T15:07:11+08:00"
 }

@@ -1,10 +1,15 @@
-name: Deploy Pages
+name: Refresh and deploy Electron OH package site
 
 on:
   push:
     branches: [main]
     paths:
       - 'docs/**'
+      - '.github/workflows/pages-deploy.yml'
+  schedule:
+    # 每天北京时间凌晨 2:17（UTC 18:17），实际运行时间由 GitHub 调度。
+    - cron: '17 18 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -13,18 +18,27 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
+    if: github.repository == 'mzsylr/ohos-ports' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh public npm package data
+        env:
+          NPM_ORG: ohos-ports-electron
+          NPM_REGISTRY: https://registry.npmjs.org
+        run: python3 -u docs/update-packages.py --skip-readme
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: docs
       - id: deployment
