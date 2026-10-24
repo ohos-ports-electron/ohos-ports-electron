@@ -33,3 +33,17 @@ Node 使用已锁定的 syscall fallback 环境，详见 ../demos/README.md。
 本次仅验证上述运行组合的功能和持久化，不声明 Windows 或完整上游压力测试已通过。
 
 精简模板按哈希导入后已重新构建 Electron HAP 并重复两次冷启动验证；本目录保存最终结果。
+
+## npm 发行核对
+
+已发布 `@ohos-ports-electron/vscode-deviceid@0.1.5-electron-oh.0`，安装命令：
+
+```sh
+npm install @ohos-ports-electron/vscode-deviceid@electron-oh
+```
+
+registry 重新下载的 tgz 与双宿主验证使用的冻结候选 SHA256 完全一致。
+使用全新缓存普通安装（不忽略 install 脚本），再次逐文件校验 19 个包文件并通过十项宿主功能检查。
+该补充检查运行于 macOS；鸿蒙双宿主证据仍是上面记录的同一字节产物。
+原 @ohos-ports 的 latest 仍为 0.1.5-beta.0，未修改原组织包或 tag。
+详情见 publication.json 和 registry/；没有因发布重新构建或更改候选。
