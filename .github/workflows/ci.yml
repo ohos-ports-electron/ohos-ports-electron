@@ -36,13 +36,16 @@ jobs:
 
           dirs=$(git diff --name-only "$BASE" HEAD \
                  | grep '^ports/' \
+                 | awk '$0 !~ /^ports\/vscode-deviceid\/0[.]1[.]5\//' \
                  | sed -E 's|^(ports/[^/]+/[^/]+)/.*|\1|' \
                  | sort -u \
                  | jq -R -s -c 'split("\n")[:-1]')
 
           echo "matrix=$dirs" >> $GITHUB_OUTPUT
 
-  # 对于发生变化的目录，进去执行里面的 build.sh 和 publish.sh
+  # vscode-deviceid 的鸿蒙路径为纯 JS，由 vscode-deviceid-electron-oh-checks.yml
+  # 独立构建/普通安装/功能契约检查，不进入原生工具链容器或自动发布。
+  # 对于其余发生变化的目录，进去执行里面的 build.sh 和 publish.sh
   build-and-publish:
     needs: detect-changes
     if: needs.detect-changes.outputs.matrix != '[]'

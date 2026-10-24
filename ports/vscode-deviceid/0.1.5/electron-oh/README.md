@@ -84,6 +84,7 @@ python3 ports/vscode-deviceid/0.1.5/electron-oh/tests/host-contract.py --bundle 
 
 独立 CI `.github/workflows/vscode-deviceid-electron-oh-checks.yml` 无上传步骤或发布凭据，
 执行锁定基线构建、普通 npm install、功能断言和交接反例；Linux CI 的平台模拟不能替代真机验证。
+原生容器流水线只排除此纯 JS port，由上述独立工作流负责检查；其他 port 仍走原流程。
 真机 Node 使用 24.13.0；Electron-OH 使用 37.2.0 / 内置 Node 22.17.0；两者均 arm64。
 十项功能检查包含一项明确模拟读异常和一项明确模拟平台别名，其余文件操作调用实际库实现。
 Node 的 syscall fallback 是运行环境兼容层，不是库补丁；来源、哈希及源码见 demos/node/。
