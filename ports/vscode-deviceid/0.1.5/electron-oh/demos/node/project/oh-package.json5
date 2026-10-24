@@ -1,8 +1,0 @@
-{
-  "modelVersion": "5.0.0",
-  "description": "node demo (cli-hnp-runner scaffold)",
-  "dependencies": {
-  },
-  "devDependencies": {
-  }
-}
