@@ -1,0 +1,71 @@
+.github/workflows/ci.yml
+  s_9eca074f20f620::t_49101b5107507b 1,5,12-13,36-44,47-48
+.github/workflows/npm-publish.yml
+  s_9eca074f20f620::t_c4b54cbdf18783 1-93
+.gitignore
+  s_b8c8f8ef3d5e7e::t_839f11f34fe965 8-12
+README.md
+  s_9eca074f20f620::t_ecf777d0c81672 1,3-4,6,11,14-30,33,35-36,38,40,42-44
+docs/RELEASING.md
+  s_9eca074f20f620::t_55ed8b95e1a854 1-47
+ports/vscode-deviceid/0.1.5/build.sh
+  s_9eca074f20f620::t_e76cc807df3e61 1-4
+ports/vscode-deviceid/0.1.5/electron-oh/PACKAGE_README.md
+  s_9eca074f20f620::t_db43e8394d9870 1-32
+ports/vscode-deviceid/0.1.5/electron-oh/README.md
+  s_9eca074f20f620::t_b7b0da260d0f70 1-39
+ports/vscode-deviceid/0.1.5/electron-oh/inputs.lock.json
+  s_9eca074f20f620::t_d00e3906b7f68f 1-39
+ports/vscode-deviceid/0.1.5/electron-oh/install.cjs
+  s_9eca074f20f620::t_527e5a1a97dcd2 1-9
+ports/vscode-deviceid/0.1.5/electron-oh/release-evidence.json
+  s_9eca074f20f620::t_039accb019618d 1-259
+ports/vscode-deviceid/0.1.5/electron-oh/tests/dependencies.lock.json
+  s_9eca074f20f620::t_d13b66851f7a56 1-80
+ports/vscode-deviceid/0.1.5/electron-oh/tests/host-contract.py
+  s_9eca074f20f620::t_b2fe124636bbe8 1-77
+ports/vscode-deviceid/0.1.5/electron-oh/tools/release.py
+  s_9eca074f20f620::t_61b33765ded68c 1-112
+ports/vscode-deviceid/0.1.5/electron-oh/tools/suite.cjs
+  s_9eca074f20f620::t_300b51d718c7ce 1-98
+ports/vscode-deviceid/0.1.5/electron-oh/tools/workflow.py
+  s_9eca074f20f620::t_104ab0d56d999f 1-143
+ports/vscode-deviceid/0.1.5/patchs/0001-ohos-platform-alias.patch
+  s_9eca074f20f620::t_eeabf46cbd64cf 1-24
+ports/vscode-deviceid/0.1.5/patchs/0002-electron-oh-distribution.patch
+  s_9eca074f20f620::t_f9a959b905f7ea 1-39
+ports/vscode-deviceid/0.1.5/patchs/0003-node20-native-uuid-import.patch
+  s_9eca074f20f620::t_8c0ef13d77b063 1-18
+ports/vscode-deviceid/0.1.5/publish.sh
+  s_9eca074f20f620::t_6754ed1666a590 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "29a9ad9e75cebd452dd422fbe2e46fb924eb59f6",
+  "prompts": {},
+  "sessions": {
+    "s_9eca074f20f620": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a157e4-9bfe-7aa0-aad8-0aa6995b94fb",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    },
+    "s_b8c8f8ef3d5e7e": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e9322efffffegklJNp44xGKLKy",
+        "model": "glm-5.2"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
