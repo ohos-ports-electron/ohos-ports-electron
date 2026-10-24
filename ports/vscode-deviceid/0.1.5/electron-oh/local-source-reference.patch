@@ -1,0 +1,56 @@
+From c13b539e6e45f0510f5d7bb6cc27c662b10e5e40 Mon Sep 17 00:00:00 2001
+From: mzsylr <mazheng20@huawei.com>
+Date: Tue, 13 Oct 2026 01:32:28 +0800
+Subject: [PATCH] feat: add HarmonyOS platform support
+
+Add 'ohos' and 'openharmony' to platform checks in index.ts (module
+load guard) and storage.ts getDirectory() (storage path selection).
+HarmonyOS (OpenHarmony) uses the same Linux-style XDG cache path:
+$HOME/.cache/Microsoft/DeveloperTools/.
+
+The (process.platform as string) cast is needed because @types/node v20
+does not include 'ohos' or 'openharmony' in the NodeJS.Platform union type.
+
+AI[100%] Human Fixed[0%] Human[0%] AI Adopted[91%]
+Co-authored-by: opencode (glm-5.2) <ai@local>
+---
+ src/index.ts   | 4 +++-
+ src/storage.ts | 7 ++++++-
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/src/index.ts b/src/index.ts
+index e5be241..4d698f9 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -7,7 +7,9 @@ if (
+ 	process.platform !== "win32" &&
+ 	process.platform !== "darwin" &&
+ 	process.platform !== "linux" &&
+-	process.platform !== "freebsd"
++	process.platform !== "freebsd" &&
++	(process.platform as string) !== "ohos" &&
++	(process.platform as string) !== "openharmony"
+ ) {
+ 	throw new Error("Unsupported platform");
+ }
+diff --git a/src/storage.ts b/src/storage.ts
+index 22245dc..5db4c7d 100644
+--- a/src/storage.ts
++++ b/src/storage.ts
+@@ -21,7 +21,12 @@ function getDirectory(): string {
+ 
+ 	if (process.platform === "darwin") {
+ 		folder = path.join(process.env.HOME, "Library", "Application Support");
+-	} else if (process.platform === "linux" || process.platform === "freebsd") {
++	} else if (
++		process.platform === "linux" ||
++		process.platform === "freebsd" ||
++		(process.platform as string) === "ohos" ||
++		(process.platform as string) === "openharmony"
++	) {
+ 		folder =
+ 			process.env.XDG_CACHE_HOME ?? path.join(process.env.HOME, ".cache");
+ 	} else {
+-- 
+2.50.1 (Apple Git-155)
+

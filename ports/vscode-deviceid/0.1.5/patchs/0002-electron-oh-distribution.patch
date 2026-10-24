@@ -1,0 +1,39 @@
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+-  "name": "@ohos-ports/vscode-deviceid",
+-  "version": "0.1.5-beta.0",
++  "name": "@ohos-ports-electron/vscode-deviceid",
++  "version": "0.1.5-electron-oh.0",
+   "description": "A module for Visual Studio Code to generate a unique device ID",
+   "main": "./dist/index.js",
+   "typings": "./dist/index.d.ts",
+@@ -9,12 +9,13 @@
+     "build": "npm run compile",
+     "compile": "tsc",
+     "lint": "eslint . --max-warnings 0 --report-unused-disable-directives",
+-    "lint:fix": "npm run lint -- --fix"
++    "lint:fix": "npm run lint -- --fix",
++    "install": "node scripts/install.cjs"
+   },
+   "repository": {
+     "type": "git",
+-    "url": "https://github.com/ohos-ports/ohos-ports.git",
+-    "directory": "ports/@vscode/deviceid/0.1.5"
++    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/vscode-deviceid/0.1.5"
+   },
+   "author": "Microsoft Corporation",
+   "license": "MIT",
+@@ -34,5 +35,10 @@
+   "dependencies": {
+     "fs-extra": "^11.2.0",
+     "uuid": "^14.0.0"
++  },
++  "publishConfig": {
++    "registry": "https://registry.npmjs.org/",
++    "access": "public",
++    "tag": "electron-oh"
+   }
+ }

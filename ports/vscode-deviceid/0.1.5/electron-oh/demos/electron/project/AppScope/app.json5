@@ -1,0 +1,15 @@
+{
+  "app": {
+    "bundleName": "com.ohosportselectron.vscodedeviceid.electron",
+    "vendor": "example",
+    "versionCode": 20261024,
+    "versionName": "0.1.5-electron-oh.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "configuration": "$profile:configuration",
+    "multiAppMode": {
+      "multiAppModeType": "multiInstance",
+      "maxCount": 2
+    }
+  }
+}
