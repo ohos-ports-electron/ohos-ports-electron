@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "upstreamVersion": "0.1.5",
+  "packageName": "@ohos-ports-electron/vscode-deviceid",
+  "packageVersion": "0.1.5-electron-oh.1",
+  "baseline": {
+    "name": "@ohos-ports/vscode-deviceid",
+    "version": "0.1.5-beta.0",
+    "url": "https://registry.npmjs.org/@ohos-ports/vscode-deviceid/-/vscode-deviceid-0.1.5-beta.0.tgz",
+    "sha256": "75517088558087ddfc014a09247f516088f9ae39d93e25bf9cc4a559c630b5ff",
+    "integrity": "sha512-hQ6vUSK/jHdEh7IKcJjvuaovYnY+w08LxgYt8r/xM2KWfLGmXPSvdMhQy5YI3yjse8obl4/A9rbc0DE3D9wvaw=="
+  },
+  "patches": {
+    "0001-ohos-platform-alias.patch": "e90827d4ff13da7ad100e2afc39f749410511855b8b2b01bed25db31d54aedf9",
+    "0002-electron-oh-distribution.patch": "07503aa6bbc6d3b9bf74253a95c1b19728521a1de3073f2f24c3f6dbde49e5b7",
+    "0003-node20-native-uuid-import.patch": "332b943432cdb4b9958e549721bb30c6fc1d4454277bcfb412b51e5f9fefc9bc"
+  },
+  "validatedRuntimes": {
+    "node": "24.13.0",
+    "electronOh": "37.2.0",
+    "electronNode": "22.17.0",
+    "platforms": [
+      "ohos",
+      "openharmony"
+    ],
+    "arch": "arm64",
+    "electron34": {
+      "release": "34.5.4",
+      "reportedElectron": "0.0.0-no-git-tag-found",
+      "node": "20.18.1",
+      "chrome": "132.0.6834.161",
+      "platform": "ohos",
+      "engineSha256": "ff77b3ddcf5c5e1ed360b8c0ba2ee6206f793a187dd8af3cf7b99cf333e536fa"
+    },
+    "nodePlatform": "openharmony",
+    "electronPlatform": "openharmony"
+  },
+  "nativeAddonOnHarmony": false
+}

@@ -1,0 +1,18 @@
+--- a/dist/devdeviceid.js
++++ b/dist/devdeviceid.js
+@@ -28,7 +28,6 @@
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.getDeviceId = void 0;
+-const uuid_1 = require("uuid");
+ const storage = __importStar(require("./storage.js"));
+ async function getDeviceId() {
+     let deviceId;
+@@ -42,6 +41,7 @@
+         return deviceId;
+     }
+     else {
++        const uuid_1 = await import("uuid");
+         const newDeviceId = (0, uuid_1.v4)().toLowerCase();
+         await storage.setDeviceId(newDeviceId);
+         return newDeviceId;
