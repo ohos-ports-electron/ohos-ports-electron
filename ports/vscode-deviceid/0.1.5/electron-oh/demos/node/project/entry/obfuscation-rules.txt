@@ -1,0 +1,2 @@
+# Build profile global options
+-keep-all

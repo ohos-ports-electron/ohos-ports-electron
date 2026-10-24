@@ -1,0 +1,43 @@
+10-24 10:23:09.810  INFO - Start verify-app
+10-24 10:23:09.828  WARN - Missing parameter: outproof
+10-24 10:23:09.830  INFO - Find Hap Signing Block success, version: 3, block count: 3
+10-24 10:23:09.832  INFO - trying verify codesign block
+10-24 10:23:09.901  INFO - profile type is: debug
+10-24 10:23:09.930  INFO - verify lib: libs/arm64-v8a/libc++_shared.so
+10-24 10:23:09.938  INFO - verify lib: libs/arm64-v8a/libnode_demo.so
+10-24 10:23:09.950  INFO - verify lib: hnp/arm64-v8a/ohportsdeviceidnode.hnp!/pkg/bin/libc++_shared.so
+10-24 10:23:09.960  INFO - verify lib: hnp/arm64-v8a/ohportsdeviceidnode.hnp!/pkg/bin/libsyscall_fallback.so
+10-24 10:23:09.962  INFO - verify lib: hnp/arm64-v8a/ohportsdeviceidnode.hnp!/pkg/bin/ohportsdeviceidnode
+10-24 10:23:10.426  INFO - verify codesign success
+10-24 10:23:10.432  INFO - +++++++++++++++++++++++++++certificate #0 +++++++++++++++++++++++++++++++
+10-24 10:23:10.432  INFO - Subject: CN=OpenHarmony Application Root CA, OU=OpenHarmony Team, O=OpenHarmony, C=CN
+10-24 10:23:10.432  INFO - Issuer: CN=OpenHarmony Application Root CA, OU=OpenHarmony Team, O=OpenHarmony, C=CN
+10-24 10:23:10.432  INFO - SerialNumber: fe1388b
+10-24 10:23:10.432  INFO - Validity: 2021-02-02 20:14:18 ~ 2049-12-31 20:14:18
+10-24 10:23:10.433  INFO - SHA256: 9A:ED:2A:79:92:5E:CA:05:0C:D2:BB:9D:2A:7F:69:4E:49:E5:E1:35:D2:8E:BD:CE:53:83:6D:E7:6B:50:80:ED
+10-24 10:23:10.433  INFO - Signature Algorithm: SHA384withECDSA
+10-24 10:23:10.433  INFO - Key: EC, key length: 384 bits
+10-24 10:23:10.433  INFO - Cert Version: V3
+10-24 10:23:10.433  INFO - +++++++++++++++++++++++++++certificate #1 +++++++++++++++++++++++++++++++
+10-24 10:23:10.433  INFO - Subject: CN=OpenHarmony Application Release, OU=OpenHarmony Team, O=OpenHarmony, C=CN
+10-24 10:23:10.433  INFO - Issuer: CN=OpenHarmony Application CA, OU=OpenHarmony Team, O=OpenHarmony, C=CN
+10-24 10:23:10.433  INFO - SerialNumber: a886cc3f
+10-24 10:23:10.434  INFO - Validity: 2026-10-24 10:23:02 ~ 2036-10-21 10:23:02
+10-24 10:23:10.434  INFO - SHA256: B8:BC:2F:FE:A3:89:83:CE:B0:89:86:0F:B3:D6:E1:C0:7D:B5:15:EE:BE:4C:C2:CB:29:C1:BA:1B:5B:BD:A2:9B
+10-24 10:23:10.434  INFO - Signature Algorithm: SHA256withECDSA
+10-24 10:23:10.434  INFO - Key: EC, key length: 256 bits
+10-24 10:23:10.434  INFO - Cert Version: V3
+10-24 10:23:10.434  INFO - +++++++++++++++++++++++++++certificate #2 +++++++++++++++++++++++++++++++
+10-24 10:23:10.434  INFO - Subject: CN=OpenHarmony Application CA, OU=OpenHarmony Team, O=OpenHarmony, C=CN
+10-24 10:23:10.434  INFO - Issuer: CN=OpenHarmony Application Root CA, OU=OpenHarmony Team, O=OpenHarmony, C=CN
+10-24 10:23:10.434  INFO - SerialNumber: 1e65c03d
+10-24 10:23:10.434  INFO - Validity: 2021-02-02 20:15:32 ~ 2049-12-31 20:15:32
+10-24 10:23:10.434  INFO - SHA256: EE:B0:0E:63:40:1C:85:85:3F:67:7A:73:C6:F1:2C:CB:7C:53:69:2D:44:CA:F4:59:99:4B:B2:CE:5A:47:A9:4D
+10-24 10:23:10.434  INFO - Signature Algorithm: SHA384withECDSA
+10-24 10:23:10.434  INFO - Key: EC, key length: 384 bits
+10-24 10:23:10.434  INFO - Cert Version: V3
+10-24 10:23:10.434  INFO - version is: 2, number of block is: 1
+10-24 10:23:10.462  INFO - Digest verify result: true, DigestAlgorithm: SHA-256
+10-24 10:23:10.464  INFO - Write certificate chain success!
+10-24 10:23:10.465  INFO - verify: Verify success
+10-24 10:23:10.465  INFO - verify-app success
