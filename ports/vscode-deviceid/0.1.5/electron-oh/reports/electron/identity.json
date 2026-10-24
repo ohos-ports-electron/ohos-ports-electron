@@ -24,7 +24,7 @@
   },
   "packageSha256": "e9d3f33adabdf70d325d020c8ac8ccabc431200eaad387d0e97e9fec92eb6d4c",
   "host": "electron",
-  "hapSha256": "faf704f8b6444d88961d0c423d98648d0c74ac55e2019135e288c5857adde8fd",
+  "hapSha256": "33805f7d2ef134e88ad90dded3d784e10d643078b316377fbd464b62459946e2",
   "signatureVerified": true,
   "runtimeFiles": {
     "libadapter.so": "e2fec2e82fd9e3ca2a65e862a037329684ffbcb8bb3d489b309b8ee373f2dd9a",

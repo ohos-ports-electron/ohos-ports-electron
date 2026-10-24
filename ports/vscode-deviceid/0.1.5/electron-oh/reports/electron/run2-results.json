@@ -1,8 +1,8 @@
 {
   "kind": "summary",
-  "pid": 42898,
-  "time": "2026-10-24T02:24:11.645Z",
-  "runId": "1792808651554-42898",
+  "pid": 46500,
+  "time": "2026-10-24T02:29:45.783Z",
+  "runId": "1792808985693-46500",
   "host": "electron",
   "packageName": "@ohos-ports-electron/vscode-deviceid",
   "packageVersion": "0.1.5-electron-oh.0",

@@ -1,8 +1,8 @@
 > hvigor [32mFinished :electron:clean... after 1 ms [39m
 > hvigor [32mFinished :web_engine:clean... after 1 ms [39m
 > hvigor [33mWARN: The project has not explicitly set the 'targetSdkVersion' version at build-profile.json5. It is recommended to configure it. Reference: https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-hvigor-build-profile-app#section45865492619[39m
-> hvigor [32mFinished :electron:default@PreBuild... after 68 ms [39m
-> hvigor [32mFinished :web_engine:default@PreBuild... after 25 ms [39m
+> hvigor [32mFinished :electron:default@PreBuild... after 56 ms [39m
+> hvigor [32mFinished :web_engine:default@PreBuild... after 19 ms [39m
 > hvigor [32mFinished :electron:default@CreateModuleInfo... after 1 ms [39m
 > hvigor [32mFinished :electron:default@GenerateMetadata... after 1 ms [39m
 > hvigor [32mFinished :electron:default@PreCheckSyscap... after 1 ms [39m
@@ -12,921 +12,921 @@
 > hvigor [32mFinished :web_engine:default@ConfigureCmake... after 1 ms [39m
 > hvigor [32mFinished :web_engine:default@MergeProfile... after 2 ms [39m
 > hvigor [32mFinished :electron:default@SyscapTransform... after 1 ms [39m
-> hvigor [32mFinished :electron:default@ProcessRouterMap... after 2 ms [39m
-> hvigor [32mFinished :electron:default@ProcessShareConfig... after 1 ms [39m
+> hvigor [32mFinished :electron:default@ProcessRouterMap... after 1 ms [39m
+> hvigor [32mFinished :electron:default@ProcessShareConfig... after 2 ms [39m
 > hvigor [32mFinished :electron:default@ProcessStartupConfig... after 1 ms [39m
 > hvigor [32mFinished :electron:default@CreateBuildProfile... after 1 ms [39m
 > hvigor [32mFinished :web_engine:default@BuildNativeWithCmake... after 1 ms [39m
 > hvigor [32mFinished :electron:default@MergeProfile... after 2 ms [39m
-> hvigor [32mFinished :electron:default@GenerateLoaderJson... after 3 ms [39m
+> hvigor [32mFinished :electron:default@GenerateLoaderJson... after 2 ms [39m
 > hvigor [32mFinished :electron:default@ConfigureCmake... after 1 ms [39m
 > hvigor [32mFinished :web_engine:default@BuildNativeWithNinja... after 1 ms [39m
-> hvigor [32mFinished :electron:default@MakePackInfo... after 3 ms [39m
-> hvigor [32mFinished :electron:default@ProcessProfile... after 461 ms [39m
+> hvigor [32mFinished :electron:default@MakePackInfo... after 1 ms [39m
+> hvigor [32mFinished :electron:default@ProcessProfile... after 562 ms [39m
 > hvigor [32mFinished :electron:default@BuildNativeWithCmake... after 1 ms [39m
 > hvigor [32mFinished :web_engine:default@ProcessLibs... after 2 ms [39m
-> hvigor [32mFinished :electron:default@ProcessResource... after 2 ms [39m
-> hvigor [32mFinished :web_engine:default@DoNativeStrip... after 3 ms [39m
-> hvigor [32mFinished :electron:default@CompileResource... after 939 ms [39m
+> hvigor [32mFinished :electron:default@ProcessResource... after 1 ms [39m
+> hvigor [32mFinished :web_engine:default@DoNativeStrip... after 2 ms [39m
+> hvigor [32mFinished :electron:default@CompileResource... after 985 ms [39m
 > hvigor [32mFinished :electron:default@BuildNativeWithNinja... after 1 ms [39m
-> hvigor [32mFinished :electron:default@BuildJS... after 3 ms [39m
-> hvigor [32mFinished :electron:default@ProcessLibs... after 14 ms [39m
-> hvigor [32mFinished :electron:default@DoNativeStrip... after 18 ms [39m
-> hvigor [32mFinished :electron:default@CacheNativeLibs... after 5 ms [39m
-> hvigor [33mWARN: [33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/AccessibilityAdapterBind.ets:11:29
+> hvigor [32mFinished :electron:default@BuildJS... after 1 ms [39m
+> hvigor [32mFinished :electron:default@ProcessLibs... after 6 ms [39m
+> hvigor [32mFinished :electron:default@DoNativeStrip... after 11 ms [39m
+> hvigor [32mFinished :electron:default@CacheNativeLibs... after 3 ms [39m
+> hvigor [33mWARN: [33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/AccessibilityAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/AppLifecycleAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/AppLifecycleAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/AppWindowAdapterBind.ets:12:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/AppWindowAdapterBind.ets:12:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/BluetoothAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/BluetoothAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/BluetoothLowEnergyAdapterBind.ets:17:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/BluetoothLowEnergyAdapterBind.ets:17:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/BrowserPolicyAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/BrowserPolicyAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/CertManagerAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/CertManagerAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/ContextAdapterBind.ets:11:21
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/ContextAdapterBind.ets:11:21
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/ContextPathAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/ContextPathAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/CursorAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/CursorAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/DeviceAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/DeviceAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/DeviceUserAuthAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/DeviceUserAuthAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/DialogAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/DialogAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/DisplayAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/DisplayAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/DragDropAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/DragDropAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/ElectronAppAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/ElectronAppAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/FileManagerAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/FileManagerAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/FilePickerAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/FilePickerAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/FontAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/FontAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/I18nAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/I18nAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/IMFAdapterBind.ets:14:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/IMFAdapterBind.ets:14:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/MediaAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/MediaAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/MimeTypeAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/MimeTypeAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/NativeThemeAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/NativeThemeAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/NotificationAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/NotificationAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/PermissionManagerAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/PermissionManagerAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/PopupWindowAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/PopupWindowAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/PrintAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/PrintAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/ProcessAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/ProcessAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/RunningLockAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/RunningLockAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/ScreenshotAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/ScreenshotAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/ShapeDetectionAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/ShapeDetectionAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/SpeechAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/SpeechAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/SubWindowAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/SubWindowAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/SystemFloatingWindowAdapterBind.ets:11:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/SystemFloatingWindowAdapterBind.ets:11:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/jsbindings/StatusBarManagerAdapterBind.ets:10:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/jsbindings/StatusBarManagerAdapterBind.ets:10:29
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/application/WebAbilityStage.ets:65:46
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/application/WebAbilityStage.ets:65:46
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:51:38
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:51:38
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:52:42
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:52:42
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:53:38
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:53:38
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:55:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:55:16
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:34:38
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:34:38
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:35:42
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:35:42
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:36:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:36:16
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:125:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:125:57
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:126:61
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:126:61
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:127:39
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:127:39
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:128:41
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:128:41
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebSubWindow.ets:28:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebSubWindow.ets:28:57
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebSubWindow.ets:29:61
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebSubWindow.ets:29:61
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebSubWindow.ets:30:41
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebSubWindow.ets:30:41
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:25:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:25:57
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:27:61
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:27:61
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:28:41
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:28:41
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindowNode.ets:120:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindowNode.ets:120:57
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindowNode.ets:122:61
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindowNode.ets:122:61
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindowNode.ets:123:41
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindowNode.ets:123:41
  Classes cannot be used as objects (arkts-no-classes-as-obj)
 [39m[39m
 [33mWARN: [33m[33mArkTS:WARN: For details about ArkTS syntax errors, see FAQs[39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:95:17
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:95:17
  'show' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:120:29
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:120:29
  The system capacity of this api 'selectMode' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:120:49
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:120:49
  The system capacity of this api 'DocumentSelectMode' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:120:68
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:120:68
  The system capacity of this api 'FOLDER' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:122:31
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:122:31
  The system capacity of this api 'selectMode' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:122:51
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:122:51
  The system capacity of this api 'DocumentSelectMode' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:122:70
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:122:70
  The system capacity of this api 'MIXED' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:128:30
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:128:30
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:161:30
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DialogAdapter.ets:161:30
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/NativeThemeAdapter.ets:53:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/NativeThemeAdapter.ets:53:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:236:15
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:236:15
  To use this API, you need to apply for the permissions: ohos.permission.FILE_ACCESS_PERSIST
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:259:15
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:259:15
  To use this API, you need to apply for the permissions: ohos.permission.FILE_ACCESS_PERSIST
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:295:37
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:295:37
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:296:39
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:296:39
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:297:37
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:297:37
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:299:39
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:299:39
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:300:38
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:300:38
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:304:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PermissionManagerAdapter.ets:304:18
  'showDialog' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppLifecycleAdapter.ets:48:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppLifecycleAdapter.ets:48:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:85:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:85:24
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:135:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:135:9
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:139:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:139:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:141:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:141:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:153:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:153:9
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:165:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:165:9
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:178:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:178:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:195:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:195:19
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:195:32
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:195:32
  To use this API, you need to apply for the permissions: ohos.permission.WINDOW_TOPMOST
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:292:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:292:24
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:350:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:350:24
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:379:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:379:9
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:470:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:470:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:483:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:483:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:492:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:492:20
  To use this API, you need to apply for the permissions: ohos.permission.PRIVACY_WINDOW
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:583:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:583:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:589:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:589:16
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:680:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:680:12
  To use this API, you need to apply for the permissions: ohos.permission.SYSTEM_FLOAT_WINDOW
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:733:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/AppWindowAdapter.ets:733:20
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:38:32
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:38:32
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:49:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:49:18
  'setLocalName' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:49:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:49:18
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:73:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:73:16
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:84:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:84:16
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:117:54
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:117:54
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:128:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:128:18
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:137:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:137:18
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:146:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:146:18
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:158:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:158:18
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:167:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:167:18
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:177:37
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:177:37
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:188:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:188:57
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:213:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:213:18
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:231:28
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:231:28
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:241:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:241:18
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:261:34
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:261:34
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:273:56
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothAdapter.ets:273:56
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:68:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:68:11
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:77:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:77:11
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:93:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:93:11
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:103:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:103:11
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:111:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:111:9
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:117:14
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:117:14
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:126:14
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:126:14
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:134:10
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:134:10
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:138:40
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:138:40
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:140:14
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:140:14
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:141:14
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:141:14
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:151:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:151:11
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:160:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:160:11
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:214:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:214:11
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:226:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:226:11
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:242:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:242:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:247:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:247:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:253:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:253:9
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:254:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:254:20
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:259:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:259:12
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:264:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:264:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:264:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:264:12
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:283:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:283:26
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:290:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:290:57
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:301:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:301:26
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:309:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:309:57
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:320:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:320:26
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:329:59
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:329:59
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:331:59
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:331:59
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:343:22
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:343:22
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:350:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:350:57
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:361:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:361:26
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:367:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:367:18
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:373:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:373:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:373:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:373:12
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:374:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:374:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:375:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:375:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:375:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:375:12
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:388:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:388:18
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:394:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:394:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:397:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:397:16
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:410:22
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:410:22
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:417:57
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:417:57
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BLUETOOTH
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:443:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:443:19
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:483:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BluetoothLowEnergyAdapter.ets:483:26
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/BrowserPolicyAdapter.ets:22:40
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/BrowserPolicyAdapter.ets:22:40
  'decodeWithStream' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:45:15
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:45:15
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:49:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:49:20
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:50:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:50:16
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:52:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:52:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:53:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:53:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:64:17
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:64:17
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_CERT_MANAGER
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:81:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:81:26
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_CERT_MANAGER
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:90:44
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:90:44
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_CERT_MANAGER
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:112:17
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:112:17
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_CERT_MANAGER
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:129:17
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:129:17
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_CERT_MANAGER
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:136:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:136:19
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_CERT_MANAGER
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:142:21
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:142:21
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_CERT_MANAGER
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:154:33
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:154:33
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:176:15
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:176:15
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:181:21
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:181:21
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:201:32
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CertManagerAdapter.ets:201:32
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_CERT_MANAGER
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/CursorAdapter.ets:44:22
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/CursorAdapter.ets:44:22
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DeviceAdapter.ets:115:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DeviceAdapter.ets:115:12
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DeviceUserAuthAdapter.ets:43:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DeviceUserAuthAdapter.ets:43:16
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BIOMETRIC
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DeviceUserAuthAdapter.ets:56:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DeviceUserAuthAdapter.ets:56:16
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BIOMETRIC
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DeviceUserAuthAdapter.ets:96:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DeviceUserAuthAdapter.ets:96:11
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/DeviceUserAuthAdapter.ets:107:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/DeviceUserAuthAdapter.ets:107:24
  To use this API, you need to apply for the permissions: ohos.permission.ACCESS_BIOMETRIC or ohos.permission.USER_AUTH_FROM_BACKGROUND
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/ElectronAppAdapter.ets:63:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/ElectronAppAdapter.ets:63:24
  'getSystemLocale' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/ElectronAppAdapter.ets:110:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/ElectronAppAdapter.ets:110:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:52:30
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:52:30
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:75:27
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:75:27
  The system capacity of this api 'selectMode' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:75:47
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:75:47
  The system capacity of this api 'DocumentSelectMode' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:75:66
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:75:66
  The system capacity of this api 'FOLDER' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:102:30
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:102:30
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:125:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:125:20
  'showDialog' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:184:30
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FilePickerAdapter.ets:184:30
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FontAdapter.ets:18:42
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FontAdapter.ets:18:42
  'getFontByName' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FontAdapter.ets:22:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FontAdapter.ets:22:26
  'getSystemFontList' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/FontAdapter.ets:45:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/FontAdapter.ets:45:26
  'getFontByName' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/I18nAdapter.ets:25:22
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/I18nAdapter.ets:25:22
  'Locale' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/I18nAdapter.ets:25:32
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/I18nAdapter.ets:25:32
  'language' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/I18nAdapter.ets:30:22
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/I18nAdapter.ets:30:22
  'Locale' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/I18nAdapter.ets:30:32
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/I18nAdapter.ets:30:32
  'region' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:143:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:143:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:147:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:147:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:150:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:150:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:153:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:153:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:156:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/IMFAdapter.ets:156:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/MediaAdapter.ets:56:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/MediaAdapter.ets:56:19
  'getContext' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/MediaAdapter.ets:57:25
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/MediaAdapter.ets:57:25
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/NotificationAdapter.ets:76:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/NotificationAdapter.ets:76:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/NotificationAdapter.ets:260:43
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/NotificationAdapter.ets:260:43
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/common/BaseWindowAdapter.ets:30:27
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/common/BaseWindowAdapter.ets:30:27
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PopupWindowAdapter.ets:58:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PopupWindowAdapter.ets:58:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PopupWindowAdapter.ets:118:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PopupWindowAdapter.ets:118:19
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PopupWindowAdapter.ets:129:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PopupWindowAdapter.ets:129:19
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PopupWindowAdapter.ets:172:28
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PopupWindowAdapter.ets:172:28
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:53:13
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:53:13
  To use this API, you need to apply for the permissions: ohos.permission.PRINT
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:55:21
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:55:21
  To use this API, you need to apply for the permissions: ohos.permission.PRINT
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:58:21
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:58:21
  To use this API, you need to apply for the permissions: ohos.permission.PRINT
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:78:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:78:9
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:90:11
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:90:11
  To use this API, you need to apply for the permissions: ohos.permission.PRINT
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:101:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/PrintAdapter.ets:101:20
  'showDialog' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/ScreenshotAdapter.ets:21:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/ScreenshotAdapter.ets:21:16
  To use this API, you need to apply for the permissions: ohos.permission.CUSTOM_SCREEN_CAPTURE or ohos.permission.CUSTOM_SCREEN_RECORDING
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SpeechAdapter.ets:70:44
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SpeechAdapter.ets:70:44
  'getVolumeSync' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:95:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:95:24
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:127:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:127:20
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:220:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:220:18
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:228:22
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:228:22
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:260:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SubWindowAdapter.ets:260:9
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:60:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:60:12
  To use this API, you need to apply for the permissions: ohos.permission.SYSTEM_FLOAT_WINDOW
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:149:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:149:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:157:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:157:19
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:168:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:168:19
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:187:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:187:24
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:222:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:222:24
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:257:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/SystemFloatingWindowAdapter.ets:257:24
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:79:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:79:7
  The system capacity of this api 'statusBarManager' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:79:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:79:24
  The system capacity of this api 'addToStatusBar' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:93:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:93:9
  The system capacity of this api 'statusBarManager' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/v> hvigor [32mFinished :electron:default@CompileArkTS... after 6 s 458 ms [39m
-> hvigor [32mFinished :electron:default@GeneratePkgModuleJson... after 3 ms [39m
-> hvigor [32mFinished :electron:default@ProcessCompiledResources... after 1 ms [39m
-scode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:93:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:93:26
  The system capacity of this api 'on' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:100:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:100:9
  The system capacity of this api 'statusBarManager' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:100:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:100:26
  The system capacity of this api 'on' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:110:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:110:7
  The system capacity of this api 'statusBarManager' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:110:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:110:24
  The system capacity of this api 'updateStatusBarIcon' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:137:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:137:9
  The system capacity of this api 'statusBarManager' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:137:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:137:26
  The system capacity of this api 'updateStatusBarMenu' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:153:9
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:153:9
  The system capacity of this api 'statusBarManager' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:153:26
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:153:26
  The system capacity of this api 'removeFromStatusBar' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:165:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:165:7
  The system capacity of this api 'statusBarManager' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:165:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:165:24
  The system capacity of this api 'off' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:166:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:166:7
  The system capacity of this api 'statusBarManager' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:166:24
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:166:24
  The system capacity of this api 'off' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:204:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/adapter/StatusBarManager.ets:204:16
  The system capacity of this api 'subMenu' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebBaseAbility.ets:98:27
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebBaseAbility.ets:98:27
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebBaseAbility.ets:98:27
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebBaseAbility.ets:98:27
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebBaseAbility.ets:107:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebBaseAbility.ets:107:12
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:227:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:227:20
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:228:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:228:18
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:229:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:229:20
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:230:21
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:230:21
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:243:34
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:243:34
  'getContext' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:336:32
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:336:32
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebAbility.ets:336:47
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebAbility.ets:336:47
  To use this API, you need to apply for the permissions: ohos.permission.GET_RUNNING_INFO
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:44:23
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:44:23
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:75:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/ability/WebEmbeddedAbility.ets:75:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:74:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:74:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:81:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:81:16
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:100:17
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:100:17
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:107:49
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:107:49
  'getContext' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:227:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:227:19
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindow.ets:228:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindow.ets:228:19
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebSubWindow.ets:74:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebSubWindow.ets:74:19
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebSubWindow.ets:75:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebSubWindow.ets:75:19
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:83:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:83:19
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:84:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:84:19
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:122:23
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:122:23
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:148:49
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebEmbeddedWindow.ets:148:49
  'getContext' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindowNode.ets:73:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindowNode.ets:73:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindowNode.ets:82:16
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindowNode.ets:82:16
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindowNode.ets:107:49
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindowNode.ets:107:49
  'getContext' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindowNode.ets:182:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindowNode.ets:182:19
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/components/WebWindowNode.ets:183:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/components/WebWindowNode.ets:183:19
  'vp2px' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/entryability/StatelessAbility.ets:30:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/entryability/StatelessAbility.ets:30:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/entryability/StatusBarEntryAbility.ets:10:52
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/entryability/StatusBarEntryAbility.ets:10:52
  The system capacity of this api 'StatusBarViewExtensionAbility' is not supported on all devices
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/entryability/StatusBarEntryAbility.ets:17:5
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/entryability/StatusBarEntryAbility.ets:17:5
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/Index.ets:20:28
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/Index.ets:20:28
  'getShared' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/SubWindow.ets:7:31
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/SubWindow.ets:7:31
  'getShared' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/EmbeddedWindow.ets:8:28
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/EmbeddedWindow.ets:8:28
  'getShared' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/WindowNode.ets:8:28
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/WindowNode.ets:8:28
  'getShared' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/WebPage.ets:36:18
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/WebPage.ets:36:18
  'back' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/WebPage.ets:80:27
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/WebPage.ets:80:27
  'getParams' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/WebPage.ets:88:7
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/WebPage.ets:88:7
  Function may throw exceptions. Special handling is required.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:153:20
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:153:20
  'showToast' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:168:39
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:168:39
  To use this API, you need to apply for the permissions: ohos.permission.GET_NETWORK_INFO
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:178:12
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:178:12
  'pushUrl' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:199:21
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:199:21
  'show' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:257:19
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/QuickLoginButtonComponent.ets:257:19
  'show' has been deprecated.
 [39m[39m
-[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/Login.ets:9:28
+[33mWARN: [33m[33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/Login.ets:9:28
  'getShared' has been deprecated.
 [39m[39m
-[33mWARN: [33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/electron/src/main/ets/pages/WebPage.ets:6:1
+[33mWARN: [33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/electron/src/main/ets/pages/WebPage.ets:6:1
  It's not a recommended way to export struct with '@Entry' decorator, which may cause ACE Engine error in component preview mode.[39m[39m
-[33mWARN: [33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/interface/CommonInterface.ts:70:53
+[33mWARN: [33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/interface/CommonInterface.ts:70:53
  Cannot find name 'GestureEvent'.[39m[39m
-[33mWARN: [33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-0pp8w9cl/project/web_engine/src/main/ets/interface/CommonInterface.ts:71:59
+[33mWARN: [33mArkTS:WARN File: /private/var/folders/fv/mn6gqctn31n5mb69trf2ksb80000gn/T/vscode-deviceid-electron-lzc2172e/project/web_engine/src/main/ets/interface/CommonInterface.ts:71:59
  Cannot find name 'GestureEvent'.[39m[39m
 [39m
-> hvigor [32mFinished :electron:default@PackageHap... after 1 s 303 ms [39m
+> hvigor [32mFinished :electron:default@CompileArkTS... after 4 s 733 ms [39m
+> hvigor [32mFinished :electron:default@GeneratePkgModuleJson... after 2 ms [39m
+> hvigor [32mFinished :electron:default@ProcessCompiledResources... after 1 ms [39m
+> hvigor [32mFinished :electron:default@PackageHap... after 1 s 430 ms [39m
 > hvigor [32mFinished :electron:default@PackingCheck... after 4 ms [39m
 > hvigor [33mWARN: No signingConfig found for product default[39m
 > hvigor [32mFinished :electron:default@SignHap... after 1 ms [39m
 > hvigor [32mFinished :electron:default@CollectDebugSymbol... after 1 ms [39m
 > hvigor [32mFinished :electron:assembleHap... after 1 ms [39m
-> hvigor [32mBUILD SUCCESSFUL in 11 s 216 ms [39m
+> hvigor [32mBUILD SUCCESSFUL in 9 s 654 ms [39m
