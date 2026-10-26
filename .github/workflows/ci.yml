@@ -1,18 +1,17 @@
-name: CI
+name: Legacy ports build checks
 
 on:
   push:
+    branches: [main]
     paths:
       - "ports/**"
   pull_request:
     paths:
       - "ports/**"
 
-# 发布通过 npm stage publish + NPM_TOKEN 认证
-# id-token: write 用于生成 Provenance 签名（与认证无关）
-# stage 后需维护者在 npmjs.com 上 2FA 审核通过后正式上线
+# Inherited upstream ports are build-only in this fork. Electron releases use
+# a reviewed dedicated workflow and may only target @ohos-ports-electron.
 permissions:
-  id-token: write
   contents: read
 
 jobs:
@@ -34,16 +33,19 @@ jobs:
             BASE=${{ github.event.pull_request.base.sha }}
           fi
 
-          dirs=$(git diff --name-only "$BASE" HEAD \
-                 | grep '^ports/' \
-                 | sed -E 's|^(ports/[^/]+/[^/]+)/.*|\1|' \
-                 | sort -u \
-                 | jq -R -s -c 'split("\n")[:-1]')
-
+          export BASE
+          dirs=$(python3 - <<'PYCODE'
+          import json, os, subprocess
+          from pathlib import Path
+          files = subprocess.check_output(['git', 'diff', '--name-only', os.environ['BASE'], 'HEAD'], text=True).splitlines()
+          dirs = { '/'.join(p.split('/')[:3]) for p in files if p.startswith('ports/') and len(p.split('/')) >= 4 and not p.startswith('ports/vscode-deviceid/') }
+          print(json.dumps(sorted(d for d in dirs if (Path(d) / 'build.sh').is_file())))
+          PYCODE
+          )
           echo "matrix=$dirs" >> $GITHUB_OUTPUT
 
-  # 对于发生变化的目录，进去执行里面的 build.sh 和 publish.sh
-  build-and-publish:
+  # Legacy recipes are only built; they cannot publish from this workflow.
+  build-legacy:
     needs: detect-changes
     if: needs.detect-changes.outputs.matrix != '[]'
     strategy:
@@ -76,16 +78,3 @@ jobs:
           source setup-env.sh
           cd "${{ matrix.dir }}"
           ./build.sh
-
-      # 只有直接 push 或 PR 被合入时才会进行发布
-      # 通过 NPM_TOKEN 认证执行 npm stage publish
-      # stage 后需维护者在 npmjs.com 上 2FA 审核通过后正式上线
-      - name: Publish
-        if: github.event_name == 'push'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
-          source setup-env.sh
-          cd "${{ matrix.dir }}"
-          ./publish.sh
