@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "upstreamName": "onnxruntime-node",
+  "upstreamVersion": "1.27.0",
+  "localReferenceVersion": "1.30.0",
+  "baseline": {
+    "name": "@ohos-ports/onnxruntime-node",
+    "version": "1.27.0-beta.13",
+    "url": "https://registry.npmjs.org/@ohos-ports/onnxruntime-node/-/onnxruntime-node-1.27.0-beta.13.tgz",
+    "sha256": "d41dfe2a3b24125a708de57d5b5c931a553dd6031acfdc25cc0fc34045e48714",
+    "integrity": "sha512-EjrXDKV6hNUNG1pJIzmZQ4ubOGDo+bFi0v0r9oaPIpQH4K/qLPV8Tt7dgilOBa281/0Hzc+7JRLOQC+h1Iplyg=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/onnxruntime-node",
+    "version": "1.27.0-electron-oh.1"
+  },
+  "scope": "Node baseline bytes retained; separately selected API-27 Electron binding with N-API shim and private C++ runtime",
+  "packagePatches": {
+    "0001-ohos-platform-alias.patch": "e0bb6cf8e97cdadac1eb67b812c0334ecf1afd3f86ae96633576293f045b2662",
+    "0002-distribution-metadata.patch": "aa0f44fa9790e3175774d095215aaec4c64f08d336ab39a22395d107271a8f45",
+    "0004-electron-runtime-selector.patch": "9d676ff185027b6b258c480b2bcd59d4f5dc0d2f11a48d39ec22bc7aa60aa342",
+    "0005-install-native-selection.patch": "db62dca7cabde78e5d39ca48ed78e6327e343f617d053f4c9355af2f1ab72782"
+  },
+  "nativeSourcePatches": {
+    "0003-ohos-native-source.patch": "43e265776826abd99db85b2a52cfe527883d0e2484d75b2d43cd218b99d5c965"
+  }
+}

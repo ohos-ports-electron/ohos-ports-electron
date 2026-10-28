@@ -45,3 +45,33 @@ npm trust github @ohos-ports-electron/vscode-deviceid \
 更新该 port 的 0002 分发补丁版本、inputs.lock.json 的版本及补丁 SHA256；重新构建并验证真实 Node / Electron 环境。把对应候选 SHA256 和精简设备报告更新到 release-evidence.json，并更新测试依赖锁中的版本/integrity。不同版本或不同候选不得套用旧报告。
 
 提交 PR → CI 构建/兼容检查 → 审查合入 main → CI OIDC 自动发布 latest → registry integrity 验证。发布失败可重跑同一个 main 提交，已有同字节版本会幂等跳过；不需要离线打包上传。变更分发文件或 npm pack 字节时必须递增版本。
+
+## onnxruntime-node 的独立原生流程
+
+`ports/onnxruntime-node/1.27.0` 使用独立工作流 `onnxruntime-node-electron-oh.yml`，不改变 vscode-deviceid 的 npm-publish.yml。候选为 `@ohos-ports-electron/onnxruntime-node@1.27.0-electron-oh.1`；environment 为 `npm-publish`，通道为 `latest`。
+
+PR 运行托管静态/信任边界、同包构建和五版本宿主兼容检查，不接触发布 Secret。main push 或 main 手动运行也在 Ubuntu 24.04 托管机下载 `ONNXRUNTIME_NATIVE_URL`，用 native-artifact.lock.json 校验归档和三个成员，再组合锁定基线生成同一 tgz；不需要自建 runner，不在 CI 重编原生库。构建一次后交接给 Node **18.15.0 / 20.18.1 / 22.17.0 / 24.11.1 / 24.13.0** 宿主矩阵。手动运行仅构建验证；发布仅允许可信 main push，等待全部兼容作业与 release ready。
+
+功能证据覆盖 Electron-OH **25、34、37、40、独立 Node**。独立 Node 官方归档来源和设备 npm CLI 补充结果见精简证据。完整证据及冻结原生归档已 HTTPS 托管并回下载校验，实际 URL/SHA256 已绑定；首次发布 Secret 的存在性已核验，发行准备状态 ready；实际认证及上传由 main 发布作业验证。无 fresh device CI，不能把 Linux 宿主矩阵当作设备重测。
+
+### 首次 CI 自动发包
+
+若 npm 包确实尚未创建，可使用一次性 bootstrap 模式。拥有 scope 创建/发布权限的维护者在 npm 网站创建短期 Granular Access Token，允许目标 scope/package 的 Read and write，并启用 Bypass 2FA；只添加组织管理权限不足以发布包。将 Token 存入 GitHub **npm-publish environment Secret `NPM_BOOTSTRAP_TOKEN`**，将仓库变量 **`ONNXRUNTIME_PUBLISH_MODE=bootstrap`**。不在聊天、源码或制品里传 Token。
+
+核对证据归档与原生归档在线可下载，填写证据 URL/SHA，仓库变量 **`ONNXRUNTIME_NATIVE_URL`** 指向锁定原生归档。完成本地门禁和审查后，由 main 的可信 push 触发 build → 五版本 compatibility → publish。发布脚本再次认证查询包不存在；若包已存在则 bootstrap 拒绝。同版本同 integrity 已发布会幂等跳过，不能用跳过上传证明认证已验证。
+
+首发成功后核对 registry integrity 和 latest，删除 `NPM_BOOTSTRAP_TOKEN`，将 `ONNXRUNTIME_PUBLISH_MODE` 改回 `oidc`。Token 首发和后续 OIDC 是两种独立认证；Token 不能代替后续 Trusted Publisher 的实际上传验证。
+
+### 后续 OIDC
+
+本包 Trusted Publisher 单独配置：owner **ohos-ports-electron**、repository **ohos-ports-electron**、workflow filename **onnxruntime-node-electron-oh.yml**、environment **npm-publish**，显式允许 direct `npm publish`。已有 vscode-deviceid 授权不会自动授权本包。该包已存在后，由包维护者完成账户 2FA：
+
+```sh
+npm trust github @ohos-ports-electron/onnxruntime-node \
+  --repository ohos-ports-electron/ohos-ports-electron \
+  --file onnxruntime-node-electron-oh.yml --environment npm-publish --allow-publish
+```
+
+按 [npm Trusted Publishing 文档](https://docs.npmjs.com/trusted-publishers/)，使用 GitHub 托管 runner，Node >=22.14.0 / npm >=11.5.1；`npm trust` 命令要求 npm >=11.15.0。本流程固定 Node 24.13.0 / npm 11.21.0。新配置应在两天内完成首次真实发布，临近下一个已验证新修订才创建；PR 静态检查或跳过旧版本不能证明 OIDC 上传成功。首发 Token 官方依据：[创建 Token](https://docs.npmjs.com/creating-and-viewing-access-tokens/)、[CI 中使用 Token](https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow/)。
+
+线上只读核查已确认 `npm-publish` environment 存在且部署分支为 main；首次发包的 environment Secret 需由 npm scope 维护者配置；Token 不进入 Git。线上执行状态以对应 PR/Actions 和 registry 验收为准。详见 [ONNX 配方 README](../ports/onnxruntime-node/1.27.0/README.md) 与 [构建步骤](../ports/onnxruntime-node/1.27.0/electron-oh/README.md)。

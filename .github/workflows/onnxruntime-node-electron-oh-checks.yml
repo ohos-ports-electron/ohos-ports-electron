@@ -1,0 +1,37 @@
+name: onnxruntime-node recipe checks
+
+on:
+  pull_request:
+    paths:
+      - 'ports/onnxruntime-node/**'
+      - '.github/workflows/onnxruntime-node-electron-oh*.yml'
+      - '.github/workflows/ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ports/onnxruntime-node/**'
+      - '.github/workflows/onnxruntime-node-electron-oh*.yml'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recipe:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check locked patches, headers, licenses, fixtures and release guards
+        run: |
+          export PYTHONDONTWRITEBYTECODE=1
+          PORT=ports/onnxruntime-node/1.27.0
+          bash -n "$PORT/build.sh" "$PORT/publish.sh"
+          python3 "$PORT/electron-oh/tools/release.py" check
+          python3 "$PORT/electron-oh/tests/release-contract.py"
+          python3 - <<'PY'
+          import ast
+          from pathlib import Path
+          for path in Path('ports/onnxruntime-node/1.27.0').rglob('*.py'):
+              ast.parse(path.read_text(), filename=str(path))
+          PY

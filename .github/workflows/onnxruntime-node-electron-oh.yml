@@ -1,0 +1,126 @@
+name: onnxruntime-node build and npm publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ports/onnxruntime-node/**'
+      - '.github/workflows/onnxruntime-node-electron-oh*.yml'
+      - '.github/workflows/ci.yml'
+      - 'docs/RELEASING.md'
+  pull_request:
+    paths:
+      - 'ports/onnxruntime-node/**'
+      - '.github/workflows/onnxruntime-node-electron-oh*.yml'
+      - '.github/workflows/ci.yml'
+      - 'docs/RELEASING.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: onnxruntime-node-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PORT: ports/onnxruntime-node/1.27.0
+  PYTHONDONTWRITEBYTECODE: '1'
+
+jobs:
+  build:
+    # PR builds use public hash-locked inputs on hosted runners; no publish secrets.
+    # Packaging frozen native files is architecture-independent; no SDK runner required.
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      (github.event_name == 'pull_request' ||
+       (github.ref == 'refs/heads/main' &&
+        (github.event_name == 'push' || github.event_name == 'workflow_dispatch')))
+    runs-on: ubuntu-24.04
+    outputs:
+      release-ready: ${{ steps.readiness.outputs.ready }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Reconstruct the locked tgz once from reviewed native artifacts
+        env:
+          ONNXRUNTIME_NATIVE_URL: ${{ vars.ONNXRUNTIME_NATIVE_URL }}
+        run: |
+          python3 "$PORT/electron-oh/tools/acquire-native.py" --url "$ONNXRUNTIME_NATIVE_URL" --output "$RUNNER_TEMP/onnx-native"
+          bash "$PORT/build.sh" --native-artifacts "$RUNNER_TEMP/onnx-native" --output "$RUNNER_TEMP/onnx-bundle-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          python3 "$PORT/electron-oh/tests/release-contract.py" --bundle "$RUNNER_TEMP/onnx-bundle-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+      - name: Read reviewed release readiness
+        id: readiness
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          from pathlib import Path
+          e = json.loads((Path(os.environ['PORT']) / 'electron-oh/release-evidence.json').read_text())
+          print('ready=' + str(e['release']['status'] == 'ready' and not e['release']['reasons']).lower())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: onnxruntime-node-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/onnx-bundle-${{ github.run_id }}-${{ github.run_attempt }}/candidate.tgz
+            ${{ runner.temp }}/onnx-bundle-${{ github.run_id }}-${{ github.run_attempt }}/candidate.json
+            ${{ runner.temp }}/onnx-bundle-${{ github.run_id }}-${{ github.run_attempt }}/bundle.json
+          if-no-files-found: error
+          retention-days: 30
+
+  compatibility:
+    needs: build
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18.15.0', '20.18.1', '22.17.0', '24.11.1', '24.13.0']
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: onnxruntime-node-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/onnx-bundle
+      - name: Install and run host inference using the same tgz
+        run: |
+          python3 "$PORT/electron-oh/tools/release.py" verify --bundle "$RUNNER_TEMP/onnx-bundle"
+          python3 "$PORT/electron-oh/tools/test-host.py" --tgz "$RUNNER_TEMP/onnx-bundle/candidate.tgz" --output "$RUNNER_TEMP/onnx-host"
+
+  publish:
+    needs: [build, compatibility]
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.event_name == 'push' && github.ref == 'refs/heads/main' &&
+      needs.build.outputs.release-ready == 'true'
+    runs-on: ubuntu-24.04
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.0'
+      - run: npm install --global npm@11.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: onnxruntime-node-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/onnx-bundle
+      - name: Publish the verified artifact with the configured authentication
+        env:
+          ENABLE_ELECTRON_OH_PUBLISH: '1'
+          ELECTRON_OH_BUNDLE: ${{ runner.temp }}/onnx-bundle
+          GITHUB_ENVIRONMENT: npm-publish
+          NPM_PUBLISH_MODE: ${{ vars.ONNXRUNTIME_PUBLISH_MODE || 'oidc' }}
+          NPM_BOOTSTRAP_TOKEN: ${{ vars.ONNXRUNTIME_PUBLISH_MODE == 'bootstrap' && secrets.NPM_BOOTSTRAP_TOKEN || '' }}
+        run: bash "$PORT/publish.sh"

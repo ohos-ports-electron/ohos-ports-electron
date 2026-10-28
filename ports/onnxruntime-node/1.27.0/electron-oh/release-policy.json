@@ -1,0 +1,18 @@
+{
+  "repository": "ohos-ports-electron/ohos-ports-electron",
+  "publishRef": "refs/heads/main",
+  "workflowFilename": "onnxruntime-node-electron-oh.yml",
+  "environment": "npm-publish",
+  "distTag": "latest",
+  "portDirectory": "ports/onnxruntime-node/1.27.0",
+  "packageName": "@ohos-ports-electron/onnxruntime-node",
+  "packageVersion": "1.27.0-electron-oh.1",
+  "registry": "https://registry.npmjs.org/",
+  "hostNodeVersions": [
+    "18.15.0",
+    "20.18.1",
+    "22.17.0",
+    "24.11.1",
+    "24.13.0"
+  ]
+}

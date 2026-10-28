@@ -1,0 +1,22 @@
+--- a/script/ohos-install.cjs
++++ b/script/ohos-install.cjs
+@@ -3,6 +3,17 @@
+ 'use strict';
+ const fs = require('node:fs');
+ const path = require('node:path');
++const harmony = process.platform === 'ohos' || process.platform === 'openharmony';
+ const platform = process.platform === 'ohos' ? 'openharmony' : process.platform;
+-const binding = path.join(__dirname, '..', 'bin', 'napi-v6', platform, process.arch, 'onnxruntime_binding.node');
+-if (!fs.existsSync(binding)) require('./install');
++const electron = harmony && Boolean(process.versions.electron);
++const directory = electron
++  ? path.join(__dirname, '..', 'bin', 'electron-oh', 'napi-v6', process.arch)
++  : path.join(__dirname, '..', 'bin', 'napi-v6', platform, process.arch);
++const binding = path.join(directory, electron ? 'onnxruntime_binding_electron.node' : 'onnxruntime_binding.node');
++if (harmony) {
++  for (const file of [binding, path.join(directory, 'libonnxruntime.so.1')]) {
++    if (!fs.existsSync(file)) throw new Error('Missing bundled HarmonyOS native file: ' + file);
++  }
++} else if (!fs.existsSync(binding)) {
++  require('./install');
++}

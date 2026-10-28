@@ -1,0 +1,11 @@
+{
+  "files": {
+    "squeezenet.onnx": "d95e2191e056f1912a9b8f6000da3b9c7818441b9eb48137033c2adbf6398bc8",
+    "squeezenet.input0.json": "57fb3b2d7eddc59a6f890c4240ac715047e6ca288b54fa9320f72fc9b17937b7",
+    "test_types_string.onnx": "050ec5c4a45315dcf585a2291b178c1424f8e842c78ca26b112404c3468e2405",
+    "test_types_float.onnx": "e9411dab2435adec81b9935dfb479af83d8dd72f8d98dcfdd24794f30caf1f62",
+    "test_types_int64.onnx": "b77d372cb3edb39dcbbaddbdf9e464f1013b170b39ecfb8c3e3f0c88b2cc438a",
+    "squeezenet.output0.json": "f5c5c1577851ab88c86ecec1c83138c2914ddc85a166d1f909433129154439ae"
+  },
+  "source": "User-provided adapted onnxruntime-node 1.30.0 source/js/node/test/testdata (reference fixtures only)"
+}

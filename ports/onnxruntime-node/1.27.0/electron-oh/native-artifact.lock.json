@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "archiveSha256": "0e50dffbb1346e5852af28a2430d809f729df795b6524c772d2fceeaee3c8de8",
+  "files": {
+    "libonnxruntime.so.1": "f224d67c104055f7b7e1dfcc2f1e18545cb21e511a5c9e7d33e8b4de9c25d586",
+    "onnxruntime_binding_electron.node": "6d9f7c0f791301465a734f93e3ce19b1f62e45d6fe1149155d15ad23241f47d2",
+    "native-artifacts.json": "8838c153250133e4b5448e74308bf2f4b81c2effa9a1cc8cd10ab87e85ea9517"
+  },
+  "distribution": {
+    "status": "hosted-and-anonymously-verified",
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/onnxruntime-evidence-1.27.0-electron-oh.1/onnxruntime-native-1.27.0-electron-oh.1.tar.gz",
+    "proposedUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/onnxruntime-evidence-1.27.0-electron-oh.1/onnxruntime-native-1.27.0-electron-oh.1.tar.gz"
+  }
+}

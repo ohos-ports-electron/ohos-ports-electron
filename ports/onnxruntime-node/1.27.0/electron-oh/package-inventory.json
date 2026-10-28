@@ -1,0 +1,365 @@
+{
+  "candidateSha256": "1e8fb736dde3c0ba55cd068adf160692852b9804eb261b67a98dff8eba9a1040",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 3030,
+      "sha256": "c2b487948c9aed0a5ca8ef7717d78cbc81cfb65e5697d2ad6e2b7bd6fa8bc91b"
+    },
+    {
+      "path": "bin/electron-oh/napi-v6/arm64/libonnxruntime.so.1",
+      "size": 31671376,
+      "sha256": "f224d67c104055f7b7e1dfcc2f1e18545cb21e511a5c9e7d33e8b4de9c25d586"
+    },
+    {
+      "path": "bin/electron-oh/napi-v6/arm64/onnxruntime_binding_electron.node",
+      "size": 4900016,
+      "sha256": "6d9f7c0f791301465a734f93e3ce19b1f62e45d6fe1149155d15ad23241f47d2"
+    },
+    {
+      "path": "bin/napi-v6/darwin/arm64/libonnxruntime.1.27.0.dylib",
+      "size": 38800984,
+      "sha256": "89f692a3a1a224e4ad0b796b0e7c0bd81113b0741bfe84211eceef14d05a9e59"
+    },
+    {
+      "path": "bin/napi-v6/darwin/arm64/libonnxruntime.1.dylib",
+      "size": 38800984,
+      "sha256": "89f692a3a1a224e4ad0b796b0e7c0bd81113b0741bfe84211eceef14d05a9e59"
+    },
+    {
+      "path": "bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "size": 266584,
+      "sha256": "2b26ea21a9088b03eb2c37a6f18a18930747d5f7039af4a40e3dbcec436835a0"
+    },
+    {
+      "path": "bin/napi-v6/linux/arm64/libonnxruntime.so.1",
+      "size": 20001880,
+      "sha256": "c36bc200e7e6c093b8abb0b34590fbdd8c52fd3fb5e33795b9523ffdde2fce0f"
+    },
+    {
+      "path": "bin/napi-v6/linux/arm64/onnxruntime_binding.node",
+      "size": 394648,
+      "sha256": "3827cba413ec3a104c1b2049b681c9875ea524fc3dcb6675d3537839b18fb263"
+    },
+    {
+      "path": "bin/napi-v6/linux/x64/libonnxruntime.so.1",
+      "size": 38023776,
+      "sha256": "d8aff4aa8abee8fb2abb2f2f2459ffc94461e781e41b9f7c072829dd0d470221"
+    },
+    {
+      "path": "bin/napi-v6/linux/x64/onnxruntime_binding.node",
+      "size": 389424,
+      "sha256": "0f52b3621eedeb415d946528e820259066fd38f2c3ad373b5fa46cc60de88ffc"
+    },
+    {
+      "path": "bin/napi-v6/openharmony/arm64/libc++_shared.so",
+      "size": 1267392,
+      "sha256": "9f7978e8a5419fbd7f1a2fe87ad47c44473e8b8763da79bb077b3d69b5289f96"
+    },
+    {
+      "path": "bin/napi-v6/openharmony/arm64/libonnxruntime.so.1",
+      "size": 27654976,
+      "sha256": "c9d04f1f57db17499f333ee74f22db2d868d60f461a96a65db089ce65871fc41"
+    },
+    {
+      "path": "bin/napi-v6/openharmony/arm64/onnxruntime_binding.node",
+      "size": 309824,
+      "sha256": "1677a566f5f96059b02b75701e7516568bbfbe1015d8136397c590b7d11cc613"
+    },
+    {
+      "path": "bin/napi-v6/win32/arm64/DirectML.dll",
+      "size": 18444600,
+      "sha256": "759a2d3054d4ce583186bd6f0b5c36071492b3dfba8be456b69f1b17b313171c"
+    },
+    {
+      "path": "bin/napi-v6/win32/arm64/dxcompiler.dll",
+      "size": 22285624,
+      "sha256": "af2c099ca8270ddcdf5d5aca248345db997c714c5112553a932a75a472c2ae9d"
+    },
+    {
+      "path": "bin/napi-v6/win32/arm64/dxil.dll",
+      "size": 1769784,
+      "sha256": "87213188bf7bdcf0498684aaff8238666645c67e55e8c956d27d3a4da7453cbe"
+    },
+    {
+      "path": "bin/napi-v6/win32/arm64/onnxruntime.dll",
+      "size": 26834232,
+      "sha256": "908ce63e73f375e90daabe24c52486b42392c19df3d63973a26f871cfeab5453"
+    },
+    {
+      "path": "bin/napi-v6/win32/arm64/onnxruntime_binding.node",
+      "size": 421688,
+      "sha256": "b2dc1c56e7b78ffc66dc261c15ba01b489845aed68f33d81c6950bf09afdf575"
+    },
+    {
+      "path": "bin/napi-v6/win32/x64/DirectML.dll",
+      "size": 18527544,
+      "sha256": "86d9b418e982fa1effb6ea39cb916b04fe3896ccedc6982d73a5477459b56d81"
+    },
+    {
+      "path": "bin/napi-v6/win32/x64/dxcompiler.dll",
+      "size": 17986360,
+      "sha256": "b2d807864ae4a7cdd4a8f09cc947206f60170c90f41fc248a9cdd800f4c6fbcd"
+    },
+    {
+      "path": "bin/napi-v6/win32/x64/dxil.dll",
+      "size": 1508664,
+      "sha256": "5f307a712416ae5213f2b4469e25c4258191c8284513fa5d2bd828a14c5052ef"
+    },
+    {
+      "path": "bin/napi-v6/win32/x64/onnxruntime.dll",
+      "size": 26011960,
+      "sha256": "273f9ef9cf755c6a0f342226a80448156c10ceb74db2ae8c8370dc98e75af0eb"
+    },
+    {
+      "path": "bin/napi-v6/win32/x64/onnxruntime_binding.node",
+      "size": 298296,
+      "sha256": "dd50eb632300170576fda3648f4fcf00fbd44afca6a70efa53c57f85b272faf2"
+    },
+    {
+      "path": "dist/backend.d.ts",
+      "size": 506,
+      "sha256": "23e65ad2c30827e0f2bfe2aadc2987b76d4619ae5e25aad36674ce618ed3df6d"
+    },
+    {
+      "path": "dist/backend.js",
+      "size": 6289,
+      "sha256": "a79e8019e7276a282987023f9d38d41063a99e563e5e1a6f38a73a7d39ea83ab"
+    },
+    {
+      "path": "dist/backend.js.map",
+      "size": 3669,
+      "sha256": "507698a7c23feb4379f827f5ac88608db93b193e9c334000456f58661699ac0c"
+    },
+    {
+      "path": "dist/binding.d.ts",
+      "size": 1587,
+      "sha256": "a9ae6f1bb0c9b7faf81d0806d842617443ed69d685d83fc0ecf4d6fa05592318"
+    },
+    {
+      "path": "dist/binding.js",
+      "size": 2861,
+      "sha256": "0d7605ab8867bcf618984d4dfb898aac5bade08a10063818743cec02db7cef8a"
+    },
+    {
+      "path": "dist/binding.js.map",
+      "size": 968,
+      "sha256": "9e874542b40ead4543c619adcbd3c1d03af7cff256350cf89269e4f256b68b26"
+    },
+    {
+      "path": "dist/index.d.ts",
+      "size": 87,
+      "sha256": "d2498ae6d465fecfa80a535e99ad9bbabcfafac73f6b420f29651ec9d50b98fa"
+    },
+    {
+      "path": "dist/index.js",
+      "size": 1602,
+      "sha256": "019eb02133b94b1f7fdf2d89eb93b590ce1288d271f7b280647fb3978e6391fa"
+    },
+    {
+      "path": "dist/index.js.map",
+      "size": 508,
+      "sha256": "08ed0bf4483b52c91c2c9271f4acb93f43f217a496ef8918aac05be0341a2b00"
+    },
+    {
+      "path": "dist/version.d.ts",
+      "size": 41,
+      "sha256": "b3409cb6c44425cf2cecd9105a2b074934d488f499c0f313b29bf425262bb0a3"
+    },
+    {
+      "path": "dist/version.js",
+      "size": 361,
+      "sha256": "9f42bb38964171e12c8da4e191baa60490a5ee6fa58563c0e9a9167f5afc60b2"
+    },
+    {
+      "path": "dist/version.js.map",
+      "size": 190,
+      "sha256": "dc33a306cd858dd8d4b11566d33c13db607eaa2587ed6f7c06809513f3dab50e"
+    },
+    {
+      "path": "electron-oh-native.json",
+      "size": 1112,
+      "sha256": "8838c153250133e4b5448e74308bf2f4b81c2effa9a1cc8cd10ab87e85ea9517"
+    },
+    {
+      "path": "lib/backend.ts",
+      "size": 4637,
+      "sha256": "a8fb063d64c92a33635b12683433cec8c9ad370b1b5cf7d61e5098347bd7aacf"
+    },
+    {
+      "path": "lib/binding.ts",
+      "size": 3888,
+      "sha256": "c99b071705b12adebf9bc497bd4ca728f8335bc1e2cdccf3f7ff71d02f89da63"
+    },
+    {
+      "path": "lib/index.ts",
+      "size": 572,
+      "sha256": "1e68f9c33ff0c9759b50f9c9d43a87665f8b47a6f9d74b2b3d6e4fbccbd26e48"
+    },
+    {
+      "path": "lib/version.ts",
+      "size": 230,
+      "sha256": "f057015c7b63ce525c2728c0e63d485b640739bdca31abd27bee62e4883a5783"
+    },
+    {
+      "path": "licenses/electron-oh/Electron-MIT.txt",
+      "size": 1096,
+      "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d"
+    },
+    {
+      "path": "licenses/electron-oh/LLVM-NOTICE.txt",
+      "size": 166564,
+      "sha256": "0c3e828f1d91ce25fee65845c657050abb50fa23309124e60e02f14adc4f2863"
+    },
+    {
+      "path": "licenses/electron-oh/OHOS-NDK-NOTICE.txt",
+      "size": 689758,
+      "sha256": "b28cdd10e2600e0fc28f9d7ae4f6c6c2ad71671b2d5cb0c4973ff47299345a21"
+    },
+    {
+      "path": "licenses/electron-oh/abseil_cpp-src/LICENSE",
+      "size": 11361,
+      "sha256": "c79a7fea0e3cac04cd43f20e7b648e5a0ff8fa5344e644b0ee09ca1162b62747"
+    },
+    {
+      "path": "licenses/electron-oh/date-src/LICENSE.txt",
+      "size": 1637,
+      "sha256": "c90f6c00fb961170560299cbda28ca2d45804913aa8b2a9f36dbb8e0028d6930"
+    },
+    {
+      "path": "licenses/electron-oh/eigen3-src/COPYING.APACHE",
+      "size": 11362,
+      "sha256": "03379001a7b12a2ec997a25554247d985270b353c10d5bafee9ac8d6519820b7"
+    },
+    {
+      "path": "licenses/electron-oh/eigen3-src/COPYING.BSD",
+      "size": 1517,
+      "sha256": "51928dce36213c5333ba3172e847d735d4c6e9b7ff2722a326c49067155b82eb"
+    },
+    {
+      "path": "licenses/electron-oh/eigen3-src/COPYING.MINPACK",
+      "size": 2193,
+      "sha256": "c87b7f8ee88f6195e91743820c00354833583aef091b72e2d4a49c8e28e798a0"
+    },
+    {
+      "path": "licenses/electron-oh/eigen3-src/COPYING.MPL2",
+      "size": 16727,
+      "sha256": "66a3107d5ad6a058aab753eaac2047ccb2ed0e39465dd0fe5844da3e300d5172"
+    },
+    {
+      "path": "licenses/electron-oh/eigen3-src/COPYING.README",
+      "size": 264,
+      "sha256": "db640ff2bd90c6abd6a4d3fbb351e0ee4d555417cf840492054d1cbb2ea85644"
+    },
+    {
+      "path": "licenses/electron-oh/eigen3-src/LICENSE",
+      "size": 16725,
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+    },
+    {
+      "path": "licenses/electron-oh/flatbuffers-src/LICENSE",
+      "size": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "licenses/electron-oh/gsl-src/LICENSE",
+      "size": 1157,
+      "sha256": "4c21dc82a1c7186ea754fd59d504c00947953a3401fe8e24eaa44109ef8e2555"
+    },
+    {
+      "path": "licenses/electron-oh/nlohmann_json-src/LICENSE.MIT",
+      "size": 1076,
+      "sha256": "86b998c792894ccb911a1cb7994f7a9652894e7a094c0b5e45be2f553f45cf14"
+    },
+    {
+      "path": "licenses/electron-oh/node-addon-api-MIT.txt",
+      "size": 1245,
+      "sha256": "4fcf69bbecb999ec8fa0ece62bc8934b7cdd45061ac1a8b1939a09be64cd4352"
+    },
+    {
+      "path": "licenses/electron-oh/onnx-src/LICENSE",
+      "size": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "licenses/electron-oh/onnxruntime-MIT.txt",
+      "size": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "licenses/electron-oh/onnxruntime-ThirdPartyNotices.txt",
+      "size": 325054,
+      "sha256": "0e07b95f3a8d6230037707c5c4a2b554d12c4cb67369669ac255635528ffcee2"
+    },
+    {
+      "path": "licenses/electron-oh/protobuf-src/LICENSE",
+      "size": 1732,
+      "sha256": "6e5e117324afd944dcf67f36cf329843bc1a92229a8cd9bb573d7a83130fea7d"
+    },
+    {
+      "path": "licenses/electron-oh/pytorch_cpuinfo-src/LICENSE",
+      "size": 1424,
+      "sha256": "8e7e60636c3aa0cb03571a1a841ce5697f9551ff92b3c426c2561613d15ade70"
+    },
+    {
+      "path": "licenses/electron-oh/re2-src/LICENSE",
+      "size": 1558,
+      "sha256": "6040cda75d90b1738292a631d89934c411ef7ffd543c4d6a1b7edfc8edf29449"
+    },
+    {
+      "path": "licenses/electron-oh/safeint-src/LICENSE",
+      "size": 1066,
+      "sha256": "a46919cc8f01eb73f6e4b84af0d41b46b2a33b87c74e864279ef585079f82da4"
+    },
+    {
+      "path": "package.json",
+      "size": 1142,
+      "sha256": "bf91a4d5ceb7f803c221f16c09a140c8dfcc2d4bcd60fd6121263c185fb2b449"
+    },
+    {
+      "path": "script/build.js",
+      "size": 5804,
+      "sha256": "4a47ab592ed226f36be187a3210667f38950d4408f181f8eaa487c42c9c28842"
+    },
+    {
+      "path": "script/build.ts",
+      "size": 4097,
+      "sha256": "aa02bf6d0afabdb7230a40fb3101b13b263210dd4684741f9fdcc7d96ac74f5e"
+    },
+    {
+      "path": "script/install-metadata-versions.js",
+      "size": 265,
+      "sha256": "c2bd386556de7fa5fa0e3fe781ad0356c13ba7fd7ebd4f928f42ebe7a374b7b0"
+    },
+    {
+      "path": "script/install-metadata.js",
+      "size": 1788,
+      "sha256": "2cfbb2fcf1f170d5da564c0be3222821050bcbd282c9e0493e9433649ac2f130"
+    },
+    {
+      "path": "script/install-utils.js",
+      "size": 9726,
+      "sha256": "b8890f3eb40b50b5e4ca61d6b6b328d017660319ee326ca3db00709de1218579"
+    },
+    {
+      "path": "script/install.js",
+      "size": 5283,
+      "sha256": "241c40edfafd2cac6abdcc6138207ffb41bd2d0f661c3bb3d422e5f8cb24fe88"
+    },
+    {
+      "path": "script/ohos-install.cjs",
+      "size": 957,
+      "sha256": "2bcdc9509ae9a06a8cd59dc3b99b76efcd72896dbdd3b7a6a9c18b5fee87b8a6"
+    },
+    {
+      "path": "script/prepack.js",
+      "size": 2356,
+      "sha256": "890bf2498519fdc7ffd6f6fe2c44c16925ec9091d4b1419bf54a5fd9478e2d5b"
+    },
+    {
+      "path": "script/prepack.ts",
+      "size": 877,
+      "sha256": "ff251557aaffa1fac06b63172178c260aaff0c358905a4117a4d05a36f5b20d4"
+    }
+  ]
+}

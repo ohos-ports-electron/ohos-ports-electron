@@ -1,0 +1,25 @@
+--- a/package.json
++++ b/package.json
+@@ -1,9 +1,10 @@
+ {
+   "license": "MIT",
+-  "name": "@ohos-ports/onnxruntime-node",
++  "name": "@ohos-ports-electron/onnxruntime-node",
+   "repository": {
+-    "url": "https://github.com/Microsoft/onnxruntime.git",
+-    "type": "git"
++    "type": "git",
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/onnxruntime-node/1.27.0"
+   },
+   "author": "fs-eire",
+   "binary": {
+@@ -11,7 +12,7 @@
+       6
+     ]
+   },
+-  "version": "1.27.0-beta.13",
++  "version": "1.27.0-electron-oh.1",
+   "dependencies": {
+     "adm-zip": "^0.5.16",
+     "global-agent": "^4.1.3",
