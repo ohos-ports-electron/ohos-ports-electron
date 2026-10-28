@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -207,6 +208,24 @@ def registry_action(existing, expected):
     return 'already-published'
 
 
+def wait_for_registry_version(policy, expected, *, lookup=registry_version, sleep=time.sleep,
+                              attempts=61, interval=10):
+    # npm can accept an upload before its public version metadata becomes visible.
+    require(attempts >= 1 and interval >= 0, 'invalid registry wait limits')
+    for attempt in range(attempts):
+        existing = lookup(policy)
+        if existing is not None:
+            require(existing == expected, 'post-publish integrity mismatch: registry contains different bytes')
+            return
+        if attempt == 0:
+            print('npm accepted upload; waiting for public registry visibility', flush=True)
+        if attempt + 1 < attempts:
+            sleep(interval)
+    raise ValueError('npm accepted upload but the version is still not publicly visible after '
+                     + str(attempts) + ' checks; inspect npm processing status and pending staged releases before retrying; '
+                     'do not change the version or candidate bytes')
+
+
 def registry_package_exists(policy, token, opener=urllib.request.urlopen):
     request = urllib.request.Request(policy['registry'] + urllib.parse.quote(policy['packageName'], safe='@'),
                                      headers={'Authorization': 'Bearer ' + token})
@@ -223,7 +242,7 @@ def registry_package_exists(policy, token, opener=urllib.request.urlopen):
 
 def check_bootstrap(token, package_exists):
     require(bool(token), 'bootstrap requires the protected NPM_BOOTSTRAP_TOKEN secret')
-    require(not package_exists, 'bootstrap only creates a missing package; use OIDC for an existing package')
+    require(not package_exists, 'bootstrap only creates a missing package; inspect pending staged releases before retrying; use OIDC for an existing package')
 
 
 def publish(bundle, mode='oidc'):
@@ -256,7 +275,7 @@ def publish(bundle, mode='oidc'):
             child_env['NODE_AUTH_TOKEN'] = token
         subprocess.run(['npm', 'publish', str((bundle / 'candidate.tgz').resolve()), '--registry', policy['registry'],
                         '--access', 'public', '--tag', policy['distTag'], '--provenance', '--ignore-scripts'], env=child_env, check=True)
-    require(registry_version(policy) == evidence['candidateIntegrity'], 'post-publish integrity mismatch')
+    wait_for_registry_version(policy, evidence['candidateIntegrity'])
     print('published verified frozen candidate')
 
 
