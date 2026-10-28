@@ -65,5 +65,7 @@
   "packageToolchain": {
     "node": "24.20.0",
     "npm": "11.19.0"
-  }
+  },
+  "candidateTarSha256": "312f390655e9b92688e0b2c04717edfdcf45c569fc3bc20ba58b21d1c0221aa4",
+  "candidateArchiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/napi-rs-canvas-evidence-1.0.2-electron-oh.5/napi-rs-canvas-1.0.2-electron-oh.5.tgz"
 }

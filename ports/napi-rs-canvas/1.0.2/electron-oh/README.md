@@ -12,7 +12,7 @@ python3 electron-oh/tests/release-contract.py --bundle /tmp/canvas-bundle --evid
 
 npm 打包工具链固定为 Node 24.20.0 / npm 11.19.0；它与发布作业的工具链分别锁定。
 
-归档 URL 和每个成员均被 `native-artifact.lock.json` 锁定。离线时可向 acquire-native.py 传 `--archive`。构建零 fuzz 应用包补丁，正常 npm pack 一次，核对冻结 SHA256、全部包内字节及 SHA512；bundle 另绑定当前 Git commit 与配方文件哈希。发布作业下载同一 bundle，不重新打包。
+归档 URL 和每个成员均被 `native-artifact.lock.json` 锁定。离线时可向 acquire-native.py 传 `--archive`。构建零 fuzz 应用包补丁，正常 npm pack 一次，逐项核对全部包文件，并校验解压后的完整 tar SHA256（含元数据及顺序）。相同 Node/npm 在 macOS 与 Linux 的 gzip 压缩结果可能不同；仅当 tar 完全一致时，才允许从 inputs.lock.json 锁定的 Release URL 取用设备已验证的原始 tgz，并再次核对其 SHA256、SHA512 和清单。重打包结果保留为 repacked.tgz，pack-replay.json 记录差异。文件或 tar 不同直接失败，不下载替代包。bundle 另绑定当前 Git commit 与配方文件哈希；发布作业下载同一 bundle，不重新打包。
 
 宿主检查覆盖真实纯 JS geometry 和受控 native 替身的加载器选择，不执行 OHOS native。精确 Node 版本来自真机运行时：18.15.0、20.18.1、22.17.0、24.11.1、24.13.0。Node 18 使用 npm 9.5.0，其余宿主使用支持对应 Node 的 npm。CI 不声称运行了新一轮真机；它校验锁定归档中的设备报告。
 

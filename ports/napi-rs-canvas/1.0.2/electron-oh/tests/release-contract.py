@@ -2,6 +2,8 @@
 """Negative release tests: untrusted events, blocked evidence and artifact tampering."""
 import argparse
 import copy
+import gzip
+import hashlib
 import io
 import json
 from pathlib import Path
@@ -15,12 +17,63 @@ import urllib.error
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import release
+import frozen_archive
 
 BUNDLE = None
 EVIDENCE_ARCHIVE = None
 
 
 class ReleaseContract(unittest.TestCase):
+    def test_cross_platform_gzip_preserves_the_tested_archive(self):
+        raw = b'same tar bytes for cross-platform compression contract' * 100
+        frozen = gzip.compress(raw, compresslevel=9, mtime=0)
+        replay = gzip.compress(raw, compresslevel=1, mtime=0)
+        self.assertNotEqual(frozen, replay)
+        lock = {'candidateSha256': hashlib.sha256(frozen).hexdigest(),
+                'candidateTarSha256': hashlib.sha256(raw).hexdigest(),
+                'candidateArchiveUrl': 'https://example.invalid/frozen.tgz'}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'candidate.tgz'
+            path.write_bytes(replay)
+            response = mock.MagicMock()
+            response.__enter__.return_value = response
+            response.geturl.return_value = lock['candidateArchiveUrl']
+            response.read.return_value = frozen
+            with mock.patch.object(frozen_archive.urllib.request, 'urlopen', return_value=response):
+                result = frozen_archive.freeze_archive(path, lock)
+            self.assertTrue(result['frozenArchiveDownloaded'])
+            self.assertEqual(path.read_bytes(), frozen)
+            self.assertEqual((path.parent / 'repacked.tgz').read_bytes(), replay)
+            with mock.patch.object(frozen_archive.urllib.request, 'urlopen') as network:
+                self.assertFalse(frozen_archive.freeze_archive(path, lock)['frozenArchiveDownloaded'])
+                network.assert_not_called()
+
+    def test_changed_reconstruction_is_rejected_before_download(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'candidate.tgz'
+            path.write_bytes(gzip.compress(b'changed package'))
+            with mock.patch.object(frozen_archive.urllib.request, 'urlopen') as network:
+                with self.assertRaisesRegex(ValueError, 'reconstructed tar differs'):
+                    frozen_archive.freeze_archive(path, {'candidateTarSha256': '0' * 64})
+                network.assert_not_called()
+
+    def test_downloaded_candidate_with_wrong_bytes_is_rejected(self):
+        raw = b'same tar bytes'
+        replay = gzip.compress(raw, compresslevel=1)
+        lock = {'candidateSha256': '0' * 64, 'candidateTarSha256': hashlib.sha256(raw).hexdigest(),
+                'candidateArchiveUrl': 'https://example.invalid/frozen.tgz'}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'candidate.tgz'
+            path.write_bytes(replay)
+            response = mock.MagicMock()
+            response.__enter__.return_value = response
+            response.geturl.return_value = lock['candidateArchiveUrl']
+            response.read.return_value = b'corrupt download'
+            with mock.patch.object(frozen_archive.urllib.request, 'urlopen', return_value=response):
+                with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
+                    frozen_archive.freeze_archive(path, lock)
+            self.assertEqual(path.read_bytes(), replay)
+
     def context(self):
         _, _, p = release.check_recipe()
         return {'ENABLE_ELECTRON_OH_PUBLISH': '1', 'GITHUB_ACTIONS': 'true',

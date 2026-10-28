@@ -2,6 +2,7 @@
 """Bind the candidate to the current recipe; reject incomplete or untrusted releases."""
 import argparse
 import base64
+import gzip
 import hashlib
 import io
 import json
@@ -122,8 +123,9 @@ def inventory(tgz):
 
 
 def verify_candidate(tgz):
-    _, evidence, policy = check_recipe()
+    lock, evidence, policy = check_recipe()
     require(sha(tgz) == evidence['candidateSha256'], 'candidate sha256 mismatch')
+    require(hashlib.sha256(gzip.decompress(Path(tgz).read_bytes())).hexdigest() == lock['candidateTarSha256'], 'candidate tar mismatch')
     require('sha512-' + base64.b64encode(hashlib.sha512(Path(tgz).read_bytes()).digest()).decode() == evidence['candidateIntegrity'], 'candidate integrity mismatch')
     files, meta = inventory(tgz)
     require(files == evidence['packageFiles'], 'candidate package files mismatch')

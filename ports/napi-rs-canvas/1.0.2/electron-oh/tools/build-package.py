@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import tarfile
 import urllib.request
+from frozen_archive import freeze_archive
 
 ADAPTER = Path(__file__).resolve().parents[1]
 PORT = ADAPTER.parent
@@ -86,11 +87,15 @@ def main():
             if item.isfile():
                 files[item.name[8:]] = hashlib.sha256(packed.extractfile(item).read()).hexdigest()
     require(files['skia.openharmony-arm64.node'] == lock['nodeNative']['outputs']['skia.openharmony-arm64.node'], 'source-built Node addon mismatch')
+    expected = json.loads((ADAPTER / 'release-evidence.json').read_text())['packageFiles']
+    require(files == expected, 'reconstructed package files differ from device-tested package')
     identity = json.loads((package / 'package.json').read_text())
     require({k: identity[k] for k in ['name', 'version']} == lock['candidate'], 'package identity mismatch')
+    replay = freeze_archive(frozen, lock)
+    write(out / 'pack-replay.json', replay)
     manifest = {'name': identity['name'], 'version': identity['version'], 'sha256': sha(frozen),
                 'integrity': 'sha512-' + base64.b64encode(hashlib.sha512(frozen.read_bytes()).digest()).decode(),
-                'packageFiles': files, 'nativeSourceRebuild': True}
+                'packageFiles': files, 'nativeSourceRebuild': True, 'packReconstruction': replay}
     if lock.get('candidateSha256'):
         require(manifest['sha256'] == lock['candidateSha256'], 'replayed candidate differs from frozen package')
     write(out / 'candidate.json', manifest)
