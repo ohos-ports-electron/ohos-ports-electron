@@ -1,0 +1,11 @@
+{
+  "name": "onnxruntime-frozen-regression",
+  "version": "1.0.0",
+  "private": true,
+  "allowScripts": {
+    "@ohos-ports-electron/onnxruntime-node": true
+  },
+  "dependencies": {
+    "@ohos-ports-electron/onnxruntime-node": "file:./input.tgz"
+  }
+}

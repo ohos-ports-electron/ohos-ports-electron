@@ -38,7 +38,7 @@ jobs:
           import json, os, subprocess
           from pathlib import Path
           files = subprocess.check_output(['git', 'diff', '--name-only', os.environ['BASE'], 'HEAD'], text=True).splitlines()
-          dirs = { '/'.join(p.split('/')[:3]) for p in files if p.startswith('ports/') and len(p.split('/')) >= 4 and not p.startswith('ports/vscode-deviceid/') }
+          dirs = { '/'.join(p.split('/')[:3]) for p in files if p.startswith('ports/') and len(p.split('/')) >= 4 and not p.startswith(('ports/vscode-deviceid/', 'ports/onnxruntime-node/')) }
           print(json.dumps(sorted(d for d in dirs if (Path(d) / 'build.sh').is_file())))
           PYCODE
           )

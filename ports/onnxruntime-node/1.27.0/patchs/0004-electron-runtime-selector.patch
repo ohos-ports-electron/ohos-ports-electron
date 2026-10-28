@@ -1,0 +1,87 @@
+--- a/dist/binding.js
++++ b/dist/binding.js
+@@ -5,9 +5,39 @@
+ exports.initOrt = exports.binding = void 0;
+ const worker_threads_1 = require("worker_threads");
+ const onnxruntime_common_1 = require("onnxruntime-common");
++// Electron-OH loads code-signed addons from the HAP native library namespace.
++const getBindingPath = () => {
++  const platform = process.platform === 'ohos' ? 'openharmony' : process.platform;
++  if (platform !== 'openharmony' || !process.versions.electron) {
++    return `../bin/napi-v6/${platform}/${process.arch}/onnxruntime_binding.node`;
++  }
++  const fs = require('fs');
++  const path = require('path');
++  const crypto = require('crypto');
++  const filename = 'onnxruntime_binding_electron.node';
++  const bundled = path.join(__dirname, '../bin/electron-oh/napi-v6', process.arch, filename);
++  const expectedHash = crypto.createHash('sha256').update(fs.readFileSync(bundled)).digest('hex');
++  const roots = [
++    '/data/storage/el1/bundle/electron/libs/arm64',
++    '/data/storage/el1/bundle/libs/arm64',
++    '/data/storage/el1/bundle/electron/libs/arm64-v8a',
++    '/data/storage/el1/bundle/libs/arm64-v8a',
++  ];
++  for (const root of roots) {
++    const candidate = path.join(root, filename);
++    if (fs.existsSync(candidate)) {
++      const actualHash = crypto.createHash('sha256').update(fs.readFileSync(candidate)).digest('hex');
++      if (actualHash !== expectedHash) {
++        throw new Error(`Electron-OH native addon does not match installed package: ${candidate}`);
++      }
++      return candidate;
++    }
++  }
++  return bundled;
++};
+ // export native binding
+ // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+-exports.binding = require(`../bin/napi-v6/${process.platform === 'ohos' ? 'openharmony' : process.platform}/${process.arch}/onnxruntime_binding.node`);
++exports.binding = require(getBindingPath());
+ let ortInitialized = false;
+ const initOrt = () => {
+     if (!ortInitialized) {
+--- a/lib/binding.ts
++++ b/lib/binding.ts
+@@ -52,10 +52,40 @@
+   }
+ }
+ 
++// Electron-OH loads code-signed addons from the HAP native library namespace.
++const getBindingPath = (): string => {
++  const platform = process.platform === 'ohos' ? 'openharmony' : process.platform;
++  if (platform !== 'openharmony' || !process.versions.electron) {
++    return `../bin/napi-v6/${platform}/${process.arch}/onnxruntime_binding.node`;
++  }
++  const fs = require('fs');
++  const path = require('path');
++  const crypto = require('crypto');
++  const filename = 'onnxruntime_binding_electron.node';
++  const bundled = path.join(__dirname, '../bin/electron-oh/napi-v6', process.arch, filename);
++  const expectedHash = crypto.createHash('sha256').update(fs.readFileSync(bundled)).digest('hex');
++  const roots = [
++    '/data/storage/el1/bundle/electron/libs/arm64',
++    '/data/storage/el1/bundle/libs/arm64',
++    '/data/storage/el1/bundle/electron/libs/arm64-v8a',
++    '/data/storage/el1/bundle/libs/arm64-v8a',
++  ];
++  for (const root of roots) {
++    const candidate = path.join(root, filename);
++    if (fs.existsSync(candidate)) {
++      const actualHash = crypto.createHash('sha256').update(fs.readFileSync(candidate)).digest('hex');
++      if (actualHash !== expectedHash) {
++        throw new Error(`Electron-OH native addon does not match installed package: ${candidate}`);
++      }
++      return candidate;
++    }
++  }
++  return bundled;
++};
+ // export native binding
+ export const binding =
+   // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+-  require(`../bin/napi-v6/${process.platform === 'ohos' ? 'openharmony' : process.platform}/${process.arch}/onnxruntime_binding.node`) as {
++  require(getBindingPath()) as {
+     // eslint-disable-next-line @typescript-eslint/naming-convention
+     InferenceSession: Binding.InferenceSessionConstructor;
+     listSupportedBackends: () => Binding.SupportedBackend[];

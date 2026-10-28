@@ -1,0 +1,197 @@
+{
+  "source": {
+    "url": "https://codeload.github.com/microsoft/onnxruntime/tar.gz/8f0278c77bf44b0cc83c098c6c722b92a36ac4b5",
+    "commit": "8f0278c77bf44b0cc83c098c6c722b92a36ac4b5",
+    "sha256": "22d545ede6e3c1f748fd44975ced36e8a0ed5818923b7092438a1ddfc754e140",
+    "skippedLinks": [],
+    "cachePath": "inputs/upstream-1.27.0.tar.gz"
+  },
+  "dependencies": [
+    {
+      "name": "abseil_cpp",
+      "url": "https://github.com/abseil/abseil-cpp/archive/refs/tags/20250814.0.zip",
+      "sha1": "a9eb1d648cbca4d4d788737e971a6a7a63726b07",
+      "sha256": "b2bdcf6682d8cb53df365bcc5d6c318a22e55821d9978a10fdb61404c026daff",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/abseil/abseil-cpp/archive/refs/tags/20250814.0.zip"
+    },
+    {
+      "name": "date",
+      "url": "https://github.com/HowardHinnant/date/archive/refs/tags/v3.0.1.zip",
+      "sha1": "2dac0c81dc54ebdd8f8d073a75c053b04b56e159",
+      "sha256": "f4300b96f7a304d4ef9bf6e0fa3ded72159f7f2d0f605bdde3e030a0dba7cf9f",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/HowardHinnant/date/archive/refs/tags/v3.0.1.zip"
+    },
+    {
+      "name": "eigen",
+      "url": "https://github.com/eigen-mirror/eigen/archive/1d8b82b0740839c0de7f1242a3585e3390ff5f33/eigen-1d8b82b0740839c0de7f1242a3585e3390ff5f33.zip",
+      "sha1": "05b19b49e6fbb91246be711d801160528c135e34",
+      "sha256": "6a60d76351f97132669daeeb721d6bf14b008101883ad2d687a3201c5c461eb0",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/eigen-mirror/eigen/archive/1d8b82b0740839c0de7f1242a3585e3390ff5f33/eigen-1d8b82b0740839c0de7f1242a3585e3390ff5f33.zip"
+    },
+    {
+      "name": "flatbuffers",
+      "url": "https://github.com/google/flatbuffers/archive/refs/tags/v23.5.26.zip",
+      "sha1": "59422c3b5e573dd192fead2834d25951f1c1670c",
+      "sha256": "57bd580c0772fd1a726c34ab8bf05325293bc5f9c165060a898afa1feeeb95e1",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/google/flatbuffers/archive/refs/tags/v23.5.26.zip"
+    },
+    {
+      "name": "json",
+      "url": "https://github.com/nlohmann/json/archive/refs/tags/v3.11.3.zip",
+      "sha1": "5e88795165cc8590138d1f47ce94ee567b85b4d6",
+      "sha256": "04022b05d806eb5ff73023c280b68697d12b93e1b7267a0b22a1a39ec7578069",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/nlohmann/json/archive/refs/tags/v3.11.3.zip"
+    },
+    {
+      "name": "microsoft_gsl",
+      "url": "https://github.com/microsoft/GSL/archive/refs/tags/v4.2.1.zip",
+      "sha1": "1094e3bb7a8af763dcb136ccd676e6e75e614eec",
+      "sha256": "c9291d95f5f6e5c561990d06a589b01d89e553d0f366f0ce723dd1788e7a6076",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/microsoft/GSL/archive/refs/tags/v4.2.1.zip"
+    },
+    {
+      "name": "mp11",
+      "url": "https://github.com/boostorg/mp11/archive/refs/tags/boost-1.82.0.zip",
+      "sha1": "9bc9e01dffb64d9e0773b2e44d2f22c51aace063",
+      "sha256": "81431bdc44c439a324e02c07ed067f8f556419fd86f2d8b486ff568df6aac899",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/boostorg/mp11/archive/refs/tags/boost-1.82.0.zip"
+    },
+    {
+      "name": "onnx",
+      "url": "https://github.com/onnx/onnx/archive/refs/tags/v1.21.0.zip",
+      "sha1": "321d4acc807c8e0fb0bbcc0424a143dffde1e846",
+      "sha256": "b8b56570d94ecce49fee94e6380db456bb42035722b967015c9dd6459359433e",
+      "discovery": "download",
+      "cachePath": "mirror/github.com/onnx/onnx/archive/refs/tags/v1.21.0.zip"
+    },
+    {
+      "name": "protobuf",
+      "url": "https://github.com/protocolbuffers/protobuf/archive/refs/tags/v21.12.zip",
+      "sha1": "7cf2733949036c7d52fda017badcab093fe73bfa",
+      "sha256": "6a31b662deaeb0ac35e6287bda2f3369b19836e6c9f8828d4da444346f420298",
+      "discovery": "download",
+      "cachePath": "mirror/github.com/protocolbuffers/protobuf/archive/refs/tags/v21.12.zip"
+    },
+    {
+      "name": "pytorch_cpuinfo",
+      "url": "https://github.com/pytorch/cpuinfo/archive/403d652dca4c1046e8145950b1c0997a9f748b57.zip",
+      "sha1": "30b2a07fe4bae8574f89176e56274cacdd6d135b",
+      "sha256": "357d9824b8d3f4c05f0b2287e45b4e0d982422c27b67b968eb23a643dc52b5e2",
+      "discovery": "download",
+      "cachePath": "mirror/github.com/pytorch/cpuinfo/archive/403d652dca4c1046e8145950b1c0997a9f748b57.zip"
+    },
+    {
+      "name": "re2",
+      "url": "https://github.com/google/re2/archive/refs/tags/2024-07-02.zip",
+      "sha1": "646e1728269cde7fcef990bf4a8e87b047882e88",
+      "sha256": "a835fe55fbdcd8e80f38584ab22d0840662c67f2feb36bd679402da9641dc71e",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/google/re2/archive/refs/tags/2024-07-02.zip"
+    },
+    {
+      "name": "safeint",
+      "url": "https://github.com/dcleblanc/SafeInt/archive/refs/tags/3.0.28.zip",
+      "sha1": "23f252040ff6cb9f1fd18575b32fa8fb5928daac",
+      "sha256": "3ffbd9a2fdff45da77da3e7269e9aa512ea43bed5c38ce8fd8f3d1068a032c3f",
+      "discovery": "verified-cache",
+      "cachePath": "mirror/github.com/dcleblanc/SafeInt/archive/refs/tags/3.0.28.zip"
+    }
+  ],
+  "protoc": {
+    "version": "libprotoc 3.21.12",
+    "sha256": "c8043bfde9e54f529e39c55dc6f3ff576be242b978462810ed9c92ccdb8c22b9",
+    "source": "protobuf v21.12 verified in dependencies lock"
+  },
+  "shim": {
+    "sha256": "6c8b3134b858c505b1741fd182f921dd092774558addabc8848d71287edf5d52",
+    "source": "Electron-OH vendored electron-napi-library",
+    "license": "MIT; provenance README included",
+    "headers": {
+      "include/electron_node/src/node_api_types.h": "8d5d854088d5725fec9775510e0aeeeb790a41ad083c49bb721d950b86e6bd61",
+      "include/electron_node/src/js_native_api_types.h": "ef558c666fa6d35c1fb601ef590d43e8b7c982f40ab9ba67635d1db37f9b1c32",
+      "include/electron_node/src/node_api.h": "99f8845bf70cc1191fa6842ec67886586a2cb304eedd029f067af8cc7b024d50",
+      "include/electron_node/src/js_native_api.h": "f01daf8070284cc3f2d1a986c2b93da81a051dd5ebe05cd1d24ab165febbfd09",
+      "include/electron_node/deps/uv/include/uv.h": "2f5965f7a3f7a76616eb95a222546327c0babc35781ef1e78b29673d6d6a7617",
+      "include/electron_node/deps/uv/include/uv/version.h": "969bd690447deca8f9ff3293d046aa9f2c349b844814935d7c00ea526f4bfdd1",
+      "include/electron_node/deps/uv/include/uv/bsd.h": "963533ff4b16f72a204a8c760896a857c54d0ac50570f1793e3bef1f2ae8b35f",
+      "include/electron_node/deps/uv/include/uv/threadpool.h": "43cb2c06d4e30e08126d6aa92441ab18f360e38fe768211ce1bcde499bb2c103",
+      "include/electron_node/deps/uv/include/uv/linux.h": "a5fff8961e8f3da165fabf55d70cfb1eb44562cc0b8bf3b93b53bc3c9d283c86",
+      "include/electron_node/deps/uv/include/uv/tree.h": "7b3ff9923e5132683ba64d2018a3958a7f5d971df4b074ea65891fac2d99e5ae",
+      "include/electron_node/deps/uv/include/uv/posix.h": "e9d7218b34e6e89b7b412891b7e2aa8b3a561c5ce9714c1f4def6c8a8593a6a6",
+      "include/electron_node/deps/uv/include/uv/errno.h": "daac7ecc5bb83cae71dfd29db3254c99ed9b776d8acef1b428d3844be95b9dc6",
+      "include/electron_node/deps/uv/include/uv/darwin.h": "dce8bcfc3988c0e1218a0b53d35e807585942bd270718c8e77bf55534b830737",
+      "include/electron_node/deps/uv/include/uv/os390.h": "98388ae32ce2c4390b82c3529539d2a476c44f590e960ed30a79f72b807ecd02",
+      "include/electron_node/deps/uv/include/uv/stdint-msvc2008.h": "8da69f8b10c701d1ab71e6f08144c542b6a7fc2f43db2ad97a9fec12949479cf",
+      "include/electron_node/deps/uv/include/uv/aix.h": "bed77e4cf6c06f1224e681cbe607eff04713ca0c1e1f4a102e6a6565ee3f02aa",
+      "include/electron_node/deps/uv/include/uv/sunos.h": "29d4b4ef48dc3c3ab32d75e0a85bcb80e084d42b32aae40d67fc1d882b93298a",
+      "include/electron_node/deps/uv/include/uv/win.h": "4eb1a2f5bd3c3ef7eaba0717f625ee44cdbe43a35b893b8080008405bc16a4da",
+      "include/electron_node/deps/uv/include/uv/unix.h": "ced66d1733239e00492d7972cf74cae737e416305c71b40ac5513b4ea411a3d3"
+    },
+    "officialArchive": {
+      "parentArchiveSha256": "57bf0314ce3f5be80fc7a7ebc4f47a2fe82a5e4afcf5fe856ad9cfc342618946",
+      "nestedArchive": "libelectron_138.tar.gz",
+      "path": "libelectron/ohos_hap/docs/electron-napi-library.zip",
+      "zipSha256": "837d41353aab2b0cc30f56a8f55064db0c7aea73ee7fd47389740639c7b581fc",
+      "member": "electron-napi-library/lib/libshim.a",
+      "matchesVendoredArchive": true
+    }
+  },
+  "nodeAddonApi": {
+    "version": "6.1.0",
+    "sha256": "441ddeef9b009b74f79e840f3e4d469e89a29e1304c573b8f48b355c7d088086"
+  },
+  "sdk": {
+    "meta": {
+      "version": "1.0.0"
+    },
+    "data": {
+      "apiVersion": "22",
+      "displayName": "HarmonyOS 6.0.2",
+      "path": "HarmonyOS-6.0.2",
+      "platformVersion": "6.0.2",
+      "releaseType": "Release",
+      "version": "6.0.2.130",
+      "stage": "Release"
+    }
+  },
+  "build": {
+    "type": "Release",
+    "target": "aarch64-linux-ohos",
+    "cpuExecutionProvider": true,
+    "staticCpp": true,
+    "skipCleanupHook": false,
+    "bf16FastMathAcceleration": false,
+    "bf16Reason": "OHOS clang15 NDK does not expose BF16 scalar type; FP32 fallback retained"
+  },
+  "licenseFiles": {
+    "LLVM-NOTICE.txt": "0c3e828f1d91ce25fee65845c657050abb50fa23309124e60e02f14adc4f2863",
+    "onnxruntime-MIT.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+    "OHOS-NDK-NOTICE.txt": "b28cdd10e2600e0fc28f9d7ae4f6c6c2ad71671b2d5cb0c4973ff47299345a21",
+    "onnxruntime-ThirdPartyNotices.txt": "0e07b95f3a8d6230037707c5c4a2b554d12c4cb67369669ac255635528ffcee2",
+    "node-addon-api-MIT.txt": "4fcf69bbecb999ec8fa0ece62bc8934b7cdd45061ac1a8b1939a09be64cd4352",
+    "Electron-MIT.txt": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d",
+    "safeint-src/LICENSE": "a46919cc8f01eb73f6e4b84af0d41b46b2a33b87c74e864279ef585079f82da4",
+    "protobuf-src/LICENSE": "6e5e117324afd944dcf67f36cf329843bc1a92229a8cd9bb573d7a83130fea7d",
+    "eigen3-src/LICENSE": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+    "eigen3-src/COPYING.BSD": "51928dce36213c5333ba3172e847d735d4c6e9b7ff2722a326c49067155b82eb",
+    "eigen3-src/COPYING.APACHE": "03379001a7b12a2ec997a25554247d985270b353c10d5bafee9ac8d6519820b7",
+    "eigen3-src/COPYING.MPL2": "66a3107d5ad6a058aab753eaac2047ccb2ed0e39465dd0fe5844da3e300d5172",
+    "eigen3-src/COPYING.README": "db640ff2bd90c6abd6a4d3fbb351e0ee4d555417cf840492054d1cbb2ea85644",
+    "eigen3-src/COPYING.MINPACK": "c87b7f8ee88f6195e91743820c00354833583aef091b72e2d4a49c8e28e798a0",
+    "pytorch_cpuinfo-src/LICENSE": "8e7e60636c3aa0cb03571a1a841ce5697f9551ff92b3c426c2561613d15ade70",
+    "gsl-src/LICENSE": "4c21dc82a1c7186ea754fd59d504c00947953a3401fe8e24eaa44109ef8e2555",
+    "nlohmann_json-src/LICENSE.MIT": "86b998c792894ccb911a1cb7994f7a9652894e7a094c0b5e45be2f553f45cf14",
+    "flatbuffers-src/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "re2-src/LICENSE": "6040cda75d90b1738292a631d89934c411ef7ffd543c4d6a1b7edfc8edf29449",
+    "onnx-src/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "abseil_cpp-src/LICENSE": "c79a7fea0e3cac04cd43f20e7b648e5a0ff8fa5344e644b0ee09ca1162b62747",
+    "date-src/LICENSE.txt": "c90f6c00fb961170560299cbda28ca2d45804913aa8b2a9f36dbb8e0028d6930"
+  }
+}

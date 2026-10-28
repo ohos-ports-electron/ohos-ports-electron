@@ -1,0 +1,6 @@
+if(NOT DEFINED ENV{OHOS_NDK_HOME})
+  message(FATAL_ERROR "Set OHOS_NDK_HOME to the locked SDK native directory")
+endif()
+include("$ENV{OHOS_NDK_HOME}/build/cmake/ohos.toolchain.cmake")
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_NAME_linux 1)

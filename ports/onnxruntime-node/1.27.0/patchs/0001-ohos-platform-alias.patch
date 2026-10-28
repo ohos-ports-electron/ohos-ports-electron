@@ -1,0 +1,54 @@
+--- a/dist/binding.js
++++ b/dist/binding.js
+@@ -7,7 +7,7 @@
+ const onnxruntime_common_1 = require("onnxruntime-common");
+ // export native binding
+ // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+-exports.binding = require(`../bin/napi-v6/${process.platform}/${process.arch}/onnxruntime_binding.node`);
++exports.binding = require(`../bin/napi-v6/${process.platform === 'ohos' ? 'openharmony' : process.platform}/${process.arch}/onnxruntime_binding.node`);
+ let ortInitialized = false;
+ const initOrt = () => {
+     if (!ortInitialized) {
+--- a/lib/binding.ts
++++ b/lib/binding.ts
+@@ -55,7 +55,7 @@
+ // export native binding
+ export const binding =
+   // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+-  require(`../bin/napi-v6/${process.platform}/${process.arch}/onnxruntime_binding.node`) as {
++  require(`../bin/napi-v6/${process.platform === 'ohos' ? 'openharmony' : process.platform}/${process.arch}/onnxruntime_binding.node`) as {
+     // eslint-disable-next-line @typescript-eslint/naming-convention
+     InferenceSession: Binding.InferenceSessionConstructor;
+     listSupportedBackends: () => Binding.SupportedBackend[];
+--- a/script/ohos-install.cjs
++++ b/script/ohos-install.cjs
+@@ -0,0 +1,8 @@
++// Copyright (c) Microsoft Corporation. All rights reserved.
++// Licensed under the MIT License.
++'use strict';
++const fs = require('node:fs');
++const path = require('node:path');
++const platform = process.platform === 'ohos' ? 'openharmony' : process.platform;
++const binding = path.join(__dirname, '..', 'bin', 'napi-v6', platform, process.arch, 'onnxruntime_binding.node');
++if (!fs.existsSync(binding)) require('./install');
+--- a/package.json
++++ b/package.json
+@@ -18,7 +18,7 @@
+     "onnxruntime-common": "1.27.0"
+   },
+   "scripts": {
+-    "postinstall": "node -e 'require(\"fs\").existsSync(require(\"path\").join(__dirname,\"bin\",\"napi-v6\",process.platform,process.arch,\"onnxruntime_binding.node\"))||require(\"./script/install\")'"
++    "postinstall": "node ./script/ohos-install.cjs"
+   },
+   "keywords": [
+     "ONNX",
+@@ -40,7 +40,8 @@
+     "win32",
+     "darwin",
+     "linux",
+-    "openharmony"
++    "openharmony",
++    "ohos"
+   ],
+   "types": "dist/index.d.ts",
+   "description": "ONNXRuntime Node.js binding",
