@@ -283,10 +283,8 @@
     "archiveMemberCount": 46
   },
   "release": {
-    "status": "blocked",
-    "reasons": [
-      "Protected NPM_BOOTSTRAP_TOKEN environment secret has not been configured and confirmed."
-    ]
+    "status": "ready",
+    "reasons": []
   },
   "publicationPerformed": false,
   "releasePrerequisites": {
@@ -428,6 +426,15 @@
       "installerNode": "24.13.0",
       "npmVersion": "11.6.2",
       "nativeDeployment": "code-signed HAP/private HNP; ordinary app-data dlopen denied"
+    },
+    "publishAuthentication": {
+      "mode": "bootstrap",
+      "environment": "npm-publish",
+      "secretName": "NPM_BOOTSTRAP_TOKEN",
+      "secretPresenceVerified": true,
+      "secretUpdatedAt": "2026-10-28T00:53:27Z",
+      "tokenValueAccessed": false,
+      "actualRegistryAuthentication": "verified only by the forthcoming main publish job"
     }
   }
 }

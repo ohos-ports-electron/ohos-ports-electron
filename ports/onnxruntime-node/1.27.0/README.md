@@ -2,7 +2,7 @@
 
 候选为 `@ohos-ports-electron/onnxruntime-node@1.27.0-electron-oh.1`，基线是已发布的 `@ohos-ports/onnxruntime-node@1.27.0-beta.13`。本地 1.30.0 适配工程仅提供参考方案和测试数据；原生代码实际锁定 ONNX Runtime 1.27.0 / API 27，不能用 1.30.0 core 替换。
 
-冻结候选 SHA256：`1e8fb736dde3c0ba55cd068adf160692852b9804eb261b67a98dff8eba9a1040`。候选尚未发布；功能验证通过，发行状态为 **blocked**：原始运行时来源及五目标设备 npm CLI/postinstall 已补齐，每目标两轮安装与 20 项推理通过；完整报告和冻结原生输入已在 GitHub Release 托管并回下载验 SHA，发行等待首次 npm 发布认证。完整设备日志与签名 HAP 留在第一阶段工程，精简引用见 [release-evidence.json](electron-oh/release-evidence.json)。
+冻结候选 SHA256：`1e8fb736dde3c0ba55cd068adf160692852b9804eb261b67a98dff8eba9a1040`。候选尚未发布，发行准备状态为 **ready**：官方运行时来源、五目标设备 npm 安装和推理证据、公开归档均已核验；首次发布 Secret 的存在性已确认，实际认证及上传由 main 发布作业验证。精简引用见 [release-evidence.json](electron-oh/release-evidence.json)，完整报告位于其中链接的 GitHub Release。
 
 ## 实际 npm 包内容
 

@@ -44,7 +44,7 @@ node-addon-api 6.1.0 默认从 npm registry 下载并验 SHA；离线时加 `--n
 - 默认 `ONNXRUNTIME_PUBLISH_MODE=oidc`。包尚不存在时可临时设为 `bootstrap`，由 `npm-publish` environment 的 `NPM_BOOTSTRAP_TOKEN` 完成首次 CI 发布。脚本要求 Token 非空、认证查询确认整包不存在；只有明确 404 可以继续，401/403/429/5xx 全部拒绝。Token 不提供给 build/compatibility/PR，不写入制品和仓库。首发后删除 Secret，变量恢复 oidc，并为本包配置 Trusted Publisher。
 - 同版本同 integrity 跳过；不同字节拒绝；最终上传 candidate.tgz，绝不重新 pack。Token 只解决首次认证，不能绕过证据门禁。
 
-当前技术证据及归档托管已完成，release=blocked 的剩余原因是首次 npm 账号认证；本地制品和代码已准备不代表证据已上传、线上变量/Secret/OIDC 已配置或实际发包已通过。完整操作见仓库文档及第一阶段 `pr/PUBLISHING.md`。
+当前 release=ready：技术证据、公开归档及其回下载哈希已核验，首次发布环境 Secret 的名称和更新时间已确认，未读取 Token 值。实际认证、上传和 registry 验收由 main 发布作业完成；尚未验证后续 OIDC 上传。完整操作见仓库文档及第一阶段 `pr/PUBLISHING.md`。
 
 ## 设备 npm 验证边界
 

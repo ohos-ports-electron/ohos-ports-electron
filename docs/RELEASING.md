@@ -52,7 +52,7 @@ npm trust github @ohos-ports-electron/vscode-deviceid \
 
 PR 运行托管静态/信任边界、同包构建和五版本宿主兼容检查，不接触发布 Secret。main push 或 main 手动运行也在 Ubuntu 24.04 托管机下载 `ONNXRUNTIME_NATIVE_URL`，用 native-artifact.lock.json 校验归档和三个成员，再组合锁定基线生成同一 tgz；不需要自建 runner，不在 CI 重编原生库。构建一次后交接给 Node **18.15.0 / 20.18.1 / 22.17.0 / 24.11.1 / 24.13.0** 宿主矩阵。手动运行仅构建验证；发布仅允许可信 main push，等待全部兼容作业与 release ready。
 
-功能证据覆盖 Electron-OH **25、34、37、40、独立 Node**。独立 Node 官方归档来源和设备 npm CLI 补充结果见精简证据。完整证据及冻结原生归档已 HTTPS 托管并回下载校验，实际 URL/SHA256 已绑定；当前发行等待首次 npm 认证，保持 blocked。无 fresh device CI，不能把 Linux 宿主矩阵当作设备重测。
+功能证据覆盖 Electron-OH **25、34、37、40、独立 Node**。独立 Node 官方归档来源和设备 npm CLI 补充结果见精简证据。完整证据及冻结原生归档已 HTTPS 托管并回下载校验，实际 URL/SHA256 已绑定；首次发布 Secret 的存在性已核验，发行准备状态 ready；实际认证及上传由 main 发布作业验证。无 fresh device CI，不能把 Linux 宿主矩阵当作设备重测。
 
 ### 首次 CI 自动发包
 
