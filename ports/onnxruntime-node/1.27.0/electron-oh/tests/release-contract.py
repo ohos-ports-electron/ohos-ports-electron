@@ -90,6 +90,36 @@ class TrustContract(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'only creates a missing package'):
             release.check_bootstrap('synthetic-test-token', True)
 
+    def test_registry_wait_accepts_delayed_visibility(self):
+        policy = release.read(release.ADAPTER / 'release-policy.json')
+        values = iter([None, None, 'expected'])
+        sleeps = []
+        release.wait_for_registry_version(policy, 'expected', lookup=lambda _: next(values),
+                                          sleep=sleeps.append, attempts=3, interval=10)
+        self.assertEqual(sleeps, [10, 10])
+
+    def test_registry_wait_is_bounded_and_fails_closed(self):
+        policy = release.read(release.ADAPTER / 'release-policy.json')
+        calls, sleeps = [], []
+        def absent(_):
+            calls.append(1)
+            return None
+        with self.assertRaisesRegex(ValueError, 'still not publicly visible after 3 checks'):
+            release.wait_for_registry_version(policy, 'expected', lookup=absent,
+                                              sleep=sleeps.append, attempts=3, interval=10)
+        self.assertEqual(len(calls), 3)
+        self.assertEqual(sleeps, [10, 10])
+        sleeps.clear()
+        with self.assertRaisesRegex(ValueError, 'post-publish integrity mismatch'):
+            release.wait_for_registry_version(policy, 'expected', lookup=lambda _: 'other', sleep=sleeps.append)
+        self.assertEqual(sleeps, [])
+        for error in [ValueError('registry lookup failed: HTTP 403'), urllib.error.URLError('offline')]:
+            def failed(_, error=error):
+                raise error
+            with self.subTest(error=error), self.assertRaises(type(error)):
+                release.wait_for_registry_version(policy, 'expected', lookup=failed, sleep=sleeps.append)
+        self.assertEqual(sleeps, [])
+
     def test_bootstrap_package_lookup_fails_closed(self):
         policy = release.read(release.ADAPTER / 'release-policy.json')
         def response(code):

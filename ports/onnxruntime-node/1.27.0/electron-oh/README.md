@@ -43,6 +43,7 @@ node-addon-api 6.1.0 默认从 npm registry 下载并验 SHA；离线时加 `--n
 - 只有可信 main push、构建和全部兼容作业成功且 release ready，才进入 GitHub 托管 `npm-publish` 环境。PR/Fork/其他分支/手动运行不能发布。publish.sh 默认禁发；脚本核对仓库、事件、ref、workflow、environment、commit、配方、证据及同一 tgz。
 - 默认 `ONNXRUNTIME_PUBLISH_MODE=oidc`。包尚不存在时可临时设为 `bootstrap`，由 `npm-publish` environment 的 `NPM_BOOTSTRAP_TOKEN` 完成首次 CI 发布。脚本要求 Token 非空、认证查询确认整包不存在；只有明确 404 可以继续，401/403/429/5xx 全部拒绝。Token 不提供给 build/compatibility/PR，不写入制品和仓库。首发后删除 Secret，变量恢复 oidc，并为本包配置 Trusted Publisher。
 - 同版本同 integrity 跳过；不同字节拒绝；最终上传 candidate.tgz，绝不重新 pack。Token 只解决首次认证，不能绕过证据门禁。
+- npm 成功接受上传后可能先返回“正在处理”，版本查询仍为 404。发布后最多查询 61 次，间隔 10 秒；只有 404 会等待，真实 integrity 不一致或其他查询错误立即失败。等待耗尽会明确提示已接受上传但尚未公开；先检查 npm 处理状态，不要改版本或候选字节。版本可见且同 integrity 后，完整重跑该 main 工作流会幂等跳过上传（不要仅重跑失败 job，artifact 绑定 run attempt）。
 
 当前 release=ready：技术证据、公开归档及其回下载哈希已核验，首次发布环境 Secret 的名称和更新时间已确认，未读取 Token 值。实际认证、上传和 registry 验收由 main 发布作业完成；尚未验证后续 OIDC 上传。完整操作见仓库文档及第一阶段 `pr/PUBLISHING.md`。
 
