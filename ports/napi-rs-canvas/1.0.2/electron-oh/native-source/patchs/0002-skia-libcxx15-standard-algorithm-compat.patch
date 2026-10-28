@@ -1,0 +1,21 @@
+--- a/src/pdf/SkPDFTag.cpp
++++ b/src/pdf/SkPDFTag.cpp
+@@ -143,7 +143,7 @@
+                 return;
+             }
+             if (this->empty()) {
+-                fData.emplace(ci, ci);
++                fData = Data{ci, ci};
+                 return;
+             }
+             if (ci < fData->fFirst) {
+@@ -485,7 +485,8 @@
+         }
+         if (childSpans.size() > 1) {
+             std::optional<ContentIndex> minFirstAfter;
+-            for (auto&& childSpan : std::views::reverse(childSpans)) {
++            for (auto it = childSpans.rbegin(); it != childSpans.rend(); ++it) {
++                auto&& childSpan = *it;
+                 if (childSpan.fContentSpan.empty()) {
+                     // Let empty child spans remain empty
+                     continue;

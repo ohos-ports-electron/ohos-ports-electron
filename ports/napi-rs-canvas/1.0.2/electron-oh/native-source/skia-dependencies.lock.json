@@ -1,0 +1,100 @@
+[
+  {
+    "path": "buildtools",
+    "url": "https://chromium.googlesource.com/chromium/src/buildtools.git",
+    "commit": "729495f2ffa69080907780591fa2a630b2556e98",
+    "archiveSha256": "3b5d1387cc903ff52d7c63118d6c9b4fe0ecf994becf200d8e6fad3f2ed9d798",
+    "archiveBytes": 430080
+  },
+  {
+    "path": "third_party/externals/brotli",
+    "url": "https://skia.googlesource.com/external/github.com/google/brotli.git",
+    "commit": "6d03dfbedda1615c4cba1211f8d81735575209c8",
+    "archiveSha256": "4cdd3a58da0a5953c512ddbdc6bc575ddaec598316b742cb65f6018c77fcfe88",
+    "archiveBytes": 2344960
+  },
+  {
+    "path": "third_party/externals/expat",
+    "url": "https://chromium.googlesource.com/external/github.com/libexpat/libexpat.git",
+    "commit": "6154446fccefbf3ca644894f598969113b0c7bcd",
+    "archiveSha256": "aae53ee9f9a25a77ea4acc3bde4fe16b2404d974b978e0140e2fbb12a101f665",
+    "archiveBytes": 136355840
+  },
+  {
+    "path": "third_party/externals/freetype",
+    "url": "https://chromium.googlesource.com/chromium/src/third_party/freetype2.git",
+    "commit": "264b5fbf5b912b39f98d038bf75d39be0a73f21b",
+    "archiveSha256": "8acc9455ba4758e2f3295be5921ec7c84a16bb07e3b20930cf44c970db2ff500",
+    "archiveBytes": 11786240
+  },
+  {
+    "path": "third_party/externals/harfbuzz",
+    "url": "https://chromium.googlesource.com/external/github.com/harfbuzz/harfbuzz.git",
+    "commit": "9cb1fee51069b206effb4736e443b038d230789d",
+    "archiveSha256": "323065c476aec1fa9f44c63afb6a1da95f37e166a7bf2520e1693bb0d62eab01",
+    "archiveBytes": 100608000
+  },
+  {
+    "path": "third_party/externals/highway",
+    "url": "https://chromium.googlesource.com/external/github.com/google/highway.git",
+    "commit": "424360251cdcfc314cfc528f53c872ecd63af0f0",
+    "archiveSha256": "eef51a4af75af5be68f03647778f27375e32066f75f794a61d001e3258178542",
+    "archiveBytes": 2836480
+  },
+  {
+    "path": "third_party/externals/icu",
+    "url": "https://chromium.googlesource.com/chromium/deps/icu.git",
+    "commit": "364118a1d9da24bb5b770ac3d762ac144d6da5a4",
+    "archiveSha256": "357b71c5341d247d2a68dbd800de31d912f47aeb5b94dc484ca9833eb02dafbc",
+    "archiveBytes": 214200320
+  },
+  {
+    "path": "third_party/externals/libjpeg-turbo",
+    "url": "https://chromium.googlesource.com/chromium/deps/libjpeg_turbo.git",
+    "commit": "e14cbfaa85529d47f9f55b0f104a579c1061f9ad",
+    "archiveSha256": "080009891e90088f91c9a4fae711fa2bf56599719480e17b108047089798e16e",
+    "archiveBytes": 7393280
+  },
+  {
+    "path": "third_party/externals/libjxl",
+    "url": "https://chromium.googlesource.com/external/gitlab.com/wg1/jpeg-xl.git",
+    "commit": "a205468bc5d3a353fb15dae2398a101dff52f2d3",
+    "archiveSha256": "3954d26544c3ef2d955670378982ab1b9da5e202a2a69c92892e0c860856d9c8",
+    "archiveBytes": 24801280
+  },
+  {
+    "path": "third_party/externals/libpng",
+    "url": "https://skia.googlesource.com/third_party/libpng.git",
+    "commit": "d5515b5b8be3901aac04e5bd8bd5c89f287bcd33",
+    "archiveSha256": "314c61ef53d40a8ad4afa91dacb8cb172f3a1d02621da9ba4ffa6954b3d408b8",
+    "archiveBytes": 6819840
+  },
+  {
+    "path": "third_party/externals/libwebp",
+    "url": "https://chromium.googlesource.com/webm/libwebp.git",
+    "commit": "845d5476a866141ba35ac133f856fa62f0b7445f",
+    "archiveSha256": "5ce652e7aca9dbe55c36578f65031d6284dbf352037dfb1dc2500b9ea66839a8",
+    "archiveBytes": 8181760
+  },
+  {
+    "path": "third_party/externals/libyuv",
+    "url": "https://chromium.googlesource.com/libyuv/libyuv.git",
+    "commit": "d248929c059ff7629a85333699717d7a677d8d96",
+    "archiveSha256": "4c29d69a123bfd600a30486d126a04cb4a42fc4c8cb6fd15cd05f102ca087725",
+    "archiveBytes": 5416960
+  },
+  {
+    "path": "third_party/externals/wuffs",
+    "url": "https://skia.googlesource.com/external/github.com/google/wuffs-mirror-release-c.git",
+    "commit": "e3f919ccfe3ef542cfc983a82146070258fb57f8",
+    "archiveSha256": "0c9106a2bef658f02b2312d081faad6ba8a72bbb5b4ee1cae7d0a95e4ef53f8f",
+    "archiveBytes": 2293760
+  },
+  {
+    "path": "third_party/externals/zlib",
+    "url": "https://chromium.googlesource.com/chromium/src/third_party/zlib",
+    "commit": "646b7f569718921d7d4b5b8e22572ff6c76f2596",
+    "archiveSha256": "967acb8025f9af3f1a5d4d4e9ab671a65fd9b1a52e93081683f84167077c979b",
+    "archiveBytes": 2191360
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/napi-rs-canvas-evidence-1.0.2-electron-oh.5/napi-rs-canvas-native-1.0.2-electron-oh.5.tar.gz",
+  "archiveSha256": "47e4d8a1198ecbc05d2cfb75beafb764f07d134fd88702ec2837f29ae8ae8f46",
+  "members": {
+    "native-source.json": {
+      "sha256": "9cae5576a96826f07c2392d7e4ebeca62d0482e9b1b48d70570bbb144f1b55a1",
+      "size": 5360
+    },
+    "skia.electron-oh-arm64.node": {
+      "sha256": "604691c5d88dc144edc1a19d90c51cefbf8ae77de0a17aaf78245db6eea7d1e9",
+      "size": 26013344
+    },
+    "skia.openharmony-arm64.node": {
+      "sha256": "070a8d56ff5848539c10002105c2f91e2c6e92c60ae46d41961c33a06abc2c18",
+      "size": 26002528
+    }
+  }
+}

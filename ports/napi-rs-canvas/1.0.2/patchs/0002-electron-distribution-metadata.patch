@@ -1,0 +1,38 @@
+--- a/package.json
++++ b/package.json
+@@ -1,12 +1,13 @@
+ {
+-  "name": "@ohos-ports/napi-rs-canvas",
+-  "version": "1.0.2-beta.0",
++  "name": "@ohos-ports-electron/napi-rs-canvas",
++  "version": "1.0.2-electron-oh.5",
+   "description": "Canvas for Node.js with skia backend (OpenHarmony native build)",
+   "main": "index.js",
+   "types": "index.d.ts",
+   "repository": {
+     "type": "git",
+-    "url": "git+https://github.com/Brooooooklyn/canvas.git"
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/napi-rs-canvas/1.0.2"
+   },
+   "license": "MIT",
+   "keywords": [
+@@ -32,9 +33,17 @@
+     "load-image.js",
+     "node-canvas.js",
+     "node-canvas.d.ts",
+-    "skia.openharmony-arm64.node"
++    "skia.openharmony-arm64.node",
++    "native/electron/skia.electron-oh-arm64.node",
++    "native-source.json",
++    "licenses"
+   ],
+   "engines": {
+     "node": ">= 10"
++  },
++  "publishConfig": {
++    "access": "public",
++    "registry": "https://registry.npmjs.org/",
++    "tag": "latest"
+   }
+ }

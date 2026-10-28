@@ -1,0 +1,127 @@
+name: napi-rs-canvas build and npm publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ports/napi-rs-canvas/**'
+      - '.github/workflows/napi-rs-canvas-electron-oh*.yml'
+      - '.github/workflows/ci.yml'
+      - 'docs/RELEASING.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: napi-rs-canvas-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PORT: ports/napi-rs-canvas/1.0.2
+  PYTHONDONTWRITEBYTECODE: '1'
+
+jobs:
+  build:
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    outputs:
+      release-ready: ${{ steps.readiness.outputs.ready }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.20.0'
+      - run: npm install --global npm@11.19.0
+      - name: Acquire reviewed native files and reconstruct the package once
+        env:
+          NAPI_RS_CANVAS_NATIVE_URL: ${{ vars.NAPI_RS_CANVAS_NATIVE_URL }}
+        run: |
+          python3 "$PORT/electron-oh/tools/acquire-native.py" --url "$NAPI_RS_CANVAS_NATIVE_URL" --output "$RUNNER_TEMP/canvas-native"
+          bash "$PORT/build.sh" --native-artifacts "$RUNNER_TEMP/canvas-native" --output "$RUNNER_TEMP/canvas-bundle-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          python3 "$PORT/electron-oh/tools/release.py" evidence --output "$RUNNER_TEMP/canvas-evidence.tar.gz"
+          python3 "$PORT/electron-oh/tests/release-contract.py" --bundle "$RUNNER_TEMP/canvas-bundle-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" --evidence-archive "$RUNNER_TEMP/canvas-evidence.tar.gz"
+      - name: Read reviewed readiness
+        id: readiness
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          from pathlib import Path
+          e = json.loads((Path(os.environ['PORT']) / 'electron-oh/release-evidence.json').read_text())
+          print('ready=' + str(e['release']['status'] == 'ready' and not e['release']['reasons']).lower())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: napi-rs-canvas-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/canvas-bundle-${{ github.run_id }}-${{ github.run_attempt }}/candidate.tgz
+            ${{ runner.temp }}/canvas-bundle-${{ github.run_id }}-${{ github.run_attempt }}/candidate.json
+            ${{ runner.temp }}/canvas-bundle-${{ github.run_id }}-${{ github.run_attempt }}/bundle.json
+          if-no-files-found: error
+          retention-days: 30
+
+  host-compatibility:
+    needs: build
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18.15.0', '20.18.1', '22.17.0', '24.11.1', '24.13.0']
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: napi-rs-canvas-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/canvas-bundle
+      - name: Use npm compatible with Node 18
+        if: matrix.node == '18.15.0'
+        run: npm install --global npm@9.5.0
+      - name: Verify the artifact, install normally and test JS on the host
+        run: |
+          python3 "$PORT/electron-oh/tools/release.py" verify --bundle "$RUNNER_TEMP/canvas-bundle"
+          python3 "$PORT/electron-oh/tools/test-host.py" --tgz "$RUNNER_TEMP/canvas-bundle/candidate.tgz" --output "$RUNNER_TEMP/canvas-host"
+
+  publish:
+    needs: [build, host-compatibility]
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.event_name == 'push' && github.ref == 'refs/heads/main' &&
+      needs.build.outputs.release-ready == 'true' &&
+      vars.NAPI_RS_CANVAS_PUBLISH_MODE == 'oidc'
+    runs-on: ubuntu-24.04
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.0'
+          registry-url: https://registry.npmjs.org
+      - run: npm install --global npm@11.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: napi-rs-canvas-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/canvas-bundle
+      - name: Publish the exact verified tgz with OIDC
+        env:
+          ENABLE_ELECTRON_OH_PUBLISH: '1'
+          NAPI_RS_CANVAS_PUBLISH_MODE: ${{ vars.NAPI_RS_CANVAS_PUBLISH_MODE }}
+          GITHUB_ENVIRONMENT: npm-publish
+        run: bash "$PORT/publish.sh" --bundle "$RUNNER_TEMP/canvas-bundle"

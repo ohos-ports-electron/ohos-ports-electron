@@ -1,0 +1,23 @@
+--- a/js-binding.js
++++ b/js-binding.js
+@@ -354,8 +354,19 @@
+     } else {
+       loadErrors.push(new Error(`Unsupported architecture on Linux: ${process.arch}`))
+     }
+-  } else if (process.platform === 'openharmony') {
++  } else if ((process.platform === 'openharmony' || process.platform === 'ohos')) {
+     if (process.arch === 'arm64') {
++      // Electron keeps N-API exports in its own dependency namespace.
++      if (process.versions.electron) {
++        const errors = []
++        for (const abi of ['arm64', 'arm64-v8a']) {
++          try {
++            return require(`/data/storage/el1/bundle/libs/${abi}/skia.electron-oh-arm64.node`)
++          } catch (err) { errors.push(err) }
++        }
++        try { return require('./native/electron/skia.electron-oh-arm64.node') }
++        catch (err) { err.cause = errors; throw err }
++      }
+       try {
+         return require('./skia.openharmony-arm64.node')
+       } catch (e) {

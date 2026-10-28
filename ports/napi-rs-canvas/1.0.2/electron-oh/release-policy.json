@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "packageName": "@ohos-ports-electron/napi-rs-canvas",
+  "packageVersion": "1.0.2-electron-oh.5",
+  "repository": "ohos-ports-electron/ohos-ports-electron",
+  "repositoryUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron",
+  "portPath": "ports/napi-rs-canvas/1.0.2",
+  "publishBranch": "main",
+  "environment": "npm-publish",
+  "distTag": "latest",
+  "workflow": "napi-rs-canvas-electron-oh.yml",
+  "hostNodeVersions": [
+    "18.15.0",
+    "20.18.1",
+    "22.17.0",
+    "24.11.1",
+    "24.13.0"
+  ],
+  "requiredDeviceRoles": [
+    "node",
+    "electron25",
+    "electron34",
+    "electron37",
+    "electron40"
+  ],
+  "registry": "https://registry.npmjs.org",
+  "nodeForPublish": "24.13.0",
+  "npmForPublish": "11.21.0",
+  "nodeForBuild": "24.20.0",
+  "npmForBuild": "11.19.0"
+}

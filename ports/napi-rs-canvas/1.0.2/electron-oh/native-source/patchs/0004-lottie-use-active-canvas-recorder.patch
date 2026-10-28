@@ -1,0 +1,32 @@
+--- a/src/ctx.rs
++++ b/src/ctx.rs
+@@ -146,7 +146,7 @@
+   /// Execute a canvas state operation on the appropriate canvas (recording or direct)
+   /// For deferred mode, operations are recorded to the PageRecorder
+   /// For direct mode (SVG, PDF), operations go directly to the surface
+-  fn with_canvas_state<F>(&mut self, f: F)
++  pub(crate) fn with_canvas_state<F>(&mut self, f: F)
+   where
+     F: FnOnce(&mut Canvas),
+   {
+--- a/src/lottie.rs
++++ b/src/lottie.rs
+@@ -132,14 +132,15 @@
+ 
+   /// Render current frame to canvas context
+   #[napi]
+-  pub fn render(&self, ctx: &CanvasRenderingContext2D, dst: Option<LottieRenderRect>) {
+-    let canvas = &ctx.context.surface.canvas;
++  pub fn render(&self, ctx: &mut CanvasRenderingContext2D, dst: Option<LottieRenderRect>) {
+     let rect = dst.map(|d| skiac_rect {
+       left: d.x as f32,
+       top: d.y as f32,
+       right: (d.x + d.width) as f32,
+       bottom: (d.y + d.height) as f32,
+     });
+-    self.inner.render(canvas, rect.as_ref());
++    ctx.context.with_canvas_state(|canvas| {
++      self.inner.render(canvas, rect.as_ref());
++    });
+   }
+ }
