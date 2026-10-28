@@ -222,7 +222,7 @@ def wait_for_registry_version(policy, expected, *, lookup=registry_version, slee
         if attempt + 1 < attempts:
             sleep(interval)
     raise ValueError('npm accepted upload but the version is still not publicly visible after '
-                     + str(attempts) + ' checks; inspect npm processing status before retrying; '
+                     + str(attempts) + ' checks; inspect npm processing status and pending staged releases before retrying; '
                      'do not change the version or candidate bytes')
 
 
@@ -242,7 +242,7 @@ def registry_package_exists(policy, token, opener=urllib.request.urlopen):
 
 def check_bootstrap(token, package_exists):
     require(bool(token), 'bootstrap requires the protected NPM_BOOTSTRAP_TOKEN secret')
-    require(not package_exists, 'bootstrap only creates a missing package; use OIDC for an existing package')
+    require(not package_exists, 'bootstrap only creates a missing package; inspect pending staged releases before retrying; use OIDC for an existing package')
 
 
 def publish(bundle, mode='oidc'):
