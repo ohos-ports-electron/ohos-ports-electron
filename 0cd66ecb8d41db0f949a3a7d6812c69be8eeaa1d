@@ -1,0 +1,191 @@
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/runtime-support/syscall-fallback-log.c
+  s_9eca074f20f620::t_66d162b13ded7b 1-10
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/AppScope/resources/base/element/string.json
+  s_9eca074f20f620::t_4ab218e2b2fb36 1-8
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/cpp/node-launch.h
+  s_9eca074f20f620::t_a913aa12572112 1-7
+ports/vscode-deviceid/0.1.5/electron-oh/tools/workflow.py
+  s_9eca074f20f620::t_f344196657ae9e 1-189
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/app-src/main.cjs
+  s_9eca074f20f620::t_74764801864bdc 1-43
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/npm-install.log
+  s_9eca074f20f620::t_f08ffd8b426a81 1-2
+ports/vscode-deviceid/0.1.5/electron-oh/reports/local-vs-online.json
+  s_9eca074f20f620::t_f48f160fe8a36b 1-39
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/npm-install.log
+  s_9eca074f20f620::t_84cb4fad4949f4 1-2
+ports/vscode-deviceid/0.1.5/electron-oh/reports/README.md
+  s_9eca074f20f620::t_b1d9fb3e320c1a 1-33
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/AppScope/app.json5
+  s_9eca074f20f620::t_83fb4abf3332e9 1-15
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/web_engine/src/main/module.json5
+  s_9eca074f20f620::t_b85a606da35890 1-162
+ports/vscode-deviceid/0.1.5/electron-oh/install.cjs
+  s_9eca074f20f620::t_f344196657ae9e 1-9
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/node-entry.cjs
+  s_9eca074f20f620::t_15f3021d58b24f 1-3
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/electron/src/main/resources/base/element/string.json
+  s_9eca074f20f620::t_d581f2ea614c0d 1-48
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/hvigorfile.ts
+  s_9eca074f20f620::t_5201f48942768e 1-6
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/ets/entryability/EntryAbility.ets
+  s_9eca074f20f620::t_741ecaed8c8290 1-29
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/cpp/napi_stub.cpp
+  s_9eca074f20f620::t_b7dc4c3a9495be 1-687
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/app-src/renderer.js
+  s_9eca074f20f620::t_a0da191f855870 1-31
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/runtime.lock.json
+  s_9eca074f20f620::t_ec79e878c64f73 1-12
+ports/vscode-deviceid/0.1.5/publish.sh
+  s_9eca074f20f620::t_d6bbb79eda5d1a 5-9
+  s_9eca074f20f620::t_f344196657ae9e 1-4,10
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/oh-package.json5
+  s_9eca074f20f620::t_3265130a8eb549 1-9
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/run1-device.log
+  s_9eca074f20f620::t_1bb145b98510f6 1-11
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/obfuscation-rules.txt
+  s_9eca074f20f620::t_79483d9dea27e0 1-2
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/template.lock.json
+  s_9eca074f20f620::t_7fc98897ad414f 1-796
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/AppScope/app.json5
+  s_9eca074f20f620::t_aa05b0db36831e 1-12
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/hvigorfile.ts
+  s_9eca074f20f620::t_31bf4f7bd6ef9d 1-6
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/dependency-lock.json
+  s_9eca074f20f620::t_8a258b621c38d5 1-80
+ports/vscode-deviceid/0.1.5/electron-oh/tests/host-contract.py
+  s_9eca074f20f620::t_4839357cd7c691 1-60
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/run2-device.log
+  s_9eca074f20f620::t_f70972d9ba05c9 1-13
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/run2-results.json
+  s_9eca074f20f620::t_720af03baf70c4 1-120
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/run1-launch.log
+  s_9eca074f20f620::t_9567d50d042000 1
+.gitignore
+  s_9eca074f20f620::t_dcb7988cb71521 8-12
+ports/vscode-deviceid/0.1.5/patchs/0002-electron-oh-distribution.patch
+  s_9eca074f20f620::t_d3ec4c82b55454 1-39
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/dependency-lock.json
+  s_9eca074f20f620::t_321ffa4212ea90 1-80
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/identity.json
+  s_9eca074f20f620::t_6a50b3249eb555 1-34
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/build-profile.json5
+  s_9eca074f20f620::t_df3445650852a9 1-42
+ports/vscode-deviceid/0.1.5/electron-oh/demos/verify-device.py
+  s_9eca074f20f620::t_8dae1d145181ff 1-68
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/identity.json
+  s_9eca074f20f620::t_37ce4413ebbc48 1-35
+ports/vscode-deviceid/0.1.5/electron-oh/local-source-reference.patch
+  s_9eca074f20f620::t_43fefb5c428dcc 1-56
+ports/vscode-deviceid/0.1.5/patchs/0001-ohos-platform-alias.patch
+  s_9eca074f20f620::t_751315a2ff6924 1-24
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/build.log
+  s_9eca074f20f620::t_44c52b6e9f4258 1-39
+ports/vscode-deviceid/0.1.5/.gitignore
+  s_9eca074f20f620::t_d6bbb79eda5d1a 1-11
+  s_9eca074f20f620::t_77c2a8c1cccb2a 12
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/resources/base/element/string.json
+  s_9eca074f20f620::t_f67591b0f2c697 1-8
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/app-src/package.json
+  s_9eca074f20f620::t_2f3b2fdf0a0565 1-6
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/app-src/index.html
+  s_9eca074f20f620::t_3c4a53515d1ce4 1-16
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/node-suite-entry.cjs
+  s_9eca074f20f620::t_7d160bb9b6c910 1-6
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/ets/pages/Index.ets
+  s_9eca074f20f620::t_4a1cdfdf1608d7 1-81
+ports/vscode-deviceid/0.1.5/electron-oh/inputs.lock.json
+  s_9eca074f20f620::t_9892c0f13a2a6b 1-28
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/build-profile.json5
+  s_9eca074f20f620::t_fe0813023944b2 1-45
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/verify-signature.log
+  s_9eca074f20f620::t_f9055b34954a6d 1-43
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/run1-results.json
+  s_9eca074f20f620::t_668225f0f011e8 1-120
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/verify-signature.log
+  s_9eca074f20f620::t_942f3553eb5193 1-42
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/hvigor/hvigor-config.json5
+  s_9eca074f20f620::t_0a8fd10e4fddf0 1-13
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/cpp/ohpt_artifacts.h
+  s_9eca074f20f620::t_2ec22beea46e69 1-219
+ports/vscode-deviceid/0.1.5/electron-oh/demos/README.md
+  s_9eca074f20f620::t_fc7c36aeb92aac 1-29,33-50
+  s_9eca074f20f620::t_6f841dfdbaee03 30-32
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/runtime-support/syscall-fallback-aarch64.S
+  s_9eca074f20f620::t_1b8e4d629acbec 1-38
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/app-src/preload.cjs
+  s_9eca074f20f620::t_3920453e379969 1-3
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/module.json5
+  s_9eca074f20f620::t_c8428e2d7b9779 1-59
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/verification.json
+  s_9eca074f20f620::t_fae077b2a26c72 1-54
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/build.log
+  s_9eca074f20f620::t_f144d538b28e08 1-932
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/run2-launch.log
+  s_9eca074f20f620::t_24f322fb6eab9d 1
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/cpp/CMakeLists.txt
+  s_9eca074f20f620::t_176165dfd0ea33 1-24
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/resources/base/element/color.json
+  s_9eca074f20f620::t_b6ba83b450f6b4 1-8
+ports/vscode-deviceid/0.1.5/electron-oh/PACKAGE_README.md
+  s_9eca074f20f620::t_f344196657ae9e 1-6,11-28
+  s_9eca074f20f620::t_3c369307ed9912 7-10
+ports/vscode-deviceid/0.1.5/electron-oh/README.md
+  s_9eca074f20f620::t_fc7c36aeb92aac 1-94
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/oh-package.json5
+  s_9eca074f20f620::t_bab8f6e95afe00 1-8
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/run1-results.json
+  s_9eca074f20f620::t_60e4425843ce95 1-118
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/build-profile.json5
+  s_9eca074f20f620::t_13cacd069cc4e3 1-46
+ports/vscode-deviceid/0.1.5/electron-oh/reports/package-comparison.json
+  s_9eca074f20f620::t_ff559c547a12d6 1-31
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/run2-results.json
+  s_9eca074f20f620::t_c87c291331057a 1-118
+ports/vscode-deviceid/0.1.5/electron-oh/demos/electron/project/electron/src/main/module.json5
+  s_9eca074f20f620::t_db76f58f577b04 1-96
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/AppScope/resources/base/element/string.json
+  s_9eca074f20f620::t_a5dcb65ca0e77c 1-8
+ports/vscode-deviceid/0.1.5/.gitattributes
+  s_9eca074f20f620::t_6f841dfdbaee03 1
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/run2-device.log
+  s_9eca074f20f620::t_48de98f0501084 1-11
+ports/vscode-deviceid/0.1.5/electron-oh/demos/build-demo.py
+  s_9eca074f20f620::t_da4eab6ad13e27 1-35,46-146
+  s_9eca074f20f620::t_6f841dfdbaee03 36-45
+.github/workflows/vscode-deviceid-electron-oh-checks.yml
+  s_9eca074f20f620::t_4839357cd7c691 1-30
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/run2-launch.log
+  s_9eca074f20f620::t_8036d64a79324c 1
+ports/vscode-deviceid/0.1.5/electron-oh/reports/node/verification.json
+  s_9eca074f20f620::t_a5513116d32c31 1-52
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/run1-device.log
+  s_9eca074f20f620::t_3a8010a951ebca 1-13
+ports/vscode-deviceid/0.1.5/build.sh
+  s_9eca074f20f620::t_f344196657ae9e 1-4
+ports/vscode-deviceid/0.1.5/electron-oh/demos/shared/suite.cjs
+  s_9eca074f20f620::t_7d160bb9b6c910 1-90
+ports/vscode-deviceid/0.1.5/electron-oh/demos/node/project/entry/src/main/resources/base/profile/main_pages.json
+  s_9eca074f20f620::t_a61d88fa9c1744 1-5
+ports/vscode-deviceid/0.1.5/electron-oh/reports/electron/run1-launch.log
+  s_9eca074f20f620::t_620ec1a7276f36 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "0cd66ecb8d41db0f949a3a7d6812c69be8eeaa1d",
+  "prompts": {},
+  "sessions": {
+    "s_9eca074f20f620": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a157e4-9bfe-7aa0-aad8-0aa6995b94fb",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.github/workflows/ci.yml
+  s_9eca074f20f620::t_0d766f3900f2d1 39,46-48,94
+ports/vscode-deviceid/0.1.5/electron-oh/README.md
+  s_9eca074f20f620::t_0d766f3900f2d1 87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "5c60ec0473aebe38f148ddf801ec533cb7eca9c4",
+  "prompts": {},
+  "sessions": {
+    "s_9eca074f20f620": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a157e4-9bfe-7aa0-aad8-0aa6995b94fb",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 6,
+      "total_deletions": 2,
+      "overridden_lines": 0,
+      "turn_models": {
+        "t_0d766f3900f2d1": "gpt-6.1-sol"
+      },
+      "model_totals": {
+        "gpt-6.1-sol": {
+          "additions": 6,
+          "deletions": 2
+        }
+      }
+    }
+  }
+}
