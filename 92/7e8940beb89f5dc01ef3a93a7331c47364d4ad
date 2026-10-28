@@ -1,0 +1,28 @@
+docs/RELEASING.md
+  s_963a3402998cc8::t_1ccddc824940d5 55
+ports/onnxruntime-node/1.27.0/README.md
+  s_963a3402998cc8::t_e7d8dd64639c2f 5
+ports/onnxruntime-node/1.27.0/electron-oh/README.md
+  s_963a3402998cc8::t_dbc23439541f17 47
+ports/onnxruntime-node/1.27.0/electron-oh/release-evidence.json
+  s_963a3402998cc8::t_58103e1c603198 286-287,429-437
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "927e8940beb89f5dc01ef3a93a7331c47364d4ad",
+  "prompts": {},
+  "sessions": {
+    "s_963a3402998cc8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17c4a-b43c-7ca1-89e5-ae8af6bd7a43",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
