@@ -16,7 +16,7 @@ python3 electron-oh/tools/test-host.py --tgz /absolute/path/to/new-bundle/candid
 
 以上命令从本 port 目录执行，输出目录必须尚不存在。build.sh 校验配方，下载/核验基线，按 packagePatches 顺序应用补丁，加入已冻结原生文件和 22 项许可，确定性生成 tgz，并用当前配方/checkout SHA 封装 bundle.json。验证包内全部 72 项后才形成交接。只把 candidate.tgz、candidate.json、bundle.json 交接给后续作业；暂存 package/ 与 baseline.tgz 可在校验完成后删除以节省空间。
 
-`test-host.py` 在新目录复制完整断言/模型和锁，执行允许 postinstall 的正常 npm ci，再做 20 项真实推理、类型、错误、Worker、释放与并发测试。其结果明确标为 execution=host；不把这一步称为鸿蒙真机验证。手动安装冻结包可执行 `npm install /absolute/path/to/candidate.tgz`；当前目标版本尚未发行。
+`test-host.py` 在新目录复制完整断言/模型和锁，执行允许 postinstall 的正常 npm ci，再做 20 项真实推理、类型、错误、Worker、释放与并发测试。其结果明确标为 execution=host；不把这一步称为鸿蒙真机验证。手动安装冻结包可执行 `npm install /absolute/path/to/candidate.tgz`；已发布版本可执行 `npm install @ohos-ports-electron/onnxruntime-node@1.27.0-electron-oh.1`，鸿蒙原生加载的部署条件见下文。
 
 ## 从源码重编译原生文件
 
@@ -45,7 +45,7 @@ node-addon-api 6.1.0 默认从 npm registry 下载并验 SHA；离线时加 `--n
 - 同版本同 integrity 跳过；不同字节拒绝；最终上传 candidate.tgz，绝不重新 pack。Token 只解决首次认证，不能绕过证据门禁。
 - npm 成功接受上传后可能先返回“正在处理”，版本查询仍为 404。发布后最多查询 61 次，间隔 10 秒；只有 404 会等待，真实 integrity 不一致或其他查询错误立即失败。等待耗尽会明确提示已接受上传但尚未公开；先检查 npm 处理状态和 Staged Packages，不要改版本或候选字节。`0.0.0-stage` 是占位包，不能当作候选已发布；若目标版本在暂存列表等待批准，由维护者按 [npm staged publishing 说明](https://docs.npmjs.com/staged-publishing/) 完成 2FA 审批。版本可见且同 integrity 后，完整重跑该 main 工作流会幂等跳过上传（不要仅重跑失败 job，artifact 绑定 run attempt）。
 
-当前 release=ready：技术证据、公开归档及其回下载哈希已核验，首次发布环境 Secret 的名称和更新时间已确认，未读取 Token 值。实际认证、上传和 registry 验收由 main 发布作业完成；尚未验证后续 OIDC 上传。完整操作见仓库文档及第一阶段 `pr/PUBLISHING.md`。
+当前 release=ready，首次 bootstrap CI 上传已完成。2026-10-28 公开 registry 的版本、latest、integrity 已核验，回下载 tgz 的 SHA256/SHA512 及全部 72 文件与冻结候选相符。首次上传的来源证明指向 [main 工作流 attempt 2](https://github.com/ohos-ports-electron/ohos-ports-electron/actions/runs/40611980847/attempts/2)；当次上传后立即查询的 404 导致校验作业失败，后续已加入有上限的等待。重复运行同字节版本会跳过上传，不能据此宣称后续 OIDC 上传已经验证。完整操作见仓库文档及第一阶段 `pr/PUBLISHING.md`。
 
 ## 设备 npm 验证边界
 

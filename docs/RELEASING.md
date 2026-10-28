@@ -1,6 +1,6 @@
 # 构建与自动发布
 
-本仓库发布 scope 为 **@ohos-ports-electron**。当前自动发行接入 vscode-deviceid；继承的其他上游 ports 保留为构建检查，不自动向任何 scope 发布。将它们迁入新 scope 前还需各自的 Electron 验证、包名/依赖审查和 npm Trusted Publisher 配置。
+本仓库发布 scope 为 **@ohos-ports-electron**。当前自动发行接入 vscode-deviceid 和下文的 onnxruntime-node 独立流程；继承的其他上游 ports 保留为构建检查，不自动向任何 scope 发布。将它们迁入新 scope 前还需各自的 Electron 验证、包名/依赖审查和 npm Trusted Publisher 配置。
 
 ## 两阶段与触发条件
 
@@ -52,7 +52,7 @@ npm trust github @ohos-ports-electron/vscode-deviceid \
 
 PR 运行托管静态/信任边界、同包构建和五版本宿主兼容检查，不接触发布 Secret。main push 或 main 手动运行也在 Ubuntu 24.04 托管机下载 `ONNXRUNTIME_NATIVE_URL`，用 native-artifact.lock.json 校验归档和三个成员，再组合锁定基线生成同一 tgz；不需要自建 runner，不在 CI 重编原生库。构建一次后交接给 Node **18.15.0 / 20.18.1 / 22.17.0 / 24.11.1 / 24.13.0** 宿主矩阵。手动运行仅构建验证；发布仅允许可信 main push，等待全部兼容作业与 release ready。
 
-功能证据覆盖 Electron-OH **25、34、37、40、独立 Node**。独立 Node 官方归档来源和设备 npm CLI 补充结果见精简证据。完整证据及冻结原生归档已 HTTPS 托管并回下载校验，实际 URL/SHA256 已绑定；首次发布 Secret 的存在性已核验，发行准备状态 ready；实际认证及上传由 main 发布作业验证。无 fresh device CI，不能把 Linux 宿主矩阵当作设备重测。
+功能证据覆盖 Electron-OH **25、34、37、40、独立 Node**。独立 Node 官方归档来源和设备 npm CLI 补充结果见精简证据。完整证据及冻结原生归档已 HTTPS 托管并回下载校验，实际 URL/SHA256 已绑定。首次 bootstrap CI 上传已于 2026-10-28 完成，latest 为 `1.27.0-electron-oh.1`，公开 registry 的 integrity、回下载 tgz 及全部 72 文件与设备冻结候选相符。PR/main 的五版本宿主矩阵均已实际运行，每版本 20/20；无 fresh device CI，不能把 Linux 宿主矩阵当作设备重测。首次 Token 上传与后续 OIDC 授权验证分开记录。
 
 ### 首次 CI 自动发包
 
@@ -74,4 +74,4 @@ npm trust github @ohos-ports-electron/onnxruntime-node \
 
 按 [npm Trusted Publishing 文档](https://docs.npmjs.com/trusted-publishers/)，使用 GitHub 托管 runner，Node >=22.14.0 / npm >=11.5.1；`npm trust` 命令要求 npm >=11.15.0。本流程固定 Node 24.13.0 / npm 11.21.0。新配置应在两天内完成首次真实发布，临近下一个已验证新修订才创建；PR 静态检查或跳过旧版本不能证明 OIDC 上传成功。首发 Token 官方依据：[创建 Token](https://docs.npmjs.com/creating-and-viewing-access-tokens/)、[CI 中使用 Token](https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow/)。
 
-线上只读核查已确认 `npm-publish` environment 存在且部署分支为 main；首次发包的 environment Secret 需由 npm scope 维护者配置；Token 不进入 Git。线上执行状态以对应 PR/Actions 和 registry 验收为准。详见 [ONNX 配方 README](../ports/onnxruntime-node/1.27.0/README.md) 与 [构建步骤](../ports/onnxruntime-node/1.27.0/electron-oh/README.md)。
+线上核查已确认 `npm-publish` environment 存在且部署分支为 main，维护者已配置首发 Secret 并完成首次上传；Token 不进入 Git。后续新修订仍需本包独立的 Trusted Publisher 授权及首次 OIDC 真实上传验收；同版本跳过不能代替这项验证。线上执行状态以对应 PR/Actions 和 registry 验收为准。详见 [ONNX 配方 README](../ports/onnxruntime-node/1.27.0/README.md) 与 [构建步骤](../ports/onnxruntime-node/1.27.0/electron-oh/README.md)。
