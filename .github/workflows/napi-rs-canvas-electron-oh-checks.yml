@@ -57,6 +57,16 @@ jobs:
           bash "$PORT/build.sh" --native-artifacts "$RUNNER_TEMP/canvas-native" --output "$RUNNER_TEMP/canvas-bundle-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
           python3 "$PORT/electron-oh/tools/release.py" evidence --output "$RUNNER_TEMP/canvas-evidence.tar.gz"
           python3 "$PORT/electron-oh/tests/release-contract.py" --bundle "$RUNNER_TEMP/canvas-bundle-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" --evidence-archive "$RUNNER_TEMP/canvas-evidence.tar.gz"
+      - name: Retain package diagnostics after failed reconstruction
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: napi-rs-canvas-pack-diagnostics-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/canvas-bundle-${{ github.run_id }}-${{ github.run_attempt }}/candidate.tgz
+            ${{ runner.temp }}/canvas-bundle-${{ github.run_id }}-${{ github.run_attempt }}/npm-pack.json
+          if-no-files-found: warn
+          retention-days: 7
       - name: Read reviewed readiness
         id: readiness
         run: |
