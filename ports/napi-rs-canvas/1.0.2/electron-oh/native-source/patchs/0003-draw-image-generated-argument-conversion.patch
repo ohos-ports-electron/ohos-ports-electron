@@ -1,0 +1,29 @@
+--- a/src/ctx.rs
++++ b/src/ctx.rs
+@@ -2225,7 +2225,7 @@
+   pub fn draw_image(
+     &mut self,
+     env: &Env,
+-    image: Unknown,
++    image: Either3<&mut CanvasElement, &mut SVGCanvas, &mut Image>,
+     sx: Option<f64>,
+     sy: Option<f64>,
+     s_width: Option<f64>,
+@@ -2235,17 +2235,6 @@
+     d_width: Option<f64>,
+     d_height: Option<f64>,
+   ) -> Result<()> {
+-    let Ok(image) = (unsafe {
+-      <Either3<&mut CanvasElement, &mut SVGCanvas, &mut Image> as FromNapiValue>::from_napi_value(
+-        env.raw(),
+-        image.raw(),
+-      )
+-    }) else {
+-      return env.throw_type_error(
+-        "Value is not one of these types: `CanvasElement`, `SVGCanvas`, `Image`",
+-        Some("InvalidArg"),
+-      );
+-    };
+     let bitmap = match image {
+       Either3::A(canvas) => {
+         // Flush the source canvas to render deferred operations before getting bitmap

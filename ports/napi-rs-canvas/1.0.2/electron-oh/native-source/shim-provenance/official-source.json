@@ -1,0 +1,37 @@
+{
+  "repository": "https://gitcode.com/openharmony-sig/electron.git",
+  "commit": "d95f6e72a5460911807d34369e7099006721cf88",
+  "files": [
+    {
+      "file": "official-libshim.a",
+      "repositoryPath": "src/electron/docs/ohos/libshim.a",
+      "sha256": "6c8b3134b858c505b1741fd182f921dd092774558addabc8848d71287edf5d52",
+      "gitBlob": "ccbc75fd006224a28e78190391e79c18623427c6"
+    },
+    {
+      "file": "Electron-LICENSE",
+      "repositoryPath": "src/electron/LICENSE",
+      "sha256": "5154e165bd6c2cc0cfbcd8916498c7abab0497923bafcd5cb07673fe8480087d",
+      "gitBlob": "536d54efc3fd36ff7e079f82ce55f82c887758cd"
+    },
+    {
+      "file": "Node-LICENSE",
+      "repositoryPath": "src/third_party/electron_node/LICENSE",
+      "sha256": "ea5b4a49d03c33eda9b2e56cbdbeb385163ab5eb375fe104af7bc68a2fc065df",
+      "gitBlob": "6baa911f013fd5cad797cf597bf60b9ba2104f7f"
+    },
+    {
+      "file": "Libuv-LICENSE",
+      "repositoryPath": "src/third_party/electron_node/deps/uv/LICENSE",
+      "sha256": "16de0c32b265cb7d46a6d3bd614f259dd4d693a5e26b3407b04aae8d73041f0c",
+      "gitBlob": "6566365d4f238005a3358710e20b2acde266b594"
+    },
+    {
+      "file": "official-addon-guide.md",
+      "repositoryPath": "docs/electron-loading-addon-guide/README.md",
+      "sha256": "cebc9f00e4ad72e7e71820ae5ca509af7a0bfce6919281b499d3e7e84a6aa1fd",
+      "gitBlob": "408eaf34838c8283d3fb0d6917254fc11cebd538"
+    }
+  ],
+  "originalShimSourceFound": false
+}

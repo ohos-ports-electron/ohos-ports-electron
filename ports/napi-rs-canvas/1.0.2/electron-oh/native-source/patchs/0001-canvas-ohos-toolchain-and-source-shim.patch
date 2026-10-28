@@ -1,0 +1,38 @@
+--- a/build.rs
++++ b/build.rs
+@@ -120,7 +120,7 @@
+         .static_crt(true);
+     }
+     "linux" => {
+-      if compile_target_env != "musl" {
++      if compile_target_env != "musl" && compile_target_env != "ohos" {
+         println!("cargo:rustc-cdylib-link-arg=-Wl,--allow-multiple-definition");
+       }
+       match compile_target_env.as_str() {
+@@ -172,6 +172,26 @@
+           println!("cargo:rustc-link-lib=static=c++");
+           println!("cargo:rustc-link-lib=static=c++abi");
+         }
++        "ohos" => {
++          let ndk = env::var("CANVAS_OHOS_NDK").expect("CANVAS_OHOS_NDK");
++          let lib = format!("{ndk}/llvm/lib/aarch64-linux-ohos");
++          build.flag("--target=aarch64-linux-ohos")
++            .flag(format!("--sysroot={ndk}/sysroot"))
++            .flag("-fPIC").flag("-march=armv8-a+crypto+crc")
++            .flag("-static").cpp_set_stdlib("c++")
++            .archiver(format!("{ndk}/llvm/bin/llvm-ar"));
++          println!("cargo:rustc-link-search={lib}");
++          println!("cargo:rustc-link-search={lib}/c++");
++          println!("cargo:rustc-link-lib=static=c++");
++          println!("cargo:rustc-link-lib=static=c++abi");
++          println!("cargo:rustc-link-lib=static=avif");
++          if let Ok(shim) = env::var("CANVAS_ELECTRON_SHIM_DIR") {
++            println!("cargo:rustc-link-search=native={shim}");
++            println!("cargo:rustc-link-lib=static=canvas_electron_shim");
++            println!("cargo:rustc-cdylib-link-arg=-Wl,--no-undefined");
++            println!("cargo:rustc-cdylib-link-arg=-Wl,--exclude-libs,ALL");
++          }
++        }
+         _ => {}
+       }
+     }

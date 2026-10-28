@@ -1,0 +1,10 @@
+--- a/index.js
++++ b/index.js
+@@ -162,6 +162,7 @@
+       GlobalFonts.loadFontsFromDir(join('usr', 'local', 'share', 'fonts'))
+       GlobalFonts.loadFontsFromDir(join(homedirPath, '.fonts'))
+       break
++    case 'ohos':
+     case 'openharmony':
+       GlobalFonts.loadFontsFromDir('/system/fonts')
+       break

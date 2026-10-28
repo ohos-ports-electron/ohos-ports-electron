@@ -75,3 +75,21 @@ npm trust github @ohos-ports-electron/onnxruntime-node \
 按 [npm Trusted Publishing 文档](https://docs.npmjs.com/trusted-publishers/)，使用 GitHub 托管 runner，Node >=22.14.0 / npm >=11.5.1；`npm trust` 命令要求 npm >=11.15.0。本流程固定 Node 24.13.0 / npm 11.21.0。新配置应在两天内完成首次真实发布，临近下一个已验证新修订才创建；PR 静态检查或跳过旧版本不能证明 OIDC 上传成功。首发 Token 官方依据：[创建 Token](https://docs.npmjs.com/creating-and-viewing-access-tokens/)、[CI 中使用 Token](https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow/)。
 
 线上核查已确认 `npm-publish` environment 存在且部署分支为 main，维护者已配置首发 Secret 并完成首次上传；Token 不进入 Git。后续新修订仍需本包独立的 Trusted Publisher 授权及首次 OIDC 真实上传验收；同版本跳过不能代替这项验证。线上执行状态以对应 PR/Actions 和 registry 验收为准。详见 [ONNX 配方 README](../ports/onnxruntime-node/1.27.0/README.md) 与 [构建步骤](../ports/onnxruntime-node/1.27.0/electron-oh/README.md)。
+
+## napi-rs-canvas 的独立流程
+
+`ports/napi-rs-canvas/1.0.2` 使用独立的 `napi-rs-canvas-electron-oh-checks.yml` 和 `napi-rs-canvas-electron-oh.yml`。legacy ci.yml 排除此库，保留其他库路由。目标候选为 `@ohos-ports-electron/napi-rs-canvas@1.0.2-electron-oh.5`，发布身份为 main / npm-publish / latest。
+
+Node 和 Electron addon 均从锁定 Canvas 1.0.2、Skia、Cargo 和项目 C shim 源码重建。已修复 drawImage 参数作用域、OHOS 系统字体和 Lottie recorder；176 份依赖通知材料随包分发。准确编译与包文件哈希见配方输入锁和 native receipt。
+
+同一候选在独立 Node 24.13.0 及 Electron-OH 25/34/37/40 上各完成两次 65/65，包含主线程、Worker 与正常退出。37/40 仍以 hash-guarded 项目引擎修复为前提。设备证据是锁定的归档结果；CI 不声称执行 fresh device 测试，也不声称 API 穷举、网络/JIT/WASM 或资源压力验收。
+
+main push 或 main 手动构建从 `NAPI_RS_CANVAS_NATIVE_URL` 获取逐成员锁定的 native，在托管 Ubuntu 上用 Node 24.20.0 / npm 11.19.0 组合一次相同 tgz。构建交接绑定当前 checkout SHA 和配方文件清单，并重新下载、检查完整设备证据归档。随后 Node 18.15.0 / 20.18.1 / 22.17.0 / 24.11.1 / 24.13.0 普通安装、检查每个包文件并执行真实 JS geometry 与模拟 loader 路由。Node 18 使用 npm 9.5.0。
+
+发布 job 只允许 main push、全部检查通过、源码/设备验收 ready，且变量 `NAPI_RS_CANVAS_PUBLISH_MODE=oidc`。脚本还检查仓库、workflow、environment、checkout SHA、冻结 artifact 与当前配方；上传已验证的同一 tgz，不重新 pack。发布机固定 Node 24.13.0 / npm 11.21.0，使用 GitHub-hosted runner 和最小 OIDC 权限。
+
+npm Trusted Publisher 必须属于本包：owner/repo `ohos-ports-electron/ohos-ports-electron`，workflow `napi-rs-canvas-electron-oh.yml`，environment `npm-publish`，明确允许 direct publish。其他包的授权不能复用。首次发布使用独立 bootstrap staging 版本创建公开包身份，再配置本包的 Trusted Publisher；不预占正式候选的版本号。账号配置未完成时保持 publish mode disabled；建立授权后按 [npm 官方要求](https://docs.npmjs.com/trusted-publishers/) 在有效期内完成首次成功发布。
+
+environment 限 main 分支；native 和脱敏设备证据使用固定 GitHub Release 资产 URL。PR 同样从公开锁定归档重建相同 tgz、验证设备证据并运行五版本宿主矩阵，不接触发布凭据。正式上传仅由可信 main push 执行 OIDC，并回读 registry 校验 integrity。生产发布成功后清理独立 bootstrap stage，不批准它成为正式版本。
+
+文件职责、准确包清单和可复现命令见 [配方 README](../ports/napi-rs-canvas/1.0.2/README.md) 与 [构建说明](../ports/napi-rs-canvas/1.0.2/electron-oh/README.md)。完整 demo、HAP、签名材料和原始日志留在单库工程，不能纳入 ports 提交。

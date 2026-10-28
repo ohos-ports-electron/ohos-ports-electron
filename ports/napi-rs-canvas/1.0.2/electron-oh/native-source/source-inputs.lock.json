@@ -1,0 +1,89 @@
+{
+  "canvas": {
+    "url": "https://codeload.github.com/Brooooooklyn/canvas/tar.gz/826600b258db693d98a652c935e2b94107b41bb2",
+    "commit": "826600b258db693d98a652c935e2b94107b41bb2",
+    "sha256": "4170f54617b4bb9f01fd6e91e29dc5bbb5be54f21aade7ca9205d548626b428e"
+  },
+  "skia": {
+    "url": "https://codeload.github.com/google/skia/tar.gz/634e970210b7f8233cec53510bf82a3c9c18a80d",
+    "commit": "634e970210b7f8233cec53510bf82a3c9c18a80d",
+    "sha256": "833e0348b35b205331cef12f92ec25770354d5febddaa444131e187abd7f1fdc",
+    "symlinks": 1
+  },
+  "rust": {
+    "version": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "target": "aarch64-unknown-linux-ohos",
+    "cargoLockSha256": "9300e5c27f2a125a00276d31b18ebefa0602b3de22fe8b5f020a725bc0b0a610",
+    "actualCargoVersion": "cargo 1.99.1 (5f94df478 2026-08-27)"
+  },
+  "gn": {
+    "version": "2603 (938087829fcb)",
+    "sha256": "f7032856b3d8bf35765f274c511773a6fb26b3ebcbee11c7650bfb34fb85b53b",
+    "cipd": {
+      "package_name": "gn/gn/mac-arm64",
+      "instance_id": "phtG5eQKjHsVLHUJ3vtBlBU6H_pRwldzL4kqKWh1LOkC"
+    },
+    "url": "https://chrome-infra-packages.appspot.com/dl/gn/gn/mac-arm64/+/phtG5eQKjHsVLHUJ3vtBlBU6H_pRwldzL4kqKWh1LOkC"
+  },
+  "ndk": {
+    "compilerSha256": "b23d221c803b54d4c000a5598d842de0492d9a156e8991696895be479c655d2f",
+    "compilerVersion": "OHOS (dev) clang version 15.0.4 (llvm-project 15b1c2bd53b4c3961c7b75000251612d2cbfe2cf)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Applications/DevEco-Studio.app/Contents/sdk/default/openharmony/native/llvm/bin",
+    "packageMetadata": {
+      "apiVersion": "22",
+      "displayName": "Native",
+      "meta": {
+        "metaVersion": "3.0.0"
+      },
+      "path": "native",
+      "releaseType": "Release",
+      "version": "6.0.2.130"
+    },
+    "supportFiles": {
+      "llvm/lib/aarch64-linux-ohos/libc++_static.a": "bd255c3a4996e1be07564239e545603cbd1c8dc8a7f4359165714898ca118491",
+      "llvm/lib/aarch64-linux-ohos/libc++abi.a": "b4a943112d5aab6c4a60ab66bcd5b77c3fad1263f124ea81a23ef42ea2209f18",
+      "sysroot/usr/include/features.h": "f36489f04e1bf192270e5df4e622643baadf5d7f5e0dfaeed3f04d3a6df2c04f"
+    }
+  },
+  "sourceInputsOnly": true,
+  "originalPublishedNativeCommitNotDeclared": true,
+  "nativeSourcePatches": [
+    {
+      "domain": "canvas",
+      "path": "patchs/0001-canvas-ohos-toolchain-and-source-shim.patch",
+      "sha256": "24b760a13000638b357d643e5f85559095c1ed1f7dda60c5e47c47d54f6769dd"
+    },
+    {
+      "domain": "skia",
+      "path": "patchs/0002-skia-libcxx15-standard-algorithm-compat.patch",
+      "sha256": "2b2e65c1710aea3047eec34fd8aaa0a19d476392784840b722408a0a0baef685"
+    },
+    {
+      "domain": "canvas",
+      "path": "patchs/0003-draw-image-generated-argument-conversion.patch",
+      "sha256": "17426ea61d7ceea6871353bae314483aaaca7a239a578f529921c6dcc66f55ae"
+    },
+    {
+      "domain": "canvas",
+      "path": "patchs/0004-lottie-use-active-canvas-recorder.patch",
+      "sha256": "7d0a6c1745c443ea72441b994c793ffe60aa57f0d34266130acdc5c00e38fbf6"
+    }
+  ],
+  "shim": {
+    "kind": "project-source-implementation",
+    "source": "shim/canvas_electron_shim.c",
+    "sha256": "0916644a6dceae46fc14932e5373b4cc4cb4ae1a573aa7f2fc34a3586659faed",
+    "generator": "tools/generate-shim.py",
+    "generatorSha256": "37a1a76558896bd80fe5c8a88ade157f0c15c13332f3b1de73b5c97399cfea75",
+    "headersLockSha256": "a73202c834ea6fac8946aa66dddd284cf5cbee9835ecfd8075f4af89d52f0cd2",
+    "officialOrigin": "shim-provenance/official-source.json",
+    "officialOriginSha256": "dc09e4b8e1c5add3f851b1c0cb308427e0131f5dc7a04b045d82aab38b514d4d",
+    "notOfficialBinaryReconstruction": true
+  },
+  "skiaArgsTemplateSha256": "3282c501e1506e9f45b5b8be1a256429bc5f38573bd77544159c1b59eff48096",
+  "cargoCmakeToolchainSha256": "671daa22ad94200d0b9bae7bb7a0251627c4c43cad05172c786dc6e8c7d64f4c",
+  "dependencyLockSha256": "f704ee5408c8837d6cae70f19735eafd770737a5559c1b41cd9835f66b9a37b1",
+  "host": {
+    "os": "darwin",
+    "arch": "arm64"
+  }
+}

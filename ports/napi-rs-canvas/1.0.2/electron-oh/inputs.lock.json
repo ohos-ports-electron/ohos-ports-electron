@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "baseline": {
+    "name": "@ohos-ports/napi-rs-canvas",
+    "version": "1.0.2-beta.0",
+    "tarballUrl": "https://registry.npmjs.org/@ohos-ports/napi-rs-canvas/-/napi-rs-canvas-1.0.2-beta.0.tgz",
+    "sha256": "8903db4bb6e524b87c02175920ad9d10ec4bfbf16ed59b5074ada7dcea02fbc6",
+    "nodeAddonSha256": "94b55153a8fc9d0bb99e0f28fc877d4f424a6244f32898b2bc8229e6de67c3a8"
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/napi-rs-canvas",
+    "version": "1.0.2-electron-oh.5"
+  },
+  "packagePatches": [
+    {
+      "path": "patchs/0001-ohos-platform-and-hap-native-directory.patch",
+      "sha256": "30f765f9a0ad352889c69e69b626654020247adba273a70629eca1ede7eda83d"
+    },
+    {
+      "path": "patchs/0002-electron-distribution-metadata.patch",
+      "sha256": "2f20f05de402aa6e197f3913ed2fe41176ecffb92ded620985076231fafede59"
+    },
+    {
+      "path": "patchs/0003-ohos-system-font-directory.patch",
+      "sha256": "03268d184a502f126ebdcd8903c2bc97f0710fb8d9d291a9e5bab972669246ed"
+    }
+  ],
+  "nativeSourcePatches": [
+    {
+      "domain": "canvas",
+      "path": "electron-oh/native-source/patchs/0001-canvas-ohos-toolchain-and-source-shim.patch",
+      "sha256": "24b760a13000638b357d643e5f85559095c1ed1f7dda60c5e47c47d54f6769dd"
+    },
+    {
+      "domain": "skia",
+      "path": "electron-oh/native-source/patchs/0002-skia-libcxx15-standard-algorithm-compat.patch",
+      "sha256": "2b2e65c1710aea3047eec34fd8aaa0a19d476392784840b722408a0a0baef685"
+    },
+    {
+      "domain": "canvas",
+      "path": "electron-oh/native-source/patchs/0003-draw-image-generated-argument-conversion.patch",
+      "sha256": "17426ea61d7ceea6871353bae314483aaaca7a239a578f529921c6dcc66f55ae"
+    },
+    {
+      "domain": "canvas",
+      "path": "electron-oh/native-source/patchs/0004-lottie-use-active-canvas-recorder.patch",
+      "sha256": "7d0a6c1745c443ea72441b994c793ffe60aa57f0d34266130acdc5c00e38fbf6"
+    }
+  ],
+  "nativeSourceRebuild": true,
+  "nativeBuildKind": "locked-canvas-skia-avif-source-build-with-project-C-shim",
+  "nativeAdapter": {
+    "outputs": {
+      "skia.electron-oh-arm64.node": "604691c5d88dc144edc1a19d90c51cefbf8ae77de0a17aaf78245db6eea7d1e9"
+    }
+  },
+  "nativeReceiptSha256": "9cae5576a96826f07c2392d7e4ebeca62d0482e9b1b48d70570bbb144f1b55a1",
+  "nodeNative": {
+    "sourceRebuild": true,
+    "outputs": {
+      "skia.openharmony-arm64.node": "070a8d56ff5848539c10002105c2f91e2c6e92c60ae46d41961c33a06abc2c18"
+    }
+  },
+  "candidateSha256": "15fe89beab6345f94409ef6828662d1c7f51d7a080935425dda97f90a80ac61a",
+  "packageToolchain": {
+    "node": "24.20.0",
+    "npm": "11.19.0"
+  },
+  "candidateTarSha256": "312f390655e9b92688e0b2c04717edfdcf45c569fc3bc20ba58b21d1c0221aa4",
+  "candidateArchiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/napi-rs-canvas-evidence-1.0.2-electron-oh.5/napi-rs-canvas-1.0.2-electron-oh.5.tgz"
+}
