@@ -1,0 +1,69 @@
+From a9f9de719a56717cf3a729d97cf3fa7578d450e6 Mon Sep 17 00:00:00 2001
+From: ohpt-adapt <ohpt-adapt@local>
+Date: Thu, 22 Oct 2026 03:59:53 +0800
+Subject: [PATCH] fix: guard cpu load division and add proc cpuinfo cores /
+ node version fallbacks (BLK-04)
+
+---
+ lib/cpu.js    | 21 ++++++++++++++++++++-
+ lib/osinfo.js |  4 ++++
+ 2 files changed, 24 insertions(+), 1 deletion(-)
+
+diff --git a/lib/cpu.js b/lib/cpu.js
+index 7ab0e20..0503a49 100644
+--- a/lib/cpu.js
++++ b/lib/cpu.js
+@@ -1017,6 +1017,22 @@ function getCpu() {
+             result.processors = processorsInt;
+             result.governor = util.getValue(lines, 'governor') || '';
+ 
++            // OpenHarmony app 域 os.cpus() 可能为空（/proc/stat 不可读）且 lscpu 缺失：
++            // 从 /proc/cpuinfo 的 processor 行数回退取核数（aarch64 常规形态，BLK-04 实测）
++            if (!result.cores || !result.physicalCores) {
++              try {
++                const cpuinfo = fs.readFileSync('/proc/cpuinfo', 'utf8');
++                const processorCount = (cpuinfo.match(/^processor\s*:/gm) || []).length;
++                if (processorCount > 0) {
++                  result.cores = processorCount;
++                  result.physicalCores = processorCount;
++                  result.performanceCores = processorCount;
++                }
++              } catch {
++                util.noop();
++              }
++            }
++
+             // Test Raspberry
+             if (result.vendor === 'ARM' && util.isRaspberry()) {
+               const rPIRevision = util.decodePiCpuinfo();
+@@ -2008,8 +2024,11 @@ exports.cpuCache = cpuCache;
+ function getLoad() {
+   return new Promise((resolve) => {
+     process.nextTick(() => {
++      const coresForLoad = util.cores();
+       const loads = os.loadavg().map((x) => {
+-        return x / util.cores();
++        // OpenHarmony app 域 os.cpus() 可能为空（/proc/stat 不可读）：
++        // 核数未知时 avgLoad 取 0，避免除以 0 得到 Infinity（BLK-04 实测）
++        return coresForLoad ? x / coresForLoad : 0;
+       });
+       const avgLoad = parseFloat(Math.max.apply(Math, loads).toFixed(2));
+       let result = {};
+diff --git a/lib/osinfo.js b/lib/osinfo.js
+index 679d7c0..43a89a6 100644
+--- a/lib/osinfo.js
++++ b/lib/osinfo.js
+@@ -1069,6 +1069,10 @@ function versions(apps, callback) {
+                 line = line.slice(1);
+               }
+               appsObj.versions.node = line;
++            } else {
++              // OpenHarmony 无全局 node（运行时随私有 HNP 自带、不在 PATH）：
++              // 回退报告当前运行环境版本（BLK-04 实测）
++              appsObj.versions.node = process.versions.node;
+             }
+             functionProcessed();
+           });
+-- 
+2.56.0.windows.2
+

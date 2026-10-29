@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "library": {
+    "name": "systeminformation",
+    "upstreamVersion": "5.33.16",
+    "upstreamSource": "https://github.com/sebhildebrandt/systeminformation",
+    "upstreamCommit": "292900669623249b3f0f4c8a84548960a4c76e08",
+    "adaptedLibraryDir": "D:\\OhosAgent\\pc-adapter-web-tool\\repos-pc\\systeminformation-5.33.16"
+  },
+  "baseline": {
+    "npmUrl": "https://www.npmjs.com/package/@ohos-ports/systeminformation",
+    "name": "@ohos-ports/systeminformation",
+    "version": "5.33.1-beta.0",
+    "tarballUrl": "https://registry.npmjs.org/@ohos-ports/systeminformation/-/systeminformation-5.33.1-beta.0.tgz",
+    "sha256": "f85437fc74edb51e19dad63909e84c2851258aa09cfc45f4670e775030f93f4a",
+    "integrity": "sha512-Pr/lLAl1d7PxP+Sgvvvc9K5cYn2L1loew3GKie8NpGwJfsjUBpcN0ieKEWihYPR6f4pHa+7LFJ8Jv7ACJyWDng=="
+  },
+  "patches": [
+    {
+      "file": "0001-feat-add-openharmony-to-linux-platform-detection.patch",
+      "sha256": "5df58942fd49f445c9fc45b7440757ea56b65ffb94e0fb9c8bcbcc86368ba396"
+    },
+    {
+      "file": "0002-fix-fsSize-toybox-df-compatibility-BLK-02.patch",
+      "sha256": "3c12949f19a884988aa6f5f6b96108c32c6aff6afe3b08c87fde4f9d15d698e6"
+    },
+    {
+      "file": "0003-fix-guard-cpu-load-division-and-proc-cpuinfo-node-fallbacks.patch",
+      "sha256": "4349c92acb825ff72f75fea058a4be6ad5fefd1131a0a3a6ed3ba59759502088"
+    },
+    {
+      "file": "0004-feat-add-ohos-platform-branch.patch",
+      "sha256": "d8def56570e586c2c50353f7ae7ec4a2ad3135d46bf0da7a84b0e0e520f03170"
+    },
+    {
+      "file": "0005-feat-avoid-sync-spawn-on-harmonyos-app-domain.patch",
+      "sha256": "9a924e4e328680a695bcb69289e6d9fdaad9a5917c3c1239fd699df6fc949932"
+    }
+  ],
+  "candidate": {
+    "name": "@ohos-ports-electron/systeminformation",
+    "version": "5.33.16-electron-oh.0",
+    "tgzSha256": "373935c44d62201651a71bcf6fff2dbc14c5d89671b950c10408599e5c1be06e",
+    "integrity": "sha512-sThj1Lm50saNVFs3VohLdwkkrx7UQ0RJR88qYzkbWM4ho3mweSS+vmvdSgimI5nvKrxAPUO8PQ6Im/GJLjYXMw==",
+    "tgzPath": ".local/ohos-ports-electron-systeminformation-5.33.16-electron-oh.0.tgz",
+    "note": "行尾为 LF（build.sh 可复现）；与早期 CRLF 候选内容逐字等价（归一化后一致），真机 61/61 验证绑定相同内容",
+    "repository": {
+      "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+      "directory": "ports/systeminformation/5.33.16"
+    }
+  },
+  "runtimes": {
+    "node": {
+      "version": "24.13.0",
+      "source": "C:/ohpt-runtime/node-oh/24.13.0/bin/node"
+    },
+    "electron-reference": {
+      "version": "37.2.0",
+      "source": "gitcode.com/CPF-Electron/Electron releases v37.2.0",
+      "sha256": "57bf0314ce3f5be80fc7a7ebc4f47a2fe82a5e4afcf5fe856ad9cfc342618946"
+    },
+    "electron34": {
+      "version": "34.8.6",
+      "selfReported": "v34.8.6-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v34/v34.8.6-20260929.1-release.zip",
+      "sha256": "8c818c63aaeba771804dae991c78c3da2c865a07bbd32c286fd6164732405243"
+    },
+    "electron40": {
+      "version": "40.0.1",
+      "selfReported": "v40.0.1-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v40/v40.0.1.20260928.2-release.zip",
+      "sha256": "5caab8b2ad33a1b9389abdc3d1d171c84e9dd66670adaf14c632ef1d0e95240a"
+    }
+  },
+  "upstreamSource": {
+    "name": "systeminformation",
+    "version": "5.33.16",
+    "gitUrl": "https://github.com/sebhildebrandt/systeminformation.git",
+    "commit": "292900669623249b3f0f4c8a84548960a4c76e08",
+    "note": "补丁基线上游源码 commit；npm tgz lib 与源码有差异，仅作已发布包对照",
+    "npmTarball": {
+      "url": "https://registry.npmjs.org/systeminformation/-/systeminformation-5.33.16.tgz",
+      "sha256": "313c77944b719f68012fa3f114544bb0ca4e75b3107ce1954b8cbc6519b241ec"
+    }
+  }
+}

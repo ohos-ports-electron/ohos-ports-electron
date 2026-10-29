@@ -1,0 +1,72 @@
+From 0c8718c19b166d0044caa0c2dd8cfb46a6262dab Mon Sep 17 00:00:00 2001
+From: ohpt-adapt <ohpt-adapt@local>
+Date: Thu, 22 Oct 2026 03:39:32 +0800
+Subject: [PATCH 2/2] fix: fsSize toybox df compatibility (BLK-02)
+
+---
+ lib/filesystem.js | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/lib/filesystem.js b/lib/filesystem.js
+index 48ec93e..5709be5 100644
+--- a/lib/filesystem.js
++++ b/lib/filesystem.js
+@@ -22,7 +22,8 @@ const execPromiseSave = util.promisifySave(require('child_process').exec);
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
++const _ohos = _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+@@ -45,6 +46,7 @@ function fsSize(drive, callback) {
+   let macOsDisks = [];
+   const macOsFsTypes = new Map();
+   let osMounts = [];
++  const osFsTypes = {};
+ 
+   // macOS df has no type column, so the type used to be guessed from diskutil - which only ever
+   // produced APFS, HFS or NFS and therefore never recognised zfs, exfat, msdos or smbfs. mount
+@@ -157,13 +159,15 @@ function fsSize(drive, callback) {
+     // anchor parsing on the numeric columns in between (blocks, used, available, capacity)
+     const dfWithType = /^(.+?)\s+(\S+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(?:\d+%|-)\s+(.+)$/;
+     const dfNoType = /^(.+?)\s+(\d+)\s+(\d+)\s+(\d+)\s+(?:\d+%|-)\s+(.+)$/;
+-    const hasType = _linux || _freebsd || _openbsd || _netbsd;
++    // OpenHarmony toybox df has no -T type column: parse the 5-column form and
++    // take the filesystem type from /proc/mounts instead (BLK-02).
++    const hasType = (_linux && !_ohos) || _freebsd || _openbsd || _netbsd;
+     lines.forEach((line) => {
+       if (line !== '') {
+         const parts = line.trim().match(hasType ? dfWithType : dfNoType);
+         if (parts && (parts[1].startsWith('/') || parts[hasType ? 6 : 5] === '/' || parts[1].indexOf('/') > 0 || parts[1].indexOf(':') === 1 || (!_darwin && !isLinuxTmpFs(parts[2])))) {
+           const fs = parts[1];
+-          const fsType = hasType ? parts[2] : macOsFsType(parts[1]);
++          const fsType = hasType ? parts[2] : _ohos ? osFsTypes[parts[1]] : macOsFsType(parts[1]);
+           const size = parseInt(parts[hasType ? 3 : 2], 10) * 1024;
+           const used = parseInt(parts[hasType ? 4 : 3], 10) * 1024;
+           const available = parseInt(parts[hasType ? 5 : 4], 10) * 1024;
+@@ -224,7 +228,10 @@ function fsSize(drive, callback) {
+         }
+         if (_linux) {
+           try {
+-            cmd = 'export LC_ALL=C; df -kPTx squashfs; unset LC_ALL';
++            // OpenHarmony coreutils is toybox: `df -kPTx squashfs` fails with
++            // "Unknown option", fall back to `df -kP` (no type column) and map
++            // the filesystem type from /proc/mounts (BLK-02).
++            cmd = _ohos ? 'export LC_ALL=C; df -kP; unset LC_ALL' : 'export LC_ALL=C; df -kPTx squashfs; unset LC_ALL';
+             execSync('cat /proc/mounts 2>/dev/null', util.execOptsLinux)
+               .toString()
+               .split('\n')
+@@ -235,6 +242,7 @@ function fsSize(drive, callback) {
+                 // /proc/mounts escapes spaces as \040
+                 const fs = line.split(' ')[0].replace(/\\040/g, ' ');
+                 osMounts[fs] = osMounts[fs] || false;
++                osFsTypes[fs] = line.split(' ')[2];
+                 if (line.toLowerCase().indexOf('/snap/') === -1) {
+                   osMounts[fs] = line.toLowerCase().indexOf('rw,') >= 0 || line.toLowerCase().indexOf(' rw ') >= 0;
+                 }
+-- 
+2.56.0.windows.2
+

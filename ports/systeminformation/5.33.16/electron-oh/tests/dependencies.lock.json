@@ -1,0 +1,2 @@
+﻿{"name":"systeminformation-host-contract","version":"1.0.0","lockfileVersion":3,"packages":{"":{"dependencies":{"@ohos-ports-electron/systeminformation":"file:./candidate.tgz"}}}
+

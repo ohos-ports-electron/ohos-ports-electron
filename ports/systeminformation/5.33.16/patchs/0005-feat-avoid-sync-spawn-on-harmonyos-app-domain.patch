@@ -1,0 +1,760 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ohpt-adapt <ohpt-adapt@local>
+Date: Wed, 28 Oct 2026 09:33:00 GMT
+Subject: [PATCH] fix: avoid synchronous spawn on HarmonyOS app domain (e40 execSync hang)
+
+---
+
+diff --git a/lib/audio.js b/lib/audio.js
+index f469e36..22ebd29 100644
+--- a/lib/audio.js
++++ b/lib/audio.js
+@@ -86,7 +86,7 @@ function getLinuxAudioPci() {
+   const cmd = 'lspci -v 2>/dev/null';
+   const result = [];
+   try {
+-    const parts = execSync(cmd, util.execOptsLinux).toString().split('\n\n');
++    const parts = util.execSyncCompat(cmd, util.execOptsLinux).toString().split('\n\n');
+     parts.forEach((element) => {
+       const lines = element.split('\n');
+       if (lines && lines.length && lines[0].toLowerCase().indexOf('audio') >= 0) {
+diff --git a/lib/bluetooth.js b/lib/bluetooth.js
+index 96e86b0..c07b378 100644
+--- a/lib/bluetooth.js
++++ b/lib/bluetooth.js
+@@ -185,7 +185,7 @@ function bluetoothDevices(callback) {
+         });
+         // determine "connected" with hcitool con
+         try {
+-          const hdicon = execSync('hcitool con', util.execOptsLinux).toString().toLowerCase();
++          const hdicon = util.execSyncCompat('hcitool con', util.execOptsLinux).toString().toLowerCase();
+           for (let i = 0; i < result.length; i++) {
+             if (result[i].macDevice && result[i].macDevice.length > 10 && hdicon.indexOf(result[i].macDevice.toLowerCase()) >= 0) {
+               result[i].connected = true;
+diff --git a/lib/cpu.js b/lib/cpu.js
+index a8f2c43..32a9add 100644
+--- a/lib/cpu.js
++++ b/lib/cpu.js
+@@ -928,7 +928,7 @@ function getCpu() {
+             if (os.arch() === 'arm64') {
+               result.socket = 'SOC';
+               try {
+-                const clusters = execSync('ioreg -c IOPlatformDevice -d 3 -r | grep cluster-type').toString().split('\n');
++                const clusters = util.execSyncCompat('ioreg -c IOPlatformDevice -d 3 -r | grep cluster-type').toString().split('\n');
+                 const efficiencyCores = clusters.filter((line) => line.indexOf('"E"') >= 0).length + clusters.filter((line) => line.indexOf('"M"') >= 0).length;
+                 const performanceCores = clusters.filter((line) => line.indexOf('"P"') >= 0).length;
+                 result.efficiencyCores = efficiencyCores;
+@@ -1264,9 +1264,11 @@ function getCpuCurrentSpeedSync() {
+     }
+   } else if (_linux) {
+     try {
+-      const speedStrings = execSync('cat /proc/cpuinfo | grep "cpu MHz" | cut -d " " -f 3', util.execOptsLinux)
+-        .toString()
++      const cpuinfo = fs.readFileSync('/proc/cpuinfo', 'utf8');
++      const speedStrings = cpuinfo
+         .split('\n')
++        .filter((line) => line.indexOf('cpu MHz') >= 0)
++        .map((line) => line.split(' ').pop().trim())
+         .filter((line) => line.length > 0);
+       for (const i in speedStrings) {
+         speeds.push(Math.floor(parseInt(speedStrings[i], 10) / 10) / 100);
+@@ -1355,7 +1357,7 @@ function cpuTemperature(callback) {
+         let cpuThermal = null;
+         try {
+           const cmd = 'cat /sys/class/thermal/thermal_zone*/type  2>/dev/null; echo "-----"; cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null;';
+-          const parts = execSync(cmd, util.execOptsLinux).toString().split('-----\n');
++          const parts = util.execSyncCompat(cmd, util.execOptsLinux).toString().split('-----\n');
+           if (parts.length === 2) {
+             const lines = parts[0].split('\n');
+             const lines2 = parts[1].split('\n');
+@@ -2057,7 +2059,9 @@ function getLoad() {
+         // linux: try to get other cpu stats
+         if (_linux) {
+           try {
+-            const lines = execSync('cat /proc/stat 2>/dev/null | grep cpu', util.execOptsLinux).toString().split('\n');
++            const lines = fs.readFileSync('/proc/stat', 'utf8')
++              .split('\n')
++              .filter((line) => line.indexOf('cpu') === 0);
+             if (lines.length > 1) {
+               lines.shift();
+               if (lines.length === cpus.length) {
+diff --git a/lib/filesystem.js b/lib/filesystem.js
+index b0ecd28..c0a455a 100644
+--- a/lib/filesystem.js
++++ b/lib/filesystem.js
+@@ -23,7 +23,7 @@ const execPromiseSave = util.promisifySave(require('child_process').exec);
+ const _platform = process.platform;
+ 
+ const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony' || _platform === 'ohos';
+-const _ohos = _platform === 'openharmony';
++const _ohos = _platform === 'openharmony' || _platform === 'ohos';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+@@ -202,13 +202,13 @@ function fsSize(drive, callback) {
+         if (_darwin) {
+           cmd = 'df -kP';
+           try {
+-            macOsDisks = execSync('diskutil list')
++            macOsDisks = util.execSyncCompat('diskutil list')
+               .toString()
+               .split('\n')
+               .filter((line) => {
+                 return !line.startsWith('/') && line.indexOf(':') > 0;
+               });
+-            execSync('mount')
++            util.execSyncCompat('mount')
+               .toString()
+               .split('\n')
+               .forEach((line) => {
+@@ -232,8 +232,7 @@ function fsSize(drive, callback) {
+             // "Unknown option", fall back to `df -kP` (no type column) and map
+             // the filesystem type from /proc/mounts (BLK-02).
+             cmd = _ohos ? 'export LC_ALL=C; df -kP; unset LC_ALL' : 'export LC_ALL=C; df -kPTx squashfs; unset LC_ALL';
+-            execSync('cat /proc/mounts 2>/dev/null', util.execOptsLinux)
+-              .toString()
++            fs.readFileSync('/proc/mounts', 'utf8')
+               .split('\n')
+               .filter((line) => {
+                 return line.startsWith('/');
+@@ -254,7 +253,7 @@ function fsSize(drive, callback) {
+         if (_freebsd || _openbsd || _netbsd) {
+           try {
+             cmd = 'df -kPT';
+-            execSync('mount')
++            util.execSyncCompat('mount')
+               .toString()
+               .split('\n')
+               .forEach((line) => {
+@@ -575,7 +574,7 @@ function raidMatchLinux(data) {
+   try {
+     data.forEach((element) => {
+       if (element.type.startsWith('raid')) {
+-        const lines = execSync(`mdadm --export --detail /dev/${util.sanitizeString(element.name, true)}`, util.execOptsLinux)
++        const lines = util.execSyncCompat(`mdadm --export --detail /dev/${util.sanitizeString(element.name, true)}`, util.execOptsLinux)
+           .toString()
+           .split('\n');
+         const mdData = decodeMdabmData(lines);
+@@ -1308,7 +1307,7 @@ function diskLayout(callback) {
+               } catch {
+                 // fallback to older version of lsblk
+                 try {
+-                  const out2 = execSync(
++                  const out2 = util.execSyncCompat(
+                     'export LC_ALL=C; lsblk -bPo NAME,TYPE,SIZE,FSTYPE,MOUNTPOINT,UUID,ROTA,RO,RM,LABEL,MODEL,OWNER,GROUP 2>/dev/null; unset LC_ALL',
+                     util.execOptsLinux
+                   ).toString();
+@@ -1326,8 +1325,7 @@ function diskLayout(callback) {
+                 const logical = util.sanitizeShellString(device.name, true);
+                 const BSDName = '/dev/' + logical;
+                 try {
+-                  mediumType = execSync('cat /sys/block/' + logical + '/queue/rotational 2>/dev/null', util.execOptsLinux)
+-                    .toString()
++                  mediumType = fs.readFileSync('/sys/block/' + logical + '/queue/rotational', 'utf8')
+                     .split('\n')[0];
+                 } catch {
+                   util.noop();
+@@ -1807,7 +1805,7 @@ function diskLayout(callback) {
+           workload.push(util.powerShell('Get-PhysicalDisk | select BusType,MediaType,FriendlyName,Model,SerialNumber,Size | fl'));
+           if (util.smartMonToolsInstalled()) {
+             try {
+-              const smartDev = JSON.parse(execSync('smartctl --scan -j').toString());
++              const smartDev = JSON.parse(util.execSyncCompat('smartctl --scan -j').toString());
+               if (smartDev && smartDev.devices && smartDev.devices.length > 0) {
+                 smartDev.devices.forEach((dev) => {
+                   // device names come from smartctl output - never let anything but a plain path reach the shell
+diff --git a/lib/graphics.js b/lib/graphics.js
+index b7c228e..82bce5d 100644
+--- a/lib/graphics.js
++++ b/lib/graphics.js
+@@ -228,7 +228,7 @@ function graphics(callback) {
+     // PCI bus IDs
+     let pciIDs = [];
+     try {
+-      pciIDs = execSync('export LC_ALL=C; dmidecode -t 9 2>/dev/null | grep "Bus Address: "', util.execOptsLinux).toString().split('\n');
++      pciIDs = util.execSyncCompat('export LC_ALL=C; dmidecode -t 9 2>/dev/null | grep "Bus Address: "', util.execOptsLinux).toString().split('\n');
+       for (let i = 0; i < pciIDs.length; i++) {
+         pciIDs[i] = pciIDs[i].replace('Bus Address:', '').replace('0000:', '').trim();
+       }
+@@ -484,7 +484,7 @@ function graphics(callback) {
+         '--query-gpu=driver_version,pci.sub_device_id,name,pci.bus_id,fan.speed,memory.total,memory.used,memory.free,utilization.gpu,utilization.memory,temperature.gpu,temperature.memory,power.draw,power.limit,clocks.gr,clocks.mem --format=csv,noheader,nounits';
+       options.stdio = ['pipe', 'pipe', 'ignore'];
+       try {
+-        return execFileSync(nvidiaSmiExe, nvidiaSmiOpts.split(' '), options).toString();
++        return util.execFileSyncCompat(nvidiaSmiExe, nvidiaSmiOpts.split(' '), options).toString();
+       } catch {
+         util.noop();
+       }
+@@ -828,7 +828,7 @@ function graphics(callback) {
+               util.noop();
+             }
+             try {
+-              stdout = execSync(
++              stdout = util.execSyncCompat(
+                 'defaults read /Library/Preferences/com.apple.windowserver.plist 2>/dev/null;defaults read /Library/Preferences/com.apple.windowserver.displays.plist 2>/dev/null; echo ""',
+                 { maxBuffer: 1024 * 102400 }
+               );
+diff --git a/lib/memory.js b/lib/memory.js
+index b230739..365482f 100644
+--- a/lib/memory.js
++++ b/lib/memory.js
+@@ -252,7 +252,7 @@ function mem(callback) {
+       if (_darwin) {
+         let pageSize = 4096;
+         try {
+-          let sysPpageSize = util.toInt(execSync('sysctl -n vm.pagesize').toString());
++          let sysPpageSize = util.toInt(util.execSyncCompat('sysctl -n vm.pagesize').toString());
+           pageSize = sysPpageSize || pageSize;
+         } catch {
+           util.noop();
+@@ -426,8 +426,8 @@ function memLayout(callback) {
+ 
+               // Try Raspberry PI
+               try {
+-                let stdout = execSync('cat /proc/cpuinfo 2>/dev/null', util.execOptsLinux);
+-                let lines = stdout.toString().split('\n');
++                let stdout = fs.readFileSync('/proc/cpuinfo', 'utf8');
++                let lines = stdout.split('\n');
+                 let version = util.getValue(lines, 'revision', ':', true).toLowerCase();
+ 
+                 if (util.isRaspberry(lines)) {
+@@ -446,14 +446,14 @@ function memLayout(callback) {
+                   result[0].clockSpeed = version && version[4] && version[4] === 'd' ? 500 : result[0].clockSpeed;
+                   result[0].formFactor = 'SoC';
+ 
+-                  stdout = execSync('vcgencmd get_config sdram_freq 2>/dev/null', util.execOptsLinux);
++                  stdout = util.execSyncCompat('vcgencmd get_config sdram_freq 2>/dev/null', util.execOptsLinux);
+                   lines = stdout.toString().split('\n');
+                   let freq = parseInt(util.getValue(lines, 'sdram_freq', '=', true), 10) || 0;
+                   if (freq) {
+                     result[0].clockSpeed = freq;
+                   }
+ 
+-                  stdout = execSync('vcgencmd measure_volts sdram_p 2>/dev/null', util.execOptsLinux);
++                  stdout = util.execSyncCompat('vcgencmd measure_volts sdram_p 2>/dev/null', util.execOptsLinux);
+                   lines = stdout.toString().split('\n');
+                   let voltage = parseFloat(util.getValue(lines, 'volt', '=', true)) || 0;
+                   if (voltage) {
+diff --git a/lib/network.js b/lib/network.js
+index 34c8c56..63ec40b 100644
+--- a/lib/network.js
++++ b/lib/network.js
+@@ -68,7 +68,7 @@ function getDefaultNetworkInterface() {
+       // https://www.inetdaemon.com/tutorials/internet/ip/routing/default_route.shtml
+       let defaultIp = '';
+       const cmd = 'netstat -r';
+-      const result = execSync(cmd, util.execOptsWin);
++      const result = util.execSyncCompat(cmd, util.execOptsWin);
+       const lines = result.toString().split(os.EOL);
+       lines.forEach((line) => {
+         line = line.replace(/\s+/g, ' ').trim();
+@@ -93,7 +93,7 @@ function getDefaultNetworkInterface() {
+     }
+     if (_linux) {
+       const cmd = 'ip route 2> /dev/null | grep default';
+-      const result = execSync(cmd, util.execOptsLinux);
++      const result = util.execSyncCompat(cmd, util.execOptsLinux);
+       const parts = result.toString().split('\n')[0].split(/\s+/);
+       if (parts[0] === 'none' && parts[5]) {
+         ifacename = parts[5];
+@@ -116,7 +116,7 @@ function getDefaultNetworkInterface() {
+       if (_freebsd || _openbsd || _netbsd || _sunos) {
+         cmd = 'route get 0.0.0.0 | grep interface:';
+       }
+-      const result = execSync(cmd);
++      const result = util.execSyncCompat(cmd);
+       ifacename = result.toString().split('\n')[0];
+       if (ifacename.indexOf(':') > -1) {
+         ifacename = ifacename.split(':')[1].trim();
+@@ -140,7 +140,7 @@ function getMacAddresses() {
+   if (_linux || _freebsd || _openbsd || _netbsd) {
+     if (typeof pathToIp === 'undefined') {
+       try {
+-        const lines = execSync('which ip', util.execOptsLinux).toString().split('\n');
++        const lines = util.execSyncCompat('which ip', util.execOptsLinux).toString().split('\n');
+         if (lines.length && lines[0].indexOf(':') === -1 && lines[0].indexOf('/') === 0) {
+           pathToIp = lines[0];
+         } else {
+@@ -152,7 +152,7 @@ function getMacAddresses() {
+     }
+     try {
+       const cmd = 'export LC_ALL=C; ' + (pathToIp ? pathToIp + ' link show up' : '/sbin/ifconfig') + '; unset LC_ALL';
+-      const res = execSync(cmd, util.execOptsLinux);
++      const res = util.execSyncCompat(cmd, util.execOptsLinux);
+       const lines = res.toString().split('\n');
+       for (let i = 0; i < lines.length; i++) {
+         if (lines[i] && lines[i][0] !== ' ') {
+@@ -182,7 +182,7 @@ function getMacAddresses() {
+   if (_darwin) {
+     try {
+       const cmd = '/sbin/ifconfig';
+-      const res = execSync(cmd);
++      const res = util.execSyncCompat(cmd);
+       const lines = res.toString().split('\n');
+       for (let i = 0; i < lines.length; i++) {
+         if (lines[i] && lines[i][0] !== '\t' && lines[i].indexOf(':') > 0) {
+@@ -293,7 +293,7 @@ function getWindowsDNSsuffixes() {
+   };
+ 
+   try {
+-    const ipconfig = execSync('ipconfig /all', util.execOptsWin);
++    const ipconfig = util.execSyncCompat('ipconfig /all', util.execOptsWin);
+     const ipconfigArray = ipconfig.split('\r\n\r\n');
+ 
+     ipconfigArray.forEach((element, index) => {
+@@ -357,7 +357,7 @@ function getWindowsIfaceDNSsuffix(ifaces, ifacename) {
+ 
+ function getWindowsWiredProfilesInformation() {
+   try {
+-    const result = execSync('netsh lan show profiles', util.execOptsWin);
++    const result = util.execSyncCompat('netsh lan show profiles', util.execOptsWin);
+     const profileList = result.split('\r\nProfile on interface');
+     return profileList;
+   } catch (error) {
+@@ -370,7 +370,7 @@ function getWindowsWiredProfilesInformation() {
+ 
+ function getWindowsWirelessIfaceSSID(interfaceName) {
+   try {
+-    const result = execFileSync('netsh', ['wlan', 'show', 'interface', `name=${util.sanitizeString(interfaceName)}`], util.execOptsWin).toString();
++    const result = util.execFileSyncCompat('netsh', ['wlan', 'show', 'interface', `name=${util.sanitizeString(interfaceName)}`], util.execOptsWin).toString();
+     const SSID = result.split('\r\n').find((l) => l.includes('SSID')) || '';
+     const parseSSID = SSID.split(':').pop().trim();
+     return parseSSID;
+@@ -422,7 +422,7 @@ function getWindowsIEEE8021x(connectionType, iface, ifaces) {
+       const SSID = getWindowsWirelessIfaceSSID(iface);
+       if (SSID !== 'Unknown') {
+         const ifaceSanitized = util.sanitizeString(SSID);
+-        const profiles = execFileSync('netsh', ['wlan', 'show', 'profiles', ifaceSanitized], util.execOptsWin).toString().split('\r\n');
++        const profiles = util.execFileSyncCompat('netsh', ['wlan', 'show', 'profiles', ifaceSanitized], util.execOptsWin).toString().split('\r\n');
+         i8021xState = (profiles.find((l) => l.indexOf('802.1X') >= 0) || '').trim();
+         i8021xProtocol = (profiles.find((l) => l.indexOf('EAP') >= 0) || '').trim();
+       }
+@@ -522,7 +522,7 @@ function parseLinesDarwinNics(sections) {
+ function getDarwinNics() {
+   const cmd = '/sbin/ifconfig -v';
+   try {
+-    const lines = execSync(cmd, { maxBuffer: 1024 * 102400 })
++    const lines = util.execSyncCompat(cmd, { maxBuffer: 1024 * 102400 })
+       .toString()
+       .split('\n');
+     const nsections = splitSectionsNics(lines);
+@@ -534,7 +534,7 @@ function getDarwinNics() {
+ 
+ function getLinuxIfaceConnectionName(interfaceName) {
+   try {
+-    const output = execFileSync('nmcli', ['device', 'status'], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
++    const output = util.execFileSyncCompat('nmcli', ['device', 'status'], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
+     const result = util.grep(output, interfaceName);
+ 
+     const resultFormat = result.replace(/\s+/g, ' ').trim();
+@@ -581,7 +581,7 @@ function getLinuxDHCPNics() {
+   const cmd = 'ip a 2> /dev/null';
+   let result = [];
+   try {
+-    const lines = execSync(cmd, util.execOptsLinux).toString().split('\n');
++    const lines = util.execSyncCompat(cmd, util.execOptsLinux).toString().split('\n');
+     const nsections = splitSectionsNics(lines);
+     result = parseLinuxDHCPNics(nsections);
+   } catch {
+@@ -621,7 +621,7 @@ function getLinuxIfaceDHCPstatus(iface, connectionName, DHCPNics) {
+   let result = false;
+   if (connectionName) {
+     try {
+-      const output = execFileSync('nmcli', ['connection', 'show', connectionName], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
++      const output = util.execFileSyncCompat('nmcli', ['connection', 'show', connectionName], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
+       const lines = util.grep(output, 'ipv4.method');
+       const resultFormat = lines.replace(/\s+/g, ' ').trim();
+ 
+@@ -648,7 +648,7 @@ function getDarwinIfaceDHCPstatus(iface) {
+   let result = false;
+ 
+   try {
+-    const output = execFileSync('ipconfig', ['getpacket', iface], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
++    const output = util.execFileSyncCompat('ipconfig', ['getpacket', iface], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
+     const lines = util.grep(output, 'lease_time');
+     if (lines.length && lines[0].startsWith('lease_time')) {
+       result = true;
+@@ -662,7 +662,7 @@ function getDarwinIfaceDHCPstatus(iface) {
+ function getLinuxIfaceDNSsuffix(connectionName) {
+   if (connectionName) {
+     try {
+-      const output = execFileSync('nmcli', ['connection', 'show', connectionName], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
++      const output = util.execFileSyncCompat('nmcli', ['connection', 'show', connectionName], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
+       const result = util.grep(output, 'ipv4.dns-search');
+       const resultFormat = result.replace(/\s+/g, ' ').trim();
+       const dnsSuffix = resultFormat.split(' ').slice(1).toString();
+@@ -678,7 +678,7 @@ function getLinuxIfaceDNSsuffix(connectionName) {
+ function getLinuxIfaceIEEE8021xAuth(connectionName) {
+   if (connectionName) {
+     try {
+-      const output = execFileSync('nmcli', ['connection', 'show', connectionName], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
++      const output = util.execFileSyncCompat('nmcli', ['connection', 'show', connectionName], { ...util.execOptsLinux, stdio: ['ignore', 'pipe', 'ignore'] }).toString();
+       const result = util.grep(output, '802-1x.eap');
+       const resultFormat = result.replace(/\s+/g, ' ').trim();
+       const authenticationProtocol = resultFormat.split(' ').slice(1).toString();
+@@ -974,7 +974,7 @@ function networkInterfaces(callback, rescan, defaultString) {
+ 
+               let lines = [];
+               try {
+-                lines = execSync(cmd, util.execOptsLinux).toString().split('\n');
++                lines = util.execSyncCompat(cmd, util.execOptsLinux).toString().split('\n');
+                 const connectionName = getLinuxIfaceConnectionName(ifaceSanitized);
+                 dhcp = getLinuxIfaceDHCPstatus(ifaceSanitized, connectionName, _dhcpNics);
+                 dnsSuffix = getLinuxIfaceDNSsuffix(connectionName);
+diff --git a/lib/osinfo.js b/lib/osinfo.js
+index 4ec86d7..53fb918 100644
+--- a/lib/osinfo.js
++++ b/lib/osinfo.js
+@@ -48,7 +48,7 @@ function time() {
+   };
+   if (_darwin || _linux) {
+     try {
+-      const stdout = execSync('date +%Z && date +%z && ls -l /etc/localtime 2>/dev/null', util.execOptsLinux);
++      const stdout = util.execSyncCompat('date +%Z && date +%z && ls -l /etc/localtime 2>/dev/null', util.execOptsLinux);
+       const lines = stdout.toString().split(os.EOL);
+       if (lines.length > 3 && !lines[0]) {
+         lines.shift();
+@@ -192,7 +192,7 @@ function getFQDN() {
+   let fqdn = os.hostname();
+   if (_linux || _darwin) {
+     try {
+-      const stdout = execSync('hostname -f 2>/dev/null', util.execOptsLinux);
++      const stdout = util.execSyncCompat('hostname -f 2>/dev/null', util.execOptsLinux);
+       fqdn = stdout.toString().split(os.EOL)[0];
+     } catch {
+       util.noop();
+@@ -200,7 +200,7 @@ function getFQDN() {
+   }
+   if (_freebsd || _openbsd || _netbsd) {
+     try {
+-      const stdout = execSync('hostname 2>/dev/null');
++      const stdout = util.execSyncCompat('hostname 2>/dev/null');
+       fqdn = stdout.toString().split(os.EOL)[0];
+     } catch {
+       util.noop();
+@@ -208,7 +208,7 @@ function getFQDN() {
+   }
+   if (_windows) {
+     try {
+-      const stdout = execSync('echo %COMPUTERNAME%.%USERDNSDOMAIN%', util.execOptsWin);
++      const stdout = util.execSyncCompat('echo %COMPUTERNAME%.%USERDNSDOMAIN%', util.execOptsWin);
+       fqdn = stdout.toString().replace('.%USERDNSDOMAIN%', '').split(os.EOL)[0];
+     } catch {
+       util.noop();
+@@ -834,7 +834,7 @@ function versions(apps, callback) {
+         if ({}.hasOwnProperty.call(appsObj.versions, 'python')) {
+           if (_darwin) {
+             try {
+-              const stdout = execSync('sw_vers');
++              const stdout = util.execSyncCompat('sw_vers');
+               const lines = stdout.toString().split('\n');
+               const osVersion = util.getValue(lines, 'ProductVersion', ':');
+               const gitHomebrewExists1 = fs.existsSync('/usr/local/Cellar/python');
+diff --git a/lib/processes.js b/lib/processes.js
+index 3d02bf2..f512a7c 100644
+--- a/lib/processes.js
++++ b/lib/processes.js
+@@ -161,7 +161,7 @@ function services(srv, callback) {
+         if (_linux || _freebsd || _openbsd || _netbsd || _darwin) {
+           if ((_linux || _freebsd || _openbsd || _netbsd) && srvString === '*') {
+             try {
+-              const tmpsrv = execSync('systemctl --all --type=service --no-legend 2> /dev/null', util.execOptsLinux).toString().split('\n');
++              const tmpsrv = util.execSyncCompat('systemctl --all --type=service --no-legend 2> /dev/null', util.execOptsLinux).toString().split('\n');
+               srvs = [];
+               for (const s of tmpsrv) {
+                 const name = s.split('.service')[0];
+@@ -173,7 +173,7 @@ function services(srv, callback) {
+             } catch (d) {
+               try {
+                 srvString = '';
+-                const tmpsrv = execSync('service --status-all 2> /dev/null', util.execOptsLinux).toString().split('\n');
++                const tmpsrv = util.execSyncCompat('service --status-all 2> /dev/null', util.execOptsLinux).toString().split('\n');
+                 for (const s of tmpsrv) {
+                   const parts = s.split(']');
+                   if (parts.length === 2) {
+@@ -183,7 +183,7 @@ function services(srv, callback) {
+                 srvs = srvString.split('|');
+               } catch (e) {
+                 try {
+-                  const srvStr = execSync('ls /etc/init.d/ -m 2> /dev/null', util.execOptsLinux).toString().split('\n').join('');
++                  const srvStr = util.execSyncCompat('ls /etc/init.d/ -m 2> /dev/null', util.execOptsLinux).toString().split('\n').join('');
+                   srvString = '';
+                   if (srvStr) {
+                     const tmpsrv = srvStr.split(',');
+diff --git a/lib/system.js b/lib/system.js
+index d00cbbe..5f17abc 100644
+--- a/lib/system.js
++++ b/lib/system.js
+@@ -52,21 +52,22 @@ function system(callback) {
+           result.serial = cleanDefaults(util.getValue(lines, 'serial number'));
+           result.uuid = cleanDefaults(util.getValue(lines, 'uuid')).toLowerCase();
+           result.sku = cleanDefaults(util.getValue(lines, 'sku number'));
+-          // Non-Root values
+-          const cmd = `echo -n "product_name: "; cat /sys/devices/virtual/dmi/id/product_name 2>/dev/null; echo;
+-            echo -n "product_serial: "; cat /sys/devices/virtual/dmi/id/product_serial 2>/dev/null; echo;
+-            echo -n "product_uuid: "; cat /sys/devices/virtual/dmi/id/product_uuid 2>/dev/null; echo;
+-            echo -n "product_version: "; cat /sys/devices/virtual/dmi/id/product_version 2>/dev/null; echo;
+-            echo -n "sys_vendor: "; cat /sys/devices/virtual/dmi/id/sys_vendor 2>/dev/null; echo;`;
+-          try {
+-            lines = execSync(cmd, util.execOptsLinux).toString().split('\n');
++          // Non-Root values (read /sys directly: no subprocess spawn, safe in HarmonyOS app domain)
++          lines = [];
++          for (const key of ['sys_vendor', 'product_name', 'product_version', 'product_serial', 'product_uuid']) {
++            try {
++              const v = fs.readFileSync('/sys/devices/virtual/dmi/id/' + key, 'utf8').trim();
++              lines.push(key + ': ' + v);
++            } catch {
++              lines.push(key + ': ');
++            }
++          }
++          {
+             result.manufacturer = cleanDefaults(result.manufacturer === '' ? util.getValue(lines, 'sys_vendor') : result.manufacturer);
+             result.model = cleanDefaults(result.model === '' ? util.getValue(lines, 'product_name') : result.model);
+             result.version = cleanDefaults(result.version === '' ? util.getValue(lines, 'product_version') : result.version);
+             result.serial = cleanDefaults(result.serial === '' ? util.getValue(lines, 'product_serial') : result.serial);
+             result.uuid = cleanDefaults(result.uuid === '' ? util.getValue(lines, 'product_uuid').toLowerCase() : result.uuid);
+-          } catch {
+-            util.noop();
+           }
+           if (!result.serial) {
+             result.serial = '-';
+@@ -122,7 +123,7 @@ function system(callback) {
+           }
+           if (!result.virtual) {
+             try {
+-              const disksById = execSync('ls -1 /dev/disk/by-id/ 2>/dev/null; pciconf -lv 2>/dev/null || true', util.execOptsLinux).toString();
++              const disksById = util.execSyncCompat('ls -1 /dev/disk/by-id/ 2>/dev/null; pciconf -lv 2>/dev/null || true', util.execOptsLinux).toString();
+               if (disksById.indexOf('_QEMU_') >= 0 || disksById.indexOf('QEMU ') >= 0) {
+                 result.virtual = true;
+                 result.virtualHost = 'QEMU';
+@@ -137,7 +138,7 @@ function system(callback) {
+           }
+           if (_freebsd || _openbsd || _netbsd) {
+             try {
+-              const lines = execSync('sysctl -i kern.hostuuid kern.hostid hw.model', util.execOptsLinux).toString().split('\n');
++              const lines = util.execSyncCompat('sysctl -i kern.hostuuid kern.hostid hw.model', util.execOptsLinux).toString().split('\n');
+               if (!result.uuid) {
+                 result.uuid = util.getValue(lines, 'kern.hostuuid', ':').toLowerCase();
+               }
+@@ -160,7 +161,7 @@ function system(callback) {
+           }
+           if ((_freebsd || _openbsd || _netbsd) && !result.virtualHost) {
+             try {
+-              const procInfo = execSync('dmidecode -t 4', util.execOptsLinux);
++              const procInfo = util.execSyncCompat('dmidecode -t 4', util.execOptsLinux);
+               const procLines = procInfo.toString().split('\n');
+               const procManufacturer = util.getValue(procLines, 'manufacturer', ':', true);
+               switch (procManufacturer.toLowerCase()) {
+@@ -186,7 +187,7 @@ function system(callback) {
+             result.model = 'Docker Container';
+           }
+           try {
+-            const stdout = execSync('dmesg 2>/dev/null | grep -iE "virtual|hypervisor" | grep -iE "vmware|qemu|kvm|xen" | grep -viE "Nested Virtualization|/virtual/"');
++            const stdout = util.execSyncCompat('dmesg 2>/dev/null | grep -iE "virtual|hypervisor" | grep -iE "vmware|qemu|kvm|xen" | grep -viE "Nested Virtualization|/virtual/"');
+             // detect virtual machines
+             const lines = stdout.toString().split('\n');
+             if (lines.length > 0) {
+@@ -456,7 +457,7 @@ function bios(callback) {
+             echo -n "bios_vendor: "; cat /sys/devices/virtual/dmi/id/bios_vendor 2>/dev/null; echo;
+             echo -n "bios_version: "; cat /sys/devices/virtual/dmi/id/bios_version 2>/dev/null; echo;`;
+           try {
+-            lines = execSync(cmd, util.execOptsLinux).toString().split('\n');
++            lines = util.execSyncCompat(cmd, util.execOptsLinux).toString().split('\n');
+             result.vendor = !result.vendor ? util.getValue(lines, 'bios_vendor') : result.vendor;
+             result.version = !result.version ? util.getValue(lines, 'bios_version') : result.version;
+             datetime = util.getValue(lines, 'bios_date');
+@@ -572,21 +573,22 @@ function baseboard(callback) {
+           result.version = cleanDefaults(util.getValue(lines, 'Version'));
+           result.serial = cleanDefaults(util.getValue(lines, 'Serial Number'));
+           result.assetTag = cleanDefaults(util.getValue(lines, 'Asset Tag'));
+-          // Non-Root values
+-          const cmd = `echo -n "board_asset_tag: "; cat /sys/devices/virtual/dmi/id/board_asset_tag 2>/dev/null; echo;
+-            echo -n "board_name: "; cat /sys/devices/virtual/dmi/id/board_name 2>/dev/null; echo;
+-            echo -n "board_serial: "; cat /sys/devices/virtual/dmi/id/board_serial 2>/dev/null; echo;
+-            echo -n "board_vendor: "; cat /sys/devices/virtual/dmi/id/board_vendor 2>/dev/null; echo;
+-            echo -n "board_version: "; cat /sys/devices/virtual/dmi/id/board_version 2>/dev/null; echo;`;
+-          try {
+-            lines = execSync(cmd, util.execOptsLinux).toString().split('\n');
++          // Non-Root values (read /sys directly: no subprocess spawn, safe in HarmonyOS app domain)
++          lines = [];
++          for (const key of ['board_asset_tag', 'board_name', 'board_serial', 'board_vendor', 'board_version']) {
++            try {
++              const v = fs.readFileSync('/sys/devices/virtual/dmi/id/' + key, 'utf8').trim();
++              lines.push(key + ': ' + v);
++            } catch {
++              lines.push(key + ': ');
++            }
++          }
++          {
+             result.manufacturer = cleanDefaults(!result.manufacturer ? util.getValue(lines, 'board_vendor') : result.manufacturer);
+             result.model = cleanDefaults(!result.model ? util.getValue(lines, 'board_name') : result.model);
+             result.version = cleanDefaults(!result.version ? util.getValue(lines, 'board_version') : result.version);
+             result.serial = cleanDefaults(!result.serial ? util.getValue(lines, 'board_serial') : result.serial);
+             result.assetTag = cleanDefaults(!result.assetTag ? util.getValue(lines, 'board_asset_tag') : result.assetTag);
+-          } catch {
+-            util.noop();
+           }
+ 
+           // mem
+diff --git a/lib/util.js b/lib/util.js
+index fa8fe10..60d6d1d 100644
+--- a/lib/util.js
++++ b/lib/util.js
+@@ -61,6 +61,28 @@ const execOptsLinux = {
+   stdio: ['pipe', 'pipe', 'ignore']
+ };
+ 
++// Async child_process.exec wrapper (avoids the synchronous spawn+wait path that hangs in
++// HarmonyOS app domain on Electron-OH 40 / Node 24.11.1). Resolves {err, out}; caller decides
++// degradation. Mirrors the library's "missing data source degrades to empty/null" semantics.
++function execAsync(cmd, opts) {
++  return new Promise((resolve) => {
++    exec(cmd, opts, (err, stdout) => resolve({ err: !!err, out: String(stdout || '') }));
++  });
++}
++
++// HarmonyOS app domain guard for sync spawn: on openharmony/ohos the blocking waitpid path
++// hangs (Node 24 / Electron-OH 40). Throw so the library's existing try/catch degrades to
++// empty/null/0 exactly like a missing command; non-Harmony platforms call execSync unchanged.
++const _ohosPlatform = () => _platform === 'openharmony' || _platform === 'ohos';
++function execSyncCompat(cmd, opts) {
++  if (_ohosPlatform()) throw new Error('sync spawn blocked on HarmonyOS app domain');
++  return execSync(cmd, opts);
++}
++function execFileSyncCompat(file, args, opts) {
++  if (_ohosPlatform()) throw new Error('sync spawn blocked on HarmonyOS app domain');
++  return require('child_process').execFileSync(file, args, opts);
++}
++
+ function toInt(value) {
+   let result = parseInt(value, 10);
+   if (isNaN(result)) {
+@@ -588,16 +610,24 @@ function getCodepage() {
+   }
+   if (_linux || _darwin || _freebsd || _openbsd || _netbsd) {
+     if (!codepage) {
+-      try {
+-        const stdout = execSync('echo $LANG', execOptsLinux);
+-        const lines = stdout.toString().split('\r\n');
+-        const parts = lines[0].split('.');
+-        codepage = parts.length > 1 ? parts[1].trim() : '';
++      if (_ohosPlatform()) {
++        // HarmonyOS app domain: no sync spawn; use $LANG from env when present.
++        codepage = (process.env.LANG || '').split('.')[1] || 'UTF-8';
+         if (!codepage) {
+           codepage = 'UTF-8';
+         }
+-      } catch {
+-        codepage = 'UTF-8';
++      } else {
++        try {
++          const stdout = execSync('echo $LANG', execOptsLinux);
++          const lines = stdout.toString().split('\r\n');
++          const parts = lines[0].split('.');
++          codepage = parts.length > 1 ? parts[1].trim() : '';
++          if (!codepage) {
++            codepage = 'UTF-8';
++          }
++        } catch {
++          codepage = 'UTF-8';
++        }
+       }
+     }
+     return codepage;
+@@ -609,6 +639,10 @@ function smartMonToolsInstalled() {
+     return _smartMonToolsInstalled;
+   }
+   _smartMonToolsInstalled = false;
++  if (_ohosPlatform()) {
++    // HarmonyOS app domain: no sync spawn; smartctl is not bundled.
++    return _smartMonToolsInstalled;
++  }
+   if (_windows) {
+     try {
+       const pathArray = execSync('WHERE smartctl 2>nul', execOptsWin).toString().split('\r\n');
+@@ -1225,7 +1259,8 @@ function promisifySave(nodeStyleFunction) {
+ 
+ function linuxVersion() {
+   let result = '';
+-  if (_linux) {
++  // HarmonyOS app domain: skip the sync spawn+wait path (hangs on Node 24 / Electron-OH 40).
++  if (_linux && _platform !== 'openharmony' && _platform !== 'ohos') {
+     try {
+       result = execSync('uname -v', execOptsLinux).toString();
+     } catch {
+diff --git a/lib/wifi.js b/lib/wifi.js
+index e0b15e3..98b13ff 100644
+--- a/lib/wifi.js
++++ b/lib/wifi.js
+@@ -143,7 +143,7 @@ function ifaceListLinux() {
+   const result = [];
+   const cmd = 'iw dev 2>/dev/null';
+   try {
+-    const all = execSync(cmd, util.execOptsLinux)
++    const all = util.execSyncCompat(cmd, util.execOptsLinux)
+       .toString()
+       .split('\n')
+       .map((line) => line.trim())
+@@ -166,7 +166,7 @@ function ifaceListLinux() {
+     return result;
+   } catch {
+     try {
+-      const all = execSync('nmcli -t -f general,wifi-properties,wired-properties,interface-flags,capabilities,nsp device show 2>/dev/null', util.execOptsLinux).toString();
++      const all = util.execSyncCompat('nmcli -t -f general,wifi-properties,wired-properties,interface-flags,capabilities,nsp device show 2>/dev/null', util.execOptsLinux).toString();
+       const parts = all.split('\n\n');
+       let i = 1;
+       parts.forEach((ifaceDetails) => {
+@@ -195,7 +195,7 @@ function ifaceListLinux() {
+ function nmiDeviceLinux(iface) {
+   const cmd = `nmcli -t -f general,wifi-properties,capabilities,ip4,ip6 device show ${util.sanitizeString(iface, true)} 2> /dev/null`;
+   try {
+-    const lines = execSync(cmd, util.execOptsLinux).toString().split('\n');
++    const lines = util.execSyncCompat(cmd, util.execOptsLinux).toString().split('\n');
+     const ssid = util.getValue(lines, 'GENERAL.CONNECTION');
+     const uuid = util.getValue(lines, 'GENERAL.CON-UUID');
+     return {
+@@ -219,7 +219,7 @@ function nmiConnectionLinux(uuid) {
+   }
+   const cmd = `nmcli -t connection show ${uuid} 2>/dev/null`;
+   try {
+-    const lines = execSync(cmd, util.execOptsLinux).toString().split('\n');
++    const lines = util.execSyncCompat(cmd, util.execOptsLinux).toString().split('\n');
+     const ssid = util.getValue(lines, '802-11-wireless.ssid');
+     const bssid = util.getValue(lines, '802-11-wireless.seen-bssids').toLowerCase();
+     return {
+@@ -241,7 +241,7 @@ function wpaConnectionLinux(iface) {
+   }
+   const cmd = `wpa_cli -i ${util.sanitizeString(iface, true)} status 2>&1`;
+   try {
+-    const lines = execSync(cmd, util.execOptsLinux).toString().split('\n');
++    const lines = util.execSyncCompat(cmd, util.execOptsLinux).toString().split('\n');
+     const freq = util.toInt(util.getValue(lines, 'freq', '='));
+     return {
+       ssid: util.getValue(lines, 'ssid', '='),
+@@ -260,7 +260,7 @@ function getWifiNetworkListNmi() {
+   const result = [];
+   const cmd = 'nmcli -t -m multiline --fields active,ssid,bssid,mode,chan,freq,signal,security,wpa-flags,rsn-flags device wifi list 2>/dev/null';
+   try {
+-    const stdout = execSync(cmd, util.execOptsLinux);
++    const stdout = util.execSyncCompat(cmd, util.execOptsLinux);
+     const parts = stdout.toString().split('ACTIVE:');
+     parts.shift();
+     parts.forEach((part) => {
+@@ -294,7 +294,7 @@ function getWifiNetworkListNmi() {
+ function getWifiNetworkListIw(iface) {
+   const result = [];
+   try {
+-    const iwlistParts = execSync(`export LC_ALL=C; iwlist ${util.sanitizeString(iface, true)} scan 2>&1; unset LC_ALL`, util.execOptsLinux)
++    const iwlistParts = util.execSyncCompat(`export LC_ALL=C; iwlist ${util.sanitizeString(iface, true)} scan 2>&1; unset LC_ALL`, util.execOptsLinux)
+       .toString()
+       .split('        Cell ');
+     if (iwlistParts[0].indexOf('resource busy') >= 0) {
+@@ -432,7 +432,7 @@ function wifiNetworks(callback) {
+         result = getWifiNetworkListNmi();
+         if (result.length === 0) {
+           try {
+-            const iwconfigParts = execSync('export LC_ALL=C; iwconfig 2>/dev/null; unset LC_ALL', util.execOptsLinux).toString().split('\n\n');
++            const iwconfigParts = util.execSyncCompat('export LC_ALL=C; iwconfig 2>/dev/null; unset LC_ALL', util.execOptsLinux).toString().split('\n\n');
+             let iface = '';
+             iwconfigParts.forEach((element) => {
+               if (element.indexOf('no wireless') === -1 && element.trim() !== '') {

@@ -1,0 +1,235 @@
+From 2bfa244cdf66725f91d59ea50ee20e3370292c90 Mon Sep 17 00:00:00 2001
+From: ohpt-adapt <ohpt-adapt@local>
+Date: Thu, 22 Oct 2026 03:39:32 +0800
+Subject: [PATCH 1/2] feat: add openharmony to linux platform detection
+
+---
+ lib/audio.js     | 2 +-
+ lib/battery.js   | 2 +-
+ lib/bluetooth.js | 2 +-
+ lib/cpu.js       | 2 +-
+ lib/graphics.js  | 2 +-
+ lib/internet.js  | 2 +-
+ lib/memory.js    | 2 +-
+ lib/network.js   | 2 +-
+ lib/osinfo.js    | 2 +-
+ lib/printer.js   | 2 +-
+ lib/processes.js | 2 +-
+ lib/system.js    | 2 +-
+ lib/usb.js       | 2 +-
+ lib/users.js     | 2 +-
+ lib/util.js      | 2 +-
+ lib/wifi.js      | 2 +-
+ 16 files changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/lib/audio.js b/lib/audio.js
+index 61ab3db..4d3b7a4 100644
+--- a/lib/audio.js
++++ b/lib/audio.js
+@@ -19,7 +19,7 @@ const util = require('./util');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/battery.js b/lib/battery.js
+index efb7350..19cd67b 100644
+--- a/lib/battery.js
++++ b/lib/battery.js
+@@ -19,7 +19,7 @@ const util = require('./util');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/bluetooth.js b/lib/bluetooth.js
+index 21d9556..ad96830 100644
+--- a/lib/bluetooth.js
++++ b/lib/bluetooth.js
+@@ -22,7 +22,7 @@ const fs = require('fs');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/cpu.js b/lib/cpu.js
+index dcfdc9d..7ab0e20 100644
+--- a/lib/cpu.js
++++ b/lib/cpu.js
+@@ -21,7 +21,7 @@ const util = require('./util');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/graphics.js b/lib/graphics.js
+index 8d5c395..28c1177 100644
+--- a/lib/graphics.js
++++ b/lib/graphics.js
+@@ -23,7 +23,7 @@ const util = require('./util');
+ const _platform = process.platform;
+ let _nvidiaSmiPath = '';
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/internet.js b/lib/internet.js
+index 705b141..535ad0f 100644
+--- a/lib/internet.js
++++ b/lib/internet.js
+@@ -17,7 +17,7 @@ const util = require('./util');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/memory.js b/lib/memory.js
+index 67e6d3b..dbb5fa7 100644
+--- a/lib/memory.js
++++ b/lib/memory.js
+@@ -21,7 +21,7 @@ const fs = require('fs');
+ 
+ let _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/network.js b/lib/network.js
+index e322835..ce836b1 100644
+--- a/lib/network.js
++++ b/lib/network.js
+@@ -24,7 +24,7 @@ const util = require('./util');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/osinfo.js b/lib/osinfo.js
+index e025bee..679d7c0 100644
+--- a/lib/osinfo.js
++++ b/lib/osinfo.js
+@@ -21,7 +21,7 @@ const execSync = require('child_process').execSync;
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/printer.js b/lib/printer.js
+index cfc2b95..39f8177 100644
+--- a/lib/printer.js
++++ b/lib/printer.js
+@@ -18,7 +18,7 @@ const util = require('./util');
+ 
+ let _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/processes.js b/lib/processes.js
+index 2852bf2..23ecd0f 100644
+--- a/lib/processes.js
++++ b/lib/processes.js
+@@ -23,7 +23,7 @@ const util = require('./util');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/system.js b/lib/system.js
+index cc35fa6..0138b19 100644
+--- a/lib/system.js
++++ b/lib/system.js
+@@ -22,7 +22,7 @@ const execPromise = util.promisify(require('child_process').exec);
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/usb.js b/lib/usb.js
+index 74a3c96..14d9915 100644
+--- a/lib/usb.js
++++ b/lib/usb.js
+@@ -18,7 +18,7 @@ const util = require('./util');
+ 
+ let _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/users.js b/lib/users.js
+index de6bbf7..19b916e 100644
+--- a/lib/users.js
++++ b/lib/users.js
+@@ -18,7 +18,7 @@ const util = require('./util');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/util.js b/lib/util.js
+index b698251..e78e745 100644
+--- a/lib/util.js
++++ b/lib/util.js
+@@ -22,7 +22,7 @@ const execSync = require('child_process').execSync;
+ const util = require('util');
+ 
+ const _platform = process.platform;
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ const _freebsd = _platform === 'freebsd';
+diff --git a/lib/wifi.js b/lib/wifi.js
+index db0dc4c..ab181de 100644
+--- a/lib/wifi.js
++++ b/lib/wifi.js
+@@ -20,7 +20,7 @@ const util = require('./util');
+ 
+ const _platform = process.platform;
+ 
+-const _linux = _platform === 'linux' || _platform === 'android';
++const _linux = _platform === 'linux' || _platform === 'android' || _platform === 'openharmony';
+ const _darwin = _platform === 'darwin';
+ const _windows = _platform === 'win32';
+ 
+-- 
+2.56.0.windows.2
+

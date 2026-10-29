@@ -1,0 +1,97 @@
+name: systeminformation build and npm publish
+
+on:
+  pull_request:
+    paths:
+      - 'ports/systeminformation/**'
+      - '.github/workflows/systeminformation-electron-oh.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ports/systeminformation/**'
+      - '.github/workflows/systeminformation-electron-oh.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: systeminformation-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+env:
+  PORT: ports/systeminformation/5.33.16
+  UPSTREAM_COMMIT: 292900669623249b3f0f4c8a84548960a4c76e08
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.0'
+      - run: npm install --global npm@11.21.0
+      - name: Fetch pinned upstream source (patch baseline is the source tree, not the npm tarball)
+        run: |
+          git clone --filter=blob:none https://github.com/sebhildebrandt/systeminformation.git "$RUNNER_TEMP/upstream"
+          git -C "$RUNNER_TEMP/upstream" checkout "$UPSTREAM_COMMIT"
+      - name: Build locked package once
+        run: bash "$PORT/build.sh" --source "$RUNNER_TEMP/upstream" --output "$RUNNER_TEMP/bundle"
+      - name: Validate archive, device evidence and release guards
+        run: python3 "$PORT/electron-oh/tests/host-contract.py" --bundle "$RUNNER_TEMP/bundle"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: systeminformation-${{ github.sha }}
+          path: ${{ runner.temp }}/bundle
+          if-no-files-found: error
+          retention-days: 30
+
+  compatibility:
+    needs: build
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20.18.1', '22.17.0', '24.11.1', '24.13.0']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install --global npm@11.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: systeminformation-${{ github.sha }}
+          path: ${{ runner.temp }}/bundle
+      - name: Install and test the same artifact
+        run: python3 "$PORT/electron-oh/tests/host-contract.py" --bundle "$RUNNER_TEMP/bundle"
+
+  publish:
+    needs: [build, compatibility]
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.0'
+      - run: npm install --global npm@11.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: systeminformation-${{ github.sha }}
+          path: ${{ runner.temp }}/bundle
+      - name: Publish verified tgz with npm Trusted Publishing
+        env:
+          ENABLE_ELECTRON_OH_PUBLISH: '1'
+          ELECTRON_OH_BUNDLE: ${{ runner.temp }}/bundle
+          GITHUB_ENVIRONMENT: npm-publish
+        run: bash "$PORT/publish.sh"
