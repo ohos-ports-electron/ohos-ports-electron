@@ -119,11 +119,25 @@ async function applyFrozenArchive() {
 }
 
 (async () => {
-  const tarSha = sha(zlib.gunzipSync(fs.readFileSync(tgz)));
+  const tarBuf = zlib.gunzipSync(fs.readFileSync(tgz));
+  const tarSha = sha(tarBuf);
   console.log('candidate tgz:', path.relative(portDir, tgz));
   console.log('tar sha256:', tarSha);
   console.log('expected tar:', lock.candidate.candidateTarSha256);
-  if (tarSha !== lock.candidate.candidateTarSha256) throw Error('candidate tar mismatch vs inputs.lock: ' + tarSha + ' != ' + lock.candidate.candidateTarSha256);
+  if (tarSha !== lock.candidate.candidateTarSha256) {
+    console.error('node ' + process.versions.node + '; npmCli ' + npmCli);
+    let off = 0;
+    while (off + 512 <= tarBuf.length) {
+      const name = tarBuf.subarray(off, off + 100).toString().replace(/\0.*$/, '');
+      if (!name) break;
+      const size = parseInt(tarBuf.subarray(off + 124, off + 136).toString().replace(/\0.*$/, '').trim() || '0', 8) || 0;
+      const mode = tarBuf.subarray(off + 100, off + 108).toString().replace(/\0.*$/, '').trim();
+      const mtime = tarBuf.subarray(off + 136, off + 148).toString().replace(/\0.*$/, '').trim();
+      console.error(String.fromCharCode(tarBuf[off + 156]) + ' ' + (mode || '0') + ' ' + (mtime || '0') + ' ' + size + ' ' + sha(tarBuf.subarray(off + 512, off + 512 + size)) + ' ' + name);
+      off += 512 + Math.ceil(size / 512) * 512;
+    }
+    throw Error('candidate tar mismatch vs inputs.lock: ' + tarSha + ' != ' + lock.candidate.candidateTarSha256);
+  }
   let tgzSha = sha(fs.readFileSync(tgz));
   if (tgzSha !== lock.candidate.tgzSha256) tgzSha = await applyFrozenArchive();
   console.log('sha256:', tgzSha);

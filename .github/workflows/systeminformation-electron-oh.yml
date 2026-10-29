@@ -38,6 +38,16 @@ jobs:
           git -C "$RUNNER_TEMP/upstream" checkout "$UPSTREAM_COMMIT"
       - name: Build locked package once
         run: bash "$PORT/build.sh" --source "$RUNNER_TEMP/upstream" --output "$RUNNER_TEMP/bundle"
+      - name: Retain reconstruction diagnostics after failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: systeminformation-diag-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ports/systeminformation/5.33.16/electron-oh/dist
+            ports/systeminformation/5.33.16/.build/staging
+          if-no-files-found: warn
+          retention-days: 7
       - name: Validate archive, device evidence and release guards
         run: python3 "$PORT/electron-oh/tests/host-contract.py" --bundle "$RUNNER_TEMP/bundle"
       - uses: actions/upload-artifact@v4
