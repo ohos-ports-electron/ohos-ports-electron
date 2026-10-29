@@ -23,3 +23,5 @@ npm 打包工具链固定为 Node 24.20.0 / npm 11.19.0；它与发布作业的�
 线上使用 GitHub-hosted runner、Node 24.13.0、npm 11.21.0 和 npm-publish environment；该 environment 限 main 分支。还须设置本包 Trusted Publisher：owner/repo 为 ohos-ports-electron/ohos-ports-electron，workflow 为 napi-rs-canvas-electron-oh.yml，environment 为 npm-publish，并明确允许 direct publish。仓库变量 NAPI_RS_CANVAS_PUBLISH_MODE 只有在账号侧配置核实后才设为 oidc。
 
 新包尚不存在时，npm Trusted Publisher 不能仅凭 YAML 创建。首发或创建公开 staged 占位包均需明确执行授权；配置建立后应按 npm 当前要求及时完成首次成功发布。详见 [npm 官方 Trusted Publishing 文档](https://docs.npmjs.com/trusted-publishers/)。本配方不包含 token、签名材料或账号权限。
+
+2026-10-29 已创建本包 GitHub Trusted Publisher，限定仓库 `ohos-ports-electron/ohos-ports-electron`、工作流 `napi-rs-canvas-electron-oh.yml` 和 `npm-publish` 环境；仓库变量 `NAPI_RS_CANVAS_PUBLISH_MODE` 已启用 `oidc`。本次 main 推送启动受信任发布，实际上传结果仍以 Actions 回执与 npm registry integrity 为准。
