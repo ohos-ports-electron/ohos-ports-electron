@@ -6,6 +6,14 @@ on:
     paths:
       - 'docs/**'
       - '.github/workflows/pages-deploy.yml'
+  workflow_run:
+    # 发布类 workflow 在 main 上成功完成后立即刷新站点数据，新包无需等待每日定时同步
+    workflows:
+      - 'vscode-deviceid build and npm publish'
+      - 'onnxruntime-node build and npm publish'
+      - 'napi-rs-canvas build and npm publish'
+      - 'systeminformation build and npm publish'
+    types: [completed]
   schedule:
     # 每天北京时间凌晨 2:17（UTC 18:17），实际运行时间由 GitHub 调度。
     - cron: '17 18 * * *'
@@ -22,7 +30,13 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.repository == 'ohos-ports-electron/ohos-ports-electron' && github.ref == 'refs/heads/main'
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main' &&
+        github.event.workflow_run.event != 'pull_request'))
     runs-on: ubuntu-latest
     environment:
       name: github-pages
