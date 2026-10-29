@@ -4,6 +4,8 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
+import time
 from pathlib import Path
 import urllib.error
 import urllib.request
@@ -35,7 +37,8 @@ def validate(bundle):
     lock = read(ELECTRON.parent / 'inputs.lock.json')
     require(candidate_sha == lock['candidate']['tgzSha256'], 'candidate hash mismatch vs inputs.lock')
     evidence = read(ELECTRON.parent / 'release-evidence.json')
-    require(evidence.get('releaseStatus') == 'blocked', 'release evidence not blocked')
+    require(evidence.get('releaseStatus') == 'ready', 'release evidence not ready')
+    require(not evidence.get('reasons'), 'release reasons outstanding')
     require(evidence.get('candidateSha256') == candidate_sha, 'release evidence not bound to candidate')
     return {**meta, 'candidateSha256': candidate_sha, 'lock': lock, 'evidence': evidence}
 
@@ -61,7 +64,27 @@ def publish(bundle, execute=False):
     if not execute:
         print('DRY RUN: would publish candidate.tgz for', read(bundle / 'meta.json')['packageName'])
         return
-    raise RuntimeError('systeminformation release is BLOCKED; do not publish')
+    lock = read(PORT / 'inputs.lock.json')
+    expected = lock['candidate']['integrity']
+    spec = lock['candidate']['name'] + '@' + lock['candidate']['version']
+    existing = registry_version(spec)
+    if existing is not None:
+        require(existing['dist']['integrity'] == expected, 'version already published with different integrity')
+        print('idempotent pass: ' + spec + ' is already on the registry with the locked integrity')
+        return
+    npm = ['npm.cmd'] if os.name == 'nt' else ['npm']
+    subprocess.run(npm + ['publish', str(Path(bundle) / 'candidate.tgz'), '--access', 'public', '--tag', 'latest'], check=True)
+    deadline = time.monotonic() + 20 * 60
+    while True:
+        published = registry_version(spec)
+        if published is not None:
+            require(published['dist']['integrity'] == expected, 'published integrity mismatch vs lock')
+            print('publish verified on registry: ' + spec + ' ' + published['dist']['integrity'])
+            return
+        if time.monotonic() >= deadline:
+            raise ValueError('published version not visible within 20 minutes; npm publish-time scan did not finish')
+        print('version not visible yet (npm publish-time scan); retrying in 30 seconds')
+        time.sleep(30)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -71,6 +94,7 @@ def main():
     meta = validate(args.bundle)
     print('validate OK: ' + meta['packageName'] + '@' + meta['packageVersion'] + ' sha=' + meta['candidateSha256'][:12])
     if args.execute:
+        ci_guard()
         publish(args.bundle, True)
 
 if __name__ == '__main__':

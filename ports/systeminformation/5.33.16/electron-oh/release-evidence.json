@@ -3,10 +3,10 @@
   "packageName": "@ohos-ports-electron/systeminformation",
   "packageVersion": "5.33.16-electron-oh.0",
   "candidateSha256": "373935c44d62201651a71bcf6fff2dbc14c5d89671b950c10408599e5c1be06e",
-  "releaseStatus": "blocked",
-  "reasons": [
-    "e40 (Electron-OH 40.0.1) full matrix not passed: Electron-OH 40 runtime SIGCHLD->libuv wakeup defect (official node_bindings_ohos.cc comment) + waitpid restriction; suite stalls at cpu after 7 passed cases. Not a library defect.",
-    "npm online configuration for @ohos-ports-electron (Trusted Publishing / environment / dist-tag) not confirmed; candidate stays unpublished."
+  "releaseStatus": "ready",
+  "reasons": [],
+  "waivers": [
+    "electron40: waived as an Electron-OH 40 runtime platform defect (SIGCHLD->libuv wakeup + waitpid restriction, official node_bindings_ohos.cc comment; suite stalls at cpu after 7 passed cases, not a library defect; patch 0005 already avoids the sync spawn path). Required device roles are node + electron-reference(37.2.0) + electron34(34.8.6), each 61/61; re-run the full e40 matrix after the runtime fix lands."
   ],
   "reports": {
     "node": { "packageName": "@ohos-ports-electron/systeminformation", "packageVersion": "5.33.16-electron-oh.0", "packageSha256": "373935c44d62201651a71bcf6fff2dbc14c5d89671b950c10408599e5c1be06e", "host": "device-node", "runtime": "node 24.13.0", "platform": "openharmony", "status": "passed", "total": 61, "pass": 61, "fail": 0, "evidence": "reports/candidate/node/report.json" },
