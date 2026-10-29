@@ -11,6 +11,7 @@ from pathlib import Path, PurePosixPath
 import struct
 import subprocess
 import tarfile
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -241,6 +242,20 @@ def check_existing(meta, expected_integrity):
     return 'already-published'
 
 
+def wait_for_publication(policy, expected_integrity, attempts=41, interval=30):
+    # npm can accept an upload before its version endpoint becomes visible.
+    # Retry only a confirmed 404. Authentication/network errors and different
+    # bytes remain failures, and this function never repeats npm publish.
+    for attempt in range(attempts):
+        meta = existing_version(policy)
+        if meta is not None:
+            return check_existing(meta, expected_integrity)
+        if attempt + 1 < attempts:
+            print('npm accepted upload; waiting for registry visibility (' + str(attempt + 1) + '/' + str(attempts) + ')', flush=True)
+            time.sleep(interval)
+    raise ValueError('npm accepted the upload but registry visibility timed out')
+
+
 def publish(bundle):
     lock, evidence, policy = check_recipe()
     publish_context(os.environ, policy)
@@ -256,7 +271,7 @@ def publish(bundle):
     require(subprocess.check_output(['node', '-p', 'process.versions.node'], text=True).strip() == policy['nodeForPublish'], 'wrong publishing Node version')
     require(subprocess.check_output(['npm', '--version'], text=True).strip() == policy['npmForPublish'], 'wrong publishing npm version')
     subprocess.run(['npm', 'publish', str((Path(bundle) / 'candidate.tgz').resolve()), '--access', 'public', '--tag', policy['distTag'], '--provenance', '--registry', policy['registry']], check=True)
-    require(check_existing(existing_version(policy), evidence['candidateIntegrity']) == 'already-published', 'registry integrity verification failed')
+    require(wait_for_publication(policy, evidence['candidateIntegrity']) == 'already-published', 'registry integrity verification failed')
 
 
 def main():
