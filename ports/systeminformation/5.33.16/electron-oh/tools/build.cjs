@@ -13,6 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const zlib = require('zlib');
 const { execFileSync } = require('node:child_process');
 
 const portDir = path.resolve(__dirname, '..', '..');
@@ -66,6 +67,10 @@ function copyTree(s, d, exclude) {
 function lfAll(p) {
   (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const s = path.join(d, e.name); if (e.isDirectory()) walk(s); else if (e.isFile() && /\.(js|json|json5|md|txt|yml|yaml)$/.test(e.name)) { let t = fs.readFileSync(s, 'utf8'); t = t.replace(/\r\n/g, '\n'); fs.writeFileSync(s, t); } } })(p);
 }
+function toCrlf(p) {
+  const s = fs.readFileSync(p).toString('binary').replace(/\r\n/g, '\n').replace(/\n/g, '\r\n');
+  fs.writeFileSync(p, Buffer.from(s, 'binary'));
+}
 
 const { source: sourceIn, output } = parseArgs();
 fs.rmSync(staging, { recursive: true, force: true });
@@ -92,20 +97,71 @@ delete pj.bugs; delete pj.scripts;
 fs.writeFileSync(path.join(staging, 'package.json'), JSON.stringify(pj, null, 2) + '\n');
 fs.rmSync(path.join(staging, '.git'), { recursive: true, force: true });
 
+for (const m of lock.candidate.crlfMembers || []) {
+  if (!fs.existsSync(path.join(staging, m))) throw Error('crlfMembers 条目在 staging 中不存在: ' + m);
+  toCrlf(path.join(staging, m));
+}
+(function fixModes(d) {
+  for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) fixModes(p);
+    else if (e.isFile()) fs.chmodSync(p, 0o644);
+  }
+})(staging);
+
 fs.mkdirSync(outDir, { recursive: true });
-const npmCli = path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js');
+const npmCli = [
+  path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+  path.join(path.dirname(process.execPath), '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+].find((p) => fs.existsSync(p));
+if (!npmCli) throw Error('node 未捆绑 npm-cli.js: ' + process.execPath);
 const r = execFileSync(process.execPath, [npmCli, 'pack', '--pack-destination', outDir, '--json', staging], { encoding: 'utf8' });
 const parsed = JSON.parse(r)[0];
 const tgz = path.join(outDir, parsed.filename);
-const tgzSha = sha(fs.readFileSync(tgz));
-console.log('candidate tgz:', path.relative(portDir, tgz));
-console.log('sha256:', tgzSha);
-console.log('expected:', lock.candidate.tgzSha256);
-if (tgzSha !== lock.candidate.tgzSha256) throw Error('candidate hash mismatch vs inputs.lock');
-if (output) {
-  fs.mkdirSync(output, { recursive: true });
-  fs.copyFileSync(tgz, path.join(output, 'candidate.tgz'));
-  fs.writeFileSync(path.join(output, 'meta.json'), JSON.stringify({ packageName: NAME, packageVersion: VERSION, candidateSha256: tgzSha, expectedSha256: lock.candidate.tgzSha256 }, null, 2) + '\n');
-  console.log('bundle written to', output);
+async function applyFrozenArchive() {
+  const url = lock.candidate.archiveUrl;
+  if (!url || !url.startsWith('https://')) throw Error('candidate hash mismatch vs inputs.lock（gzip 平台差异且未锁定冻结归档 URL）');
+  console.log('gzip bytes differ from the frozen candidate (platform variance); fetching locked archive');
+  const response = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(90000) });
+  if (!response.ok) throw Error('frozen archive fetch failed: HTTP ' + response.status);
+  if (!response.url.startsWith('https://')) throw Error('frozen archive HTTPS downgrade');
+  const frozen = Buffer.from(await response.arrayBuffer());
+  if (frozen.length > 64 * 1024 * 1024) throw Error('frozen archive exceeds size limit');
+  if (sha(frozen) !== lock.candidate.tgzSha256) throw Error('frozen candidate checksum mismatch');
+  if (sha(zlib.gunzipSync(frozen)) !== lock.candidate.candidateTarSha256) throw Error('frozen candidate tar mismatch');
+  fs.writeFileSync(tgz, frozen);
+  console.log('frozen candidate applied (device-tested bytes)');
+  return sha(frozen);
 }
-console.log('BUILD OK');
+
+(async () => {
+  const tarBuf = zlib.gunzipSync(fs.readFileSync(tgz));
+  const tarSha = sha(tarBuf);
+  console.log('candidate tgz:', path.relative(portDir, tgz));
+  console.log('tar sha256:', tarSha);
+  console.log('expected tar:', lock.candidate.candidateTarSha256);
+  if (tarSha !== lock.candidate.candidateTarSha256) {
+    console.error('node ' + process.versions.node + '; npmCli ' + npmCli);
+    let off = 0;
+    while (off + 512 <= tarBuf.length) {
+      const name = tarBuf.subarray(off, off + 100).toString().replace(/\0.*$/, '');
+      if (!name) break;
+      const size = parseInt(tarBuf.subarray(off + 124, off + 136).toString().replace(/\0.*$/, '').trim() || '0', 8) || 0;
+      const mode = tarBuf.subarray(off + 100, off + 108).toString().replace(/\0.*$/, '').trim();
+      const mtime = tarBuf.subarray(off + 136, off + 148).toString().replace(/\0.*$/, '').trim();
+      console.error(String.fromCharCode(tarBuf[off + 156]) + ' ' + (mode || '0') + ' ' + (mtime || '0') + ' ' + size + ' ' + sha(tarBuf.subarray(off + 512, off + 512 + size)) + ' ' + name);
+      off += 512 + Math.ceil(size / 512) * 512;
+    }
+    throw Error('candidate tar mismatch vs inputs.lock: ' + tarSha + ' != ' + lock.candidate.candidateTarSha256);
+  }
+  let tgzSha = sha(fs.readFileSync(tgz));
+  if (tgzSha !== lock.candidate.tgzSha256) tgzSha = await applyFrozenArchive();
+  console.log('sha256:', tgzSha);
+  if (output) {
+    fs.mkdirSync(output, { recursive: true });
+    fs.copyFileSync(tgz, path.join(output, 'candidate.tgz'));
+    fs.writeFileSync(path.join(output, 'meta.json'), JSON.stringify({ packageName: NAME, packageVersion: VERSION, candidateSha256: tgzSha, expectedSha256: lock.candidate.tgzSha256 }, null, 2) + '\n');
+    console.log('bundle written to', output);
+  }
+  console.log('BUILD OK');
+})().catch((err) => { console.error(err && err.stack || err); process.exit(1); });
