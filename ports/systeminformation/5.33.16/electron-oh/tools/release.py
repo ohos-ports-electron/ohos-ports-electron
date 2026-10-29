@@ -50,8 +50,8 @@ def ci_guard(env=None):
     require(env.get('GITHUB_WORKFLOW_REF', '') == REPOSITORY + '/' + WORKFLOW + '@refs/heads/main', 'wrong workflow identity')
     require(env.get('GITHUB_ENVIRONMENT') == ENVIRONMENT, 'wrong release environment')
 
-def registry_version(spec):
-    url = REGISTRY + spec.replace('/', '%2f')
+def registry_version(name, version):
+    url = REGISTRY + name.replace('/', '%2f') + '/' + version
     try:
         with urllib.request.urlopen(url, timeout=20) as r:
             return json.loads(r.read())
@@ -65,21 +65,22 @@ def publish(bundle, execute=False):
         print('DRY RUN: would publish candidate.tgz for', read(bundle / 'meta.json')['packageName'])
         return
     lock = read(PORT / 'inputs.lock.json')
+    name = lock['candidate']['name']
+    version = lock['candidate']['version']
     expected = lock['candidate']['integrity']
-    spec = lock['candidate']['name'] + '@' + lock['candidate']['version']
-    existing = registry_version(spec)
+    existing = registry_version(name, version)
     if existing is not None:
         require(existing['dist']['integrity'] == expected, 'version already published with different integrity')
-        print('idempotent pass: ' + spec + ' is already on the registry with the locked integrity')
+        print('idempotent pass: ' + name + '@' + version + ' is already on the registry with the locked integrity')
         return
     npm = ['npm.cmd'] if os.name == 'nt' else ['npm']
     subprocess.run(npm + ['publish', str(Path(bundle) / 'candidate.tgz'), '--access', 'public', '--tag', 'latest'], check=True)
     deadline = time.monotonic() + 20 * 60
     while True:
-        published = registry_version(spec)
+        published = registry_version(name, version)
         if published is not None:
             require(published['dist']['integrity'] == expected, 'published integrity mismatch vs lock')
-            print('publish verified on registry: ' + spec + ' ' + published['dist']['integrity'])
+            print('publish verified on registry: ' + name + '@' + version + ' ' + published['dist']['integrity'])
             return
         if time.monotonic() >= deadline:
             raise ValueError('published version not visible within 20 minutes; npm publish-time scan did not finish')
