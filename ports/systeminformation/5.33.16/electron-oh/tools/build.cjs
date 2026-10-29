@@ -67,6 +67,10 @@ function copyTree(s, d, exclude) {
 function lfAll(p) {
   (function walk(d) { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const s = path.join(d, e.name); if (e.isDirectory()) walk(s); else if (e.isFile() && /\.(js|json|json5|md|txt|yml|yaml)$/.test(e.name)) { let t = fs.readFileSync(s, 'utf8'); t = t.replace(/\r\n/g, '\n'); fs.writeFileSync(s, t); } } })(p);
 }
+function toCrlf(p) {
+  const s = fs.readFileSync(p).toString('binary').replace(/\r\n/g, '\n').replace(/\n/g, '\r\n');
+  fs.writeFileSync(p, Buffer.from(s, 'binary'));
+}
 
 const { source: sourceIn, output } = parseArgs();
 fs.rmSync(staging, { recursive: true, force: true });
@@ -92,6 +96,18 @@ pj.os = ['darwin', 'linux', 'win32', 'freebsd', 'openbsd', 'netbsd', 'sunos', 'a
 delete pj.bugs; delete pj.scripts;
 fs.writeFileSync(path.join(staging, 'package.json'), JSON.stringify(pj, null, 2) + '\n');
 fs.rmSync(path.join(staging, '.git'), { recursive: true, force: true });
+
+for (const m of lock.candidate.crlfMembers || []) {
+  if (!fs.existsSync(path.join(staging, m))) throw Error('crlfMembers 条目在 staging 中不存在: ' + m);
+  toCrlf(path.join(staging, m));
+}
+(function fixModes(d) {
+  for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) fixModes(p);
+    else if (e.isFile()) fs.chmodSync(p, 0o644);
+  }
+})(staging);
 
 fs.mkdirSync(outDir, { recursive: true });
 const npmCli = [
