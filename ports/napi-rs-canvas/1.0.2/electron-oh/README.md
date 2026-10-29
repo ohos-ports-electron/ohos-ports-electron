@@ -25,3 +25,5 @@ npm 打包工具链固定为 Node 24.20.0 / npm 11.19.0；它与发布作业的�
 新包尚不存在时，npm Trusted Publisher 不能仅凭 YAML 创建。首发或创建公开 staged 占位包均需明确执行授权；配置建立后应按 npm 当前要求及时完成首次成功发布。详见 [npm 官方 Trusted Publishing 文档](https://docs.npmjs.com/trusted-publishers/)。本配方不包含 token、签名材料或账号权限。
 
 2026-10-29 已创建本包 GitHub Trusted Publisher，限定仓库 `ohos-ports-electron/ohos-ports-electron`、工作流 `napi-rs-canvas-electron-oh.yml` 和 `npm-publish` 环境；仓库变量 `NAPI_RS_CANVAS_PUBLISH_MODE` 已启用 `oidc`。本次 main 推送启动受信任发布，实际上传结果仍以 Actions 回执与 npm registry integrity 为准。
+
+`npm publish` 被接收后，registry 可能仍因[发布时扫描](https://github.blog/changelog/2026-07-28-npm-publish-time-malware-scanning-and-dual-use-metadata/)而暂时返回 404。发布器仅对该已确认 404 每 30 秒重查，最多等待 20 分钟；不会再次上传。发现其他错误或不同 integrity 立即失败，等待超时也保持失败并保留上传回执。

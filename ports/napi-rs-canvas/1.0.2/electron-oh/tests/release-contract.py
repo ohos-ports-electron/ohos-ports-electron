@@ -133,6 +133,27 @@ class ReleaseContract(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'different bytes'):
             release.check_existing({'dist': {'integrity': 'sha512-old'}}, 'sha512-new')
 
+    def test_post_publish_waits_only_for_registry_visibility(self):
+        meta = {'dist': {'integrity': 'sha512-same'}}
+        with mock.patch.object(release, 'existing_version', side_effect=[None, None, meta]) as registry, \
+             mock.patch.object(release.time, 'sleep') as sleep:
+            self.assertEqual(release.wait_for_publication({}, 'sha512-same', attempts=3), 'already-published')
+            self.assertEqual(registry.call_count, 3)
+            self.assertEqual(sleep.call_count, 2)
+        for result in [ValueError('registry HTTP 401'), {'dist': {'integrity': 'sha512-other'}}]:
+            with mock.patch.object(release, 'existing_version', side_effect=result if isinstance(result, Exception) else [result]) as registry, \
+                 mock.patch.object(release.time, 'sleep') as sleep:
+                with self.assertRaises(ValueError):
+                    release.wait_for_publication({}, 'sha512-same')
+                self.assertEqual(registry.call_count, 1)
+                sleep.assert_not_called()
+        with mock.patch.object(release, 'existing_version', return_value=None) as registry, \
+             mock.patch.object(release.time, 'sleep') as sleep:
+            with self.assertRaisesRegex(ValueError, 'visibility timed out'):
+                release.wait_for_publication({}, 'sha512-same', attempts=2)
+            self.assertEqual(registry.call_count, 2)
+            self.assertEqual(sleep.call_count, 1)
+
     def test_only_http_404_means_new_version(self):
         _, _, policy = release.check_recipe()
         for code in (401, 403, 429, 500):
