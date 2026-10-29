@@ -41,9 +41,11 @@
     "name": "@ohos-ports-electron/systeminformation",
     "version": "5.33.16-electron-oh.0",
     "tgzSha256": "373935c44d62201651a71bcf6fff2dbc14c5d89671b950c10408599e5c1be06e",
+    "candidateTarSha256": "0682dcf100eb49bef1426ac03c682db21f0e092cf6d034fb9b4ceda89ee88fa1",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/systeminformation-evidence-5.33.16-electron-oh.0/ohos-ports-electron-systeminformation-5.33.16-electron-oh.0.tgz",
     "integrity": "sha512-sThj1Lm50saNVFs3VohLdwkkrx7UQ0RJR88qYzkbWM4ho3mweSS+vmvdSgimI5nvKrxAPUO8PQ6Im/GJLjYXMw==",
     "tgzPath": ".local/ohos-ports-electron-systeminformation-5.33.16-electron-oh.0.tgz",
-    "note": "行尾为 LF（build.sh 可复现）；与早期 CRLF 候选内容逐字等价（归一化后一致），真机 61/61 验证绑定相同内容",
+    "note": "行尾为 LF（build.sh 可复现）；与早期 CRLF 候选内容逐字等价（归一化后一致），真机 61/61 验证绑定相同内容。npm 的 gzip 输出因平台 deflate 流差异而不同（解压后 tar 逐字节一致）：先校验 candidateTarSha256，命中后在 gzip 字节不同时从 archiveUrl 取回冻结 tgz（设备验证字节）",
     "repository": {
       "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
       "directory": "ports/systeminformation/5.33.16"

@@ -13,6 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const zlib = require('zlib');
 const { execFileSync } = require('node:child_process');
 
 const portDir = path.resolve(__dirname, '..', '..');
@@ -101,15 +102,36 @@ if (!npmCli) throw Error('node 未捆绑 npm-cli.js: ' + process.execPath);
 const r = execFileSync(process.execPath, [npmCli, 'pack', '--pack-destination', outDir, '--json', staging], { encoding: 'utf8' });
 const parsed = JSON.parse(r)[0];
 const tgz = path.join(outDir, parsed.filename);
-const tgzSha = sha(fs.readFileSync(tgz));
-console.log('candidate tgz:', path.relative(portDir, tgz));
-console.log('sha256:', tgzSha);
-console.log('expected:', lock.candidate.tgzSha256);
-if (tgzSha !== lock.candidate.tgzSha256) throw Error('candidate hash mismatch vs inputs.lock');
-if (output) {
-  fs.mkdirSync(output, { recursive: true });
-  fs.copyFileSync(tgz, path.join(output, 'candidate.tgz'));
-  fs.writeFileSync(path.join(output, 'meta.json'), JSON.stringify({ packageName: NAME, packageVersion: VERSION, candidateSha256: tgzSha, expectedSha256: lock.candidate.tgzSha256 }, null, 2) + '\n');
-  console.log('bundle written to', output);
+async function applyFrozenArchive() {
+  const url = lock.candidate.archiveUrl;
+  if (!url || !url.startsWith('https://')) throw Error('candidate hash mismatch vs inputs.lock（gzip 平台差异且未锁定冻结归档 URL）');
+  console.log('gzip bytes differ from the frozen candidate (platform variance); fetching locked archive');
+  const response = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(90000) });
+  if (!response.ok) throw Error('frozen archive fetch failed: HTTP ' + response.status);
+  if (!response.url.startsWith('https://')) throw Error('frozen archive HTTPS downgrade');
+  const frozen = Buffer.from(await response.arrayBuffer());
+  if (frozen.length > 64 * 1024 * 1024) throw Error('frozen archive exceeds size limit');
+  if (sha(frozen) !== lock.candidate.tgzSha256) throw Error('frozen candidate checksum mismatch');
+  if (sha(zlib.gunzipSync(frozen)) !== lock.candidate.candidateTarSha256) throw Error('frozen candidate tar mismatch');
+  fs.writeFileSync(tgz, frozen);
+  console.log('frozen candidate applied (device-tested bytes)');
+  return sha(frozen);
 }
-console.log('BUILD OK');
+
+(async () => {
+  const tarSha = sha(zlib.gunzipSync(fs.readFileSync(tgz)));
+  console.log('candidate tgz:', path.relative(portDir, tgz));
+  console.log('tar sha256:', tarSha);
+  console.log('expected tar:', lock.candidate.candidateTarSha256);
+  if (tarSha !== lock.candidate.candidateTarSha256) throw Error('candidate tar mismatch vs inputs.lock: ' + tarSha + ' != ' + lock.candidate.candidateTarSha256);
+  let tgzSha = sha(fs.readFileSync(tgz));
+  if (tgzSha !== lock.candidate.tgzSha256) tgzSha = await applyFrozenArchive();
+  console.log('sha256:', tgzSha);
+  if (output) {
+    fs.mkdirSync(output, { recursive: true });
+    fs.copyFileSync(tgz, path.join(output, 'candidate.tgz'));
+    fs.writeFileSync(path.join(output, 'meta.json'), JSON.stringify({ packageName: NAME, packageVersion: VERSION, candidateSha256: tgzSha, expectedSha256: lock.candidate.tgzSha256 }, null, 2) + '\n');
+    console.log('bundle written to', output);
+  }
+  console.log('BUILD OK');
+})().catch((err) => { console.error(err && err.stack || err); process.exit(1); });
