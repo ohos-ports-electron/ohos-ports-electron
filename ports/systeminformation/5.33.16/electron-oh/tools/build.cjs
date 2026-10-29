@@ -93,7 +93,11 @@ fs.writeFileSync(path.join(staging, 'package.json'), JSON.stringify(pj, null, 2)
 fs.rmSync(path.join(staging, '.git'), { recursive: true, force: true });
 
 fs.mkdirSync(outDir, { recursive: true });
-const npmCli = path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js');
+const npmCli = [
+  path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+  path.join(path.dirname(process.execPath), '..', 'lib', 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+].find((p) => fs.existsSync(p));
+if (!npmCli) throw Error('node 未捆绑 npm-cli.js: ' + process.execPath);
 const r = execFileSync(process.execPath, [npmCli, 'pack', '--pack-destination', outDir, '--json', staging], { encoding: 'utf8' });
 const parsed = JSON.parse(r)[0];
 const tgz = path.join(outDir, parsed.filename);
