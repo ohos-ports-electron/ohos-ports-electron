@@ -9,6 +9,7 @@
 | 包名 | 版本 | 安装 |
 |------|------|------|
 | @ohos-ports-electron/vscode-deviceid | 0.1.5-electron-oh.1 | `npm i @ohos-ports-electron/vscode-deviceid` |
+| @ohos-ports-electron/systeminformation | 5.33.16-electron-oh.0 | `npm i @ohos-ports-electron/systeminformation` |
 <!-- PORTS_TABLE_END -->
 
 包列表查询页：[ohos-ports-electron](https://ohos-ports-electron.github.io/ohos-ports-electron/)。网站只查询 npm 公开信息，不执行 npm 发布。
