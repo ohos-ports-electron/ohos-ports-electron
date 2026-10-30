@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "packageName": "@ohos-ports-electron/node-gyp-build",
+  "packageVersion": "4.8.4-electron-oh.0",
+  "candidateSha256": "780ddd731fd545f58e1ed795a75283a9c4601aea79a025a73ddde04a1c80a714",
+  "releaseStatus": "ready",
+  "reasons": [],
+  "reports": {
+    "node": { "packageName": "@ohos-ports-electron/node-gyp-build", "packageVersion": "4.8.4-electron-oh.0", "packageSha256": "780ddd731fd545f58e1ed795a75283a9c4601aea79a025a73ddde04a1c80a714", "host": "device-node", "runtime": "node 24.13.0", "platform": "openharmony", "status": "passed", "total": 6, "pass": 6, "fail": 0, "evidence": "reports/candidate/node/report.json", "deviceRuns": 2 },
+    "electron-reference": { "packageName": "@ohos-ports-electron/node-gyp-build", "packageVersion": "4.8.4-electron-oh.0", "packageSha256": "780ddd731fd545f58e1ed795a75283a9c4601aea79a025a73ddde04a1c80a714", "host": "electron-oh", "runtime": "Electron-OH 37.2.0", "platform": "openharmony", "status": "passed", "total": 6, "pass": 6, "fail": 0, "evidence": "reports/candidate/electron37/report.json", "deviceRuns": 2 },
+    "electron34": { "packageName": "@ohos-ports-electron/node-gyp-build", "packageVersion": "4.8.4-electron-oh.0", "packageSha256": "780ddd731fd545f58e1ed795a75283a9c4601aea79a025a73ddde04a1c80a714", "host": "electron-oh", "runtime": "Electron-OH 34.8.6", "platform": "openharmony", "status": "passed", "total": 6, "pass": 6, "fail": 0, "evidence": "reports/candidate/electron34/report.json", "deviceRuns": 2 },
+    "electron40": { "packageName": "@ohos-ports-electron/node-gyp-build", "packageVersion": "4.8.4-electron-oh.0", "packageSha256": "780ddd731fd545f58e1ed795a75283a9c4601aea79a025a73ddde04a1c80a714", "host": "electron-oh", "runtime": "Electron-OH 40.0.1", "platform": "ohos", "status": "passed", "total": 6, "pass": 6, "fail": 0, "evidence": "reports/candidate/electron40/report.json", "deviceRuns": 2 }
+  },
+  "evidenceRoots": [
+    "reports/validation-matrix.json",
+    "reports/baseline/node/report.json",
+    "reports/baseline/electron37/report.json",
+    "reports/baseline/electron34/report.json",
+    "reports/baseline/electron40/report.json",
+    "reports/candidate/node/report.json",
+    "reports/candidate/electron37/report.json",
+    "reports/candidate/electron34/report.json",
+    "reports/candidate/electron40/report.json",
+    "reports/package-contents.json"
+  ],
+  "functionalResult": "candidate passes 6/6 on node + electron-reference(37.2.0) + electron34(34.8.6) + electron40(40.0.1), each 2 independent cold starts (OpenHarmony-7.0.0.109, HAD-W32, aarch64, API 26). Pure JS zero functional patches; candidate = baseline + package.json metadata rewrite."
+}

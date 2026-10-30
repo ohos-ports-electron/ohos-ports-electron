@@ -1,0 +1,1 @@
+{"name":"node-gyp-build-host-contract","version":"1.0.0","lockfileVersion":3,"packages":{"":{"dependencies":{"@ohos-ports-electron/node-gyp-build":"file:./candidate.tgz"}}}}
