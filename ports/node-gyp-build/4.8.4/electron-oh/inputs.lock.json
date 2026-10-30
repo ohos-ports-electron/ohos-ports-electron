@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "library": {
+    "name": "node-gyp-build",
+    "upstreamVersion": "4.8.4",
+    "upstreamSource": "https://github.com/prebuild/node-gyp-build",
+    "upstreamCommit": "6822ec52423a2b3ed48ef8960a9fe05902e9e1a3",
+    "adaptedLibraryDir": "D:\\OhosAgent\\pc-adapter-web-tool\\repos-pc\\node-gyp-build-4.8.4"
+  },
+  "baseline": {
+    "npmUrl": "https://www.npmjs.com/package/node-gyp-build",
+    "name": "node-gyp-build",
+    "version": "4.8.4",
+    "tarballUrl": "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.8.4.tgz",
+    "sha256": "940450fb4158bddc23ae156432a67338a4d7ab6a585b639c61b3b0a14d2bac24",
+    "integrity": "sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ=="
+  },
+  "patches": [],
+  "candidate": {
+    "name": "@ohos-ports-electron/node-gyp-build",
+    "version": "4.8.4-electron-oh.0",
+    "tgzSha256": "780ddd731fd545f58e1ed795a75283a9c4601aea79a025a73ddde04a1c80a714",
+    "candidateTarSha256": "a6f9a45e49df0a75e36707094f7e8e306f382125584879d3f85768aabc9553ac",
+    "crlfMembers": [],
+    "archiveUrl": null,
+    "integrity": "sha512-8zwZYGCN2XrbrxvE2A8I4RlCN6MwD8pi6RguU57uasU9cAlOfoSPxsqNt0Uigsy7uDEEg3Y2P6Wkt7VoLpVlew==",
+    "tgzPath": ".local/ohos-ports-electron-node-gyp-build-4.8.4-electron-oh.0.tgz",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+      "directory": "ports/node-gyp-build/4.8.4"
+    },
+    "note": "纯 JS 零功能补丁：候选 = 基线 npm tgz + 仅 package.json 元数据改写（name/version/repository/description/bugs），其余 8 文件与基线同字节。npm pack（Node 24 / npm 11）tar 与 gzip 字节本地均可复现（与设备验证 tgz 完全一致）；若 CI 平台 gzip 有差异，由 archiveUrl 冻结归档兜底（发布授权时上传设备验证 tgz 到 Release 并填写 URL）。"
+  },
+  "runtimes": {
+    "node": {
+      "version": "24.13.0",
+      "source": "C:/ohpt-runtime/node-oh/24.13.0/bin/node"
+    },
+    "electron-reference": {
+      "version": "37.2.0",
+      "source": "gitcode.com/CPF-Electron/Electron releases v37.2.0",
+      "sha256": "57bf0314ce3f5be80fc7a7ebc4f47a2fe82a5e4afcf5fe856ad9cfc342618946"
+    },
+    "electron34": {
+      "version": "34.8.6",
+      "selfReported": "v34.8.6-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v34/v34.8.6-20260929.1-release.zip",
+      "sha256": "8c818c63aaeba771804dae991c78c3da2c865a07bbd32c286fd6164732405243"
+    },
+    "electron40": {
+      "version": "40.0.1",
+      "selfReported": "v40.0.1-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v40/v40.0.1.20260928.2-release.zip",
+      "sha256": "5caab8b2ad33a1b9389abdc3d1d171c84e9dd66670adaf14c632ef1d0e95240a"
+    }
+  },
+  "upstreamSource": {
+    "name": "node-gyp-build",
+    "version": "4.8.4",
+    "gitUrl": "https://github.com/prebuild/node-gyp-build",
+    "commit": "6822ec52423a2b3ed48ef8960a9fe05902e9e1a3",
+    "note": "零补丁：补丁基线即 npm tgz（npm 包文件与源码逐字一致，仅 EOL 差异）",
+    "npmTarball": {
+      "url": "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.8.4.tgz",
+      "sha256": "940450fb4158bddc23ae156432a67338a4d7ab6a585b639c61b3b0a14d2bac24"
+    }
+  }
+}
