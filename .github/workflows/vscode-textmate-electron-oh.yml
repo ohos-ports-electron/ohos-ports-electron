@@ -1,0 +1,98 @@
+name: vscode-textmate build and npm publish
+
+on:
+  pull_request:
+    paths:
+      - 'ports/vscode-textmate/**'
+      - '.github/workflows/vscode-textmate-electron-oh.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ports/vscode-textmate/**'
+      - '.github/workflows/vscode-textmate-electron-oh.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vscode-textmate-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+env:
+  PORT: ports/vscode-textmate/9.3.2
+  BASELINE_URL: https://registry.npmjs.org/vscode-textmate/-/vscode-textmate-9.3.2.tgz
+  BASELINE_SHA256: f7c742b16d59600d77529b7a904af09b59dfddb0f046fc045340004ae2fc50e7
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.0'
+      - run: npm install --global npm@11.21.0
+      - name: Download locked baseline npm tarball
+        run: |
+          curl -fsSL --retry 2 -o "$RUNNER_TEMP/vscode-textmate-9.3.2.tgz" "$BASELINE_URL"
+          echo "$BASELINE_SHA256  $RUNNER_TEMP/vscode-textmate-9.3.2.tgz" | sha256sum -c -
+      - name: Build locked package once
+        run: bash "$PORT/build.sh" --archive "$RUNNER_TEMP/vscode-textmate-9.3.2.tgz" --output "$RUNNER_TEMP/bundle"
+      - name: Validate archive, device evidence and release guards
+        run: python3 "$PORT/electron-oh/tests/host-contract.py" --bundle "$RUNNER_TEMP/bundle"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vscode-textmate-${{ github.sha }}
+          path: ${{ runner.temp }}/bundle
+          if-no-files-found: error
+          retention-days: 30
+
+  compatibility:
+    needs: build
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20.18.1', '22.17.0', '24.11.1', '24.13.0']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install --global npm@11.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: vscode-textmate-${{ github.sha }}
+          path: ${{ runner.temp }}/bundle
+      - name: Install and test the same artifact
+        run: python3 "$PORT/electron-oh/tests/host-contract.py" --bundle "$RUNNER_TEMP/bundle"
+
+  publish:
+    needs: [build, compatibility]
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.0'
+      - run: npm install --global npm@11.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: vscode-textmate-${{ github.sha }}
+          path: ${{ runner.temp }}/bundle
+      - name: Publish verified tgz with npm Trusted Publishing
+        env:
+          ENABLE_ELECTRON_OH_PUBLISH: '1'
+          ELECTRON_OH_BUNDLE: ${{ runner.temp }}/bundle
+          GITHUB_ENVIRONMENT: npm-publish
+        run: bash "$PORT/publish.sh"

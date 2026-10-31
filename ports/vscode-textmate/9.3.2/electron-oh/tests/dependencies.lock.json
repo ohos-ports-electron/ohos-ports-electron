@@ -1,0 +1,13 @@
+{
+  "name": "vscode-textmate-host-contract",
+  "version": "1.0.0",
+  "lockfileVersion": 3,
+  "packages": {
+    "": {
+      "dependencies": {
+        "@ohos-ports-electron/vscode-textmate": "file:./candidate.tgz",
+        "vscode-oniguruma": "1.7.0"
+      }
+    }
+  }
+}
