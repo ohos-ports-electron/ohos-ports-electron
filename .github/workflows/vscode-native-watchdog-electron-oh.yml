@@ -1,0 +1,100 @@
+name: vscode-native-watchdog build and npm publish
+
+on:
+  pull_request:
+    paths:
+      - 'ports/vscode-native-watchdog/**'
+      - '.github/workflows/vscode-native-watchdog-electron-oh.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ports/vscode-native-watchdog/**'
+      - '.github/workflows/vscode-native-watchdog-electron-oh.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vscode-native-watchdog-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+env:
+  PORT: ports/vscode-native-watchdog/1.4.6
+  WATCHDOG_NATIVE_URL: ${{ vars.WATCHDOG_NATIVE_URL }}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.0'
+      - run: npm install --global npm@11.21.0
+      - name: Build the locked candidate from baseline + hosted native archive
+        run: |
+          if [[ -z "$WATCHDOG_NATIVE_URL" ]]; then
+            echo '::error::WATCHDOG_NATIVE_URL repo variable is not configured (upload the locked native archive to a GitHub Release first; see ports/vscode-native-watchdog/1.4.6/electron-oh/native-artifact.lock.json)'
+            exit 1
+          fi
+          bash "$PORT/build.sh" --native-url "$WATCHDOG_NATIVE_URL" --output "$RUNNER_TEMP/nw-bundle-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" --verify
+      - name: Validate the artifact handoff against the current checkout locks
+        run: python3 "$PORT/electron-oh/tests/host-contract.py" --bundle "$RUNNER_TEMP/nw-bundle-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vscode-native-watchdog-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/nw-bundle-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 30
+
+  compatibility:
+    needs: build
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20.18.1', '22.17.0', '24.11.1', '24.13.0']
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install --global npm@11.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: vscode-native-watchdog-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/nw-bundle
+      - name: Install the same tgz and run the shared suite (host compile via install.cjs -> node-gyp, upstream semantics)
+        run: node "$PORT/electron-oh/tests/run-host.cjs" --tgz "$RUNNER_TEMP/nw-bundle/candidate.tgz" --project "$RUNNER_TEMP/nw-host-${{ matrix.node }}"
+
+  publish:
+    needs: [build, compatibility]
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.13.0'
+      - run: npm install --global npm@11.21.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: vscode-native-watchdog-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/nw-bundle
+      - name: Publish the verified artifact with the configured authentication
+        env:
+          ENABLE_ELECTRON_OH_PUBLISH: '1'
+          ELECTRON_OH_BUNDLE: ${{ runner.temp }}/nw-bundle
+          GITHUB_ENVIRONMENT: npm-publish
+        run: bash "$PORT/publish.sh"

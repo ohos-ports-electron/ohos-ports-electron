@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "library": {
+    "name": "@vscode/native-watchdog",
+    "upstreamName": "node-native-watchdog",
+    "upstreamVersion": "1.4.6",
+    "npmUrl": "https://www.npmjs.com/package/@vscode/native-watchdog",
+    "upstreamRepository": "https://github.com/Microsoft/node-native-watchdog",
+    "upstreamCommit": "d556b38cb1a567a363d2caa831f65c7ada9fe353",
+    "registry": "https://registry.npmjs.org",
+    "tarballUrl": "https://registry.npmjs.org/@vscode/native-watchdog/-/native-watchdog-1.4.6.tgz",
+    "tarballSha256": "1ce4a2d165e48560fcf2bc8bf4c9c2f8790567ea2cb2e08f6b473df71d2e608d",
+    "integrity": "sha512-C2hsQFVYF2hBv7sa7OztRBimrMsEofGNh/lYs7MIPpKdhyJpYSpDb5iu/bilgLqSO61PLBCJ5xw6iFI21LI+9Q==",
+    "license": "MIT",
+    "main": "index.js",
+    "fileCount": 9,
+    "publishedLayout": "source-only N-API addon (no explicit install script in package.json; npm auto-runs node-gyp rebuild on binding.gyp presence); no prebuilds, no test/"
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/vscode-native-watchdog",
+    "version": "1.4.6-electron-oh.0",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+      "directory": "ports/vscode-native-watchdog/1.4.6"
+    },
+    "tarballSha256": "8182dac569bc4b7eac20a30c0067640d7adc17d1881cb2684af51acf217ad4d0",
+    "tarSha256": "457da5d146e411bdc1a0f57abd21faa392f9eb4aca01aeb9e97658ca96f7123f",
+    "integrity": "sha512-xVib2tIlek68ApMUVowyLFVoNX1Hpx20jBRtIkk1jK9TpNa2RTZq2EU4xsmKEzK8vh1fS5EIj2dZtNVNxYevPQ==",
+    "fileCount": 13
+  },
+  "prebuilt": {
+    "deviceNode": {
+      "path": "package:build/Release/watchdog.node",
+      "sha256": "7b1fbe3a8a6695f8c338438a14f2492ea2bbca56fd44943ea5c2ef4cf941e337",
+      "bytes": 22912,
+      "abi": "napi_*/uv_thread_create left UND (host node dlopen resolves); DT_NEEDED=libc++_shared.so+libc.so; -Wl,--code-sign self-signed",
+      "distribution": "native-artifact.lock.json files.watchdog-node.node"
+    },
+    "electron": {
+      "path": "package:electron-oh/watchdog.node",
+      "sha256": "dd6a83b48347d056fb49c7bff0975024c9f614314d83213922c5f9e09632e733",
+      "bytes": 47488,
+      "abi": "links libshim.a (napi shim) + uv_thread_supplement (uv_thread_create via pthread_create); no napi_/uv_ UND under HIDE_NAPI_AND_UV",
+      "distribution": "native-artifact.lock.json files.watchdog-electron.node"
+    }
+  },
+  "deviceRuntimeContext": {
+    "note": "设备侧运行时供给（私有 HNP node 24.13.0 + libsyscall_fallback + HNP bin 内 device ABI 副本）为 demo 宿主供给，非库补丁、不入候选包；Electron 应用接入时由应用构建链部署 electron-oh/watchdog.node 至 HAP 应用原生库目录（electron/libs/arm64-v8a）。",
+    "node": "DevNode-OH 24.13.0 (binary sha256 52c780bdaeb3309dd81036e6fa276453bf7a889afd7657751031d97eeef025ff)",
+    "electron": {
+      "reference": "Electron-OH 37.2.0（electron ABI 编译契约：headers electron-napi-library + libshim.a）",
+      "verifiedMatrix": ["37.2.0", "v34.8.6-release (platform openharmony)", "v40.0.1-release (platform ohos)"]
+    },
+    "platformStrings": "Electron-OH 37/34 主进程自报 platform='openharmony'，40 自报 'ohos'——补丁 0001 与 install.cjs 双串命中"
+  },
+  "rebuild": {
+    "tool": "electron-oh/tools/build-addon.cjs（维护者重建路径：DevEco NDK clang++ 双 ABI 交叉编译，需要 DEVECO_SDK_HOME + node 24.13.0 headers + Electron-OH 37.2.0 electron-napi-library）",
+    "supplement": "electron-oh/tools/uv_thread_supplement.c（libshim.a 缺 uv_thread_create 的链接期补充）",
+    "note": "CI 构建通道不重编原生库：从 native-artifact.lock.json 锁定的托管归档取逐成员校验的二进制（onnxruntime-node / napi-rs-canvas 同款模式）。"
+  }
+}

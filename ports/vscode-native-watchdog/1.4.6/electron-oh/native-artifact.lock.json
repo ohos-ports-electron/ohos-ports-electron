@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "archiveSha256": "09332525dc67d1acf63f6fe9cf92a8f7f99bb3eb3d7e0a2da5bc55d0e14fe45f",
+  "files": {
+    "watchdog-node.node": "7b1fbe3a8a6695f8c338438a14f2492ea2bbca56fd44943ea5c2ef4cf941e337",
+    "watchdog-electron.node": "dd6a83b48347d056fb49c7bff0975024c9f614314d83213922c5f9e09632e733",
+    "native-artifacts.json": "1950ab4b2ebf82105e80d4fa95cd25ede43fa15a901cc5ed30499b865abbaf0f"
+  },
+  "distribution": {
+    "status": "hosted",
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/vscode-native-watchdog-evidence-1.4.6-electron-oh.0/vscode-native-watchdog-native-1.4.6-electron-oh.0.tar.gz",
+    "uploadedAt": "2026-10-31",
+    "roundtripVerified": true,
+    "note": "归档已托管于本仓 Release 资产（回下载 sha256 一致）。CI 构建通道需仓库变量 WATCHDOG_NATIVE_URL 指向该 URL（admin 权限设置，设置前 build 工作流显式失败——有意门禁）。"
+  }
+}
