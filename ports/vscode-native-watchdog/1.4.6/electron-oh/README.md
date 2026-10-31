@@ -42,8 +42,22 @@ binding.gyp 自动检测的有效安装语义一致，同时验证该语义未�
 
 `../publish.sh`（默认禁发）→ `tools/release.cjs --bundle <dir> --execute`：
 manifest 与当前 checkout 锁对账 → registry 幂等核对（同字节跳过 / 异字节拒绝 / 非 404 失败）→
-上传同一 tgz（`--tag latest`）→ 补 `electron-oh` dist-tag。仅工作流在 main push、
-`npm-publish` environment、OIDC 下调用。
+上传同一 tgz（`--tag latest`）→ 发布后回读 registry 核对 integrity（扫描期轮询至多 20 分钟）。
+仅工作流在 main push、`npm-publish` environment、OIDC 下调用。
+
+**`electron-oh` dist-tag 不走 CI**（OIDC 身份只覆盖 `npm publish`，`npm dist-tag add` 无凭据），
+为维护者手动步骤（浏览器 2FA）：
+```sh
+npm dist-tag add @ohos-ports-electron/vscode-native-watchdog@1.4.6-electron-oh.0 electron-oh
+```
+
+**本包首次发布（包身份创建）**：Trusted Publisher 的 CLI/网页配置都要求包已存在，所以
+`1.4.6-electron-oh.0` 的包身份由维护者手动首发锁定候选 tgz 创建（同字节、随 registry
+integrity 与锁一致），之后 `npm trust github …` 才能配置成功；合入后 CI 对本版本的 publish
+作业为幂等跳过，后续新修订走 CI OIDC。手动首发：
+```sh
+npm publish <候选 tgz> --access public --tag latest
+```
 
 ## 一次性线上配置（合入前后由维护者完成）
 
