@@ -1,0 +1,37 @@
+{
+  "stage": "01-ohos-electron-library-adapt",
+  "library": "@vscode/native-watchdog@1.4.6",
+  "candidate": "@ohos-ports-electron/vscode-native-watchdog@1.4.6-electron-oh.0",
+  "candidateTarballSha256": "8182dac569bc4b7eac20a30c0067640d7adc17d1881cb2684af51acf217ad4d0",
+  "candidateTarSha256": "457da5d146e411bdc1a0f57abd21faa392f9eb4aca01aeb9e97658ca96f7123f",
+  "replayVerified": true,
+  "device": {
+    "id": "3BT0124718000064",
+    "udid": "99A3FB3D72E53226A33F732221D9FADE769B9C7A5AABF6B5AAA18860A7E7AE7F",
+    "system": "OpenHarmony-7.0.0.109",
+    "api": 26,
+    "arch": "aarch64"
+  },
+  "matrix": [
+    { "role": "node", "runtimeId": "node-24.13.0", "engineSelfReported": "node 24.13.0 (modules 137, napi 10), openharmony/arm64", "baseline": "failed 0/3 x2 (Cannot find module ./build/Release/watchdog)", "candidate": "passed 3/3 x2", "candidateHapSha256": "3e1ba5970c599fe805d95e2a3e10423458f023f4d6214ae0716e33652e4d816e" },
+    { "role": "electron-reference", "runtimeId": "electron37-37.2.0", "engineSelfReported": "electron 37.2.0, node 22.17.0, openharmony/arm64", "baseline": "failed 0/3 x2", "candidate": "passed 3/3 x2", "candidateHapSha256": "317d09d4267cda5a95326168e1f63dc716ca818b0f6bc2de51e148af33de7bd8" },
+    { "role": "electron34", "runtimeId": "electron34-34.8.6", "engineSelfReported": "electron v34.8.6-release, node 20.18.1, openharmony/arm64", "baseline": "failed 0/3 x2", "candidate": "passed 3/3 x2", "candidateHapSha256": "e0bd7e021cd67ff96baf75b8dde27daac9e9a0439efb3a716839f4328e41a7e8" },
+    { "role": "electron40", "runtimeId": "electron40-40.0.1", "engineSelfReported": "electron v40.0.1-release, node 24.11.1, platform=ohos, arm64", "baseline": "failed 0/3 x2", "candidate": "passed 3/3 x2", "candidateHapSha256": "febc1618906da3b8c97ba9f5bff149f290c8ad0eeaeee70a81354b1d71d4fe17" }
+  ],
+  "caseRoster": [
+    "watchdog kills monitor after watched pid dies (upstream test/test.js)",
+    "start accepts valid integer pid and keeps process alive",
+    "exit terminates immediately with given code"
+  ],
+  "coldStarts": { "baseline": 8, "candidate": 8 },
+  "keyFindings": [
+    "Electron-OH 40 主进程自报 platform='ohos'（34/37 为 'openharmony'）——补丁 0001 的 Electron 分支须双平台串命中；首轮候选（c9feb2b2…）因此 e40 0/3×2，修正后整体重跑矩阵",
+    "electron ABI addon（37.2.0 契约：libshim.a + uv_thread_supplement）在 34/40 主进程真机装载并通过全部用例——N-API 经 shim 桥跨版本稳定",
+    "原包为纯源码 N-API addon（binding.gyp 自动触发 node-gyp rebuild，无 prebuilds）——openharmony 沙箱无编译通道，基线四目标全部装载失败，即本移植的存在依据"
+  ],
+  "evidenceArchive": {
+    "note": "完整证据（16 次冷启动原始日志、逐用例封存结果、环境与输入对比报告、handoff.json）保留在阶段 01 单库工程，不进入聚合仓库；本文件为精简绑定。工程本机路径（溯源）：E:/jsAdaptPublish/vscode-native-watchdog 1.4.6/。",
+    "nativeArchive": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/vscode-native-watchdog-evidence-1.4.6-electron-oh.0/vscode-native-watchdog-native-1.4.6-electron-oh.0.tar.gz（sha256 09332525…，回下载一致）",
+    "handoff": "handoff.json（schema 校验通过，release=ready，8 validations 全 device 执行）"
+  }
+}

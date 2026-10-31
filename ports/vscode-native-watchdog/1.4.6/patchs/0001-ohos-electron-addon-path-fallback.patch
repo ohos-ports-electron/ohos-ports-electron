@@ -1,0 +1,89 @@
+From: pc-adapt <pc-adapt@ohos>
+Subject: [PATCH] adapt: split native addon loading by Electron main vs node child on HarmonyOS PC
+
+Consolidated from the adapted workspace 3-commit series (provenance:
+.local/base/original-0001-ohos-electron-addon-path-fallback.patch, device-verified on
+device-node 24.13.0 + Electron-OH 37.2.0), extended for the stage-01 target matrix:
+Electron-OH 40 reports process.platform === "ohos" (not "openharmony"), so the
+Electron-main branch must accept both platform strings. No other functional change.
+
+ - Electron-OH main process (process.versions.electron && platform openharmony|ohos):
+   probe HAP sandbox absolute paths for the electron-ABI addon deployed by the host
+   app build (electron/libs/arm64-v8a -> /data/storage/el1/bundle/...).
+ - plain node process (device-node host / Electron-forked private-HNP node child):
+   package-relative ./build/Release/watchdog.node first; when resfile .node cannot
+   dlopen (no native library label), probe the same-bundle private HNP bin.
+ - Linux/macOS/Windows behavior unchanged (relative path, upstream semantics).
+
+---
+diff --git a/index.js b/index.js
+index 25000ae..2e41bfe 100644
+--- a/index.js
++++ b/index.js
+@@ -3,7 +3,64 @@
+  *  Licensed under the MIT License. See LICENSE in the project root for license information.
+  *--------------------------------------------------------------------------------------------*/
+ 
+-var watchdog = require('./build/Release/watchdog');
++var watchdog;
++if (process.versions.electron && (process.platform === 'openharmony' || process.platform === 'ohos')) {
++    // Electron-OH 宿主主进程（鸿蒙 PC HAP 沙箱）：原生 addon 由宿主工程部署在应用原生库目录
++    // （electron/libs/arm64-v8a，装机后为 /data/storage/el1/bundle/... 下，electron ABI 契约）。
++    // 沙箱绝对路径候选探测，命中哪个用哪个；全部未命中抛错。
++    // 注：Electron-OH 37/34 主进程自报 platform='openharmony'，40 自报 'ohos'（发行名
++    // 与自报版本见各目标矩阵报告）；两串都视为 Electron-OH 主进程。
++    // 注：Electron 宿主 fork 出的独立 node 子进程（同 bundle 私有 HNP 供给）不满足
++    // process.versions.electron，走下方相对路径——包内 build/Release/watchdog.node 是
++    // device-node ABI 产物，由子进程宿主 node 二进制解析 napi_*（两宿主 ABI 不可互换，
++    // 各自装载契约独立；Linux/macOS/Windows Electron 开发机也走下方相对路径，上游行为不变）。
++    var fs = require('fs');
++    var candidates = [
++        '/data/storage/el1/bundle/electron/libs/arm64/watchdog.node',
++        '/data/storage/el1/bundle/electron/libs/arm64-v8a/watchdog.node',
++        '/data/storage/el1/bundle/libs/arm64/watchdog.node',
++        '/data/storage/el1/bundle/libs/arm64-v8a/watchdog.node'
++    ];
++    var loaded = false;
++    for (var i = 0; i < candidates.length; i++) {
++        if (fs.existsSync(candidates[i])) {
++            try {
++                watchdog = require(candidates[i]);
++                loaded = true;
++                break;
++            } catch (e2) {
++                // 继续探测下一个候选
++            }
++        }
++    }
++    if (!loaded) {
++        throw new Error('native-watchdog: 未在 HAP 应用原生库目录找到 electron ABI addon');
++    }
++} else {
++    // device-node 宿主，或 Electron 宿主 fork 出的独立 node 子进程（同 bundle 私有 HNP 供给）：
++    // 优先包内相对路径；HAP resfile 内的 .node 是资源文件（无 native 库标签）dlopen 不可用时，
++    // 探测同 bundle 私有 HNP 的 bin 目录（node 运行时伴生目录，dlopen 合法）。
++    try {
++        watchdog = require('./build/Release/watchdog');
++    } catch (e) {
++        var fs = require('fs');
++        var path = require('path');
++        var tool = 'ohptnode7de4dbf5ed6es3e';
++        var base = '/data/app/' + tool + '.org';
++        var entries = [];
++        try { entries = fs.readdirSync(base); } catch (e2) { entries = []; }
++        var loaded = false;
++        for (var i = 0; i < entries.length && !loaded; i++) {
++            var verDir = entries[i];
++            if (verDir.indexOf(tool + '_') !== 0) continue;
++            var p = path.join(base, verDir, 'bin', 'watchdog.node');
++            if (fs.existsSync(p)) {
++                try { watchdog = require(p); loaded = true; } catch (e3) { /* 继续探测 */ }
++            }
++        }
++        if (!loaded) { throw e; }
++    }
++}
+ 
+ var hasStarted = false;
+ 
+
