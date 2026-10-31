@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "library": {
+    "name": "vscode-textmate",
+    "upstreamVersion": "9.3.2",
+    "upstreamSource": "https://github.com/microsoft/vscode-textmate",
+    "upstreamCommit": "392b23a4a5ecda7fe4f481d721f113695b14159b",
+    "adaptedLibraryDir": "D:\\OhosAgent\\pc-adapter-web-tool\\repos-pc\\vscode-textmate-9.3.2"
+  },
+  "baseline": {
+    "npmUrl": "https://www.npmjs.com/package/vscode-textmate",
+    "name": "vscode-textmate",
+    "version": "9.3.2",
+    "tarballUrl": "https://registry.npmjs.org/vscode-textmate/-/vscode-textmate-9.3.2.tgz",
+    "sha256": "f7c742b16d59600d77529b7a904af09b59dfddb0f046fc045340004ae2fc50e7",
+    "integrity": "sha512-n2uGbUcrjhUEBH16uGA0TvUfhWwliFZ1e3+pTjrkim1Mt7ydB41lV08aUvsi70OlzDWp6X7Bx3w/x3fAXIsN0Q=="
+  },
+  "patches": [],
+  "candidate": {
+    "name": "@ohos-ports-electron/vscode-textmate",
+    "version": "9.3.2-electron-oh.0",
+    "tgzSha256": "1e7e8eedd64d1d6085c9ca2a1c9f383549a2619eaa5da320f2b05c56ee620413",
+    "candidateTarSha256": "df644a19c01e90ad07c997d8155f131af6dd4e4cb009a62483625d124bc63f67",
+    "crlfMembers": [],
+    "archiveUrl": null,
+    "integrity": "sha512-ZXCQQQn4QdnEvPEnAD5qdnEY6tBFJaTij7V6sUB/oo94Z3X+qeDQYORiumhCFG7iJHd47r72D9aC1YPElW/TLg==",
+    "tgzPath": ".local/ohos-ports-electron-vscode-textmate-9.3.2-electron-oh.0.tgz",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+      "directory": "ports/vscode-textmate/9.3.2"
+    },
+    "note": "纯 JS 零功能补丁：候选 = 基线 npm tgz + 单条 package.json 元数据改写（name/version/repository/description/bugs），其余 4 文件与基线同字节。npm pack（Node 24 / npm 11）tar 与 gzip 字节本地均可复现（与设备验证 tgz 完全一致）；若 CI 平台 gzip 有差异，以 archiveUrl 冻结归档兜底（发布授权时上传设备验证 tgz 至 Release 并填写 URL）。"
+  },
+  "runtimes": {
+    "node": {
+      "version": "24.13.0",
+      "source": "C:/ohpt-runtime/node-oh/24.13.0/bin/node"
+    },
+    "electron-reference": {
+      "version": "37.2.0",
+      "source": "gitcode.com/CPF-Electron/Electron releases v37.2.0",
+      "sha256": "57bf0314ce3f5be80fc7a7ebc4f47a2fe82a5e4afcf5fe856ad9cfc342618946"
+    },
+    "electron34": {
+      "version": "34.8.6",
+      "selfReported": "v34.8.6-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v34/v34.8.6-20260929.1-release.zip",
+      "sha256": "8c818c63aaeba771804dae991c78c3da2c865a07bbd32c286fd6164732405243"
+    },
+    "electron40": {
+      "version": "40.0.1",
+      "selfReported": "v40.0.1-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v40/v40.0.1.20260928.2-release.zip",
+      "sha256": "5caab8b2ad33a1b9389abdc3d1d171c84e9dd66670adaf14c632ef1d0e95240a"
+    }
+  },
+  "onigLibSupply": {
+    "note": "vscode-textmate 公开契约要求宿主经 RegistryOptions.onigLib 注入 IOnigLib（上游同样不捆绑 oniguruma）。真机验证注入本地交叉编译的 oniglib N-API addon（oniguruma 6.9.8，node/electron 双 ABI，NAPI_VERSION=8），属运行时宿主供给、非库补丁、不入包；CI 宿主回归用 vscode-oniguruma WASM（上游自身测试引擎）。两种供给均满足同一 IOnigLib 契约。",
+    "oniglibNodeSha256": "b5c471ee5e900f3b0449cb9ed0d7f89ccd294d252a80cd4b3901ff12ba6f8b68",
+    "oniglibElectronSha256": "965ee55a0aa9027038ed60a9e997ed384a99d1e10de30263d13fe1213bbf0f84"
+  },
+  "upstreamSource": {
+    "name": "vscode-textmate",
+    "version": "9.3.2",
+    "gitUrl": "https://github.com/microsoft/vscode-textmate",
+    "commit": "392b23a4a5ecda7fe4f481d721f113695b14159b",
+    "note": "零补丁：补丁基线即 npm tgz。npm 发布布局为 webpack bundle（release/main.js），不含源码 out/src 与 test-cases；第一阶段按公开 API 面重建 9 条名册验证。",
+    "npmTarball": {
+      "url": "https://registry.npmjs.org/vscode-textmate/-/vscode-textmate-9.3.2.tgz",
+      "sha256": "f7c742b16d59600d77529b7a904af09b59dfddb0f046fc045340004ae2fc50e7"
+    }
+  }
+}
