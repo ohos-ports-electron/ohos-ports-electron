@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "packageName": "@ohos-ports-electron/windows-foreground-love",
+  "packageVersion": "0.6.1-electron-oh.0",
+  "candidateSha256": "a82ae91f727d9f84cb30c7288346a976956d9b5bda94a73dc41b2b4efc4d9c79",
+  "releaseStatus": "ready",
+  "reasons": [],
+  "reports": {
+    "node": { "packageName": "@ohos-ports-electron/windows-foreground-love", "packageVersion": "0.6.1-electron-oh.0", "packageSha256": "a82ae91f727d9f84cb30c7288346a976956d9b5bda94a73dc41b2b4efc4d9c79", "host": "device-node", "runtime": "node 24.13.0", "platform": "openharmony", "status": "passed", "total": 2, "pass": 2, "fail": 0, "evidence": "reports/candidate/node/report.json", "deviceRuns": 2 },
+    "electron-reference": { "packageName": "@ohos-ports-electron/windows-foreground-love", "packageVersion": "0.6.1-electron-oh.0", "packageSha256": "a82ae91f727d9f84cb30c7288346a976956d9b5bda94a73dc41b2b4efc4d9c79", "host": "electron-oh", "runtime": "Electron-OH 37.2.0", "platform": "openharmony", "status": "passed", "total": 2, "pass": 2, "fail": 0, "evidence": "reports/candidate/electron37/report.json", "deviceRuns": 2 },
+    "electron34": { "packageName": "@ohos-ports-electron/windows-foreground-love", "packageVersion": "0.6.1-electron-oh.0", "packageSha256": "a82ae91f727d9f84cb30c7288346a976956d9b5bda94a73dc41b2b4efc4d9c79", "host": "electron-oh", "runtime": "Electron-OH 34.8.6", "platform": "openharmony", "status": "passed", "total": 2, "pass": 2, "fail": 0, "evidence": "reports/candidate/electron34/report.json", "deviceRuns": 2 },
+    "electron40": { "packageName": "@ohos-ports-electron/windows-foreground-love", "packageVersion": "0.6.1-electron-oh.0", "packageSha256": "a82ae91f727d9f84cb30c7288346a976956d9b5bda94a73dc41b2b4efc4d9c79", "host": "electron-oh", "runtime": "Electron-OH 40.0.1", "platform": "ohos", "status": "passed", "total": 2, "pass": 2, "fail": 0, "evidence": "reports/candidate/electron40/report.json", "deviceRuns": 2 }
+  },
+  "evidenceRoots": [
+    "reports/validation-matrix.json",
+    "reports/baseline/node/report.json",
+    "reports/baseline/electron37/report.json",
+    "reports/baseline/electron34/report.json",
+    "reports/baseline/electron40/report.json",
+    "reports/candidate/node/report.json",
+    "reports/candidate/electron37/report.json",
+    "reports/candidate/electron34/report.json",
+    "reports/candidate/electron40/report.json",
+    "reports/package-contents.json"
+  ],
+  "functionalResult": "candidate passes 2/2 on node + electron-reference(37.2.0) + electron34(34.8.6) + electron40(40.0.1), each 2 independent cold starts (OpenHarmony-7.0.0.109, HAD-W32, aarch64, API 26). Zero functional patches; candidate = baseline + package.json metadata rewrite. 平台契约：非 win32 恒 false、不加载原生扩展；真实前台激活授权在鸿蒙无等价 API（消费侧架构替换）。宿主供给占位 addon（node/electron 双 ABI）装载探针在 4 目标全部通过，不入候选包。"
+}
