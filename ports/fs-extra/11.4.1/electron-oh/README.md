@@ -12,3 +12,10 @@ ohos-ports-electron/ohos-ports-electron, workflow fs-extra-electron-oh.yml,
 environment npm-publish, branch main. Grant direct publish and independent
 dist-tag permissions in npm. A bootstrap manual publication does not establish
 that OIDC direct publishing was exercised for that version.
+
+Tag verification exchanges the GitHub Actions identity for a package-scoped
+npm token and sends an authenticated PUT for each required tag, even when the
+value already matches. This avoids npm CLI's matching-tag early return and
+proves the independent dist-tag write permission without removing a tag or
+creating a test release. Credentials stay in memory; exchange failure is fatal
+and cannot fall back to a local npm token.
