@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "library": {
+    "name": "address",
+    "upstreamVersion": "2.0.3",
+    "upstreamSource": "https://github.com/node-modules/address",
+    "upstreamCommit": "945c9b620f3c550924ffe55f3561433d3c028aeb",
+    "adaptedLibraryDir": "D:\\OhosAgent\\pc-adapter-web-tool\\repos-pc\\address-2.0.3",
+    "note": "npm 发布包 gitHead=75fbf027… 与本地源码 commit=945c9b62… 不同（发布后源码演进）；baseline 严格使用锁定 npm tgz 原始字节，npm dist 与本地重建 dist 字节不同但行为一致"
+  },
+  "baseline": {
+    "npmUrl": "https://www.npmjs.com/package/address",
+    "name": "address",
+    "version": "2.0.3",
+    "tarballUrl": "https://registry.npmjs.org/address/-/address-2.0.3.tgz",
+    "sha256": "1c900ff12e1e5a5cdf326f56168ffb471218810740be533fc7981b8ef6ac319a",
+    "integrity": "sha512-XNAb/a6TCqou+TufU8/u11HCu9x1gYvOoxLwtlXgIqmkrYQADVv6ljyW2zwiPhHz9R1gItAWpuDrdJMmrOBFEA=="
+  },
+  "patches": [],
+  "candidate": {
+    "name": "@ohos-ports-electron/address",
+    "version": "2.0.3-electron-oh.0",
+    "tgzSha256": "7edf1283bb9671b6efb472e11a48ec32f359593a712cda09ffb5836fbacba03a",
+    "candidateTarSha256": "138c06c91a23753501606bff9c6b6b829baee34ed2f23524bf9b54d3ad3c04f5",
+    "crlfMembers": [],
+    "archiveUrl": null,
+    "integrity": "sha512-nRQU2gJS2jpmE2IZxxsAI+hfcdCGmEfKsEm/aYgHE6LApKcpQ3cB7lnknyNAG1431sGG3aVlj3LOT6x1KeOIRg==",
+    "tgzPath": "electron-oh/dist/address-2.0.3-electron-oh.0.tgz",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+      "directory": "ports/address/2.0.3"
+    },
+    "note": "零功能补丁：候选 = 基线 npm tgz + 仅 package.json 元数据改写（name/version/repository/description/bugs），其余 19 文件与基线同字节。npm pack（Node 24 / npm 11）tar 与 gzip 字节本地可复现（与设备验证 tgz 一致）；若 CI 平台 gzip 有差异，由 archiveUrl 冻结归档兜底。测试夹具（test/fixtures）与 suite-support 闭包（typescript/mm/@types/node 等）为测试宿主供给，不入包。"
+  },
+  "runtimes": {
+    "node": {
+      "version": "24.13.0",
+      "source": "C:/ohpt-runtime/node-oh/24.13.0/bin/node"
+    },
+    "electron-reference": {
+      "version": "37.2.0",
+      "source": "gitcode.com/CPF-Electron/Electron releases v37.2.0",
+      "sha256": "57bf0314ce3f5be80fc7a7ebc4f47a2fe82a5e4afcf5fe856ad9cfc342618946"
+    },
+    "electron34": {
+      "version": "34.8.6",
+      "selfReported": "v34.8.6-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v34/v34.8.6-20260929.1-release.zip",
+      "sha256": "8c818c63aaeba771804dae991c78c3da2c865a07bbd32c286fd6164732405243"
+    },
+    "electron40": {
+      "version": "40.0.1",
+      "selfReported": "v40.0.1-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v40/v40.0.1.20260928.2-release.zip",
+      "sha256": "5caab8b2ad33a1b9389abdc3d1d171c84e9dd66670adaf14c632ef1d0e95240a"
+    }
+  },
+  "upstreamSource": {
+    "name": "address",
+    "version": "2.0.3",
+    "gitUrl": "https://github.com/node-modules/address",
+    "commit": "945c9b620f3c550924ffe55f3561433d3c028aeb",
+    "note": "零补丁：补丁基线即 npm tgz。纯 JS 库仅用 Node 内置模块；/sbin/ifconfig exec 兜底为鸿蒙 app 域已知降级（B1），/etc/resolv.conf app 域可读（promises.dns 真机实读返回 114.114.114.114/8.8.8.8）。",
+    "npmTarball": {
+      "url": "https://registry.npmjs.org/address/-/address-2.0.3.tgz",
+      "sha256": "1c900ff12e1e5a5cdf326f56168ffb471218810740be533fc7981b8ef6ac319a"
+    }
+  }
+}

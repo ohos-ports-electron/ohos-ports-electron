@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "packageName": "@ohos-ports-electron/address",
+  "packageVersion": "2.0.3-electron-oh.0",
+  "candidateSha256": "7edf1283bb9671b6efb472e11a48ec32f359593a712cda09ffb5836fbacba03a",
+  "releaseStatus": "ready",
+  "reasons": [],
+  "reports": {
+    "node": { "packageName": "@ohos-ports-electron/address", "packageVersion": "2.0.3-electron-oh.0", "packageSha256": "7edf1283bb9671b6efb472e11a48ec32f359593a712cda09ffb5836fbacba03a", "host": "device-node", "runtime": "node 24.13.0", "platform": "openharmony", "status": "passed", "total": 26, "pass": 26, "fail": 0, "evidence": "reports/candidate/node/report.json", "deviceRuns": 2 },
+    "electron-reference": { "packageName": "@ohos-ports-electron/address", "packageVersion": "2.0.3-electron-oh.0", "packageSha256": "7edf1283bb9671b6efb472e11a48ec32f359593a712cda09ffb5836fbacba03a", "host": "electron-oh", "runtime": "Electron-OH 37.2.0", "platform": "openharmony", "status": "passed", "total": 26, "pass": 26, "fail": 0, "evidence": "reports/candidate/electron37/report.json", "deviceRuns": 2 },
+    "electron34": { "packageName": "@ohos-ports-electron/address", "packageVersion": "2.0.3-electron-oh.0", "packageSha256": "7edf1283bb9671b6efb472e11a48ec32f359593a712cda09ffb5836fbacba03a", "host": "electron-oh", "runtime": "Electron-OH 34.8.6", "platform": "openharmony", "status": "passed", "total": 26, "pass": 26, "fail": 0, "evidence": "reports/candidate/electron34/report.json", "deviceRuns": 2 },
+    "electron40": { "packageName": "@ohos-ports-electron/address", "packageVersion": "2.0.3-electron-oh.0", "packageSha256": "7edf1283bb9671b6efb472e11a48ec32f359593a712cda09ffb5836fbacba03a", "host": "electron-oh", "runtime": "Electron-OH 40.0.1", "platform": "ohos", "status": "passed", "total": 26, "pass": 26, "fail": 0, "evidence": "reports/candidate/electron40/report.json", "deviceRuns": 2 }
+  },
+  "evidenceRoots": [
+    "reports/validation-matrix.json",
+    "reports/baseline/node/report.json",
+    "reports/baseline/electron37/report.json",
+    "reports/baseline/electron34/report.json",
+    "reports/baseline/electron40/report.json",
+    "reports/candidate/node/report.json",
+    "reports/candidate/electron37/report.json",
+    "reports/candidate/electron34/report.json",
+    "reports/candidate/electron40/report.json",
+    "reports/package-contents.json"
+  ],
+  "functionalResult": "candidate passes 26/26 on node + electron-reference(37.2.0) + electron34(34.8.6) + electron40(40.0.1), each 2 independent cold starts (OpenHarmony-7.0.0.109, HAD-W32, aarch64, API 26). Zero functional patches; candidate = baseline + package.json metadata rewrite. 测试夹具（test/fixtures）与 suite-support 闭包为测试宿主供给，不入候选包；/sbin/ifconfig exec 兜底为鸿蒙 app 域已知降级（B1），/etc/resolv.conf app 域可读（promises.dns 真机实读返回 114.114.114.114/8.8.8.8）。"
+}
