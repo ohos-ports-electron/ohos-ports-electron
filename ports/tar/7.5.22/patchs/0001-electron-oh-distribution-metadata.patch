@@ -1,0 +1,31 @@
+--- a/package.json
++++ b/package.json
+@@ -1,11 +1,12 @@
+ {
+   "author": "Isaac Z. Schlueter",
+-  "name": "tar",
++  "name": "@ohos-ports-electron/tar",
+   "description": "tar for node",
+-  "version": "7.5.22",
++  "version": "7.5.22-electron-oh.0",
+   "repository": {
+     "type": "git",
+-    "url": "https://github.com/isaacs/node-tar.git"
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/tar/7.5.22"
+   },
+   "scripts": {
+     "genparse": "node scripts/generate-parse-fixtures.js",
+@@ -294,5 +295,11 @@
+   "type": "module",
+   "main": "./dist/commonjs/index.min.js",
+   "types": "./dist/commonjs/index.d.ts",
+-  "module": "./dist/esm/index.min.js"
++  "module": "./dist/esm/index.min.js",
++  "homepage": "https://github.com/ohos-ports-electron/ohos-ports-electron/tree/main/ports/tar/7.5.22",
++  "publishConfig": {
++    "registry": "https://registry.npmjs.org",
++    "access": "public",
++    "tag": "electron-oh"
++  }
+ }
