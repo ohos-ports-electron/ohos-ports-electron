@@ -1,0 +1,13 @@
+{
+  "BINARYEN-LICENSE.txt": "64c0d02491e16eced74826440ecd2bcf7722d37fa586faf457b2494293afbffe",
+  "LICENSE.txt": "ddde8aba8fe72b4830e27901fc78733eb6db7b6c653161075de213a6adeda3fd",
+  "NOTICES.txt": "615d94d89eacc046241518c247f6650a5df80d1adf4b284a756f500867620b35",
+  "README.md": "57b3c4103d2deefa7739be0996db6d7b2c19dab1b866faac82424e7a0ed11018",
+  "README.upstream.md": "83ab3fb5e39891f2039d423ecc3ec565292e1d09d0ff15a3fa309ba0789e2e48",
+  "SECURITY.md": "81ed58e26769508df9a2f761dad55b52c6c9de62fff06195b2702fcb7a97e883",
+  "main.d.ts": "8b19df9e60a461051abc3c61b04b12bfb914fea761fe0d039f37f00669adbf0f",
+  "package.json": "64f7bd91cb68dedd392397fa7b7235da707c9e0de75716f672788519ce2761b6",
+  "release/main.js": "b2a05c551e8ef47429bc5dbdf97946d9757c53f05569fcf278a67d9bd41c944b",
+  "release/onig.asm.cjs": "be7a135349c18c8072c3fb29e59d38b5c819efff9ca2bc3ea0d101716abaeb53",
+  "release/onig.wasm": "76ebc1f0d87b2e7449a45ff3cd1a1546a9f05f54bdac44ee03e8a2b8348897be"
+}

@@ -16,6 +16,7 @@ on:
       - 'node-gyp-build build and npm publish'
       - 'vscode-textmate build and npm publish'
       - 'vscode-native-watchdog build and npm publish'
+      - 'vscode-oniguruma build and npm publish'
       - 'tar build and npm publish'
       - 'fs-extra build and npm publish'
       - 'windows-foreground-love build and npm publish'

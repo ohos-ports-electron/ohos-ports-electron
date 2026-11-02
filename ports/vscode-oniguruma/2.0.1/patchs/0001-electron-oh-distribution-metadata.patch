@@ -1,0 +1,33 @@
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+-  "name": "vscode-oniguruma",
+-  "version": "2.0.1",
++  "name": "@ohos-ports-electron/vscode-oniguruma",
++  "version": "2.0.1-electron-oh.0",
+   "description": "VSCode oniguruma bindings",
+   "author": {
+     "name": "Microsoft Corporation"
+@@ -9,7 +9,8 @@
+   "typings": "main.d.ts",
+   "repository": {
+     "type": "git",
+-    "url": "https://github.com/microsoft/vscode-oniguruma"
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/vscode-oniguruma/2.0.1"
+   },
+   "license": "MIT",
+   "bugs": {
+@@ -31,5 +32,11 @@
+     "typescript": "^4.9.3",
+     "webpack": "^5.75.0",
+     "webpack-cli": "^5.0.0"
++  },
++  "homepage": "https://github.com/ohos-ports-electron/ohos-ports-electron/tree/main/ports/vscode-oniguruma/2.0.1",
++  "publishConfig": {
++    "registry": "https://registry.npmjs.org",
++    "access": "public",
++    "tag": "electron-oh"
+   }
+ }
