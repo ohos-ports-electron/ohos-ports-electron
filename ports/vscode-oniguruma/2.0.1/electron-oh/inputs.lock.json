@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "vscode-oniguruma",
+    "version": "2.0.1",
+    "url": "https://registry.npmjs.org/vscode-oniguruma/-/vscode-oniguruma-2.0.1.tgz",
+    "sha256": "3b42911fd9609f2cc3b9c6dd52236b3da73780e633aa7dc381267006b7e7da21",
+    "integrity": "sha512-poJU8iHIWnC3vgphJnrLZyI3YdqRlR27xzqDmpPXYzA93R4Gk8z7T6oqDzDoHjoikA2aS82crdXFkjELCdJsjQ=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/vscode-oniguruma",
+    "version": "2.0.1-electron-oh.0",
+    "sha256": "142cb299ab34660cdbc961791be173eee993ad554c15db5457847ff83bebd201",
+    "integrity": "sha512-YrW98/CXABV3E/8CFz4GcVYw8BICV7bwRAWb1ke6PmlxD5D2ORISb4n4zeYa8bavIwHYCTb4dzyUIVFLvT7OFw=="
+  },
+  "patches": [
+    {
+      "path": "patchs/0001-electron-oh-distribution-metadata.patch",
+      "sha256": "0561298849c604df775896cf232bda7656997d4b1013aa12ab57d4365fad6cac"
+    },
+    {
+      "path": "patchs/0002-wasm2js-fallback.patch",
+      "sha256": "a11e1c00a607a6d0d0910087d9b515d1ac6cebbc19ad8e73bde054b09c5484dc"
+    }
+  ],
+  "readmeSha256": "57b3c4103d2deefa7739be0996db6d7b2c19dab1b866faac82424e7a0ed11018",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/vscode-oniguruma/2.0.1"
+  },
+  "requiredDistTags": [
+    "latest",
+    "electron-oh"
+  ],
+  "source": {
+    "commit": "184a6e2d4603c5a31efc0a33f544be1545d9ec6b",
+    "tag": "v2.0.1"
+  },
+  "wasm2js": {
+    "version": "133",
+    "wasmSha256": "76ebc1f0d87b2e7449a45ff3cd1a1546a9f05f54bdac44ee03e8a2b8348897be",
+    "archives": {
+      "Darwin-arm64": {
+        "url": "https://github.com/WebAssembly/binaryen/releases/download/version_133/binaryen-version_133-arm64-macos.tar.gz",
+        "sha256": "ad66da82ac13f163e424b1643f16c6dfcccc98b5966296b43e52d3cab04f84a8"
+      },
+      "Linux-x86_64": {
+        "url": "https://github.com/WebAssembly/binaryen/releases/download/version_133/binaryen-version_133-x86_64-linux.tar.gz",
+        "sha256": "2dc9c7813f5375db93d96ead4b78222fcc3e2677bbb832297af4797782a37489"
+      }
+    },
+    "licenseSha256": "64c0d02491e16eced74826440ecd2bcf7722d37fa586faf457b2494293afbffe",
+    "asmSha256": "be7a135349c18c8072c3fb29e59d38b5c819efff9ca2bc3ea0d101716abaeb53"
+  }
+}
