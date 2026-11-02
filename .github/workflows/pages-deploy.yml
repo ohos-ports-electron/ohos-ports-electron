@@ -18,6 +18,7 @@ on:
       - 'vscode-native-watchdog build and npm publish'
       - 'fs-extra build and npm publish'
       - 'windows-foreground-love build and npm publish'
+      - 'address build and npm publish'
     types: [completed]
   schedule:
     # 每天北京时间凌晨 2:17（UTC 18:17），实际运行时间由 GitHub 调度。

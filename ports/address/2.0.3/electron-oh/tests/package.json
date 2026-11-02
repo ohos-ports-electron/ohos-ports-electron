@@ -1,0 +1,1 @@
+{"name":"address-tests","private":true,"version":"2.0.3-electron-oh.0","description":"Locked test harness for @ohos-ports-electron/address (host-safe mock/pure assertion subset). test/fixtures + suite-support are host-side test supplies, not part of the library package.","dependencies":{"@ohos-ports-electron/address":"2.0.3-electron-oh.0"},"scripts":{"test":"node suite.cjs"}}
