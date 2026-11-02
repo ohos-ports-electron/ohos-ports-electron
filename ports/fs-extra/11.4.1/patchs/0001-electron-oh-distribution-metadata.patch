@@ -1,0 +1,34 @@
+--- a/package.json
++++ b/package.json
+@@ -1,14 +1,15 @@
+ {
+-  "name": "fs-extra",
+-  "version": "11.4.1",
++  "name": "@ohos-ports-electron/fs-extra",
++  "version": "11.4.1-electron-oh.0",
+   "description": "fs-extra contains methods that aren't included in the vanilla Node.js fs package. Such as recursive mkdir, copy, and remove.",
+   "engines": {
+     "node": ">=14.14"
+   },
+-  "homepage": "https://github.com/jprichardson/node-fs-extra",
++  "homepage": "https://github.com/ohos-ports-electron/ohos-ports-electron/tree/main/ports/fs-extra/11.4.1",
+   "repository": {
+     "type": "git",
+-    "url": "git+https://github.com/jprichardson/node-fs-extra.git"
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/fs-extra/11.4.1"
+   },
+   "keywords": [
+     "fs",
+@@ -67,5 +68,10 @@
+     "unit": "nyc node test.js",
+     "unit-esm": "node test.mjs"
+   },
+-  "sideEffects": false
++  "sideEffects": false,
++  "publishConfig": {
++    "registry": "https://registry.npmjs.org",
++    "access": "public",
++    "tag": "electron-oh"
++  }
+ }
