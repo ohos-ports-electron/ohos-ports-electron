@@ -35,6 +35,13 @@ def get(url):
 def metadata():
  data=get(REGISTRY+urllib.parse.quote(NAME,safe='')+'/'+VERSION)
  return json.loads(data) if data else None
+def published_bytes(url,attempts=40):
+ for attempt in range(attempts):
+  raw=get(url)
+  if raw is not None:return raw
+  if attempt+1<attempts:
+   print('Waiting for published tarball visibility',attempt+1,flush=True);time.sleep(15)
+ raise ValueError('version metadata is visible but npm tarball is still processing after bounded observation')
 def recipe_hashes():return {f.relative_to(PORT).as_posix():sha(f) for f in sorted(PORT.rglob('*')) if f.is_file() and not any(s in f.relative_to(PORT).parts for s in ['__pycache__','node_modules','.local'])}
 def verify(bundle,evidence=True):
  lock=read(PORT/'electron-oh/inputs.lock.json');manifest=read(bundle/'manifest.json')
@@ -104,12 +111,14 @@ def publish(bundle):
    print('Waiting for registry processing',attempt+1,flush=True);time.sleep(15)
   require(current is not None,'published package not visible after ten minutes')
  require(current['dist']['integrity']==manifest['integrity'],'registry integrity mismatch')
- raw=get(current['dist']['tarball']);require(raw is not None and hashlib.sha256(raw).hexdigest()==manifest['sha256'],'registry tarball changed frozen bytes')
+ raw=published_bytes(current['dist']['tarball']);require(hashlib.sha256(raw).hexdigest()==manifest['sha256'],'registry tarball changed frozen bytes')
  package=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))
  for tag in ['latest','electron-oh']:
   value=package['dist-tags'].get(tag)
   require(value in [None,VERSION],'tag points to another release; refusing automatic rollback')
-  if value!=VERSION:subprocess.run(['npm','dist-tag','add',NAME+'@'+VERSION,tag,'--registry='+REGISTRY],check=True)
+  # Reassert the same value even when it already matches: this exercises the
+  # independent OIDC dist-tag authority on the already-published path as well.
+  subprocess.run(['npm','dist-tag','add',NAME+'@'+VERSION,tag,'--registry='+REGISTRY],check=True)
  observed=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))['dist-tags']
  require(all(observed.get(t)==VERSION for t in ['latest','electron-oh']),'dist-tags not converged')
  print(json.dumps({'uploaded':uploaded,'registrySha256':hashlib.sha256(raw).hexdigest(),'distTags':observed},indent=2))

@@ -5,6 +5,8 @@ from pathlib import Path
 import unittest
 from unittest.mock import patch
 import urllib.error
+import hashlib
+import json
 
 path=Path(__file__).resolve().parents[1]/'tools/release.py'
 spec=importlib.util.spec_from_file_location('fs_extra_release',path)
@@ -30,4 +32,19 @@ class PublicationContract(unittest.TestCase):
     with self.assertRaises(urllib.error.HTTPError):release.get('https://example.test')
  def test_missing_artifact_is_rejected(self):
   with self.assertRaises(FileNotFoundError):release.verify(Path('/nonexistent/fs-extra-build'))
+ def test_tarball_404_propagation_is_retried_without_changing_version(self):
+  with patch.object(release,'get',side_effect=[None,b'frozen']),patch.object(release.time,'sleep') as sleep:
+   self.assertEqual(release.published_bytes('https://example.test',attempts=2),b'frozen');sleep.assert_called_once_with(15)
+ def test_tarball_visibility_timeout_is_distinct_from_byte_mismatch(self):
+  with patch.object(release,'get',return_value=None):
+   with self.assertRaisesRegex(ValueError,'still processing'):release.published_bytes('https://example.test',attempts=1)
+ def test_existing_bytes_still_exercise_both_dist_tag_permissions(self):
+  raw=b'frozen';manifest={'sha256':hashlib.sha256(raw).hexdigest(),'integrity':'locked'}
+  current={'dist':{'integrity':'locked','tarball':'https://example.test/tarball'}}
+  root=json.dumps({'dist-tags':{'latest':release.VERSION,'electron-oh':release.VERSION}}).encode()
+  with patch.object(release,'guard'),patch.object(release,'verify',return_value=manifest),patch.object(release,'metadata',return_value=current),patch.object(release,'published_bytes',return_value=raw),patch.object(release,'get',return_value=root),patch.object(release.subprocess,'run') as run:
+   release.publish(Path('/synthetic'))
+  self.assertEqual(run.call_count,2)
+  self.assertEqual({call.args[0][4] for call in run.call_args_list},{'latest','electron-oh'})
+  self.assertTrue(all(call.args[0][1:3]==['dist-tag','add'] for call in run.call_args_list))
 if __name__=='__main__':unittest.main()
