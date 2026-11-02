@@ -1,0 +1,24 @@
+ports/fs-extra/11.4.1/electron-oh/tests/release-contract.py
+  s_e0ad3ec4b23c72::t_d47860a9b08e93 8-9,35-49
+ports/fs-extra/11.4.1/electron-oh/tools/release.py
+  s_e0ad3ec4b23c72::t_49235f779cfb42 38-44,114,119-121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "47b745a611b3bb1dafdaaa5578df10999042243a",
+  "prompts": {},
+  "sessions": {
+    "s_e0ad3ec4b23c72": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a19a13-62c5-7d93-812f-2a985946e7c3",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
