@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "library": {
+    "name": "windows-foreground-love",
+    "upstreamVersion": "0.6.1",
+    "upstreamSource": "https://github.com/the-ress/node-windows-foreground-love",
+    "upstreamCommit": "c23c2947042c31ce251dc243f3c15eb036a92640",
+    "adaptedLibraryDir": "D:\\OhosAgent\\pc-adapter-web-tool\\repos-pc\\node-windows-foreground-love-0.6.1"
+  },
+  "baseline": {
+    "npmUrl": "https://www.npmjs.com/package/windows-foreground-love",
+    "name": "windows-foreground-love",
+    "version": "0.6.1",
+    "tarballUrl": "https://registry.npmjs.org/windows-foreground-love/-/windows-foreground-love-0.6.1.tgz",
+    "sha256": "c8a15cdbd12361f55d523cc188f74270df1b596658b15d4bc16870247c4705f4",
+    "integrity": "sha512-uusaXCkDfifZkV/EJMnfJ/i9hsY1BGS9YIQs7LGGRrg1+au7er4ONADtMp6svQWlwgztTgWu31g0nT5OPyYLwg=="
+  },
+  "patches": [],
+  "candidate": {
+    "name": "@ohos-ports-electron/windows-foreground-love",
+    "version": "0.6.1-electron-oh.0",
+    "tgzSha256": "a82ae91f727d9f84cb30c7288346a976956d9b5bda94a73dc41b2b4efc4d9c79",
+    "candidateTarSha256": "9f6edaac487a372c950827fcf5fe4b3645c8cf7d76b3138bb1409599b9c82944",
+    "crlfMembers": [],
+    "archiveUrl": null,
+    "integrity": "sha512-hnQTUc6T2T/KqyIK9EdXHVtEQYJicGPQMARRSbqk9odbC+rw8rn0X33bFHxXLBEnpDIO4+pF+zUbH0DuuinR4w==",
+    "tgzPath": "electron-oh/dist/ohos-ports-electron-windows-foreground-love-0.6.1-electron-oh.0.tgz",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+      "directory": "ports/windows-foreground-love/0.6.1"
+    },
+    "note": "零功能补丁：候选 = 基线 npm tgz + 仅 package.json 元数据改写（name/version/repository/description/bugs），其余 7 文件与基线同字节。npm pack（Node 24 / npm 11）tar 与 gzip 字节本地可复现（与设备验证 tgz 一致）；若 CI 平台 gzip 有差异，由 archiveUrl 冻结归档兜底（发布授权时上传设备验证 tgz 到 Release 并填写 URL）。库含 binding.gyp，npm 默认 install 触发 node-gyp rebuild（win32 真实 addon / 其他平台占位编译）——addon 在非 win32 平台永不加载（JS 平台守卫），鸿蒙侧消费经 tarball 装配即可，无需编译。"
+  },
+  "runtimes": {
+    "node": {
+      "version": "24.13.0",
+      "source": "C:/ohpt-runtime/node-oh/24.13.0/bin/node"
+    },
+    "electron-reference": {
+      "version": "37.2.0",
+      "source": "gitcode.com/CPF-Electron/Electron releases v37.2.0",
+      "sha256": "57bf0314ce3f5be80fc7a7ebc4f47a2fe82a5e4afcf5fe856ad9cfc342618946"
+    },
+    "electron34": {
+      "version": "34.8.6",
+      "selfReported": "v34.8.6-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v34/v34.8.6-20260929.1-release.zip",
+      "sha256": "8c818c63aaeba771804dae991c78c3da2c865a07bbd32c286fd6164732405243"
+    },
+    "electron40": {
+      "version": "40.0.1",
+      "selfReported": "v40.0.1-release",
+      "source": "gitcode.com/OhosAgent/static-resource electron/v40/v40.0.1.20260928.2-release.zip",
+      "sha256": "5caab8b2ad33a1b9389abdc3d1d171c84e9dd66670adaf14c632ef1d0e95240a"
+    }
+  },
+  "upstreamSource": {
+    "name": "windows-foreground-love",
+    "version": "0.6.1",
+    "gitUrl": "https://github.com/the-ress/node-windows-foreground-love",
+    "commit": "c23c2947042c31ce251dc243f3c15eb036a92640",
+    "note": "零补丁：补丁基线即 npm tgz（npm 包 8 文件与源码逐字一致，逐文件 SHA256 相同）。真实前台激活授权能力（AllowSetForegroundWindow/ASFW_ANY）在鸿蒙无等价 API，由消费者架构级替换承接（startAbility / 目标应用自提升焦点）；本库按上游非 win32 契约交付恒 false。",
+    "npmTarball": {
+      "url": "https://registry.npmjs.org/windows-foreground-love/-/windows-foreground-love-0.6.1.tgz",
+      "sha256": "c8a15cdbd12361f55d523cc188f74270df1b596658b15d4bc16870247c4705f4"
+    }
+  }
+}
