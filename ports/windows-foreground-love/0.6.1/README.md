@@ -70,4 +70,6 @@ Electron 引擎（libelectron.so）、HAP、SDK 不属于库 npm 包——设备
 CI 经 `.github/workflows/windows-foreground-love-electron-oh.yml` 的 build → compatibility（Node 20.18.1/22.17.0/24.11.1/24.13.0）→
 publish（仅 main push，environment `npm-publish`，OIDC）发布 `latest`，发布后轮询 registry 校验 integrity。
 线上 Trusted Publisher 为按包的一次性 npm 账号配置（`npm trust github @ohos-ports-electron/windows-foreground-love ...`），
-普通提交无法创建，需维护者完成 2FA。**尚未发布到 registry**（本地贡献材料，见 `docs/RELEASING.md` 与第一阶段 `pr/`）。
+普通提交无法创建，需维护者完成 2FA。**已发布到 registry**（2026-11-02，PR #16 合并 main 后经 CI 幂等校验通过）：
+`latest` + `electron-oh` 双 tag 均指向 `0.6.1-electron-oh.0`，registry integrity 与锁定 `candidate.integrity` 一致，
+回下载 tarball sha256 == `a82ae91f…`（设备验证字节），站点已刷新可搜到。
