@@ -7,6 +7,8 @@ from unittest.mock import patch
 import urllib.error
 import hashlib
 import json
+import io
+import contextlib
 
 path=Path(__file__).resolve().parents[1]/'tools/release.py'
 spec=importlib.util.spec_from_file_location('fs_extra_release',path)
@@ -42,9 +44,30 @@ class PublicationContract(unittest.TestCase):
   raw=b'frozen';manifest={'sha256':hashlib.sha256(raw).hexdigest(),'integrity':'locked'}
   current={'dist':{'integrity':'locked','tarball':'https://example.test/tarball'}}
   root=json.dumps({'dist-tags':{'latest':release.VERSION,'electron-oh':release.VERSION}}).encode()
-  with patch.object(release,'guard'),patch.object(release,'verify',return_value=manifest),patch.object(release,'metadata',return_value=current),patch.object(release,'published_bytes',return_value=raw),patch.object(release,'get',return_value=root),patch.object(release.subprocess,'run') as run:
+  with patch.object(release,'guard'),patch.object(release,'verify',return_value=manifest),patch.object(release,'metadata',return_value=current),patch.object(release,'published_bytes',return_value=raw),patch.object(release,'get',return_value=root),patch.object(release,'oidc_tags') as tags,patch.object(release.subprocess,'run') as run:
    release.publish(Path('/synthetic'))
-  self.assertEqual(run.call_count,2)
-  self.assertEqual({call.args[0][4] for call in run.call_args_list},{'latest','electron-oh'})
-  self.assertTrue(all(call.args[0][1:3]==['dist-tag','add'] for call in run.call_args_list))
+  run.assert_not_called();tags.assert_called_once_with(['latest','electron-oh'])
+ def test_oidc_tag_write_uses_exchanged_identity_without_logging_credentials(self):
+  class Response(io.BytesIO):status=200
+  responses=[Response(json.dumps({'value':'synthetic-identity'}).encode()),Response(json.dumps({'token':'synthetic-token'}).encode()),Response(b'{}'),Response(b'{}')]
+  env={**self.context(),'ACTIONS_ID_TOKEN_REQUEST_URL':'https://example.test/token?x=1','ACTIONS_ID_TOKEN_REQUEST_TOKEN':'synthetic-request'}
+  output=io.StringIO()
+  with patch.dict(release.os.environ,env,clear=True),patch.object(release.urllib.request,'urlopen',side_effect=responses) as opened,contextlib.redirect_stdout(output):release.oidc_tags(['latest','electron-oh'])
+  requests=[call.args[0] for call in opened.call_args_list]
+  self.assertEqual([r.get_method() for r in requests],['GET','POST','PUT','PUT'])
+  self.assertIn('audience=npm%3Aregistry.npmjs.org',requests[0].full_url)
+  self.assertTrue(all(r.get_header('Authorization')=='Bearer synthetic-token' for r in requests[2:]))
+  self.assertTrue(all(json.loads(r.data)==release.VERSION for r in requests[2:]))
+  self.assertNotIn('synthetic-',output.getvalue())
+ def test_oidc_exchange_failure_cannot_fall_back_to_another_credential(self):
+  env={**self.context(),'ACTIONS_ID_TOKEN_REQUEST_URL':'https://example.test/token','ACTIONS_ID_TOKEN_REQUEST_TOKEN':'synthetic-request'}
+  class Response(io.BytesIO):status=200
+  denied=urllib.error.HTTPError('https://example.test',403,'denied',{},None)
+  with patch.dict(release.os.environ,env,clear=True),patch.object(release.urllib.request,'urlopen',side_effect=[Response(b'{"value":"synthetic-identity"}'),denied]) as opened:
+   with self.assertRaises(urllib.error.HTTPError):release.oidc_tags(['latest'])
+  self.assertEqual(opened.call_count,2)
+ def test_oidc_tags_require_live_github_identity(self):
+  with patch.dict(release.os.environ,self.context(),clear=True),patch.object(release.urllib.request,'urlopen') as opened:
+   with self.assertRaisesRegex(ValueError,'identity missing'):release.oidc_tags(['latest'])
+  opened.assert_not_called()
 if __name__=='__main__':unittest.main()
