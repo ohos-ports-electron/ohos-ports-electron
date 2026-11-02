@@ -98,10 +98,11 @@ def guard(env=None):
  env=env or os.environ
  require(env.get('ENABLE_ELECTRON_OH_PUBLISH')=='1','publication disabled')
  for k,v in {'GITHUB_REPOSITORY':REPO,'GITHUB_EVENT_NAME':'push','GITHUB_REF':'refs/heads/main','GITHUB_ENVIRONMENT':'npm-publish','GITHUB_WORKFLOW_REF':REPO+'/'+WORKFLOW+'@refs/heads/main'}.items():require(env.get(k)==v,'untrusted publication context: '+k)
-def oidc_tags(tags):
+def oidc_tag(tag):
  # npm dist-tag add returns early when the value already matches. Authenticate
  # without a fallback credential, then PUT that same value to verify write scope.
  guard()
+ require(tag in ['latest','electron-oh'],'unexpected distribution tag')
  url=os.environ.get('ACTIONS_ID_TOKEN_REQUEST_URL');credential=os.environ.get('ACTIONS_ID_TOKEN_REQUEST_TOKEN')
  require(url and credential and urllib.parse.urlsplit(url).scheme=='https','GitHub OIDC request identity missing')
  parts=urllib.parse.urlsplit(url);query=urllib.parse.parse_qsl(parts.query,keep_blank_values=True)
@@ -115,12 +116,14 @@ def oidc_tags(tags):
  with urllib.request.urlopen(request,timeout=45) as response:exchanged=json.load(response)
  require(isinstance(exchanged.get('token'),str) and exchanged['token'],'npm OIDC token response missing')
  print('GitHub OIDC token exchange succeeded; no fallback credential used',flush=True)
- for tag in tags:
-  require(tag in ['latest','electron-oh'],'unexpected distribution tag')
-  endpoint=REGISTRY+'-/package/'+urllib.parse.quote(NAME,safe='')+'/dist-tags/'+tag
-  request=urllib.request.Request(endpoint,data=json.dumps(VERSION).encode(),method='PUT',headers={'Authorization':'Bearer '+exchanged['token'],'Content-Type':'application/json'})
-  with urllib.request.urlopen(request,timeout=45) as response:
-   require(200<=response.status<300,'npm rejected OIDC dist-tag write');print('OIDC dist-tag PUT '+tag+': HTTP '+str(response.status),flush=True)
+ endpoint=REGISTRY+'-/package/'+urllib.parse.quote(NAME,safe='')+'/dist-tags/'+tag
+ request=urllib.request.Request(endpoint,data=json.dumps(VERSION).encode(),method='PUT',headers={'Authorization':'Bearer '+exchanged['token'],'Content-Type':'application/json'})
+ with urllib.request.urlopen(request,timeout=45) as response:
+  require(200<=response.status<300,'npm rejected OIDC dist-tag write');print('OIDC dist-tag PUT '+tag+': HTTP '+str(response.status),flush=True)
+def oidc_tags(tags):
+ # A successful registry mutation can consume the exchanged identity. Use a
+ # fresh exchange per operation, as separate npm dist-tag invocations do.
+ for tag in tags:oidc_tag(tag)
 def publish(bundle):
  guard();manifest=verify(bundle);current=metadata();uploaded=False
  if current:

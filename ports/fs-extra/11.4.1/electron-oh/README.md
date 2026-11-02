@@ -19,3 +19,5 @@ value already matches. This avoids npm CLI's matching-tag early return and
 proves the independent dist-tag write permission without removing a tag or
 creating a test release. Credentials stay in memory; exchange failure is fatal
 and cannot fall back to a local npm token.
+Each tag operation receives its own fresh OIDC exchange; the exchanged identity
+is not reused after a successful registry mutation.
