@@ -93,3 +93,13 @@ npm Trusted Publisher 必须属于本包：owner/repo `ohos-ports-electron/ohos-
 environment 限 main 分支；native 和脱敏设备证据使用固定 GitHub Release 资产 URL。PR 同样从公开锁定归档重建相同 tgz、验证设备证据并运行五版本宿主矩阵，不接触发布凭据。正式上传仅由可信 main push 执行 OIDC，并回读 registry 校验 integrity。生产发布成功后清理独立 bootstrap stage，不批准它成为正式版本。
 
 文件职责、准确包清单和可复现命令见 [配方 README](../ports/napi-rs-canvas/1.0.2/README.md) 与 [构建说明](../ports/napi-rs-canvas/1.0.2/electron-oh/README.md)。完整 demo、HAP、签名材料和原始日志留在单库工程，不能纳入 ports 提交。
+
+## fs-extra
+
+`fs-extra-electron-oh.yml` builds the locked pure-JavaScript candidate once,
+checks the archived five-target device reports and runs the filesystem suite
+on the exact Node versions recorded by those targets. Host CI does not run a
+fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
+frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+package trusted publisher for this exact workflow with direct publish and
+independent dist-tag permissions. See [the port](../ports/fs-extra/11.4.1/README.md).

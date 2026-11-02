@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "fs-extra",
+    "version": "11.4.1",
+    "url": "https://registry.npmjs.org/fs-extra/-/fs-extra-11.4.1.tgz",
+    "sha256": "6eee04ab29b3f37ce2fa75014fb3fd4836d8a24a2945edfae11e571409ffcbfa",
+    "integrity": "sha512-KYAb4c9BJQI6QqGKthV68OHe0badztdXJWKo0WtBA9IuCFPTKvE5ZdUBglP833aMjhaSPNO4A5j/EkzZtGlKjA=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/fs-extra",
+    "version": "11.4.1-electron-oh.0",
+    "sha256": "47a53909b3b17c8ac092b6314c02a144a876750e9c2f80bc2f8c357ae304abcf",
+    "integrity": "sha512-cKHSFlmE/QV9Wh32s5AMy0rXCDVbyHGaJSyh8tdXgTZJz2+udrbnK1sT+SgnBvsAqgIIKNOrUBiEEMg8llj2qg=="
+  },
+  "patches": [
+    {
+      "path": "patchs/0001-electron-oh-distribution-metadata.patch",
+      "sha256": "b475f71985026876c28af9427bc4a4a285966ec153a0b60d283dd25644d081bf"
+    }
+  ],
+  "readmeSha256": "ef3c58e93d917a2fa0dabdfae259d48adc33f8706a0b57adea045af79ab5087d",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/fs-extra/11.4.1"
+  },
+  "requiredDistTags": [
+    "latest",
+    "electron-oh"
+  ]
+}
