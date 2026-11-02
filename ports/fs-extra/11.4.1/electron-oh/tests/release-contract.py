@@ -49,15 +49,18 @@ class PublicationContract(unittest.TestCase):
   run.assert_not_called();tags.assert_called_once_with(['latest','electron-oh'])
  def test_oidc_tag_write_uses_exchanged_identity_without_logging_credentials(self):
   class Response(io.BytesIO):status=200
-  responses=[Response(json.dumps({'value':'synthetic-identity'}).encode()),Response(json.dumps({'token':'synthetic-token'}).encode()),Response(b'{}'),Response(b'{}')]
+  responses=[]
+  for tag in ['latest','electron-oh']:
+   responses.extend([Response(json.dumps({'value':'synthetic-identity-'+tag}).encode()),Response(json.dumps({'token':'synthetic-token-'+tag}).encode()),Response(b'{}')])
   env={**self.context(),'ACTIONS_ID_TOKEN_REQUEST_URL':'https://example.test/token?x=1','ACTIONS_ID_TOKEN_REQUEST_TOKEN':'synthetic-request'}
   output=io.StringIO()
   with patch.dict(release.os.environ,env,clear=True),patch.object(release.urllib.request,'urlopen',side_effect=responses) as opened,contextlib.redirect_stdout(output):release.oidc_tags(['latest','electron-oh'])
   requests=[call.args[0] for call in opened.call_args_list]
-  self.assertEqual([r.get_method() for r in requests],['GET','POST','PUT','PUT'])
+  self.assertEqual([r.get_method() for r in requests],['GET','POST','PUT','GET','POST','PUT'])
   self.assertIn('audience=npm%3Aregistry.npmjs.org',requests[0].full_url)
-  self.assertTrue(all(r.get_header('Authorization')=='Bearer synthetic-token' for r in requests[2:]))
-  self.assertTrue(all(json.loads(r.data)==release.VERSION for r in requests[2:]))
+  self.assertEqual(requests[2].get_header('Authorization'),'Bearer synthetic-token-latest')
+  self.assertEqual(requests[5].get_header('Authorization'),'Bearer synthetic-token-electron-oh')
+  self.assertTrue(all(json.loads(requests[i].data)==release.VERSION for i in [2,5]))
   self.assertNotIn('synthetic-',output.getvalue())
  def test_oidc_exchange_failure_cannot_fall_back_to_another_credential(self):
   env={**self.context(),'ACTIONS_ID_TOKEN_REQUEST_URL':'https://example.test/token','ACTIONS_ID_TOKEN_REQUEST_TOKEN':'synthetic-request'}
