@@ -56,7 +56,9 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 
 采集脚本调用 npm Registry 的 `/-/user/ohos-ports-electron/package` 获取包列表，并按 `@ohos-ports-electron/` 前缀过滤，再获取各包的版本元数据。任一包读取失败会终止本次采集，工作流不会继续部署不完整数据。此包列表接口如发生变化，需要维护采集逻辑。
 
-页面展示 `latest`、`electron-oh`、`beta` 标签当前指向的版本。`latest` 是默认安装标签，不代表版本号一定属于 SemVer 正式版。页面不再把仓库是否含有包目录解释为真实的 CI 发布来源。
+页面展示 `latest` 和 `beta` 标签当前指向的版本，Electron OH 列统一使用 `beta` 标签；统计和筛选同样按真实 `beta` 标签计算，不根据版本号是否含有 `beta` 推断。安装命令优先使用 `@beta`，没有该标签时使用默认安装。`latest` 是默认安装标签，不代表版本号一定属于 SemVer 正式版。页面不再把仓库是否含有包目录解释为真实的 CI 发布来源。
+
+直接执行 `npm dist-tag` 修改标签不会触发包发布工作流，也不会立即刷新已部署的静态数据。标签迁移完成后，手动运行 **Refresh and deploy Electron OH package site** 即可同步；否则等待下一次定时刷新。
 
 新增公开包或版本后，运行上述工作流即可刷新；无需手工在 HTML 中添加包条目。尚未批准的 staged 包版本和私有包不会作为本平台的公开数据展示。
 
