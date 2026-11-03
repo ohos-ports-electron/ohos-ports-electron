@@ -1,0 +1,12 @@
+{
+  "name": "@ohos-ports-electron/electron-context-menu",
+  "version": "5.1.0-electron-oh.0",
+  "fileCount": 5,
+  "files": {
+    "index.d.ts": "ef52e9fc42147cd66a0ef9638e440f1cf2bc08d1f8e8dd4cf376c966d7dddc06",
+    "index.js": "ff16eba7d3d230cdd79387c5bbd54dd87b7f92b97ac1ab673f7650d29fd852db",
+    "license": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+    "package.json": "981a0be770c218ba3cac7180c5f90bcc979bca1e61997f39b7c6e357f52c39e4",
+    "readme.md": "8a65a21b738ddab30d0991ef0b33ed0945bdba4e0f8ae321e06ea9472d515d5f"
+  }
+}
