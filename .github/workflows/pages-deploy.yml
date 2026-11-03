@@ -54,6 +54,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Test catalog metadata selection
+        run: python3 -m unittest discover -s docs -p test_update_packages.py
       - name: Refresh public npm package data
         env:
           NPM_ORG: ohos-ports-electron

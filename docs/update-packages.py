@@ -166,7 +166,11 @@ def fetch_package_detail(name, cache=None):
     dist_tags = data.get("dist-tags", {})
     latest = dist_tags.get("latest")
     beta = dist_tags.get("beta")
-    description = data.get("description", "")
+    versions = data.get("versions", {})
+    latest_info = versions.get(latest, {}) if latest else {}
+    # A staged first release can leave the root description on npm's stub
+    # after latest is promoted. Describe the version the default install uses.
+    description = latest_info.get("description") or data.get("description", "")
 
     # 如果顶层 description 为空，从版本历史中查找（最新版可能漏设了 description）
     if not description:
@@ -195,8 +199,6 @@ def fetch_package_detail(name, cache=None):
             beta_version = None
 
     # 检查最新版是否被废弃
-    versions = data.get("versions", {})
-    latest_info = versions.get(latest, {}) if latest else {}
     deprecated_msg = latest_info.get("deprecated", "")
 
     # 查找原始包名：优先使用缓存，仅对新增包查询 npm
