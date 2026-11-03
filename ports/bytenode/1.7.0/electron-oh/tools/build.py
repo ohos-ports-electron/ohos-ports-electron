@@ -64,14 +64,21 @@ def build(port, out, archive=None):
     tarbytes = tarbytes[:9] + b'\xff' + tarbytes[10:]
     # zlib/DEFLATE stream bytes can differ across Python and zlib builds (CI Python 3.12
     # vs the device-verification build host). When the freshly packed gzip hash differs
-    # from the lock, fall back to the frozen device-tested archive bytes (hash-checked).
+    # from the lock, fall back to the frozen device-tested archive bytes (hash-checked)
+    # and recompute the inventory from those frozen bytes so the manifest always
+    # describes the artifact that is actually published and verified.
+    frozen_applied = False
     if sha(tarbytes) != lock['candidate']['sha256'] and str(lock['candidate'].get('archiveUrl', '')).startswith('https://'):
         with urllib.request.urlopen(lock['candidate']['archiveUrl'], timeout=90) as response:
             frozen = response.read()
         if sha(frozen) != lock['candidate']['sha256']:
             raise RuntimeError('frozen candidate archive checksum mismatch')
         tarbytes = frozen
+        frozen_applied = True
     (out / 'candidate.tgz').write_bytes(tarbytes)
+    if frozen_applied:
+        with tarfile.open(fileobj=io.BytesIO(tarbytes)) as t:
+            inventory = {m.name[8:]: hashlib.sha256(t.extractfile(m).read()).hexdigest() for m in t.getmembers() if m.isfile()}
     receipt = {'name': meta['name'], 'version': meta['version'], 'sha256': sha(tarbytes),
                'integrity': 'sha512-' + base64.b64encode(hashlib.sha512(tarbytes).digest()).decode(),
                'files': inventory, 'baselineSha256': sha(data)}
