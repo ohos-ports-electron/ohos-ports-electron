@@ -1,0 +1,64 @@
+.github/workflows/ci.yml
+  s_afcc30a3bdf71b::t_d94565321268b2 41
+.github/workflows/pages-deploy.yml
+  s_afcc30a3bdf71b::t_d9ddc7fe78d089 19
+.github/workflows/vscode-oniguruma-electron-oh.yml
+  s_afcc30a3bdf71b::t_16140db5170a38 1-98
+docs/RELEASING.md
+  s_afcc30a3bdf71b::t_fa1e421f4602b1 116-125
+ports/vscode-oniguruma/2.0.1/README.md
+  s_afcc30a3bdf71b::t_360d23a6aea3b6 1-64
+ports/vscode-oniguruma/2.0.1/build.sh
+  s_afcc30a3bdf71b::t_1f81eb0ab1ff1b 1-4
+ports/vscode-oniguruma/2.0.1/electron-oh/BINARYEN-LICENSE.txt
+  s_afcc30a3bdf71b::t_307c81cc3463c0 1-206
+ports/vscode-oniguruma/2.0.1/electron-oh/PACKAGE_README.md
+  s_afcc30a3bdf71b::t_f3d1699c536b14 1-45
+ports/vscode-oniguruma/2.0.1/electron-oh/README.md
+  s_afcc30a3bdf71b::t_55b0f72654972a 1-27
+ports/vscode-oniguruma/2.0.1/electron-oh/inputs.lock.json
+  s_afcc30a3bdf71b::t_12806797900315 1-56
+ports/vscode-oniguruma/2.0.1/electron-oh/package-inventory.json
+  s_afcc30a3bdf71b::t_86cab14db4fef1 1-13
+ports/vscode-oniguruma/2.0.1/electron-oh/release-evidence.json
+  s_afcc30a3bdf71b::t_3bcc160a6a7e0b 1-243
+ports/vscode-oniguruma/2.0.1/electron-oh/tests/package-lock.json
+  s_afcc30a3bdf71b::t_024d11012ba126 1-64
+ports/vscode-oniguruma/2.0.1/electron-oh/tests/reference-cases.cjs
+  s_afcc30a3bdf71b::t_373c79ad5f49e2 1-296
+ports/vscode-oniguruma/2.0.1/electron-oh/tests/release-contract.py
+  s_afcc30a3bdf71b::t_b0fcdae75ccb12 1-76
+ports/vscode-oniguruma/2.0.1/electron-oh/tests/suite.cjs
+  s_afcc30a3bdf71b::t_88c6728e832ae4 1-30
+ports/vscode-oniguruma/2.0.1/electron-oh/tests/worker.cjs
+  s_afcc30a3bdf71b::t_401d407045a222 1-31
+ports/vscode-oniguruma/2.0.1/electron-oh/tools/build.py
+  s_afcc30a3bdf71b::t_1ea5913e721735 1-67
+ports/vscode-oniguruma/2.0.1/electron-oh/tools/release.py
+  s_afcc30a3bdf71b::t_b7f5932035aafb 1-167
+ports/vscode-oniguruma/2.0.1/patchs/0001-electron-oh-distribution-metadata.patch
+  s_afcc30a3bdf71b::t_85d73dd2b30a23 1-33
+ports/vscode-oniguruma/2.0.1/patchs/0002-wasm2js-fallback.patch
+  s_afcc30a3bdf71b::t_da163074a9631e 1-7
+ports/vscode-oniguruma/2.0.1/publish.sh
+  s_afcc30a3bdf71b::t_87f2e160c5abdf 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "b5b104be63d8dc277447ead99e76bc070afe3381",
+  "prompts": {},
+  "sessions": {
+    "s_afcc30a3bdf71b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a19c75-84c3-7961-8d7d-1baa140c20eb",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
