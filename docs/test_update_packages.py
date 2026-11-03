@@ -37,6 +37,20 @@ class PackageDescription(unittest.TestCase):
         package = self.detail({"dist-tags": {"latest": "1.1.0"}, "versions": {"1.1.0": {}, "1.0.0": {"description": "Historical description"}}})
         self.assertEqual(package["description"], "Historical description")
 
+    def test_beta_tag_is_not_replaced_by_newer_latest_version(self):
+        package = self.detail({"dist-tags": {"latest": "2.0.0-beta.3", "beta": "2.0.0-beta.1"}, "versions": {}})
+        self.assertEqual(package["latest_version"], "2.0.0-beta.3")
+        self.assertEqual(package["beta_version"], "2.0.0-beta.1")
+
+    def test_beta_in_version_name_does_not_create_a_beta_tag(self):
+        package = self.detail({"dist-tags": {"latest": "2.0.0-beta.3"}, "versions": {}})
+        self.assertIsNone(package["beta_version"])
+
+    def test_electron_oh_version_suffix_can_be_selected_by_beta_tag(self):
+        package = self.detail({"dist-tags": {"latest": "2.0.0-electron-oh.0", "beta": "2.0.0-electron-oh.0"}, "versions": {}})
+        self.assertEqual(package["beta_version"], "2.0.0-electron-oh.0")
+        self.assertIsNone(package["electron_oh_version"])
+
 
 if __name__ == "__main__":
     unittest.main()
