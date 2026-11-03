@@ -1,0 +1,33 @@
+ports/vscode-oniguruma/2.0.1/electron-oh/tools/release.py
+  s_afcc30a3bdf71b::t_77c98b10f8d33b 152-159
+ports/vscode-oniguruma/2.0.1/electron-oh/tests/release-contract.py
+  s_afcc30a3bdf71b::t_77c98b10f8d33b 65-98
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "a4e1dcc0d55985e1e691160466a72d64f6911a31",
+  "prompts": {},
+  "sessions": {
+    "s_afcc30a3bdf71b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a19c75-84c3-7961-8d7d-1baa140c20eb",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 42,
+      "total_deletions": 1,
+      "overridden_lines": 0,
+      "turn_models": {
+        "t_77c98b10f8d33b": "gpt-6.1-sol"
+      },
+      "model_totals": {
+        "gpt-6.1-sol": {
+          "additions": 42,
+          "deletions": 1
+        }
+      }
+    }
+  }
+}
