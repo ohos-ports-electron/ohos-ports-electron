@@ -149,7 +149,14 @@ def publish(bundle):
  package=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))
  for tag in ['latest','electron-oh']:
   value=package['dist-tags'].get(tag)
-  require(value in [None,VERSION],'tag points to another release; refusing automatic rollback')
+  # First-time npm staging creates a registry stub and leaves latest on it
+  # after approval. Promote only this verified two-version bootstrap state.
+  versions=package.get('versions',{})
+  staged_bootstrap=(tag=='latest' and value=='0.0.0-stage'
+   and set(versions)=={'0.0.0-stage',VERSION}
+   and versions['0.0.0-stage'].get('stub') is True
+   and versions[VERSION].get('dist',{}).get('integrity')==manifest['integrity'])
+  require(value in [None,VERSION] or staged_bootstrap,'tag points to another release; refusing automatic rollback')
  oidc_tags(['latest','electron-oh'])
  observed=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))['dist-tags']
  require(all(observed.get(t)==VERSION for t in ['latest','electron-oh']),'dist-tags not converged')
