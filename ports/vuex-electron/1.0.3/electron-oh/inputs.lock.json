@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "vuex-electron",
+    "version": "1.0.3",
+    "url": "https://registry.npmjs.org/vuex-electron/-/vuex-electron-1.0.3.tgz",
+    "sha256": "a96eb4a6def6c88ee315718d1346e02809980ec9f8baabcd1b7c610b2bccf7de",
+    "integrity": "sha512-fPv6nQa3yllKHy+8GT/xBMLw95slnLQRAV7Rddr1rNwc369vZvT6j9mQs7easwWgdk/Cnqqcq2Uay1SQE9KahQ=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/vuex-electron",
+    "version": "1.0.3-electron-oh.0",
+    "sha256": "6619f297b376851ed00027b19b6ecffcd94c82de485187b18233eb312228d5e6",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/vuex-electron-evidence-1.0.3-electron-oh.0/vuex-electron-1.0.3-electron-oh.0-candidate.tgz",
+    "integrity": "sha512-2RvCFV7AqTB9Fe9gbTgCQ2U7bJTvw0cEGCiJRlbu22pYdui3OYJao2SPWMFcELiWM/yIKCw7SVct7qCU87jmpg=="
+  },
+  "patches": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/vuex-electron/1.0.3"
+  },
+  "requiredDistTags": [
+    "latest",
+    "electron-oh"
+  ]
+}

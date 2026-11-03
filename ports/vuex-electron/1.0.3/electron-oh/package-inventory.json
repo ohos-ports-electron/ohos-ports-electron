@@ -1,0 +1,22 @@
+{
+  ".babelrc": "c6e3d96e92a658080c55ede9696d1fa582591b85f6b1a110c4979ecfffbb2150",
+  ".eslintignore": "34c786bb2f6ba90362f148a5b04952f1359d8c8cd72769fede502f92345737f9",
+  ".eslintrc": "4bf107d2ee6fb2cd824e52073509a9d58d3db816446f55888ebcf9667af65f5b",
+  ".prettierrc": "9b3e16b5105eec983712e72aaaea483b00f7eec7976023e0282309bfcb46de2a",
+  ".travis.yml": "56b8f33f40a66b00d82bd4ccbbe071c895f7c00e92a82d390bd3b7bd67975a79",
+  "CHANGELOG.md": "abc4cae4ff777bd9e23be9a025e2721f4fce4167e6e24701d9911c95097cbd9f",
+  "dist/index.js": "d53206e500abf3d3baf8667efbe92678b4eba8ad1479c8903d011a987b340603",
+  "dist/persisted-state.js": "5f32d9cf2b970e4e0dad01f51cdb3a1368c01899368d6e0dcff42423eccee795",
+  "dist/shared-mutations.js": "3d2560ca1776b069e21b0700e98e39784037efd218ce934ae4b85644c657a546",
+  "LICENSE": "26f5590b29cc824b15c2009b6c9eb7429d4d8a38c381af17f4a32a40cd7f8f9a",
+  "package.json": "21204fdd2f2e213c31bb9bc89a4497010fa8bf399420f389aec77b9d4cf825f0",
+  "README.md": "aaf75f6f368f69adb00dfa8d6541e0d0ffbedd452d3365a7c87c15b959f6c11b",
+  "src/index.js": "36640d715aedd713401d5096974f888585070d61556c271cacefbac384dddac1",
+  "src/persisted-state.js": "e082374e81f8c6f29e653f2632a78801091ab571093d0116481065dc5b81e5ff",
+  "src/shared-mutations.js": "b987ee4a86ac5d5173fda0afb759c4039e5812533d5b46732fa2d6b048493960",
+  "tests/helpers.js": "50a23823450a6be7813706c6304e83c1680dae26b09289dbeb3a7612ffd32f3f",
+  "tests/index.test.js": "deaf347ce30ab42a00b8e23734d473dc361872e8138c7c63f34465a2e950f1c9",
+  "tests/persisted-state.test.js": "f6d8079ac96672bbf83028acb967d868d6b61a77947066b2aed32823f659bf77",
+  "tests/shared-mutations.test.js": "1b59bcde873dff62e923b9dfce5b8a5e1a5c7820bfd9b1205e2fedc3d8cb4d7c",
+  "yarn.lock": "2179b04aa8acb0169c6a3906672b936680611bd6337320e4934a097c2b8ef1c3"
+}

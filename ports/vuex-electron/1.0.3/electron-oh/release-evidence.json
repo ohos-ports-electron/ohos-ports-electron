@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "candidateSha256": "6619f297b376851ed00027b19b6ecffcd94c82de485187b18233eb312228d5e6",
+  "targets": {
+    "electron34": {
+      "baseline": {
+        "reportSha256": "d4206f5ccd5cc987dea9ea2c436b6168de8b1b39c65600fb9a3c2d1ea49fed35",
+        "packageSha256": "a96eb4a6def6c88ee315718d1346e02809980ec9f8baabcd1b7c610b2bccf7de",
+        "coldStarts": [
+          { "pid": 39740, "runId": "6b643fc2d72f4e9f9be3f8ee", "pass": 26, "total": 26 },
+          { "pid": 40309, "runId": "d5d3e370e0f44f0a9ac14f31", "pass": 26, "total": 26 }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "a08352c86ed4883680e74d330867d25f894e3897403834fbc20ef74a75d6bbc3",
+        "packageSha256": "6619f297b376851ed00027b19b6ecffcd94c82de485187b18233eb312228d5e6",
+        "coldStarts": [
+          { "pid": 44379, "runId": "582ad73748364ad4a9fb1380", "pass": 26, "total": 26 },
+          { "pid": 45023, "runId": "d4234c53293a454b9289b69d", "pass": 26, "total": 26 }
+        ]
+      }
+    },
+    "electron37": {
+      "baseline": {
+        "reportSha256": "c196a6e4293dfe003b0f9cfeda018ed28a74df4594cae1c7adbaf1160e2beac9",
+        "packageSha256": "a96eb4a6def6c88ee315718d1346e02809980ec9f8baabcd1b7c610b2bccf7de",
+        "coldStarts": [
+          { "pid": 41104, "runId": "c83e77ebf9f842bd9110a844", "pass": 26, "total": 26 },
+          { "pid": 41785, "runId": "342cbb23ba1849cdb0852c0f", "pass": 26, "total": 26 }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "a3ba7e947a94c24788796caa665d5edd2cc611bd53a2cf8dbf3dfe08629f7cd3",
+        "packageSha256": "6619f297b376851ed00027b19b6ecffcd94c82de485187b18233eb312228d5e6",
+        "coldStarts": [
+          { "pid": 43118, "runId": "9884fc56aef74433b2b5b4e6", "pass": 26, "total": 26 },
+          { "pid": 43784, "runId": "4a4f3b766f054a6295756180", "pass": 26, "total": 26 }
+        ]
+      }
+    },
+    "electron40": {
+      "baseline": {
+        "reportSha256": "d8de98aa9e81d5953b56a2964f8cdb9ae87ee7c8e268b2c702fefe1d3926fa4c",
+        "packageSha256": "a96eb4a6def6c88ee315718d1346e02809980ec9f8baabcd1b7c610b2bccf7de",
+        "coldStarts": [
+          { "pid": 48716, "runId": "4e0run1e40b47f8ee1a940cd", "pass": 26, "total": 26 },
+          { "pid": 50690, "runId": "4e0run2e40c9d3f8aa61b12e", "pass": 26, "total": 26 }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "f53f67650d05561ce573aec5c94b3e56f1b012324eec71748e9fdba50a32f8e4",
+        "packageSha256": "6619f297b376851ed00027b19b6ecffcd94c82de485187b18233eb312228d5e6",
+        "coldStarts": [
+          { "pid": 45675, "runId": "c0a10b8257cb4444a946e316", "pass": 26, "total": 26 },
+          { "pid": 46188, "runId": "9bd5584945de492caf6895fe", "pass": 26, "total": 26 }
+        ]
+      }
+    }
+  },
+  "archive": {
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/vuex-electron-evidence-1.0.3-electron-oh.0/vuex-electron-1.0.3-electron-oh.0-device-evidence.tar.gz",
+    "sha256": "9d0a481e0bd1e095372bc691aadea75482981c52a942abe49f28bee3097e7927",
+    "fileCount": 6
+  },
+  "scope": "recorded device evidence; no fresh device runner in host CI. node role is electron-only not-applicable (vuex-electron requires require('electron')/electron-store at load); electron25 explicitly excluded by the caller (no official Electron-OH v25 release)."
+}
