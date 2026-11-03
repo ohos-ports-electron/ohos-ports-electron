@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "bytenode",
+    "version": "1.7.0",
+    "url": "https://registry.npmjs.org/bytenode/-/bytenode-1.7.0.tgz",
+    "sha256": "f687cac11e05e64441bcdd7391399264bc50075800c6c90f07ab640913d615e9",
+    "integrity": "sha512-XaWLzhk+Ai8oBjbrccOPiaZTJZgqsZKy+Q0Rtp/I1+XEY6AvJxkkfr1Xpa49oXe7+iRh18NQiFizkf7FMyB++g=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/bytenode",
+    "version": "1.7.0-electron-oh.0",
+    "sha256": "7a19ca522aa3f42c94de371985812f796aa7347feaed4308e1a067d236072c6b",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/bytenode-evidence-1.7.0-electron-oh.0/bytenode-1.7.0-electron-oh.0-candidate.tgz",
+    "integrity": "sha512-6VWT+mEeUk7L+EZ7iuqFk4Ab7kOkBGqJgE1ss9brcaDzhahDFVZqPqYQFMpyFA6zkQu1ae+tj6NbQ+HIIxSIQQ=="
+  },
+  "patches": [],
+  "readmeSha256": "a98d24b10876bed2e6eadc85db66cdc890ecf72ddda2f1672ffb3ed105584d97",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/bytenode/1.7.0"
+  },
+  "requiredDistTags": [
+    "latest",
+    "electron-oh"
+  ]
+}
