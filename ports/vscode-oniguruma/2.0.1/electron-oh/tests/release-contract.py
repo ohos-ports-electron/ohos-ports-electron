@@ -62,6 +62,40 @@ class PublicationContract(unittest.TestCase):
   self.assertEqual(requests[5].get_header('Authorization'),'Bearer synthetic-token-electron-oh')
   self.assertTrue(all(json.loads(requests[i].data)==release.VERSION for i in [2,5]))
   self.assertNotIn('synthetic-',output.getvalue())
+ def bootstrap_package(self):
+  return {'dist-tags':{'latest':'0.0.0-stage','electron-oh':release.VERSION},'versions':{'0.0.0-stage':{'stub':True},release.VERSION:{'dist':{'integrity':'locked'}}}}
+ def exercise_existing_publication(self,package):
+  raw=b'frozen';manifest={'sha256':hashlib.sha256(raw).hexdigest(),'integrity':'locked'}
+  current={'dist':{'integrity':'locked','tarball':'https://example.test/tarball'}}
+  converged=json.dumps({'dist-tags':{'latest':release.VERSION,'electron-oh':release.VERSION}}).encode()
+  with patch.object(release,'guard'),patch.object(release,'verify',return_value=manifest),patch.object(release,'metadata',return_value=current),patch.object(release,'published_bytes',return_value=raw),patch.object(release,'get',side_effect=[json.dumps(package).encode(),converged]),patch.object(release,'oidc_tags') as tags,patch.object(release.subprocess,'run') as upload:
+   try:release.publish(Path('/synthetic'))
+   finally:
+    upload.assert_not_called()
+    self.last_tag_writes=tags.call_args_list
+ def test_staged_first_release_promotes_official_latest_stub_without_reupload(self):
+  self.exercise_existing_publication(self.bootstrap_package())
+  self.assertEqual(self.last_tag_writes[0].args,(['latest','electron-oh'],))
+ def test_named_stage_version_without_registry_stub_is_not_promoted(self):
+  package=self.bootstrap_package();package['versions']['0.0.0-stage'].pop('stub')
+  with self.assertRaisesRegex(ValueError,'another release'):self.exercise_existing_publication(package)
+  self.assertEqual(self.last_tag_writes,[])
+ def test_stage_stub_on_electron_oh_is_not_promoted(self):
+  package=self.bootstrap_package();package['dist-tags']['electron-oh']='0.0.0-stage'
+  with self.assertRaisesRegex(ValueError,'another release'):self.exercise_existing_publication(package)
+  self.assertEqual(self.last_tag_writes,[])
+ def test_bootstrap_with_another_release_preserves_existing_tags(self):
+  package=self.bootstrap_package();package['versions']['3.0.0']={}
+  with self.assertRaisesRegex(ValueError,'another release'):self.exercise_existing_publication(package)
+  self.assertEqual(self.last_tag_writes,[])
+ def test_bootstrap_requires_root_metadata_to_match_verified_integrity(self):
+  package=self.bootstrap_package();package['versions'][release.VERSION]['dist']['integrity']='different'
+  with self.assertRaisesRegex(ValueError,'another release'):self.exercise_existing_publication(package)
+  self.assertEqual(self.last_tag_writes,[])
+ def test_existing_other_release_is_not_rolled_back(self):
+  package=self.bootstrap_package();package['dist-tags']['latest']='3.0.0'
+  with self.assertRaisesRegex(ValueError,'another release'):self.exercise_existing_publication(package)
+  self.assertEqual(self.last_tag_writes,[])
  def test_oidc_exchange_failure_cannot_fall_back_to_another_credential(self):
   env={**self.context(),'ACTIONS_ID_TOKEN_REQUEST_URL':'https://example.test/token','ACTIONS_ID_TOKEN_REQUEST_TOKEN':'synthetic-request'}
   class Response(io.BytesIO):status=200
