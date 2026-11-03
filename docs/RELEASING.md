@@ -123,3 +123,14 @@ fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
 frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/vscode-oniguruma/2.0.1/README.md).
+
+## vuex-electron
+
+`vuex-electron-electron-oh.yml` builds the locked pure-JavaScript electron-only candidate
+once, checks the archived three-target device reports (electron34/37/40; node role is
+electron-only not-applicable and electron25 is excluded), and runs the host identity/hash
+contract on the exact Node versions recorded by those targets. Host CI does not run a
+fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
+frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+package trusted publisher for this exact workflow with direct publish and
+independent dist-tag permissions. See [the port](../ports/vuex-electron/1.0.3/README.md).
