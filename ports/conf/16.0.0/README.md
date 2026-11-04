@@ -64,8 +64,11 @@ schemas/formats, rejected writes, invalid JSON, custom serialization, CBC/GCM,
 migrations, change callbacks/unsubscribe, external file watching, watcher cleanup,
 Worker operations/exit and package byte identity. They do not run the entire
 upstream test suite, privileged/symlink operations, Windows or stress workloads.
-Host CI uses accurate Node versions from recorded device reports and does not
-claim a fresh device execution. See the exact results in release evidence.
+Host CI retains all five recorded Node roles. For the 18.15.0 role it runs the
+complete suite under upstream host Electron 25.3.2 with ELECTRON_RUN_AS_NODE=1,
+because standard Node 18 uses an older V8 without Array.toSorted while
+Electron-OH 25 has that feature. This is a separate host regression, not a fresh
+HarmonyOS device execution or a claim of standalone Node 18 compatibility. See the exact results in release evidence.
 
 Runtime conditions: --jitless is used; conf needs no JIT/WASM. Electron 25 sets
 this before V8 startup and omits unavailable code-memory ACLs. Vendor frameworks

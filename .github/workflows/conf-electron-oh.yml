@@ -56,7 +56,12 @@ jobs:
         with:
           name: conf-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/bundle
-      - name: Install and run conf assertions on the same tgz
+      - name: Prepare the Electron 25 host V8 for the Node 18.15 role
+        if: matrix.node == '18.15.0'
+        run: npm install --prefix "$RUNNER_TEMP/host-electron25" electron@25.3.2 --no-audit --no-fund
+      - name: Install and run all conf assertions on the same tgz
+        env:
+          HOST_ELECTRON_BINARY: ${{ matrix.node == '18.15.0' && format('{0}/host-electron25/node_modules/electron/dist/electron', runner.temp) || '' }}
         run: python3 "$PORT/electron-oh/tools/release.py" host --bundle "$RUNNER_TEMP/bundle"
 
   publish:

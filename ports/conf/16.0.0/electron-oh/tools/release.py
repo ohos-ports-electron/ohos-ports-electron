@@ -94,7 +94,15 @@ def host(bundle):
   (root/'config.json').write_text(json.dumps(config))
   (root/'run.cjs').write_text("require('./suite.cjs').run(require('./config.json'),require('path').join(__dirname,'results')).then(r=>{if(r.status!=='passed')process.exitCode=1}).catch(e=>{console.error(e);process.exitCode=1})")
   lock=read(PORT/'electron-oh/tests/package-lock.json');lock['packages']['']['dependencies'][NAME]=str((bundle/'candidate.tgz').resolve());lock['packages']['node_modules/'+NAME]['resolved']='file:'+str((bundle/'candidate.tgz').resolve());(root/'package-lock.json').write_text(json.dumps(lock));subprocess.run(['npm','ci','--no-audit','--no-fund','--registry='+REGISTRY],cwd=root,check=True)
-  subprocess.run(['node','run.cjs'],cwd=root,check=True)
+  binary=os.environ.get('HOST_ELECTRON_BINARY')
+  if binary:
+   environment=os.environ.copy();environment['ELECTRON_RUN_AS_NODE']='1'
+   probe=json.loads(subprocess.check_output([binary,'-p',"JSON.stringify({node:process.versions.node,electron:process.versions.electron,v8:process.versions.v8,toSorted:typeof Array.prototype.toSorted==='function'})"],env=environment,text=True))
+   require(probe['node']=='18.15.0' and probe['electron']=='25.3.2' and probe['toSorted'],'wrong host Electron/V8 capability')
+   print('Host Electron 25.3.2 RUN_AS_NODE regression; standard Node 18 lacks toSorted. This is not HarmonyOS device execution: '+json.dumps(probe),flush=True)
+   subprocess.run([binary,'run.cjs'],cwd=root,env=environment,check=True)
+  else:
+   subprocess.run(['node','run.cjs'],cwd=root,check=True)
 def guard(env=None):
  env=env or os.environ
  require(env.get('ENABLE_ELECTRON_OH_PUBLISH')=='1','publication disabled')
