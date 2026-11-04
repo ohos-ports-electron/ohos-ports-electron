@@ -1,0 +1,165 @@
+{
+    "schemaVersion":  1,
+    "status":  "ready",
+    "candidateSha256":  "03e7625336ed58bd46f0f162dd5b08152a7c8b69aefecd8542c6cc61f8082091",
+    "targets":  {
+                    "node":  {
+                                 "baseline":  {
+                                                  "reportSha256":  "9877f2445048af856207e71e5bdc75eab348f64d30eda64128bf0b80fa3f474e",
+                                                  "packageSha256":  "a47e80e57446c37c6b81cb01dad85d46f0b7d456abfaedfa2a863ff3c06c2468",
+                                                  "coldStarts":  [
+                                                                     {
+                                                                         "pid":  31371,
+                                                                         "runId":  "308cbf29f00aeff89175a1f1",
+                                                                         "pass":  33,
+                                                                         "total":  33
+                                                                     },
+                                                                     {
+                                                                         "pid":  31921,
+                                                                         "runId":  "cdf1f09aa27412c5d037ab60",
+                                                                         "pass":  33,
+                                                                         "total":  33
+                                                                     }
+                                                                 ]
+                                              },
+                                 "candidate":  {
+                                                   "reportSha256":  "c3953408b15a479638f146a0dba1a26a6e7687d46ffc298d98c09e8dfb3ffe2b",
+                                                   "packageSha256":  "03e7625336ed58bd46f0f162dd5b08152a7c8b69aefecd8542c6cc61f8082091",
+                                                   "coldStarts":  [
+                                                                      {
+                                                                          "pid":  45471,
+                                                                          "runId":  "5f016efbd6fafe75c559cdb6",
+                                                                          "pass":  33,
+                                                                          "total":  33
+                                                                      },
+                                                                      {
+                                                                          "pid":  45934,
+                                                                          "runId":  "81d54cac3167b3128f4d3542",
+                                                                          "pass":  33,
+                                                                          "total":  33
+                                                                      }
+                                                                  ]
+                                               }
+                             },
+                    "electron34":  {
+                                       "baseline":  {
+                                                        "reportSha256":  "166f50155296f97f82ddb086dcb1ddb6213f7b55a288aa1004dd4ddf8eb4e7fe",
+                                                        "packageSha256":  "a47e80e57446c37c6b81cb01dad85d46f0b7d456abfaedfa2a863ff3c06c2468",
+                                                        "coldStarts":  [
+                                                                           {
+                                                                               "pid":  32337,
+                                                                               "runId":  "798a520aff1c87cccd34d8e7",
+                                                                               "pass":  22,
+                                                                               "total":  22
+                                                                           },
+                                                                           {
+                                                                               "pid":  32901,
+                                                                               "runId":  "d1069c83f0f504e3c496f8b3",
+                                                                               "pass":  22,
+                                                                               "total":  22
+                                                                           }
+                                                                       ]
+                                                    },
+                                       "candidate":  {
+                                                         "reportSha256":  "398febead6679ed1bdce57ade66323cc1e8286db2deff9fd96bb8d7deb38800e",
+                                                         "packageSha256":  "03e7625336ed58bd46f0f162dd5b08152a7c8b69aefecd8542c6cc61f8082091",
+                                                         "coldStarts":  [
+                                                                            {
+                                                                                "pid":  46365,
+                                                                                "runId":  "cf1ff221dc554b6c6a014002",
+                                                                                "pass":  22,
+                                                                                "total":  22
+                                                                            },
+                                                                            {
+                                                                                "pid":  46859,
+                                                                                "runId":  "d7fdbbfd03e7fb65a7874e2d",
+                                                                                "pass":  22,
+                                                                                "total":  22
+                                                                            }
+                                                                        ]
+                                                     }
+                                   },
+                    "electron37":  {
+                                       "baseline":  {
+                                                        "reportSha256":  "7b6a9ff75667db6e34078f7478a7fbb85c2b8a2bbee43b25ee6fa4b58d70dddd",
+                                                        "packageSha256":  "a47e80e57446c37c6b81cb01dad85d46f0b7d456abfaedfa2a863ff3c06c2468",
+                                                        "coldStarts":  [
+                                                                           {
+                                                                               "pid":  33395,
+                                                                               "runId":  "37772750a88bb290de4d8dec",
+                                                                               "pass":  22,
+                                                                               "total":  22
+                                                                           },
+                                                                           {
+                                                                               "pid":  33826,
+                                                                               "runId":  "1d9c64483a3af6ba472974a8",
+                                                                               "pass":  22,
+                                                                               "total":  22
+                                                                           }
+                                                                       ]
+                                                    },
+                                       "candidate":  {
+                                                         "reportSha256":  "665579ddb5051c6ad8d17f5465fd6fc6943ba0efebc6d85675984f523223a004",
+                                                         "packageSha256":  "03e7625336ed58bd46f0f162dd5b08152a7c8b69aefecd8542c6cc61f8082091",
+                                                         "coldStarts":  [
+                                                                            {
+                                                                                "pid":  47370,
+                                                                                "runId":  "af7eb8c23757ac1b216b7130",
+                                                                                "pass":  22,
+                                                                                "total":  22
+                                                                            },
+                                                                            {
+                                                                                "pid":  47806,
+                                                                                "runId":  "657f6ff850d9754800e0b14d",
+                                                                                "pass":  22,
+                                                                                "total":  22
+                                                                            }
+                                                                        ]
+                                                     }
+                                   },
+                    "electron40":  {
+                                       "baseline":  {
+                                                        "reportSha256":  "8d3a600e29222709d1938e0536df8d9970611962a3bce00edeb31db27a01f452",
+                                                        "packageSha256":  "a47e80e57446c37c6b81cb01dad85d46f0b7d456abfaedfa2a863ff3c06c2468",
+                                                        "coldStarts":  [
+                                                                           {
+                                                                               "pid":  34368,
+                                                                               "runId":  "6deff2d0e10e774b87e16795",
+                                                                               "pass":  22,
+                                                                               "total":  22
+                                                                           },
+                                                                           {
+                                                                               "pid":  34790,
+                                                                               "runId":  "0c915e44e48a350e33beb9c9",
+                                                                               "pass":  22,
+                                                                               "total":  22
+                                                                           }
+                                                                       ]
+                                                    },
+                                       "candidate":  {
+                                                         "reportSha256":  "6472b95ac3048b99cba9db971a162cc9bdc8b78087b9c155e6c1f816a8e43aca",
+                                                         "packageSha256":  "03e7625336ed58bd46f0f162dd5b08152a7c8b69aefecd8542c6cc61f8082091",
+                                                         "coldStarts":  [
+                                                                            {
+                                                                                "pid":  48317,
+                                                                                "runId":  "8ea7431fd25e989b56c095bb",
+                                                                                "pass":  22,
+                                                                                "total":  22
+                                                                            },
+                                                                            {
+                                                                                "pid":  51199,
+                                                                                "runId":  "9218cb6bf3a057fc9c76c0d6",
+                                                                                "pass":  22,
+                                                                                "total":  22
+                                                                            }
+                                                                        ]
+                                                     }
+                                   }
+                },
+    "archive":  {
+                    "url":  "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/which-evidence-7.0.0-electron-oh.0/which-7.0.0-electron-oh.0-device-evidence.tar.gz",
+                    "sha256":  "9cbbd863cfab8dd884f65c32a1f19a64859095b49362dc3afa4d001aa52570ea",
+                    "fileCount":  10
+                },
+    "scope":  "recorded device evidence; no fresh device runner in host CI"
+}
