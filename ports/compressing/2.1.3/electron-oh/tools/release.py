@@ -143,7 +143,15 @@ def publish(bundle):
   value=package['dist-tags'].get(tag)
   require(value in [None,VERSION],'tag points to another release; refusing automatic rollback')
  oidc_tags(['latest','electron-oh'])
- observed=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))['dist-tags']
+ # A dist-tag PUT can be served by a stale cached packument on the immediate
+ # re-read (observed in production: both PUTs returned 204 but the follow-up
+ # GET still showed the old document). Poll briefly before declaring failure,
+ # mirroring the bounded tarball-visibility retry above.
+ observed={}
+ for attempt in range(12):
+  observed=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))['dist-tags']
+  if all(observed.get(t)==VERSION for t in ['latest','electron-oh']):break
+  print('Waiting for dist-tag visibility',attempt+1,flush=True);time.sleep(10)
  require(all(observed.get(t)==VERSION for t in ['latest','electron-oh']),'dist-tags not converged')
  print(json.dumps({'uploaded':uploaded,'registrySha256':hashlib.sha256(raw).hexdigest(),'distTags':observed},indent=2))
 def main():
