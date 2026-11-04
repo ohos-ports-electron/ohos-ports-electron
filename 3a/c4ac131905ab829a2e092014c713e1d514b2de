@@ -1,0 +1,112 @@
+.github/workflows/bytenode-electron-oh.yml
+  s_4da4f741a7ccca::t_70285c801ba6a7 89
+.github/workflows/compressing-electron-oh.yml
+  s_4da4f741a7ccca::t_64f4656b772aca 89
+.github/workflows/conf-electron-oh.yml
+  s_4da4f741a7ccca::t_e3cded35bc013f 94
+.github/workflows/electron-context-menu-electron-oh.yml
+  s_4da4f741a7ccca::t_ade391ed400289 89
+.github/workflows/fs-extra-electron-oh.yml
+  s_4da4f741a7ccca::t_de8094f2749dcf 89
+.github/workflows/tar-electron-oh.yml
+  s_4da4f741a7ccca::t_d422d77c9f2c37 89
+.github/workflows/vscode-oniguruma-electron-oh.yml
+  s_4da4f741a7ccca::t_b9d38299832f4e 93
+.github/workflows/vuex-electron-electron-oh.yml
+  s_4da4f741a7ccca::t_e46acb361b7d2e 89
+docs/RELEASING.md
+  s_4da4f741a7ccca::t_83ea27c61f8f38 3-4,14,116,126,136,147,158
+docs/index.html
+  s_4da4f741a7ccca::t_8ace61936d8979 80,83,99
+docs/test_app.cjs
+  s_4da4f741a7ccca::t_70ad11fa64d232 32,35-36
+ports/bytenode/1.7.0/README.md
+  s_4da4f741a7ccca::t_ba04aa82e265b8 65
+ports/bytenode/1.7.0/electron-oh/inputs.lock.json
+  s_4da4f741a7ccca::t_4765518a4d9838 26
+ports/bytenode/1.7.0/electron-oh/tests/release-contract.py
+  s_4da4f741a7ccca::t_0da98b22505a7b 46,49,53,57,62,76-114
+ports/bytenode/1.7.0/electron-oh/tools/release.py
+  s_4da4f741a7ccca::t_ab86227c134072 101,103,105,120,122,127-133,140,149-150,153-155
+ports/compressing/2.1.3/README.md
+  s_4da4f741a7ccca::t_b80669e1ccf950 68
+ports/compressing/2.1.3/electron-oh/inputs.lock.json
+  s_4da4f741a7ccca::t_b9e826c4f6a22b 28
+ports/compressing/2.1.3/electron-oh/tests/release-contract.py
+  s_4da4f741a7ccca::t_b9a07fcd1031b9 46,49,53,57,62,76-114
+ports/compressing/2.1.3/electron-oh/tools/release.py
+  s_4da4f741a7ccca::t_baf08aa90a6732 101,103,105,120,122,127-133,140,149-150,153-155
+ports/conf/16.0.0/README.md
+  s_4da4f741a7ccca::t_d3cd1d92b6deab 92
+ports/conf/16.0.0/electron-oh/inputs.lock.json
+  s_4da4f741a7ccca::t_f1b4066ebeb80a 30
+ports/conf/16.0.0/electron-oh/tests/release-contract.py
+  s_4da4f741a7ccca::t_120df620d9c3d9 46,49,53,57,62,76-114
+ports/conf/16.0.0/electron-oh/tools/release.py
+  s_4da4f741a7ccca::t_a53fbcde1f9f42 110,112,114,129,131,136-142,149,158-159,162-164
+ports/electron-context-menu/5.1.0/README.md
+  s_4da4f741a7ccca::t_0b560dcab9aca4 81
+ports/electron-context-menu/5.1.0/electron-oh/README.md
+  s_4da4f741a7ccca::t_9adc75717eb294 30
+ports/electron-context-menu/5.1.0/electron-oh/inputs.lock.json
+  s_4da4f741a7ccca::t_a132d4841fa5c0 25
+ports/electron-context-menu/5.1.0/electron-oh/tests/release-contract.py
+  s_4da4f741a7ccca::t_195235bfcfa8fa 46,49,53,57,62,76-114
+ports/electron-context-menu/5.1.0/electron-oh/tools/release.py
+  s_4da4f741a7ccca::t_6822864a2d86b6 101,103,105,120,122,127-133,140,149-150,153-155
+ports/fs-extra/11.4.1/README.md
+  s_4da4f741a7ccca::t_6c6690d8c40af8 92
+ports/fs-extra/11.4.1/electron-oh/inputs.lock.json
+  s_4da4f741a7ccca::t_13f91035a50859 30
+ports/fs-extra/11.4.1/electron-oh/tests/release-contract.py
+  s_4da4f741a7ccca::t_715d1594a7914f 46,49,53,57,62,76-114
+ports/fs-extra/11.4.1/electron-oh/tools/release.py
+  s_4da4f741a7ccca::t_bc891383969657 101,103,105,120,122,127-133,140,149-150,153-155
+ports/tar/7.5.22/README.md
+  s_4da4f741a7ccca::t_d7b8643d780f5c 103
+ports/tar/7.5.22/electron-oh/inputs.lock.json
+  s_4da4f741a7ccca::t_f0130fbd395929 30
+ports/tar/7.5.22/electron-oh/tests/release-contract.py
+  s_4da4f741a7ccca::t_1e214615916875 46,49,53,57,62,76-114
+ports/tar/7.5.22/electron-oh/tools/release.py
+  s_4da4f741a7ccca::t_556f1b1811db8b 102,104,106,121,123,128-134,141,150-151,154-156
+ports/vscode-native-watchdog/1.4.6/electron-oh/tools/release.cjs
+  s_4da4f741a7ccca::t_d2621ff38fecd0 54,90
+ports/vscode-oniguruma/2.0.1/electron-oh/README.md
+  s_4da4f741a7ccca::t_7fe88e35e099be 26
+ports/vscode-oniguruma/2.0.1/electron-oh/inputs.lock.json
+  s_4da4f741a7ccca::t_2f03af445d10c3 34
+ports/vscode-oniguruma/2.0.1/electron-oh/tests/release-contract.py
+  s_4da4f741a7ccca::t_8b365321fa777c 46,49,53,57,62,66,70,78,83-84,110-148
+ports/vscode-oniguruma/2.0.1/electron-oh/tools/release.py
+  s_4da4f741a7ccca::t_65b04931311ca3 109,111,113,128,130,135-141,148,157-158,168-170
+ports/vuex-electron/1.0.3/README.md
+  s_4da4f741a7ccca::t_5e06e1faf3c45b 85
+ports/vuex-electron/1.0.3/electron-oh/README.md
+  s_4da4f741a7ccca::t_260161e3b815d6 30
+ports/vuex-electron/1.0.3/electron-oh/inputs.lock.json
+  s_4da4f741a7ccca::t_099cf18e080553 25
+ports/vuex-electron/1.0.3/electron-oh/tests/release-contract.py
+  s_4da4f741a7ccca::t_6bd14a43c460f6 46,49,53,57,62,76-114
+ports/vuex-electron/1.0.3/electron-oh/tools/release.py
+  s_4da4f741a7ccca::t_5154d104c693c6 101,103,105,120,122,127-133,140,149-150,153-155
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "3ac4ac131905ab829a2e092014c713e1d514b2de",
+  "prompts": {},
+  "sessions": {
+    "s_4da4f741a7ccca": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a0ae-484c-7443-be78-02f80cf28452",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
