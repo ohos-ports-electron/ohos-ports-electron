@@ -1,0 +1,54 @@
+.github/workflows/ci.yml
+  s_ee24c96ba28094::t_35f30758ef22e8 41
+.github/workflows/electron-context-menu-electron-oh.yml
+  s_ee24c96ba28094::t_a1addd015d5ea9 1-94
+.github/workflows/pages-deploy.yml
+  s_ee24c96ba28094::t_2973db359bc5e2 27
+docs/RELEASING.md
+  s_ee24c96ba28094::t_98ce4d66826a19 147-156
+ports/electron-context-menu/5.1.0/README.md
+  s_ee24c96ba28094::t_72123fcb5f4ed2 1-83
+ports/electron-context-menu/5.1.0/build.sh
+  s_ee24c96ba28094::t_a4b5a17696bef6 1-4
+ports/electron-context-menu/5.1.0/electron-oh/.gitignore
+  s_ee24c96ba28094::t_02ce445eefb239 1-2
+ports/electron-context-menu/5.1.0/electron-oh/PACKAGE_README.md
+  s_ee24c96ba28094::t_2d081f0e245c90 1-43
+ports/electron-context-menu/5.1.0/electron-oh/README.md
+  s_ee24c96ba28094::t_1c1837456cc547 1-30
+ports/electron-context-menu/5.1.0/electron-oh/inputs.lock.json
+  s_ee24c96ba28094::t_21d3d157a59379 1-27
+ports/electron-context-menu/5.1.0/electron-oh/package-inventory.json
+  s_ee24c96ba28094::t_d7b69a419f5c2b 1-7
+ports/electron-context-menu/5.1.0/electron-oh/release-evidence.json
+  s_ee24c96ba28094::t_d00e345767c263 1-67
+ports/electron-context-menu/5.1.0/electron-oh/tests/release-contract.py
+  s_ee24c96ba28094::t_e64778631d7780 1-76
+ports/electron-context-menu/5.1.0/electron-oh/tests/suite.cjs
+  s_ee24c96ba28094::t_f897929a550eac 1-72
+ports/electron-context-menu/5.1.0/electron-oh/tools/build.py
+  s_ee24c96ba28094::t_7d6fe4e161dd10 1-95
+ports/electron-context-menu/5.1.0/electron-oh/tools/release.py
+  s_ee24c96ba28094::t_b44d0d0806c92d 1-159
+ports/electron-context-menu/5.1.0/publish.sh
+  s_ee24c96ba28094::t_b37ee9ec4fe74b 1-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "672e88bc6c18a0f57d85c224837822d079e5857e",
+  "prompts": {},
+  "sessions": {
+    "s_ee24c96ba28094": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a412-2295-74b3-b296-6dbb696d41f3",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
