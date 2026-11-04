@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "axios",
+    "version": "1.21.0",
+    "url": "https://registry.npmjs.org/axios/-/axios-1.21.0.tgz",
+    "sha256": "3d34c8aee6495b566848b8fcfc1a70daa2921a6d9626961f6379bba29b296e8a",
+    "integrity": "sha512-YCzXMB53Q9PZBsh7yN7wtapit4WepwcHS2fP8QhGsBxSz5YtgYobV7GGlWlAJi+RxfU77GQTQi2DSLUma42EYA=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/axios",
+    "version": "1.21.0-electron-oh.0",
+    "sha256": "c46d4ab7459396994360b017bc551516c313fa8d062c970ca5324c2bc9240bf2",
+    "integrity": "sha512-T3PNEzB0EX3dNCxbN6fQOnjlWx8ODrvpGd61vQWsY+cRKyEk7dbtyFcOjEv4VjewP+s42+tIZ2vKJmA4DEvBfA=="
+  },
+  "patches": [
+    {
+      "path": "patchs/0001-electron-oh-distribution-metadata.patch",
+      "sha256": "a71b07d3808e0df017724521b1b3824f659f23ac17d210984ef273f007dd0162"
+    }
+  ],
+  "readmeSha256": "16ee436310c54f61ad9e69803b77650259276040dd175bc54e4db20d52fecfed",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/axios/1.21.0"
+  },
+  "requiredDistTags": [
+    "latest",
+    "electron-oh"
+  ],
+  "distTag": "electron-oh"
+}

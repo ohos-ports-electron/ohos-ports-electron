@@ -134,7 +134,7 @@ function renderPage() {
     button.title = '复制安装命令';
     button.addEventListener('click', function() { copyText(command); });
     install.append(button);
-    row.append(name, original, versionCell(p.latest_version, 'stable'), versionCell(channel.version, 'beta'), status, install);
+    row.append(name, original, versionCell(p.latest_version, 'stable'), versionCell(channel.version, 'beta'), versionCell(p.electron_oh_version, 'beta'), status, install);
     tbody.append(row);
   });
   info.textContent = '共 ' + currentData.length + ' 个包（第 ' + currentPage + '/' + totalPages + ' 页，当前 ' + displayed.length + ' 条）';
