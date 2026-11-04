@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "env-paths",
+    "version": "4.0.0",
+    "url": "https://registry.npmjs.org/env-paths/-/env-paths-4.0.0.tgz",
+    "sha256": "01c547c3c93f62d8e07f631a2653fb568eee1e891c8526e6d956c52c04b6b13a",
+    "integrity": "sha512-pxP8eL2SwwaTRi/KHYwLYXinDs7gL3jxFcBYmEdYfZmZXbaVDvdppd0XBU8qVz03rDfKZMXg1omHCbsJjZrMsw=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/env-paths",
+    "version": "4.0.0-electron-oh.0",
+    "sha256": "36210703cd1991aa7e74d9a098ee06d709f8b51e27fbeea6cfd62b815b0e8f0e",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/env-paths-evidence-4.0.0-electron-oh.0/env-paths-4.0.0-electron-oh.0-candidate.tgz",
+    "integrity": "sha512-o9TaptC+qCWQsq5/KJXnlGsLr8hI2GjhsXPALNVPxkav1+to5HiW7eqCCk6R8nz5dzz0xCUQlS1n6crOBuBF2Q=="
+  },
+  "patches": [],
+  "readmeSha256": "f29c3bcc30e417bce0fdb3e371d97048f376488b8f982a2261b2ce81c75aadc5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/env-paths/4.0.0"
+  },
+  "requiredDistTags": [
+    "latest",
+    "electron-oh"
+  ]
+}
