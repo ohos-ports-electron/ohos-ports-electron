@@ -1,0 +1,49 @@
+ports/axios/1.21.0/electron-oh/tools/release.py
+  s_0bb0722de6b443::t_29bdc2f04cd6c1 47-49,114,116,118,133,135,140-146,153,162-163,166-168
+ports/axios/1.21.0/electron-oh/tests/release-contract.py
+  s_0bb0722de6b443::t_29bdc2f04cd6c1 37-40,50,53,57,61,66,80-118
+.github/workflows/axios-electron-oh.yml
+  s_0bb0722de6b443::t_ac314f3c990190 89
+docs/RELEASING.md
+  s_0bb0722de6b443::t_db3a6b6755630d 178,181-184
+docs/app.js
+  s_0bb0722de6b443::t_08bc7bf0ec377e 137
+docs/index.html
+  s_0bb0722de6b443::t_1a2f1df3d5514e 80,83,99
+docs/test_app.cjs
+  s_0bb0722de6b443::t_965aceb87fb873 32,36,42,48,53-63
+ports/axios/1.21.0/README.md
+  s_0bb0722de6b443::t_f8545896188c7a 68-72
+ports/axios/1.21.0/electron-oh/README.md
+  s_0bb0722de6b443::t_0db30b0f1fc6d0 36-39
+ports/axios/1.21.0/electron-oh/inputs.lock.json
+  s_0bb0722de6b443::t_83c44fefd5a424 30,32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "a81d4c4efde1bcd9962e686cfdbf749e657f70b2",
+  "prompts": {},
+  "sessions": {
+    "s_0bb0722de6b443": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a574-5c34-7201-bbcb-048a66cca61d",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 69,
+      "total_deletions": 16,
+      "overridden_lines": 0,
+      "turn_models": {
+        "t_29bdc2f04cd6c1": "gpt-6.1-sol"
+      },
+      "model_totals": {
+        "gpt-6.1-sol": {
+          "additions": 69,
+          "deletions": 16
+        }
+      }
+    }
+  }
+}
