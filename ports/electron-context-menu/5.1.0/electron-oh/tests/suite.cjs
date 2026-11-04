@@ -8,6 +8,10 @@ const crypto = require('crypto');
 // host regression verifies the distributed bytes, identity and install contract WITHOUT
 // loading the library (functional load is device-recorded: 44/44 x2 cold starts per
 // electron target in release-evidence.json). No mock, no simulated device pass.
+//
+// The package.json has an `exports` map (ESM-only, no `main`), which blocks the classic
+// `require.resolve(name + '/package.json')` subpath trick; resolve the exports entry
+// point and derive the package root from it instead.
 
 const definitions = [
   ['package identity', async c => c.equal(JSON.parse(native.readFileSync(path.join(c.pkg, 'package.json'), 'utf8')).name, c.config.packageName)],
@@ -36,7 +40,7 @@ const definitions = [
 async function run(config, outputDir) {
   const startedAt = new Date().toISOString(); const runId = crypto.randomBytes(12).toString('hex');
   const results = []; let pkg;
-  try { pkg = path.dirname(require.resolve(config.packageName + '/package.json')); }
+  try { pkg = path.dirname(require.resolve(config.packageName)); }
   catch (e) { pkg = null; }
   const root = path.join(outputDir, 'electron-context-menu-' + process.pid + '-' + runId); native.mkdirSync(root, { recursive: true });
   for (const [name, body] of definitions) {
