@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "electron-context-menu",
+    "version": "5.1.0",
+    "url": "https://registry.npmjs.org/electron-context-menu/-/electron-context-menu-5.1.0.tgz",
+    "sha256": "fc10b0e7356b209700b37b870caa3d6342c9bb749de9a0e43d6f95b8f9a7c4f6",
+    "integrity": "sha512-iBEwkLp5cS9AXLrcaABZ7blCuaZb09moFlOp+ywL5cRj+TpGuqs60783Fpccwc1TAM81XdQmttOAjx7tQIddiw=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/electron-context-menu",
+    "version": "5.1.0-electron-oh.0",
+    "sha256": "b0d8adfb29c8f22d077b26036b028936a1ae3713e70f91e1e235b36837183a5e",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/electron-context-menu-evidence-5.1.0-electron-oh.0/electron-context-menu-5.1.0-electron-oh.0-candidate.tgz",
+    "integrity": "sha512-QLxte2bOScz3PRZDSpJTi2OzjeeHOtjKXLLnZchuYCj0Drx/OMgZPdoMhtJXr+obT7osyNeAUsCsaYgSkW1KoA=="
+  },
+  "patches": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/electron-context-menu/5.1.0"
+  },
+  "requiredDistTags": [
+    "latest",
+    "electron-oh"
+  ]
+}
