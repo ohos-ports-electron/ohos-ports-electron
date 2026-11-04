@@ -127,6 +127,17 @@ frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/tar/7.5.22/README.md).
 
+## 7zip-bin
+
+`7zip-bin-electron-oh.yml` builds the locked candidate once (baseline
+`@ohos-ports/7zip-bin@5.2.0-beta.0` plus the single `ohos` platform-routing
+patch 0001), checks the archived four-target device reports and runs the 7zip-bin
+suite on the exact Node versions recorded by those targets. Host CI does not run
+a fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
+frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
+package trusted publisher for this exact workflow with direct publish and
+independent dist-tag permissions. See [the port](../ports/7zip-bin/5.2.0/README.md).
+
 ## vscode-oniguruma
 
 `vscode-oniguruma-electron-oh.yml` builds the locked WASM and asm.js candidate once,

@@ -1,0 +1,29 @@
+From 7zip-bin electron-oh port <pc-adapter@ohos-agent.local>
+Date: Wed, 04 Nov 2026 12:00:00 +0800
+Subject: [PATCH] route Electron-OH 40 ("ohos") platform to the openharmony 7za payload
+
+Electron-OH 40 reports process.platform === "ohos" (34/37 report
+"openharmony"). The baseline @ohos-ports/7zip-bin index.js only matched
+"openharmony", so on Electron-OH 40 path7za fell through to the linux
+branch (linux/arm64/7za). This patch routes "ohos" to the openharmony
+payload so path7za stays correct across all Electron-OH targets.
+
+---
+ index.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/index.js b/index.js
+index 67ed21f..8e9d94e 100644
+--- a/index.js
++++ b/index.js
+@@ -13,7 +13,7 @@ function getPath() {
+   else if (process.platform === "win32") {
+     return path.join(__dirname, "win", process.arch, "7za.exe")
+   }
+-  else if (process.platform === "openharmony") {
++  else if (process.platform === "openharmony" || process.platform === "ohos") {
+     return path.join(__dirname, "openharmony", process.arch, "7za")
+   }
+   else {
+-- 
+2.39.2
