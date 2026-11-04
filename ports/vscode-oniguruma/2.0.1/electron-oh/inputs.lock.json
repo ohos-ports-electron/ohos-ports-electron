@@ -31,7 +31,7 @@
   },
   "requiredDistTags": [
     "latest",
-    "electron-oh"
+    "beta"
   ],
   "source": {
     "commit": "184a6e2d4603c5a31efc0a33f544be1545d9ec6b",

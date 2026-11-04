@@ -99,11 +99,11 @@ def guard(env=None):
  env=env or os.environ
  require(env.get('ENABLE_ELECTRON_OH_PUBLISH')=='1','publication disabled')
  for k,v in {'GITHUB_REPOSITORY':REPO,'GITHUB_EVENT_NAME':'push','GITHUB_REF':'refs/heads/main','GITHUB_ENVIRONMENT':'npm-publish','GITHUB_WORKFLOW_REF':REPO+'/'+WORKFLOW+'@refs/heads/main'}.items():require(env.get(k)==v,'untrusted publication context: '+k)
-def oidc_tag(tag):
+def oidc_tag(tag, method='PUT'):
  # npm dist-tag add returns early when the value already matches. Authenticate
- # without a fallback credential, then PUT that same value to verify write scope.
+ # without a fallback credential, then perform the guarded tag mutation.
  guard()
- require(tag in ['latest','electron-oh'],'unexpected distribution tag')
+ require((method=='PUT' and tag in ['latest','beta']) or (method=='DELETE' and tag=='electron-oh'),'unexpected distribution tag operation')
  url=os.environ.get('ACTIONS_ID_TOKEN_REQUEST_URL');credential=os.environ.get('ACTIONS_ID_TOKEN_REQUEST_TOKEN')
  require(url and credential and urllib.parse.urlsplit(url).scheme=='https','GitHub OIDC request identity missing')
  parts=urllib.parse.urlsplit(url);query=urllib.parse.parse_qsl(parts.query,keep_blank_values=True)
@@ -118,20 +118,27 @@ def oidc_tag(tag):
  require(isinstance(exchanged.get('token'),str) and exchanged['token'],'npm OIDC token response missing')
  print('GitHub OIDC token exchange succeeded; no fallback credential used',flush=True)
  endpoint=REGISTRY+'-/package/'+urllib.parse.quote(NAME,safe='')+'/dist-tags/'+tag
- request=urllib.request.Request(endpoint,data=json.dumps(VERSION).encode(),method='PUT',headers={'Authorization':'Bearer '+exchanged['token'],'Content-Type':'application/json'})
+ request=urllib.request.Request(endpoint,data=json.dumps(VERSION).encode() if method=='PUT' else None,method=method,headers={'Authorization':'Bearer '+exchanged['token'],'Content-Type':'application/json'})
  with urllib.request.urlopen(request,timeout=45) as response:
-  require(200<=response.status<300,'npm rejected OIDC dist-tag write');print('OIDC dist-tag PUT '+tag+': HTTP '+str(response.status),flush=True)
+  require(200<=response.status<300,'npm rejected OIDC dist-tag write');print('OIDC dist-tag '+method+' '+tag+': HTTP '+str(response.status),flush=True)
 def oidc_tags(tags):
  # A successful registry mutation can consume the exchanged identity. Use a
  # fresh exchange per operation, as separate npm dist-tag invocations do.
  for tag in tags:oidc_tag(tag)
+def wait_for_tags(attempts=12):
+ for attempt in range(attempts):
+  observed=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))['dist-tags']
+  if all(observed.get(tag)==VERSION for tag in ['latest','beta']) and 'electron-oh' not in observed:return observed
+  if attempt+1<attempts:
+   print('Waiting for beta tag migration visibility',attempt+1,flush=True);time.sleep(10)
+ raise ValueError('dist-tags not converged to latest and beta without legacy electron-oh')
 def publish(bundle):
  guard();manifest=verify(bundle);current=metadata();uploaded=False
  if current:
   require(current['dist']['integrity']==manifest['integrity'],'version exists with other bytes')
   print('already-published; continue byte and tag verification')
  else:
-  subprocess.run(['npm','publish',str(bundle/'candidate.tgz'),'--access','public','--tag','electron-oh','--ignore-scripts'],check=True);uploaded=True
+  subprocess.run(['npm','publish',str(bundle/'candidate.tgz'),'--access','public','--tag','beta','--ignore-scripts'],check=True);uploaded=True
   for attempt in range(40):
    current=metadata()
    if current:break
@@ -140,12 +147,13 @@ def publish(bundle):
  require(current['dist']['integrity']==manifest['integrity'],'registry integrity mismatch')
  raw=published_bytes(current['dist']['tarball']);require(hashlib.sha256(raw).hexdigest()==manifest['sha256'],'registry tarball changed frozen bytes')
  package=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))
- for tag in ['latest','electron-oh']:
+ require(package['dist-tags'].get('electron-oh') in [None,VERSION],'legacy tag points to another release; refusing deletion')
+ for tag in ['latest','beta']:
   value=package['dist-tags'].get(tag)
   require(value in [None,VERSION],'tag points to another release; refusing automatic rollback')
- oidc_tags(['latest','electron-oh'])
- observed=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))['dist-tags']
- require(all(observed.get(t)==VERSION for t in ['latest','electron-oh']),'dist-tags not converged')
+ oidc_tags(['latest','beta'])
+ if package['dist-tags'].get('electron-oh') is not None:oidc_tag('electron-oh',method='DELETE')
+ observed=wait_for_tags()
  print(json.dumps({'uploaded':uploaded,'registrySha256':hashlib.sha256(raw).hexdigest(),'distTags':observed},indent=2))
 def main():
  p=argparse.ArgumentParser();p.add_argument('action',choices=['verify','host','bind','publish']);p.add_argument('--bundle',type=Path,required=True);a=p.parse_args();bundle=a.bundle.resolve()

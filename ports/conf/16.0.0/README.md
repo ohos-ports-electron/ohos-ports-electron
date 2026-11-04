@@ -89,5 +89,5 @@ Only trusted main push publication in npm-publish is enabled. The candidate is
 built once; all checks and publication use the same tgz. Existing equal bytes
 are verified and tags still checked; unequal bytes, registry auth errors and
 unexpected newer tag targets are refused. Production requires both latest and
-electron-oh. Actual publication and website status are established by receipts,
+beta. Actual publication and website status are established by receipts,
 not inferred from a successful local build.

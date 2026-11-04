@@ -27,4 +27,4 @@
 
 `node` 角色 electron-only 不适用（index.js 顶层 `import('electron')`）；`electron25` 非默认矩阵（按需目标，
 本次未请求）。`publish.sh` 默认禁发；CI 仅在 main push、全部检查通过且
-`ENABLE_ELECTRON_OH_PUBLISH=1` 时放行 OIDC 发布并核验 `latest` + `electron-oh` 双标签。
+`ENABLE_ELECTRON_OH_PUBLISH=1` 时放行 OIDC 发布并核验 `latest` + `beta` 双标签。

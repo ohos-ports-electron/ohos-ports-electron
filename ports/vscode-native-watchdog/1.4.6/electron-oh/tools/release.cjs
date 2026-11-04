@@ -51,7 +51,7 @@ if (viewOk) {
   }
   if (published === lock.candidate.integrity) {
     console.log(`registry 已有同字节 ${lock.candidate.name}@${lock.candidate.version}，幂等跳过上传`)
-    console.log(`维护者手动步骤（如尚未添加）：npm dist-tag add ${lock.candidate.name}@${lock.candidate.version} electron-oh`)
+    console.log(`维护者手动步骤（如尚未添加）：npm dist-tag add ${lock.candidate.name}@${lock.candidate.version} beta`)
     process.exit(0)
   }
 } else if (!notFound) {
@@ -87,4 +87,4 @@ for (let i = 0; i < 40 && !verified; i++) {
 }
 if (!verified) { console.error('发布后 20 分钟内 registry 未回读到该版本；请人工核对后再结束'); process.exit(1) }
 console.log(`published + registry verified: ${lock.candidate.name}@${lock.candidate.version} (latest)`)
-console.log(`维护者手动步骤（OIDC 身份只覆盖 npm publish）：npm dist-tag add ${lock.candidate.name}@${lock.candidate.version} electron-oh`)
+console.log(`维护者手动步骤（OIDC 身份只覆盖 npm publish）：npm dist-tag add ${lock.candidate.name}@${lock.candidate.version} beta`)
