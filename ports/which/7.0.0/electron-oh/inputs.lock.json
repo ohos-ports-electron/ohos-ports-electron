@@ -1,0 +1,30 @@
+{
+    "schemaVersion":  1,
+    "baseline":  {
+                     "name":  "which",
+                     "version":  "7.0.0",
+                     "url":  "https://registry.npmjs.org/which/-/which-7.0.0.tgz",
+                     "sha256":  "a47e80e57446c37c6b81cb01dad85d46f0b7d456abfaedfa2a863ff3c06c2468",
+                     "integrity":  "sha512-RancgH2dmbLdHl6LRhEqvklWMgl/Hdnun0Y90KhBOLkMefg8Qa7/Zel8Sm+8HEcP6DEjzsWzpkuBQEZok58isA=="
+                 },
+    "candidate":  {
+                      "name":  "@ohos-ports-electron/which",
+                      "version":  "7.0.0-electron-oh.0",
+                      "sha256":  "03e7625336ed58bd46f0f162dd5b08152a7c8b69aefecd8542c6cc61f8082091",
+                      "integrity":  "sha512-RfXP0rN0vWktSD5HXWx5eC+eIVwyOtdA0EakI97HcrYFavFmauIM5YyJjfYkMcqg6Oll0t6G0DMm/aT4ifWWuQ==",
+                      "archiveUrl":  "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/which-evidence-7.0.0-electron-oh.0/which-7.0.0-electron-oh.0-candidate.tgz"
+                  },
+    "patches":  [
+
+                ],
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+                       "directory":  "ports/which/7.0.0"
+                   },
+    "requiredDistTags":  [
+                             "latest",
+                             "beta"
+                         ],
+    "readmeSha256":  "8ad9f9543bdee1445245b42fb7dd98ca3a0bafa6a376bf35673f671faedf9977"
+}
