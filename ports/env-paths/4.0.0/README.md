@@ -77,6 +77,6 @@ See [package/platform instructions](electron-oh/PACKAGE_README.md), [recipe deta
 
 Publication is disabled by default. The dedicated workflow permits only main push in
 ohos-ports-electron/ohos-ports-electron with npm-publish and the exact workflow identity.
-The existing version path verifies bytes and still verifies both latest and electron-oh
+The existing version path verifies bytes and still verifies both latest and beta
 tags. A different existing integrity or another tag target is rejected. Actual publication
 state is determined by npm/CI receipts, not this preparation document.
