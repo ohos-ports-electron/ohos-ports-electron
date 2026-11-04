@@ -65,8 +65,11 @@ Node and Electron-OH 25/34/37/40: 35 assertions per start, 700 total. Host CI
 replays assertions on the exact Node versions measured there and consumes the
 recorded device evidence; it does not claim a fresh device runner.
 
-This task explicitly requires `latest` and `electron-oh`; that request overrides
-the repository's default beta channel only for this port. See
+The active release channels are `latest` and `beta`, following repository policy.
+CI explicitly publishes with `--tag beta` and removes the legacy `electron-oh`
+tag only when it points to this exact verified version. The frozen patch and
+package README retain their historical tag to reproduce the same tested bytes;
+install the current channel with `npm install @ohos-ports-electron/axios@beta`. See
 [`electron-oh/README.md`](electron-oh/README.md),
 [`docs/RELEASING.md`](../../../docs/RELEASING.md) and
 [`axios-electron-oh.yml`](../../../.github/workflows/axios-electron-oh.yml).

@@ -29,27 +29,35 @@ function page(packages) {
 }
 const base = {name: '@ohos-ports-electron/conf', original_name: 'conf', latest_version: '16.0.0-electron-oh.0'};
 
-test('electron-oh is displayed separately without populating beta or changing installation policy', () => {
+test('legacy electron-oh does not populate beta or change installation policy', () => {
   const {row} = page([{...base, electron_oh_version: base.latest_version}]);
   assert.equal(row.children[2].children[0].textContent, base.latest_version);
   assert.equal(row.children[3].children[0].textContent, '—');
-  assert.equal(row.children[4].children[0].textContent, base.latest_version);
-  assert.equal(row.children[6].children[0].textContent, 'npm i @ohos-ports-electron/conf');
+  assert.equal(row.children[5].children[0].textContent, 'npm i @ohos-ports-electron/conf');
 });
 
 test('beta retains priority when both channels exist, even with a newer latest', () => {
   const {row} = page([{...base, beta_version: '15.0.0-beta.1', electron_oh_version: base.latest_version}]);
   assert.equal(row.children[3].children[0].textContent, '15.0.0-beta.1');
-  assert.equal(row.children[4].children[0].textContent, base.latest_version);
-  assert.equal(row.children[6].children[0].textContent, 'npm i @ohos-ports-electron/conf@beta');
+  assert.equal(row.children[5].children[0].textContent, 'npm i @ohos-ports-electron/conf@beta');
 });
 
 test('version suffix never invents a channel and beta filter remains beta-only', () => {
   const {row, context} = page([{...base}]);
   assert.equal(row.children[3].children[0].textContent, '—');
-  assert.equal(row.children[4].children[0].textContent, '—');
-  assert.equal(row.children[6].children[0].textContent, 'npm i @ohos-ports-electron/conf');
+  assert.equal(row.children[5].children[0].textContent, 'npm i @ohos-ports-electron/conf');
   context.currentFilter = 'beta';
   context.allPackages = [{...base, electron_oh_version: base.latest_version}];
   assert.equal(context.getFiltered().length, 0);
+});
+
+
+test('Axios beta renders the validated version and beta install command', () => {
+  const axios = {name: '@ohos-ports-electron/axios', original_name: 'axios', latest_version: '1.21.0-electron-oh.0', beta_version: '1.21.0-electron-oh.0', electron_oh_version: null};
+  const {row, context} = page([axios]);
+  assert.equal(row.children.length, 6);
+  assert.equal(row.children[3].children[0].textContent, axios.beta_version);
+  assert.equal(row.children[5].children[0].textContent, 'npm i @ohos-ports-electron/axios@beta');
+  context.currentFilter = 'beta';
+  assert.equal(context.getFiltered().length, 1);
 });
