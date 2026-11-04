@@ -97,6 +97,12 @@ function versionCell(version, className) {
   return cell;
 }
 
+function electronOhChannel(pkg) {
+  if (pkg.beta_version) return {tag: 'beta', version: pkg.beta_version};
+  if (pkg.electron_oh_version) return {tag: 'electron-oh', version: pkg.electron_oh_version};
+  return {tag: null, version: null};
+}
+
 function renderPage() {
   var tbody = document.getElementById('tbody');
   var info = document.getElementById('info');
@@ -123,12 +129,13 @@ function renderPage() {
     if (p.deprecated_message) badge.title = p.deprecated_message;
     status.append(badge);
     var install = element('td');
-    var command = 'npm i ' + p.name + (p.beta_version ? '@beta' : '');
+    var channel = electronOhChannel(p);
+    var command = 'npm i ' + p.name + (channel.tag ? '@' + channel.tag : '');
     var button = element('button', 'install-cmd', command);
     button.title = '复制安装命令';
     button.addEventListener('click', function() { copyText(command); });
     install.append(button);
-    row.append(name, original, versionCell(p.latest_version, 'stable'), versionCell(p.beta_version, 'beta'), status, install);
+    row.append(name, original, versionCell(p.latest_version, 'stable'), versionCell(channel.version, 'beta'), status, install);
     tbody.append(row);
   });
   info.textContent = '共 ' + currentData.length + ' 个包（第 ' + currentPage + '/' + totalPages + ' 页，当前 ' + displayed.length + ' 条）';
