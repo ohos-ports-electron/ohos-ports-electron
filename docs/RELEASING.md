@@ -2,6 +2,16 @@
 
 本仓库发布 scope 为 **@ohos-ports-electron**。当前自动发行接入 vscode-deviceid 和下文的 onnxruntime-node 独立流程；继承的其他上游 ports 保留为构建检查，不自动向任何 scope 发布。将它们迁入新 scope 前还需各自的 Electron 验证、包名/依赖审查和 npm Trusted Publisher 配置。
 
+## conf
+
+`conf-electron-oh.yml` builds the locked pure-JavaScript candidate once,
+checks the archived five-target device reports and runs the conf API suite
+on the exact Node versions recorded by those targets. Host CI does not run a
+fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
+frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+package trusted publisher for this exact workflow with direct publish and
+independent dist-tag permissions. See [the port](../ports/conf/16.0.0/README.md).
+
 ## 两阶段与触发条件
 
 1. PR 中或本地做适配：更新准确基线上的补丁、输入锁、构建脚本和精简验证证据。完整 demo/报告放单库仓库；不提交运行时缓存、私钥、签名 profile 或 HAP。
@@ -134,16 +144,6 @@ fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
 frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/vuex-electron/1.0.3/README.md).
-
-## conf
-
-`conf-electron-oh.yml` builds the locked pure-JavaScript candidate once,
-checks the archived five-target device reports and runs the conf API suite
-on the exact Node versions recorded by those targets. Host CI does not run a
-fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
-frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
-package trusted publisher for this exact workflow with direct publish and
-independent dist-tag permissions. See [the port](../ports/conf/16.0.0/README.md).
 
 ## electron-context-menu
 
