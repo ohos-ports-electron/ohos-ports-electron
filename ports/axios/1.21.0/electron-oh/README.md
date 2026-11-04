@@ -33,5 +33,8 @@ main-branch publication. Only the configured repository main push in
 `npm-publish` may publish. Dedicated GitHub OIDC uses axios-electron-oh.yml,
 direct publish and independent dist-tag permissions. Same-version/same-byte
 publication skips upload but still checks registry tarball and both requested
-tags. Other bytes or conflicting newer tag values are rejected. Credentials
+tags `latest` and `beta`. A matching historical `electron-oh` tag is removed only
+after beta writes succeed; conflicting versions are preserved and rejected.
+The frozen tgz keeps its historical metadata and README. The explicit CLI
+`--tag beta` controls current publication without repacking or changing version. Credentials
 are never included in this recipe or its evidence archive.

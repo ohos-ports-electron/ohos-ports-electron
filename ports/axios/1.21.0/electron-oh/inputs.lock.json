@@ -27,7 +27,7 @@
   },
   "requiredDistTags": [
     "latest",
-    "electron-oh"
+    "beta"
   ],
-  "distTag": "electron-oh"
+  "distTag": "beta"
 }

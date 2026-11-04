@@ -175,6 +175,10 @@ with direct publish and independent dist-tag permissions. See [the port](../port
 checks the archived five-target device reports and runs the axios API suite
 on the exact Node versions recorded by those targets. Host CI does not run a
 fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
-frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/axios/1.21.0/README.md).
+
+Axios uses the same beta channel as the other ports. A matching legacy
+`electron-oh` tag is removed after beta is written. The existing npm tgz,
+version suffix and historical pack metadata remain byte-identical.
