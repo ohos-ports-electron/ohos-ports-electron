@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "conf",
+    "version": "16.0.0",
+    "url": "https://registry.npmjs.org/conf/-/conf-16.0.0.tgz",
+    "sha256": "575995035d131c5120615b119e2cf7831b9feabff2962b9c70fdfedef788a93f",
+    "integrity": "sha512-CwqpY9jSpU6uYeObCwfRGqiEsd/DnU7rruwiFNapZPsOB8p2U65p+MzccEsdvg+KLis1Y1d1Mo3rKkTTzWONSA=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/conf",
+    "version": "16.0.0-electron-oh.0",
+    "sha256": "b26897ab7783b04871731cec3c2d7f8a0430676f724f400d866db07966e7ce84",
+    "integrity": "sha512-d4FJ0UwV5TC1eSv9bF76A8ktPE5ieQ/M8gAJSPmcCF8Itmn8HlyHENrF4/kBfPxxdg8knDo8g8fKiMbRpP28Zw=="
+  },
+  "patches": [
+    {
+      "path": "patchs/0001-electron-oh-distribution-metadata.patch",
+      "sha256": "072ec5263818ae1e62782813470befd0c36e3f3a347c58403c59c32a676d1345"
+    }
+  ],
+  "readmeSha256": "b0b860f1cca17eb1436df93decfee49147714234f7e486366f4be910fb396d5e",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/conf/16.0.0"
+  },
+  "requiredDistTags": [
+    "latest",
+    "electron-oh"
+  ]
+}
