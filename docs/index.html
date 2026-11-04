@@ -77,10 +77,10 @@ tr:hover{background:#fafbfc}
     <input type="text" id="search" aria-label="搜索包名或描述" placeholder="输入包名或描述搜索..." autocomplete="off">
   </div>
   <div class="result-info" id="info" role="status" aria-live="polite"></div>
-  <p class="result-info">默认版本对应 latest 标签；Electron OH 版本对应 beta 标签，安装命令优先使用 beta 标签。具体兼容范围请查看包文档。</p>
+  <p class="result-info">默认版本对应 latest 标签；Electron OH 版本对应 beta 标签，另列展示实际 electron-oh 标签。安装命令优先使用 beta 标签。具体兼容范围请查看包文档。</p>
   <div class="table-wrap">
   <table id="table">
-    <thead><tr><th>包名</th><th>原始包名</th><th>默认版本 · latest</th><th>Electron OH · beta</th><th>状态</th><th>安装</th></tr></thead>
+    <thead><tr><th>包名</th><th>原始包名</th><th>默认版本 · latest</th><th>Electron OH · beta</th><th>electron-oh 标签</th><th>状态</th><th>安装</th></tr></thead>
     <tbody id="tbody"></tbody>
   </table>
   </div>
@@ -96,6 +96,6 @@ tr:hover{background:#fafbfc}
     <p style="margin-top:8px">npm 数据定时同步；新发布的包会在下次同步后展示。</p>
   </div>
 </div>
-<script src="app.js?v=20261104-beta" defer></script>
+<script src="app.js?v=20261104-axios-channel" defer></script>
 </body>
 </html>

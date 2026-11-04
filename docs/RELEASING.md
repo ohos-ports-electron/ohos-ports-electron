@@ -168,3 +168,13 @@ contract on the exact Node versions recorded by those targets (20.18.1 / 22.17.0
 run a fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same frozen tgz, npm OIDC,
 and verifies both `latest` and `beta`. Configure the package trusted publisher for this exact workflow
 with direct publish and independent dist-tag permissions. See [the port](../ports/electron-context-menu/5.1.0/README.md).
+
+## axios
+
+`axios-electron-oh.yml` builds the locked pure-JavaScript candidate once,
+checks the archived five-target device reports and runs the axios API suite
+on the exact Node versions recorded by those targets. Host CI does not run a
+fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
+frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+package trusted publisher for this exact workflow with direct publish and
+independent dist-tag permissions. See [the port](../ports/axios/1.21.0/README.md).

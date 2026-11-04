@@ -1,0 +1,52 @@
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+-  "name": "axios",
+-  "version": "1.21.0",
++  "name": "@ohos-ports-electron/axios",
++  "version": "1.21.0-electron-oh.0",
+   "description": "Promise based HTTP client for the browser and node.js",
+   "main": "./dist/node/axios.cjs",
+   "module": "./index.js",
+@@ -63,7 +63,8 @@
+   },
+   "repository": {
+     "type": "git",
+-    "url": "https://github.com/axios/axios.git"
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/axios/1.21.0"
+   },
+   "keywords": [
+     "xhr",
+@@ -84,7 +85,7 @@
+     "Dmitriy Mozgovoy (https://github.com/DigitalBrainJS)",
+     "Nick Uraltsev (https://github.com/nickuraltsev)",
+     "Emily Morehouse (https://github.com/emilyemorehouse)",
+-    "Rubén Norte (https://github.com/rubennorte)",
++    "Rub\u00e9n Norte (https://github.com/rubennorte)",
+     "Justin Beckwith (https://github.com/JustinBeckwith)",
+     "Martti Laine (https://github.com/codeclown)",
+     "Xianming Zhong (https://github.com/chinesedfan)",
+@@ -98,7 +99,7 @@
+   "bugs": {
+     "url": "https://github.com/axios/axios/issues"
+   },
+-  "homepage": "https://axios-http.com",
++  "homepage": "https://github.com/ohos-ports-electron/ohos-ports-electron/tree/main/ports/axios/1.21.0",
+   "files": [
+     "index.js",
+     "index.d.ts",
+@@ -198,5 +199,10 @@
+   },
+   "lint-staged": {
+     "*.{js,cjs,mjs,ts,json,md,yml,yaml}": "prettier --write"
++  },
++  "publishConfig": {
++    "registry": "https://registry.npmjs.org",
++    "access": "public",
++    "tag": "electron-oh"
+   }
+-}
+\ No newline at end of file
++}
