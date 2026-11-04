@@ -22,6 +22,7 @@ on:
       - 'windows-foreground-love build and npm publish'
       - 'address build and npm publish'
       - 'bytenode build and npm publish'
+      - 'compressing build and npm publish'
       - 'vuex-electron build and npm publish'
       - 'electron-context-menu build and npm publish'
     types: [completed]
