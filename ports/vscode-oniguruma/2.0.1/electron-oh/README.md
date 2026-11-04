@@ -23,5 +23,5 @@ first-publish expiry are documented at https://docs.npmjs.com/trusted-publishers
 First publication may need a personal browser 2FA bootstrap; record the actual
 authentication method and scope, and do not treat a tag write as proof that
 a future direct OIDC upload has been validated. Expected tags: latest and
-electron-oh. The registered successful main publish triggers the npm-driven
+beta. The registered successful main publish triggers the npm-driven
 catalog refresh. The website is checked against actual registry data.

@@ -100,6 +100,6 @@ See [package instructions](electron-oh/PACKAGE_README.md),
 
 Publication is disabled by default. Only a trusted main push to the exact
 repository/workflow in npm-publish can publish. Existing identical bytes are
-checked and both latest and electron-oh tags are still verified. Different
+checked and both latest and beta tags are still verified. Different
 existing bytes or tags pointing at another release are rejected. Actual online
 publication is established by registry/CI receipts, not this build recipe.

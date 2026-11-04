@@ -1,5 +1,7 @@
 # 构建与自动发布
 
+Electron OH 专用 npm 标签统一为 `beta`，原先维护 `latest` 和 `electron-oh` 的流程改为维护 `latest` 和 `beta`。自动发布不得创建 `electron-oh` dist-tag；已有旧标签仅在指向当前已校验候选时迁移并删除。冻结 tgz 中历史 publishConfig.tag 与版本号的 electron-oh 后缀保持原字节，原先使用旧标签的发布入口显式改为 `--tag beta`，避免重新打包已发布版本。
+
 本仓库发布 scope 为 **@ohos-ports-electron**。当前自动发行接入 vscode-deviceid 和下文的 onnxruntime-node 独立流程；继承的其他上游 ports 保留为构建检查，不自动向任何 scope 发布。将它们迁入新 scope 前还需各自的 Electron 验证、包名/依赖审查和 npm Trusted Publisher 配置。
 
 ## conf
@@ -9,7 +11,7 @@ checks the archived five-target device reports and runs the conf API suite
 for their exact Node versions. The 18.15.0 role uses upstream host Electron
 25.3.2 RUN_AS_NODE for its newer V8; standalone Node 18 is unsupported. Host CI does not run a
 fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
-frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/conf/16.0.0/README.md).
 
@@ -111,7 +113,7 @@ environment 限 main 分支；native 和脱敏设备证据使用固定 GitHub Re
 checks the archived five-target device reports and runs the filesystem suite
 on the exact Node versions recorded by those targets. Host CI does not run a
 fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
-frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/fs-extra/11.4.1/README.md).
 
@@ -121,7 +123,7 @@ independent dist-tag permissions. See [the port](../ports/fs-extra/11.4.1/README
 checks the archived five-target device reports and runs the filesystem suite
 on the exact Node versions recorded by those targets. Host CI does not run a
 fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
-frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/tar/7.5.22/README.md).
 
@@ -131,7 +133,7 @@ independent dist-tag permissions. See [the port](../ports/tar/7.5.22/README.md).
 checks the archived five-target device reports and runs the regex suite
 on the exact Node versions recorded by those targets. Host CI does not run a
 fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
-frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/vscode-oniguruma/2.0.1/README.md).
 
@@ -142,7 +144,7 @@ once, checks the archived three-target device reports (electron34/37/40; node ro
 electron-only not-applicable and electron25 is excluded), and runs the host identity/hash
 contract on the exact Node versions recorded by those targets. Host CI does not run a
 fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
-frozen tgz, npm OIDC, and verifies both `latest` and `electron-oh`. Configure the
+frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/vuex-electron/1.0.3/README.md).
 
@@ -153,5 +155,5 @@ once, checks the archived three-target device reports (electron34/37/40; node ro
 electron-only not-applicable and electron25 is not in the default matrix), and runs the host identity/hash
 contract on the exact Node versions recorded by those targets (20.18.1 / 22.17.0 / 24.11.1). Host CI does not
 run a fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same frozen tgz, npm OIDC,
-and verifies both `latest` and `electron-oh`. Configure the package trusted publisher for this exact workflow
+and verifies both `latest` and `beta`. Configure the package trusted publisher for this exact workflow
 with direct publish and independent dist-tag permissions. See [the port](../ports/electron-context-menu/5.1.0/README.md).

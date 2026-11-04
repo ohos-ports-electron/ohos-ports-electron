@@ -99,7 +99,6 @@ function versionCell(version, className) {
 
 function electronOhChannel(pkg) {
   if (pkg.beta_version) return {tag: 'beta', version: pkg.beta_version};
-  if (pkg.electron_oh_version) return {tag: 'electron-oh', version: pkg.electron_oh_version};
   return {tag: null, version: null};
 }
 

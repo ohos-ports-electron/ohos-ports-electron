@@ -86,7 +86,7 @@ jobs:
         with:
           name: electron-context-menu-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/bundle
-      - name: Publish frozen bytes and verify latest and electron-oh tags
+      - name: Publish frozen bytes and verify latest and beta tags
         env:
           ENABLE_ELECTRON_OH_PUBLISH: '1'
           ELECTRON_OH_BUNDLE: ${{ runner.temp }}/bundle
