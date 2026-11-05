@@ -31,6 +31,7 @@ on:
       - 'which build and npm publish'
       - 'better-sqlite3-multiple-ciphers build and npm publish'
       - '7zip-bin build and npm publish'
+      - 'once build and npm publish'
     types: [completed]
   schedule:
     # 每天北京时间凌晨 2:17（UTC 18:17），实际运行时间由 GitHub 调度。
