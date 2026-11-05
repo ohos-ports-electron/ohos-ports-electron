@@ -28,11 +28,23 @@ def read(p):return json.loads(Path(p).read_text())
 def require(value,message):
  if not value:raise ValueError(message)
 def get(url):
- try:
-  with urllib.request.urlopen(url,timeout=45) as r:return r.read()
- except urllib.error.HTTPError as e:
-  if e.code==404:return None
-  raise
+ # Release URLs redirect to short-lived signed asset URLs. Request a fresh
+ # redirect rather than reusing an intermediary's stale redirect response.
+ for attempt in range(3):
+  current=url;parts=urllib.parse.urlsplit(url)
+  if parts.hostname=='github.com' and '/releases/download/' in parts.path:
+   query=urllib.parse.parse_qsl(parts.query,keep_blank_values=True)+[('_open_evidence_nonce',str(time.time_ns()))]
+   current=urllib.parse.urlunsplit(parts._replace(query=urllib.parse.urlencode(query)))
+  request=urllib.request.Request(current,headers={'Cache-Control':'no-cache','User-Agent':'open-electron-oh-release'})
+  try:
+   with urllib.request.urlopen(request,timeout=45) as response:return response.read()
+  except urllib.error.HTTPError as error:
+   if error.code==404:return None
+   if error.code not in [502,503,504] or attempt==2:raise
+  except (urllib.error.URLError,TimeoutError):
+   if attempt==2:raise
+  print('Transient download failure; bounded retry '+str(attempt+1)+'/2',flush=True)
+  time.sleep(attempt+1)
 def metadata():
  data=get(REGISTRY+urllib.parse.quote(NAME,safe='')+'/'+VERSION)
  return json.loads(data) if data else None
