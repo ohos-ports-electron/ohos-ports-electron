@@ -1,0 +1,28 @@
+{
+    "schemaVersion": 1,
+    "baseline": {
+        "name": "jimp",
+        "version": "1.6.1",
+        "url": "https://registry.npmjs.org/jimp/-/jimp-1.6.1.tgz",
+        "sha256": "e47160ebd3ba4aa08237de946b87b66deb846c0967ad251c1b1b4dafcf0101f6",
+        "integrity": "sha512-hNQh6rZtWfSVWSNVmvq87N5BPJsNH7k7I7qyrXf9DOma9xATQk3fsyHazCQe51nCjdkoWdTmh0vD7bjVSLoxxw=="
+    },
+    "candidate": {
+        "name": "@ohos-ports-electron/jimp",
+        "version": "1.6.1-electron-oh.0",
+        "sha256": "7e170014c1108cdf138a488ed8e5fb5bd67c70adfd831c7867b3274ff80d0e83",
+        "integrity": "sha512-vhuShWtVls8Z8WeTqwlI/amzzKrdZqGKMJ9ZMbK9AwDX9SnQSwW5bqaFnwotbqSkqrQTh8LF7idmkILWWxYGCw==",
+        "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/jimp-evidence-1.6.1-electron-oh.0/jimp-1.6.1-electron-oh.0-candidate.tgz"
+    },
+    "patches": [],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+        "directory": "ports/jimp/1.6.1"
+    },
+    "requiredDistTags": [
+        "latest",
+        "beta"
+    ],
+    "readmeSha256": "0f0fcc2f310638268fbc1ac36e0296aa43fd7f5db68a61aba9ee19e1f6bfa67c"
+}
