@@ -1,5 +1,6 @@
 {
   "schemaVersion": 1,
+  "upstreamName": "@scrypted/prebuild-install",
   "baseline": {
     "name": "@scrypted/prebuild-install",
     "version": "7.1.3",
