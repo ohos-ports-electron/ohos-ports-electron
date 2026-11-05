@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "@ohos-ports/node-machine-id",
+    "version": "1.1.12-beta.0",
+    "url": "https://registry.npmjs.org/@ohos-ports/node-machine-id/-/node-machine-id-1.1.12-beta.0.tgz",
+    "sha256": "47c4bdf80bf23e1b541ab6d2e1a034a186b55709e9a58dc5006ad991d5942608",
+    "integrity": "sha512-Z0daH8Mja3eoNJba7XBNvBsliasjibE/0d7TQLAiNewbpW/uXMm9ih9+PXdG91l0wp4tjhdGdxjaV9akysDf7A=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/node-machine-id",
+    "version": "1.1.12-electron-oh.0",
+    "sha256": "1302110804426fcb85f79309e6037d119f3e821d1c007de9824ec342b97d1a36",
+    "integrity": "sha512-VMqh8KzVKN444Jsx5eCp1dkx1i0RH2AnebJwx+8Whe6M3bhrGpnscnW8+NLJDYjvENYWUSxbzMehT5Rg0hE/Gw=="
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/node-machine-id/1.1.12"
+  },
+  "distTag": "beta",
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ],
+  "patches": [
+    {
+      "path": "patchs/0001-harmony-shell-free-installation-id.patch",
+      "sha256": "efddeb98cbe0d3b9b762e84024adcac8f40b78725dfcec5b8b9b33078744239b"
+    },
+    {
+      "path": "patchs/0002-electron-oh-distribution.patch",
+      "sha256": "f054a85eb029a61d374ce19b444a495c21e3e6a52b5e8e004e0f2bed6a7d4222"
+    },
+    {
+      "path": "patchs/0003-use-writable-application-storage.patch",
+      "sha256": "826057697dfa3575076f8a5703a080d549b245417b93f69562b003e3e0b8308b"
+    }
+  ],
+  "readmeSha256": "a1c8f8ecdd3fd42ab83991c173918e7fafbf467be72221579f535a28cdcb2bd7"
+}

@@ -1,0 +1,19 @@
+--- a/harmony.cjs
++++ b/harmony.cjs
+@@ -7,8 +7,14 @@
+   try{const value=normalize(fs.readFileSync(file,'utf8'));if(value)return value;}
+   catch(error){if(!['ENOENT','EACCES','EPERM','ENOTDIR'].includes(error.code))throw error;}
+  }
+- const home=os.homedir()||process.env.HOME;
+- if(!home)throw new Error('Cannot persist installation ID: home directory is unavailable');
++ const explicit=process.env.OHOS_MACHINE_ID_DIR;
++ let home;
++ for(const dir of explicit?[explicit]:['/data/storage/el2/base/files',os.homedir()||process.env.HOME]){
++  if(!dir)continue;
++  if(!path.isAbsolute(dir))throw new Error('Installation ID directory must be absolute');
++  try{fs.accessSync(dir,fs.constants.W_OK);home=dir;break;}catch(error){if(explicit)throw error;}
++ }
++ if(!home)throw new Error('Cannot persist installation ID: no writable app files or home directory; set OHOS_MACHINE_ID_DIR');
+  const file=path.join(home,'.node-machine-id');
+  function read(){const value=normalize(fs.readFileSync(file,'utf8'));if(!/^[a-f0-9]{32}$/.test(value))throw new Error('Invalid persisted installation ID: '+file);return value;}
+  try{return read();}catch(error){if(error.code!=='ENOENT')throw error;}

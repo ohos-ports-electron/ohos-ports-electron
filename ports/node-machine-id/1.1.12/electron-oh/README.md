@@ -1,0 +1,3 @@
+# Reproduction and evidence
+
+inputs.lock.json fixes original package and candidate identity, hashes, patches, repository, and beta/latest channel. package-inventory.json records every candidate member. tools/build.py safely replays patches and canonicalizes tgz metadata. tools/release.py checks current recipe/artifact identity, exact bytes and recorded five-target evidence; its publication guards reject forks, pull requests, manual runs and other branches. tests contain real host filesystem/crypto regression and explicitly simulated platform/error cases. release-evidence.json points to a public checked archive with original device reports, assertions, runIds and PIDs. No credentials or runtime/HAP binaries enter this recipe or evidence archive.

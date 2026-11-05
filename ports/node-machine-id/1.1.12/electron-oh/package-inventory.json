@@ -1,0 +1,18 @@
+{
+  ".babelrc": "963bec7be84dc46cb84285e0f712f0daa7bbe824779b25ed3cfac21f59ae67af",
+  ".eslintignore": "790e3169bc19b046fe55ba1da6d13b976c28363c8c00462a2195fe5faf260910",
+  ".eslintrc": "cefb8edd3be143b1fe0a8c3279674cc751520fe004e2fd82693b9112bcb6e598",
+  ".flowconfig": "b505ec7300a2462f36c60a2ab6f7b204d710acb7d576337a9f52700eb8bdf28a",
+  "LICENSE": "e6466a9964b3281c7048b0f318f4d24113a8e01941fb5268da55741150c98851",
+  "README.md": "a1c8f8ecdd3fd42ab83991c173918e7fafbf467be72221579f535a28cdcb2bd7",
+  "README.upstream.md": "bc3e8f19effd7c43e220e043e50e600dc2cdc7304ead9af1c6e7f7d8eae15e5a",
+  "dist/index.js": "5c659f086885baee178f130f1a5e2cd07fce29710d1e4e3fd7328b6d83018860",
+  "dist/upstream.cjs": "d909aaf3ab9db01d8d7e02bae664925e5102b4a50f736449cd210edf4ada8134",
+  "harmony.cjs": "c9110b9fe804a5a0c4340060257203ba3d8200fa0864c884b8cf37cd43bc7f90",
+  "index.js": "019a4433bdda57ea3fd272fc1523d8e65d3a616b20bdc2ae73fff70599af8b0c",
+  "index.mjs": "07ccac4f184d8e42d8f4cbe1e0f9b4a62b2b3850f1f0fae2fe766fd49a20acc9",
+  "package.json": "033cc213c10ad086214f7eaf86559c01d690477e41abc06186a83382fc184561",
+  "tests/index.js": "04dafdfac2e074d19f5500374ec9e907504d60b1d591a0a51d1d1d4588ce5dfa",
+  "types/index.d.ts": "9f907214c6ea10cbfb580fd73687433a4bc7dc45904a8b4ef6febb2770b006f5",
+  "webpack.config.babel.js": "19f3e06fa8a714fcbb5cfa4702aaf97fe820db4a52f9fbb35c9df2c16564e30c"
+}
