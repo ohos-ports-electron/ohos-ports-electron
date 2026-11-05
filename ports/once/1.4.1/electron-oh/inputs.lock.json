@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "once",
+    "version": "1.4.1",
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/once-evidence-1.4.1-electron-oh.0/once-1.4.1-baseline.tgz",
+    "sha256": "70a8a88b51119042ca945d650b61416cf06beb8c345664d7ae6bfa1cf2856df7",
+    "integrity": "sha512-IBn7TrRJ6sR1pP/O9nd0RZLSdqtaHhIXGAnwbcNauehamsQT8rLoyI4nyqJjo+odbMPvgrIg+y3Zgn7YCs/BwQ=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/once",
+    "version": "1.4.1-electron-oh.0",
+    "sha256": "108e68e10d4d07dfd366c3f88f744e080ab7a9ab6eeb56fb2084c8d5debc35cd",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/once-evidence-1.4.1-electron-oh.0/once-1.4.1-electron-oh.0-candidate.tgz",
+    "integrity": "sha512-u6jdQN/253f/OeF2Q2YjpbYNJAnfYAmeah36LEP2dLhGiBlony3XlUw+GntuGZH0nYFXIz3qpQ+dF5Hm6xYv6g=="
+  },
+  "patches": [],
+  "readmeSha256": "37458e18d7786bb4a47fcc95cf9fe334e76a6b0646adafc974c29a935a2b2a3a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/once/1.4.1"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ]
+}
