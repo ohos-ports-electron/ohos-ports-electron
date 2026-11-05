@@ -1,0 +1,12 @@
+{
+  "LICENSE": "ccf06b70760761ae1437395117bcf911501e3dc85385d84c7eba20d5dfab55dd",
+  "README.md": "047ef6e299824bd24ddef4c60b793f9e6b8fbd99b2254412832fb1baedbaf8b2",
+  "README.upstream.md": "a32e9f0708ca0b5524cacb42d32f63503c5ffd4df4cae539274e50acc00c9370",
+  "THIRD_PARTY_NOTICES.md": "259d640c1461cb2521e91526f1e90a470e132cd3ddba0c2bb4ae95295b5e86b0",
+  "bin/ohos-arm64/rg": "e152ea689d6e8420357e592f0d8253b96476c164118ca3e6e13074fa1705ddda",
+  "lib/index.d.ts": "c2ced1bcbade0c6f4873ae2fad6d382c849f129b74bdc86f204e2443fe79fed1",
+  "lib/index.js": "a68bd6b697ea5d73ff76ce9f133f1287acfc603e2f1cfa83c3adb5c8bc45a22a",
+  "licenses/ripgrep-LICENSE-MIT": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
+  "licenses/vscode-ripgrep-native-LICENSE": "ccf06b70760761ae1437395117bcf911501e3dc85385d84c7eba20d5dfab55dd",
+  "package.json": "c96152c8066a918247b617dac504c3a32421a38b73c4fbd085e7d5ae785b55ed"
+}

@@ -182,3 +182,22 @@ independent dist-tag permissions. See [the port](../ports/axios/1.21.0/README.md
 Axios uses the same beta channel as the other ports. A matching legacy
 `electron-oh` tag is removed after beta is written. The existing npm tgz,
 version suffix and historical pack metadata remain byte-identical.
+
+## vscode-ripgrep
+
+`vscode-ripgrep-electron-oh.yml` reconstructs the locked @vscode/ripgrep 1.18.0
+wrapper plus matching unchanged upstream static arm64 musl binary, binds one
+frozen tgz and checks the archived five-target two-cold-start device evidence.
+Each candidate start has 24 real rgPath/search/Worker assertions. Original
+OHOS platform loading fails; its dependent searches are recorded as not-run.
+CI separately runs host native search/Worker and explicitly simulated routing
+on the five actual Node versions; it has no fresh device runner.
+
+Only a trusted main push may upload the same frozen candidate via GitHub-hosted
+OIDC in npm-publish. The package-specific trusted publisher must name this exact
+workflow and independently allow direct publish and dist-tag maintenance.
+Both latest and beta are verified even when same-byte upload is skipped.
+First account/package creation and later OIDC validation are separate facts.
+The official prebuilt release label v15.0.1 contains core ripgrep 15.0.0; the
+binary's actual version and MIT provenance are preserved in the recipe.
+See [the port](../ports/vscode-ripgrep/1.18.0/README.md).

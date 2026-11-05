@@ -1,0 +1,41 @@
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+-  "name": "@vscode/ripgrep",
+-  "version": "1.18.0",
++  "name": "@ohos-ports-electron/vscode-ripgrep",
++  "version": "1.18.0-electron-oh.0",
+   "description": "A module for using ripgrep in a Node project",
+   "type": "module",
+   "main": "./lib/index.js",
+@@ -14,11 +14,15 @@
+   "files": [
+     "lib/",
+     "LICENSE",
+-    "README.md"
++    "README.md",
++    "bin/ohos-arm64/",
++    "THIRD_PARTY_NOTICES.md",
++    "licenses/"
+   ],
+   "repository": {
+     "type": "git",
+-    "url": "https://github.com/microsoft/vscode-ripgrep"
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/vscode-ripgrep/1.18.0"
+   },
+   "author": "Rob Lourens",
+   "license": "MIT",
+@@ -35,5 +39,11 @@
+     "@vscode/ripgrep-linux-riscv64": "1.18.0",
+     "@vscode/ripgrep-linux-s390x": "1.18.0",
+     "@vscode/ripgrep-linux-ia32": "1.18.0"
++  },
++  "homepage": "https://github.com/ohos-ports-electron/ohos-ports-electron/tree/main/ports/vscode-ripgrep/1.18.0",
++  "publishConfig": {
++    "registry": "https://registry.npmjs.org",
++    "access": "public",
++    "tag": "beta"
+   }
+ }
