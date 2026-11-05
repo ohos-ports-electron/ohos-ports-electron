@@ -1,0 +1,14 @@
+{
+  "npmBinaryPackage": "@vscode/ripgrep-linux-arm64@1.18.0",
+  "officialArchive": "https://github.com/microsoft/ripgrep-prebuilt/releases/download/v15.0.1/ripgrep-v15.0.1-aarch64-unknown-linux-musl.tar.gz",
+  "officialArchiveSha256": "dd3738a4b6e8df0fb3bc3edc5af352c4c39e0d97ad118a23e5176bdc5d48ba08",
+  "prebuiltRepository": "https://github.com/microsoft/ripgrep-prebuilt",
+  "prebuiltRevision": "67202aaafb17aecd9b5b7046d5b7baa92b05237a",
+  "prebuiltTag": "v15.0.1",
+  "coreRepository": "https://github.com/BurntSushi/ripgrep",
+  "coreTag": "15.0.0",
+  "configSource": "https://github.com/microsoft/ripgrep-prebuilt/blob/v15.0.1/config.json",
+  "sourcePatch": "0001-resolve-binskim-issues.patch",
+  "matchesNpmAndLocalReference": true,
+  "newNativeCompilation": false
+}

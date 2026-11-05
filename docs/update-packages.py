@@ -129,6 +129,31 @@ def find_original_name(short_name, packument_data):
     return short_name
 
 
+def declared_original_name(name, version):
+    """Use an explicit, version-matched recipe identity before name guesses/cache."""
+    if not version:
+        return None
+    root = os.path.realpath(PORTS_DIR)
+    matches = set()
+    for port, upstream_version in get_ports_packages().items():
+        filename = os.path.realpath(os.path.join(
+            root, port, upstream_version, "electron-oh", "inputs.lock.json"))
+        if not filename.startswith(root + os.sep):
+            continue
+        try:
+            with open(filename, encoding="utf-8") as source:
+                lock = json.load(source)
+            candidate = lock.get("candidate", {})
+            original = lock.get("upstreamName")
+            if (candidate.get("name") == name and candidate.get("version") == version
+                    and isinstance(original, str)
+                    and re.fullmatch(r"(?:@[a-z0-9][a-z0-9._-]*/)?[a-z0-9][a-z0-9._-]*", original)):
+                matches.add(original)
+        except (OSError, ValueError, TypeError, AttributeError):
+            continue
+    return next(iter(matches)) if len(matches) == 1 else None
+
+
 def fetch_package_detail(name, cache=None):
     """获取单个包的完整 packument，提取 dist-tags 和 description"""
     url = f"{REGISTRY}/{name}"
@@ -163,10 +188,14 @@ def fetch_package_detail(name, cache=None):
     # 检查最新版是否被废弃
     deprecated_msg = latest_info.get("deprecated", "")
 
-    # 查找原始包名：优先使用缓存，仅对新增包查询 npm
+    # 查找原始包名：精确版本的配方声明优先，其次缓存，再查询 npm
     short_name = name.removeprefix(NPM_SCOPE)
     cached = cache.get(name) if cache else None
-    if cached:
+    declared = declared_original_name(name, latest or beta)
+    if declared:
+        original_name = declared
+        original_npm_url = f"https://www.npmjs.com/package/{original_name}"
+    elif cached:
         original_name = cached["original_name"]
         original_npm_url = cached.get("original_npm_url") or f"https://www.npmjs.com/package/{original_name}"
     else:

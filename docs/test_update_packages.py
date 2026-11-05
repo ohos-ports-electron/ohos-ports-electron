@@ -2,6 +2,8 @@
 import importlib.util
 from pathlib import Path
 import unittest
+import json
+import tempfile
 from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location("update_packages", Path(__file__).with_name("update-packages.py"))
@@ -50,6 +52,33 @@ class PackageDescription(unittest.TestCase):
         package = self.detail({"dist-tags": {"latest": "2.0.0-electron-oh.0", "beta": "2.0.0-electron-oh.0"}, "versions": {}})
         self.assertEqual(package["beta_version"], "2.0.0-electron-oh.0")
         self.assertIsNone(package["electron_oh_version"])
+
+
+class DeclaredUpstream(unittest.TestCase):
+    def detail(self, declaration, version="1.18.0-electron-oh.0"):
+        name = "@ohos-ports-electron/vscode-ripgrep"
+        with tempfile.TemporaryDirectory() as directory:
+            lock = Path(directory) / "vscode-ripgrep/1.18.0/electron-oh/inputs.lock.json"
+            lock.parent.mkdir(parents=True)
+            lock.write_text(json.dumps({
+                "candidate": {"name": name, "version": "1.18.0-electron-oh.0"},
+                "upstreamName": declaration,
+            }))
+            data = {"name": name, "dist-tags": {"latest": version}, "versions": {version: {}}}
+            cache = {name: {"original_name": "vscode-ripgrep"}}
+            with patch.object(catalog, "PORTS_DIR", directory), patch.object(catalog, "fetch_json", return_value=data), patch.object(catalog, "package_exists", side_effect=AssertionError("unexpected name guess")):
+                return catalog.fetch_package_detail(name, cache)
+
+    def test_scoped_recipe_identity_replaces_an_ambiguous_cached_guess(self):
+        package = self.detail("@vscode/ripgrep")
+        self.assertEqual(package["original_name"], "@vscode/ripgrep")
+        self.assertEqual(package["original_npm_url"], "https://www.npmjs.com/package/@vscode/ripgrep")
+
+    def test_declaration_for_another_version_keeps_existing_cache(self):
+        self.assertEqual(self.detail("@vscode/ripgrep", "0.0.0-stage")["original_name"], "vscode-ripgrep")
+
+    def test_invalid_package_identity_keeps_existing_cache(self):
+        self.assertEqual(self.detail("../../invalid")["original_name"], "vscode-ripgrep")
 
 
 if __name__ == "__main__":

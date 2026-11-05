@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "@vscode/ripgrep",
+    "version": "1.18.0",
+    "url": "https://registry.npmjs.org/@vscode/ripgrep/-/ripgrep-1.18.0.tgz",
+    "sha256": "6d12c8978be61caa15721b226583b52d1a0397a3a1745296f7c7cfa387249069",
+    "integrity": "sha512-ns5lWe44tSfbTMbVUsyB+I1819PVSw4AdpgK0RNkzfWfwy6+3IUNSxwSrfTno1/oWaS/hERNz+XLWVyga2aJBQ=="
+  },
+  "native": {
+    "name": "@vscode/ripgrep-linux-arm64",
+    "version": "1.18.0",
+    "url": "https://registry.npmjs.org/@vscode/ripgrep-linux-arm64/-/ripgrep-linux-arm64-1.18.0.tgz",
+    "sha256": "2d65504a71ea421d1c457177ebefcbe0d2d3a1f60f9709b6337f1d933553064b",
+    "integrity": "sha512-lQ/5zTG++U0E3IhVgS4EPTTn/U4okncaRMM5GOFfOYZywS4nuD31GhkHbNYlDk5CuDC68+hYJ0/eQeyCKJDA+g==",
+    "binarySha256": "e152ea689d6e8420357e592f0d8253b96476c164118ca3e6e13074fa1705ddda",
+    "binaryPath": "bin/ohos-arm64/rg",
+    "source": "npm-matching upstream precompiled artifact; no new native compile claimed",
+    "provenance": {
+      "npmBinaryPackage": "@vscode/ripgrep-linux-arm64@1.18.0",
+      "officialArchive": "https://github.com/microsoft/ripgrep-prebuilt/releases/download/v15.0.1/ripgrep-v15.0.1-aarch64-unknown-linux-musl.tar.gz",
+      "officialArchiveSha256": "dd3738a4b6e8df0fb3bc3edc5af352c4c39e0d97ad118a23e5176bdc5d48ba08",
+      "prebuiltRepository": "https://github.com/microsoft/ripgrep-prebuilt",
+      "prebuiltRevision": "67202aaafb17aecd9b5b7046d5b7baa92b05237a",
+      "prebuiltTag": "v15.0.1",
+      "coreRepository": "https://github.com/BurntSushi/ripgrep",
+      "coreTag": "15.0.0",
+      "configSource": "https://github.com/microsoft/ripgrep-prebuilt/blob/v15.0.1/config.json",
+      "sourcePatch": "0001-resolve-binskim-issues.patch",
+      "matchesNpmAndLocalReference": true,
+      "newNativeCompilation": false
+    }
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/vscode-ripgrep",
+    "version": "1.18.0-electron-oh.0",
+    "sha256": "a5e35cccc67aaf63dbb37fdbb230cc4e5e5f1f18bfdfff58b45d86cbc4cd0736",
+    "integrity": "sha512-hlly8mDLVr4n96pdSgymJbVQ4ErshgNQ3dmSEDl3EHbHx4DhBblJcCWyBfgQZD5YQXoD/2a7G7v2ydqUGfKrmw=="
+  },
+  "patches": [
+    {
+      "path": "patchs/0001-ohos-binary-path.patch",
+      "sha256": "7e907ee5253f3c5ed77613740639a0b067d8e6f9babe4532d70c08a4f13f7646"
+    },
+    {
+      "path": "patchs/0002-distribution-metadata.patch",
+      "sha256": "21e58ccb0533b91cc1e1b084196023fd4d8971c4be8d485ba99d8f67243c2ec5"
+    }
+  ],
+  "readmeSha256": "047ef6e299824bd24ddef4c60b793f9e6b8fbd99b2254412832fb1baedbaf8b2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/vscode-ripgrep/1.18.0"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ],
+  "distTag": "beta",
+  "nativeLicenseSha256": "ccf06b70760761ae1437395117bcf911501e3dc85385d84c7eba20d5dfab55dd",
+  "ripgrepLicense": {
+    "url": "https://raw.githubusercontent.com/BurntSushi/ripgrep/15.0.0/LICENSE-MIT",
+    "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+  },
+  "noticesSha256": "259d640c1461cb2521e91526f1e90a470e132cd3ddba0c2bb4ae95295b5e86b0",
+  "bootstrap": {
+    "method": "unapproved metadata-only npm stage for new package identity",
+    "placeholderVersion": "0.0.0-stage",
+    "stagedVersion": "0.0.0-bootstrap",
+    "stageId": "f63bdb48-db49-45e8-b4a8-f6883bbde964",
+    "formalVersionUploaded": false
+  },
+  "runtimeConditions": {
+    "electron40": {
+      "engineSha256": "3afb83871ad71c991003873925bd40d0cebb27e13fbd1844070cc221b9e6de46",
+      "helperId": "electron40-child-reaper-3afb8387",
+      "helperSha256": "adbfb795e6f1cc39d9a657f14ebbb0ded377cb00d5c0b38fb175da0bed7c94ee",
+      "manifestSha256": "51e9c9e4f5e301d2b1ff1a994205c959130257c99e8afe54f6ec7ce336559d1d",
+      "scope": "Asynchronous child_process.spawn in Worker; synchronous spawning remains unsupported",
+      "packageContainsHelper": false
+    }
+  },
+  "upstreamName": "@vscode/ripgrep"
+}

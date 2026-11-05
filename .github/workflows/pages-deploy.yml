@@ -17,6 +17,7 @@ on:
       - 'vscode-textmate build and npm publish'
       - 'vscode-native-watchdog build and npm publish'
       - 'axios build and npm publish'
+      - 'vscode-ripgrep build and npm publish'
       - 'conf build and npm publish'
       - 'vscode-oniguruma build and npm publish'
       - 'tar build and npm publish'
