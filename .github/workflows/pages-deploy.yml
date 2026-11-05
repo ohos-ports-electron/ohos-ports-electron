@@ -18,6 +18,7 @@ on:
       - 'vscode-native-watchdog build and npm publish'
       - 'axios build and npm publish'
       - 'open build and npm publish'
+      - 'node-machine-id build and npm publish'
       - 'vscode-ripgrep build and npm publish'
       - 'conf build and npm publish'
       - 'vscode-oniguruma build and npm publish'
