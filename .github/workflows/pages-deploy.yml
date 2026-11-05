@@ -29,6 +29,7 @@ on:
       - 'electron-context-menu build and npm publish'
       - 'env-paths build and npm publish'
       - 'which build and npm publish'
+      - 'better-sqlite3-multiple-ciphers build and npm publish'
       - '7zip-bin build and npm publish'
     types: [completed]
   schedule:

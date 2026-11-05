@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "better-sqlite3-multiple-ciphers",
+    "version": "13.0.4-beta.0",
+    "npmUrl": "https://www.npmjs.com/package/better-sqlite3-multiple-ciphers",
+    "registry": "https://registry.npmjs.org",
+    "url": "https://registry.npmjs.org/better-sqlite3-multiple-ciphers/-/better-sqlite3-multiple-ciphers-13.0.4-beta.0.tgz",
+    "sha256": "0ad755e2ac1e9efe6feb68903605c2af43ae2eee6a96ae4939f2719f4b20daee",
+    "integrity": "sha512-Ns6ubkKhogG/1xciwuR9bf3ZQQH/Ju+QLS6UTwygM60rJQytgI2UyU3YPZiZbUK0yiXnaPW+g/MQSkoWwilhwg==",
+    "fileCount": 68
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/better-sqlite3-multiple-ciphers",
+    "version": "13.0.4-beta.0-electron-oh.0",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+      "directory": "ports/better-sqlite3-multiple-ciphers/13.0.4-beta.0"
+    },
+    "prebuiltDeviceNodeSha256": "756001b0bbe900d13ce8bd4b3e826cd13fa852ad72dd707a69ecec8a87e14292",
+    "sha256": "00c8545dc482eed2ca7a280a87ae8f9f604bf65fca69b5d1b5657df66d5f8d7b",
+    "tarSha256": "0ff7f51cf75c6f39f1f888a6c4fa61dee498203e9c3a88fff073cd042ea31c4d",
+    "integrity": "sha512-EN94fLscCK5L+CnmrvZVsr/UnIGF8hDlHhgLBJdoxE4leSSfW9ky4IiOse2DOAZcIzC0D1Q9ZNH87LA5sjCZ5Q==",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/better-sqlite3-multiple-ciphers-evidence-13.0.4-beta.0-electron-oh.0/better-sqlite3-multiple-ciphers-13.0.4-beta.0-electron-oh.0-candidate.tgz"
+  },
+  "patches": [
+    {
+      "file": "patchs/0001-ohos-environment-adaptation.patch",
+      "sha256": "c215ab24136d2dc06abbceb91a28d21e886e143dce26d5da54a8804e622276a3",
+      "scope": "source working tree (test/ runtime adaptation + lib static entries); the npm candidate applies the lib/ + package.json subset in electron-oh/tools/build.py"
+    }
+  ],
+  "runtimeLock": {
+    "node": {
+      "version": "24.13.0",
+      "binarySha256": "52c780bdaeb3309dd81036e6fa276453bf7a889afd7657751031d97eeef025ff"
+    },
+    "electronReference": {
+      "engine": "Electron-OH 37.2.0",
+      "libelectronSha256": "8f865ffdd4eacea87da938f1676ffbb653fc1746120bbb43e06bb46b40576541"
+    },
+    "electron34": {
+      "engine": "Electron-OH 34.8.6",
+      "libelectronSha256": "4451d48acd6ce1b0cd3d8956aea39511d430a087d001a7b2f6db067336b21e1b"
+    },
+    "electron40": {
+      "engine": "Electron-OH 40.0.1",
+      "libelectronSha256": "961fb4719a17eb56821bc7505762d538ca49d60a3f03efba80ebafa9ca78d63f"
+    }
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ]
+}
