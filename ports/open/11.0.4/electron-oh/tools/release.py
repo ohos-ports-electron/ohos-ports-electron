@@ -94,12 +94,12 @@ def host(bundle):
   root=Path(d)
   (root/'package.json').write_text(json.dumps({'private':True,'name':'open-host-regression','version':'1.0.0','dependencies':{NAME:str((bundle/'candidate.tgz').resolve())}}))
   lock=read(PORT/'electron-oh/tests/package-lock.json');lock['packages']['']['dependencies'][NAME]=str((bundle/'candidate.tgz').resolve());lock['packages']['node_modules/'+NAME]['resolved']='file:'+str((bundle/'candidate.tgz').resolve());(root/'package-lock.json').write_text(json.dumps(lock))
-  subprocess.run(['npm','ci','--no-audit','--no-fund','--registry='+REGISTRY],cwd=root,check=True)
+  subprocess.run(['npm','ci','--no-audit','--no-fund','--registry='+REGISTRY],cwd=root,check=True,timeout=180)
   env=os.environ.copy();env['OPEN_PACKAGE_ROOT']=str(root/'node_modules'/NAME)
   binary=env.get('HOST_ELECTRON_BINARY') or 'node'
   if binary!='node':env['ELECTRON_RUN_AS_NODE']='1'
   print('Host protocol model tests simulate platform/Ability replies; these are not fresh device tests',flush=True)
-  subprocess.run([binary,'--test',str(PORT/'electron-oh/tests/host-contract.mjs')],cwd=root,env=env,check=True)
+  subprocess.run([binary,'--test',str(PORT/'electron-oh/tests/host-contract.mjs')],cwd=root,env=env,check=True,timeout=90)
 def guard(env=None):
  env=env or os.environ
  require(env.get('ENABLE_ELECTRON_OH_PUBLISH')=='1','publication disabled')

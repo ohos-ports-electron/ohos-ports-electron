@@ -22,6 +22,7 @@ const {default:open,openApp,apps}=await import(process.env.OPEN_PACKAGE_ROOT+'/i
 const {isHarmonyOS}=await import(process.env.OPEN_PACKAGE_ROOT+'/harmony.js');
 const directory=await fs.mkdtemp(path.join(os.tmpdir(),'open-harmony-repair-'));
 process.env.OPEN_HARMONY_BRIDGE_DIR=directory;
+const polling=new AbortController();
 let running=true,hostError=null,completionError=null,hostVersion;
 const requests=[];
 const canceled=new Set(),pendingCompletions=new Set();
@@ -34,8 +35,8 @@ const host=(async()=>{while(running){for(const name of await fs.readdir(director
  const response={version:hostVersion??request.version,id:request.id,ok:!hostError,phase:request.waitForResult?'accepted':'completed',...(hostError||{})};
  await answer(request,'.response.json',response);
  if(request.waitForResult&&!hostError){const error=completionError;const task=(async()=>{await delay(request.parameters?.delayMs??10);if(Date.now()>=request.resultDeadline||canceled.has(request.id))return;await answer(request,'.completion.json',{version:2,id:request.id,phase:'completed',ok:!error,...(error||{result:{resultCode:request.parameters?.resultCode??0,want:{parameters:request.parameters}}})});})();pendingCompletions.add(task);task.finally(()=>pendingCompletions.delete(task));}
- }await delay(5);}})();
-after(async()=>{running=false;await host;await Promise.all(pendingCompletions);await fs.rm(directory,{recursive:true,force:true});await fs.rm(nativeDirectory,{recursive:true,force:true});Object.defineProperty(process,'platform',platform);if(electron)Object.defineProperty(process.versions,'electron',electron);else delete process.versions.electron;if(oldDirectory===undefined)delete process.env.OPEN_HARMONY_BRIDGE_DIR;else process.env.OPEN_HARMONY_BRIDGE_DIR=oldDirectory;if(oldLauncher===undefined)delete process.env.OPEN_HARMONY_LAUNCHER;else process.env.OPEN_HARMONY_LAUNCHER=oldLauncher;});
+ }await delay(5,undefined,{ref:false,signal:polling.signal}).catch(error=>{if(error.name!=='AbortError')throw error;});}})();
+after(async()=>{running=false;polling.abort();await host;await Promise.all(pendingCompletions);await fs.rm(directory,{recursive:true,force:true});await fs.rm(nativeDirectory,{recursive:true,force:true});Object.defineProperty(process,'platform',platform);if(electron)Object.defineProperty(process.versions,'electron',electron);else delete process.versions.electron;if(oldDirectory===undefined)delete process.env.OPEN_HARMONY_BRIDGE_DIR;else process.env.OPEN_HARMONY_BRIDGE_DIR=oldDirectory;if(oldLauncher===undefined)delete process.env.OPEN_HARMONY_LAUNCHER;else process.env.OPEN_HARMONY_LAUNCHER=oldLauncher;});
 test('recognizes the real openharmony platform without environment flags',()=>assert.equal(isHarmonyOS(),true));
 test('dispatches URL through host and returns no fabricated process',async()=>{assert.equal(await open('https://example.com'),undefined);assert.equal(requests.at(-1).kind,'url');});
 test('routes apps.browser before unsupported desktop default-browser detection',async()=>{await open('https://example.com',{app:{name:apps.browser}});assert.equal(requests.at(-1).application,undefined);});
