@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "candidateSha256": "5c3a64fe640196d0c30ada01449e4657a2cd1ae4354a97afd16e3d72a980f31f",
+  "targets": {
+    "node": {
+      "baseline": {
+        "reportSha256": "813dad8445e74e6050d6f4e25b99d49d591ef856a674521e936e20f8b1a445f7",
+        "packageSha256": "4558b9347d5d71703793be81fe2b46d8fa0e4c79aa927dc246d5a44a4a64801c",
+        "coldStarts": [
+          {
+            "pid": 33942,
+            "runId": "0784950f-372a-41f7-9057-f2fdc56f69c1",
+            "pass": 11,
+            "total": 34,
+            "fail": 23
+          },
+          {
+            "pid": 34170,
+            "runId": "c700316d-cbb2-4226-8ec8-31fd6210caaa",
+            "pass": 11,
+            "total": 34,
+            "fail": 23
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "f07600cb382a637058ec87eb4afb77dccbfc57c28ce8a2c16c239748e0247ea8",
+        "packageSha256": "5c3a64fe640196d0c30ada01449e4657a2cd1ae4354a97afd16e3d72a980f31f",
+        "coldStarts": [
+          {
+            "pid": 47915,
+            "runId": "eed13c68-d6a5-4261-a0bd-e4fdb58936b9",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          },
+          {
+            "pid": 48415,
+            "runId": "d3805f09-4e75-4f4e-ad5a-813900699a43",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          }
+        ]
+      }
+    },
+    "electron25": {
+      "baseline": {
+        "reportSha256": "b863180b26bbac8822081b55c9f817b5cf6a080de1c3d40dda7c86d5c47837bb",
+        "packageSha256": "4558b9347d5d71703793be81fe2b46d8fa0e4c79aa927dc246d5a44a4a64801c",
+        "coldStarts": [
+          {
+            "pid": 34847,
+            "runId": "07dc36b9-4567-4b58-864e-9a82ad44bdb2",
+            "pass": 12,
+            "total": 34,
+            "fail": 22
+          },
+          {
+            "pid": 34982,
+            "runId": "8bbf84d1-1d48-4207-83ad-b1ab74154df2",
+            "pass": 12,
+            "total": 34,
+            "fail": 22
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "5b606e5a91e5b33449faf465f8ac72054694d4190537bbb0addbd0a0d5bc9531",
+        "packageSha256": "5c3a64fe640196d0c30ada01449e4657a2cd1ae4354a97afd16e3d72a980f31f",
+        "coldStarts": [
+          {
+            "pid": 52722,
+            "runId": "cd315c11-44cd-43f9-ad63-8a7b21dd8b3f",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          },
+          {
+            "pid": 53462,
+            "runId": "a8854353-f09b-4afb-b31e-ef687c9681fe",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          }
+        ]
+      }
+    },
+    "electron34": {
+      "baseline": {
+        "reportSha256": "89daaa2edbe0a4cbe5d6fad1894df488f97a745ef28cf1f7ef06bf0c25c2adc3",
+        "packageSha256": "4558b9347d5d71703793be81fe2b46d8fa0e4c79aa927dc246d5a44a4a64801c",
+        "coldStarts": [
+          {
+            "pid": 44739,
+            "runId": "f4b2cd6d-02d9-469c-a775-838fae386dda",
+            "pass": 12,
+            "total": 34,
+            "fail": 22
+          },
+          {
+            "pid": 44903,
+            "runId": "d6f47064-62d8-45c2-92f4-dfbbb6574302",
+            "pass": 12,
+            "total": 34,
+            "fail": 22
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "df002ddf64ca6f1382d349e250dfb9e20191c1957b21382081022d781caf66b7",
+        "packageSha256": "5c3a64fe640196d0c30ada01449e4657a2cd1ae4354a97afd16e3d72a980f31f",
+        "coldStarts": [
+          {
+            "pid": 54601,
+            "runId": "d23689c8-14ed-45a3-b94c-de0396899f46",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          },
+          {
+            "pid": 55235,
+            "runId": "0b247d7f-48ba-4c9a-95bc-26608b270c04",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          }
+        ]
+      }
+    },
+    "electron37": {
+      "baseline": {
+        "reportSha256": "0427122bca536914e64f66ed68e590dec06874ae3d01342475827c20a4daedcb",
+        "packageSha256": "4558b9347d5d71703793be81fe2b46d8fa0e4c79aa927dc246d5a44a4a64801c",
+        "coldStarts": [
+          {
+            "pid": 30622,
+            "runId": "701e6765-144f-43a5-98b9-552b5a73b042",
+            "pass": 12,
+            "total": 34,
+            "fail": 22
+          },
+          {
+            "pid": 30872,
+            "runId": "3d791296-488c-43aa-a83d-c277bfd2b65b",
+            "pass": 12,
+            "total": 34,
+            "fail": 22
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "35421bd08214828e0a9e358b8cbf1d1c059e94c0bb384a3102fe8bf73e302ef4",
+        "packageSha256": "5c3a64fe640196d0c30ada01449e4657a2cd1ae4354a97afd16e3d72a980f31f",
+        "coldStarts": [
+          {
+            "pid": 50922,
+            "runId": "e3a14b50-9285-45d4-8385-e444a0b4f695",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          },
+          {
+            "pid": 51598,
+            "runId": "b850a547-1887-48a9-86a9-2e2cfad81e96",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          }
+        ]
+      }
+    },
+    "electron40": {
+      "baseline": {
+        "reportSha256": "046c49d7b649bbcd9715acfefd636c50b8310370316f2b30685345cbff0359b0",
+        "packageSha256": "4558b9347d5d71703793be81fe2b46d8fa0e4c79aa927dc246d5a44a4a64801c",
+        "coldStarts": [
+          {
+            "pid": 49305,
+            "runId": "7d5abf20-6d9e-474c-b63b-6d6ff2b490a0",
+            "pass": 12,
+            "total": 34,
+            "fail": 22
+          },
+          {
+            "pid": 49466,
+            "runId": "1d510da0-db5e-4ed7-bfe1-aaea6e4e10eb",
+            "pass": 12,
+            "total": 34,
+            "fail": 22
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "1a18624285f8985914ec9e78a1163740687930560ca318e62226bb3144b8017f",
+        "packageSha256": "5c3a64fe640196d0c30ada01449e4657a2cd1ae4354a97afd16e3d72a980f31f",
+        "coldStarts": [
+          {
+            "pid": 56547,
+            "runId": "40be501d-26bb-4139-9e00-3309dd0bfc61",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          },
+          {
+            "pid": 57140,
+            "runId": "f5923b4a-57c6-4eaa-bee8-1b4cdcf22260",
+            "pass": 34,
+            "total": 34,
+            "fail": 0
+          }
+        ]
+      }
+    }
+  },
+  "archive": {
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/open-evidence-11.0.4-electron-oh.0/open-11.0.4-electron-oh.0-device-evidence.tar.gz",
+    "sha256": "e472bce65c7e96ee961edda6d97ccd8963f873cce1281d9ea77acdf6765f5b30",
+    "fileCount": 742
+  },
+  "scope": "Recorded five-target two-cold-start real device evidence. CI has separate host model regression; no fresh device CI"
+}

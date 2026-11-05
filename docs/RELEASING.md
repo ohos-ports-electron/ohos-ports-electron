@@ -211,3 +211,9 @@ suite on the exact Node versions recorded by those targets (20.18.1 / 22.17.0 /
 publication uses `npm-publish`, the same frozen tgz, npm OIDC, and verifies both
 `latest` and `beta`. Configure the package trusted publisher for this exact workflow
 with direct publish and independent dist-tag permissions. See [the port](../ports/prebuild-install/7.1.3/README.md).
+
+## open
+
+`open-electron-oh.yml` builds `@ohos-ports-electron/open@11.0.4-electron-oh.0` once from the locked registry baseline, validates its exact 12-file inventory and recorded five-target/two-cold-start evidence, then runs 36 host protocol model regressions on the device-observed Node versions. Host CI is not fresh HarmonyOS execution. Node 18.15 uses Electron 25.3.2 RUN_AS_NODE for its newer V8. The consuming HAP integrates the supplied Ability bridge and optional signed private HNP launcher; arbitrary app-process-exit waiting and browser privacy mode are explicitly outside support.
+
+Only trusted main pushes enter npm-publish. Configure the exact package's Trusted Publisher for repository ohos-ports-electron/ohos-ports-electron, workflow open-electron-oh.yml, environment npm-publish, with both direct publish and independent dist-tag management permissions. Hosted Node 24.20.0 / npm 12.2.1 publish the same frozen tgz with --tag beta and verify latest/beta; no legacy electron-oh tag is added or updated. The initial npm staging placeholder may be advanced to this formal release; newer release tags are never rolled back. PR/fork/manual builds cannot upload. [Port and reproduction](../ports/open/11.0.4/README.md).

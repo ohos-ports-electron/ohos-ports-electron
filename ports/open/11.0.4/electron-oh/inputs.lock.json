@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "open",
+    "version": "11.0.4",
+    "url": "https://registry.npmjs.org/open/-/open-11.0.4.tgz",
+    "sha256": "4558b9347d5d71703793be81fe2b46d8fa0e4c79aa927dc246d5a44a4a64801c",
+    "integrity": "sha512-++Zlftm0kVLPmzC06t6epuWmcRMDbI4z5P3NNX979WA/k23+NtSOynEGzsVfZwguKw2mi5umVgnBlJQMwRz4Pg=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/open",
+    "version": "11.0.4-electron-oh.0",
+    "sha256": "5c3a64fe640196d0c30ada01449e4657a2cd1ae4354a97afd16e3d72a980f31f",
+    "integrity": "sha512-+kF7JWK5XDDsJTwu0rnFKLHN3HN48KQp7tZiQeGAWHrCVFvcBufuk8T6SRtxDBKtw62IPQ3R7goCBTVw7FKr2g=="
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/open/11.0.4"
+  },
+  "distTag": "beta",
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ],
+  "patches": [
+    {
+      "path": "patchs/0001-harmony-host-bridge.patch",
+      "sha256": "c711e7d36ec590a89376087f9b77f7f15eba5cfdb4f34e9983f0d957091a1956"
+    },
+    {
+      "path": "patchs/0002-electron-oh-distribution.patch",
+      "sha256": "391609ffec864be181ea22bbd2e275f32ef33e5fff80887d94d8ecca0c1c4100"
+    }
+  ],
+  "readmeSha256": "eff1e741cdca5bc2fcc6238cd0622faa9deaed114e68fefb307b037af21f4510",
+  "patchDomains": {
+    "package": "patchs: applied sequentially to exact registry npm package; native launcher C source is added here",
+    "framework": "tools/build-demo.py: HAP-only host bridge, launcher HNP, product SDK configuration and version-specific launch changes"
+  },
+  "firstPublication": {
+    "bootstrapPlaceholderVersion": "0.0.0-stage",
+    "purpose": "Official npm staging placeholder only; the unapproved bootstrap stage is rejected after the formal OIDC publication",
+    "formalCandidateVersion": "11.0.4-electron-oh.0"
+  }
+}
