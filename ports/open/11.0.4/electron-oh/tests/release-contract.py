@@ -1,5 +1,5 @@
 from pathlib import Path
-import importlib.util,json,os,sys,tempfile,subprocess
+import importlib.util,json,os,sys,tempfile,subprocess,io,urllib.error
 from unittest.mock import patch
 P=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(P/'electron-oh/tools'))
@@ -24,3 +24,23 @@ refused(lambda:c.check_catalog([{'name':release.NAME,'electron_oh_version':relea
 with tempfile.TemporaryDirectory() as d:
  refused(lambda:release.verify(Path(d)))
 print('open release guard: trusted context, channel argv, old tag, missing beta, old catalog and missing artifact rejected')
+
+# Transient transport failures retry with fresh release redirects; permission
+# errors remain errors, and only explicit registry 404 means absent.
+url='https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/evidence/archive.tar.gz'
+error=lambda code:urllib.error.HTTPError(url,code,'test',{},None)
+with patch.object(release.urllib.request,'urlopen',side_effect=[error(504),io.BytesIO(b'checked bytes')]) as network,patch.object(release.time,'sleep'):
+ assert release.get(url)==b'checked bytes';assert network.call_count==2
+ assert network.call_args_list[0].args[0].full_url!=network.call_args_list[1].args[0].full_url
+def http_error(call,code):
+ try:call()
+ except urllib.error.HTTPError as exception:
+  assert exception.code==code;return
+ raise AssertionError('Expected transport HTTP '+str(code))
+with patch.object(release.urllib.request,'urlopen',side_effect=error(403)) as network,patch.object(release.time,'sleep'):
+ http_error(lambda:release.get(url),403);assert network.call_count==1
+with patch.object(release.urllib.request,'urlopen',side_effect=error(404)) as network,patch.object(release.time,'sleep'):
+ assert release.get(url) is None;assert network.call_count==1
+with patch.object(release.urllib.request,'urlopen',side_effect=error(504)) as network,patch.object(release.time,'sleep'):
+ http_error(lambda:release.get(url),504);assert network.call_count==3
+print('open download guard: fresh redirects, bounded retries, 403 rejection and explicit 404 semantics passed')
