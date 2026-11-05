@@ -115,7 +115,25 @@ def check_existing_tag(value,lock):
 def oidc_tags(tags):
  for tag in tags:
   guard();channel.check_tag_write(tag,VERSION,POLICY)
-  subprocess.run(['npm','dist-tag','add',NAME+'@'+VERSION,tag,'--registry='+REGISTRY],check=True)
+  url=os.environ.get('ACTIONS_ID_TOKEN_REQUEST_URL');credential=os.environ.get('ACTIONS_ID_TOKEN_REQUEST_TOKEN')
+  require(url and credential and urllib.parse.urlsplit(url).scheme=='https','GitHub OIDC request identity missing')
+  parts=urllib.parse.urlsplit(url);query=urllib.parse.parse_qsl(parts.query,keep_blank_values=True)
+  query=[(k,v) for k,v in query if k!='audience']+[('audience','npm:registry.npmjs.org')]
+  url=urllib.parse.urlunsplit(parts._replace(query=urllib.parse.urlencode(query)))
+  request=urllib.request.Request(url,headers={'Authorization':'Bearer '+credential,'Accept':'application/json'})
+  with urllib.request.urlopen(request,timeout=45) as response:identity=json.load(response)
+  require(isinstance(identity.get('value'),str) and identity['value'],'GitHub OIDC token response missing')
+  exchange=REGISTRY+'-/npm/v1/oidc/token/exchange/package/'+urllib.parse.quote(NAME,safe='')
+  request=urllib.request.Request(exchange,method='POST',headers={'Authorization':'Bearer '+identity['value'],'Accept':'application/json'})
+  with urllib.request.urlopen(request,timeout=45) as response:exchanged=json.load(response)
+  require(isinstance(exchanged.get('token'),str) and exchanged['token'],'npm OIDC token response missing')
+  print('GitHub OIDC token exchange succeeded; no fallback credential used',flush=True)
+  channel.check_tag_write(tag,VERSION,POLICY)
+  endpoint=REGISTRY+'-/package/'+urllib.parse.quote(NAME,safe='')+'/dist-tags/'+tag
+  request=urllib.request.Request(endpoint,data=json.dumps(VERSION).encode(),method='PUT',headers={'Authorization':'Bearer '+exchanged['token'],'Content-Type':'application/json'})
+  with urllib.request.urlopen(request,timeout=45) as response:
+   require(200<=response.status<300,'npm rejected OIDC dist-tag write')
+   print('OIDC dist-tag PUT '+tag+': HTTP '+str(response.status),flush=True)
 def wait_for_tags(attempts=12):
  for attempt in range(attempts):
   observed=json.loads(get(REGISTRY+urllib.parse.quote(NAME,safe='')))['dist-tags']
