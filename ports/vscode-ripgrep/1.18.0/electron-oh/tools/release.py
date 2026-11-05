@@ -99,7 +99,7 @@ def host(bundle):
   root=Path(d)
   package={'name':'ripgrep-host-regression','version':'1.0.0','private':True,'dependencies':{NAME:str((bundle/'candidate.tgz').resolve())}}
   (root/'package.json').write_text(json.dumps(package))
-  lock=read(PORT/'electron-oh/tests/package-lock.json');lock['packages']['']['dependencies'][NAME]=str((bundle/'candidate.tgz').resolve());lock['packages']['node_modules/'+NAME]['resolved']='file:'+str((bundle/'candidate.tgz').resolve());(root/'package-lock.json').write_text(json.dumps(lock))
+  lock=read(PORT/'electron-oh/tests/package-lock.json');require(lock['packages']['node_modules/'+NAME]['integrity']==manifest['integrity'],'host test lock references a different candidate integrity');lock['packages']['']['dependencies'][NAME]=str((bundle/'candidate.tgz').resolve());lock['packages']['node_modules/'+NAME]['resolved']='file:'+str((bundle/'candidate.tgz').resolve());(root/'package-lock.json').write_text(json.dumps(lock))
   shutil.copyfile(PORT/'electron-oh/tests/host.cjs',root/'host.cjs')
   (root/'config.json').write_text(json.dumps({'packageName':NAME,'packageVersion':VERSION,'files':manifest['files']}))
   subprocess.run(['npm','ci','--no-audit','--no-fund','--registry='+REGISTRY],cwd=root,check=True)

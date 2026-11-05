@@ -1,5 +1,6 @@
 from pathlib import Path
 import importlib.util,json,tempfile,shutil,sys,contextlib,io
+from unittest.mock import patch
 T=Path(__file__).resolve().parents[1]/'tools';sys.path.insert(0,str(T));spec=importlib.util.spec_from_file_location('port_release',T/'release.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
 def rejected(fn):
  try:fn()
@@ -17,4 +18,7 @@ rejected(lambda:m.channel.check_registry({'name':m.NAME,'dist-tags':{'latest':m.
 m.check_existing_tag('0.0.0-stage',lock)
 rejected(lambda:m.check_existing_tag('9.9.9',lock))
 rejected(lambda:m.check_existing_tag('0.0.0-stage',{**lock,'bootstrap':{}}))
+with patch.object(m,'verify',return_value={'integrity':'sha512-unrelated','files':{}}), patch.object(m.subprocess,'run') as installer:
+ rejected(lambda:m.host(Path('/nonexistent-validation-bundle')))
+ installer.assert_not_called()
 print('Release contract: trusted main only; old channel config/upload/tag write rejected; same-byte package without beta fails')
