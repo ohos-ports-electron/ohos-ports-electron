@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "@scrypted/prebuild-install",
+    "version": "7.1.3",
+    "npmUrl": "https://www.npmjs.com/package/@scrypted/prebuild-install",
+    "url": "https://registry.npmjs.org/@scrypted/prebuild-install/-/prebuild-install-7.1.3.tgz",
+    "sha256": "02c4e2467da1348bfb684d185f2e3c769a329ef8e15a2b0a2495fd4cb0ed5c31",
+    "integrity": "sha512-scL9zHWbAcenhyx8fAv2U+mxrIWCL22VqL1ENOZpCQ7ByWOQERvOpgS4qlSNgXuuDfu+XBoyRvLMZcWIOSI74w==",
+    "fileCount": 15
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/prebuild-install",
+    "version": "7.1.3-electron-oh.0",
+    "sha256": "dc5f722fb5c7726fdd8213efc29394733e1183ff99e23a4850b805e6499a1d92",
+    "integrity": "sha512-tbDIgf/OfRqUvJvdQ3UgehvLuBqcpyDOZkX/fNUqdEZGl5HGed/qZkswYVcjAqFn5aD+e98PAxDqXPK5NQlPJg==",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/prebuild-install-evidence-7.1.3-electron-oh.0/prebuild-install-7.1.3-electron-oh.0.tgz"
+  },
+  "patches": [],
+  "readmeSha256": "2889687b88b8af6a01809a17131a7e6d004834b6e24247a3ad59174d398c497a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/prebuild-install/7.1.3"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ]
+}
