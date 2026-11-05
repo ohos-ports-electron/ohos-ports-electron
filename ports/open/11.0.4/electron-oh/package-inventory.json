@@ -1,0 +1,14 @@
+{
+  "README.upstream.md": "ce5d6f4635a9ba4b70c8d7289227aab0225ef31f637a2b982b3ecc71b59ac903",
+  "harmony-ability.js": "0ec050d9460ea33ff0a7b9925646e7951d97dd289f7b6b999524d9264d4f3c4b",
+  "harmony-host/OpenHostBridge.ets": "ef0d08eace98674c483c338430f28b2240294b48a9bf9ab91302a5575eca6219",
+  "harmony-host/build-launcher.mjs": "d66948a3270172700e72682dd7abd9f8ca7231500bb27b25795242e8f54e0108",
+  "harmony-host/open-launcher.c": "c61b3bd56e0fd857864700367c5a23ccd490b1a9798de92cafbaf1fbe7e8d670",
+  "harmony.js": "15a87c7c8b0a231d7af4eacb94ccec1554883166701e64aebee947f9d98d67be",
+  "index.d.ts": "51a090f48b5c3dbb9ec6bd21d7a3bc37a88c7c7dc1b71bb1e0c7466758fb0fa5",
+  "index.js": "c007cd45e81ac3539bf2df567b453f6065cf069889cdad1991651b011a9be2f2",
+  "license": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+  "package.json": "9d32ff887933e337a24f3db3522b0ec5331565618a0b4b89d611bf768cb798e6",
+  "readme.md": "eff1e741cdca5bc2fcc6238cd0622faa9deaed114e68fefb307b037af21f4510",
+  "xdg-open": "7d759d54f0d4ce1beeb34ee62c587985b5042374e8de237b0dcb8cd47aa698cf"
+}

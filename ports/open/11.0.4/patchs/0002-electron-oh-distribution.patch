@@ -1,0 +1,156 @@
+--- a/package.json
++++ b/package.json
+@@ -1,73 +1,82 @@
+ {
+-	"name": "open",
+-	"version": "11.0.4",
+-	"description": "Open stuff like URLs, files, executables. Cross-platform.",
+-	"license": "MIT",
+-	"repository": "sindresorhus/open",
+-	"funding": "https://github.com/sponsors/sindresorhus",
+-	"author": {
+-		"name": "Sindre Sorhus",
+-		"email": "sindresorhus@gmail.com",
+-		"url": "https://sindresorhus.com"
+-	},
+-	"type": "module",
+-	"exports": {
+-		"types": "./index.d.ts",
+-		"default": "./index.js"
+-	},
+-	"sideEffects": false,
+-	"engines": {
+-		"node": ">=20"
+-	},
+-	"scripts": {
+-		"test": "xo && tsd"
+-	},
+-	"files": [
+-		"index.js",
+-		"index.d.ts",
+-		"xdg-open",
+-		"harmony.js",
+-		"harmony-ability.js",
+-		"harmony-host"
+-	],
+-	"keywords": [
+-		"app",
+-		"open",
+-		"opener",
+-		"opens",
+-		"launch",
+-		"start",
+-		"xdg-open",
+-		"xdg",
+-		"default",
+-		"cmd",
+-		"browser",
+-		"editor",
+-		"executable",
+-		"exe",
+-		"url",
+-		"urls",
+-		"arguments",
+-		"args",
+-		"spawn",
+-		"exec",
+-		"child",
+-		"process",
+-		"website",
+-		"file"
+-	],
+-	"dependencies": {
+-		"default-browser": "^5.5.1",
+-		"define-lazy-prop": "^3.0.0",
+-		"is-in-ssh": "^1.0.0",
+-		"is-inside-container": "^1.0.0",
+-		"powershell-utils": "^0.2.1",
+-		"wsl-utils": "^1.0.0"
+-	},
+-	"devDependencies": {
+-		"@types/node": "^24.10.1",
+-		"ava": "^6.4.1",
+-		"tsd": "^0.33.0",
+-		"xo": "^1.2.3"
+-	}
++  "name": "@ohos-ports-electron/open",
++  "version": "11.0.4-electron-oh.0",
++  "description": "Open stuff like URLs, files, executables. Cross-platform.",
++  "license": "MIT",
++  "repository": {
++    "type": "git",
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/open/11.0.4"
++  },
++  "funding": "https://github.com/sponsors/sindresorhus",
++  "author": {
++    "name": "Sindre Sorhus",
++    "email": "sindresorhus@gmail.com",
++    "url": "https://sindresorhus.com"
++  },
++  "type": "module",
++  "exports": {
++    "types": "./index.d.ts",
++    "default": "./index.js"
++  },
++  "sideEffects": false,
++  "engines": {
++    "node": ">=20"
++  },
++  "scripts": {
++    "test": "xo && tsd"
++  },
++  "files": [
++    "index.js",
++    "index.d.ts",
++    "xdg-open",
++    "harmony.js",
++    "harmony-ability.js",
++    "harmony-host"
++  ],
++  "keywords": [
++    "app",
++    "open",
++    "opener",
++    "opens",
++    "launch",
++    "start",
++    "xdg-open",
++    "xdg",
++    "default",
++    "cmd",
++    "browser",
++    "editor",
++    "executable",
++    "exe",
++    "url",
++    "urls",
++    "arguments",
++    "args",
++    "spawn",
++    "exec",
++    "child",
++    "process",
++    "website",
++    "file"
++  ],
++  "dependencies": {
++    "default-browser": "^5.5.1",
++    "define-lazy-prop": "^3.0.0",
++    "is-in-ssh": "^1.0.0",
++    "is-inside-container": "^1.0.0",
++    "powershell-utils": "^0.2.1",
++    "wsl-utils": "^1.0.0"
++  },
++  "devDependencies": {
++    "@types/node": "^24.10.1",
++    "ava": "^6.4.1",
++    "tsd": "^0.33.0",
++    "xo": "^1.2.3"
++  },
++  "homepage": "https://github.com/ohos-ports-electron/ohos-ports-electron/tree/main/ports/open/11.0.4",
++  "publishConfig": {
++    "access": "public",
++    "tag": "beta"
++  }
+ }

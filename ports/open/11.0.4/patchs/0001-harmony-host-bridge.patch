@@ -1,0 +1,897 @@
+--- a/index.js
++++ b/index.js
+@@ -15,6 +15,7 @@
+ import defaultBrowser, {_windowsBrowserProgIdMap} from 'default-browser';
+ import isInsideContainer from 'is-inside-container';
+ import isInSsh from 'is-in-ssh';
++import {isHarmonyOS, openHarmony} from './harmony.js';
+ 
+ const fallbackAttemptSymbol = Symbol('fallbackAttempt');
+ 
+@@ -76,6 +77,15 @@
+ 			},
+ 			[fallbackAttemptSymbol]: true,
+ 		}));
++	}
++
++	// Route before desktop-only default-browser detection.
++	if (isHarmonyOS()) {
++		return openHarmony(options, app, appArguments, isFallbackAttempt);
++	}
++
++	if (options.harmony !== undefined) {
++		throw Object.assign(new Error('harmony options require HarmonyOS.'), {code: 'ERR_OPEN_HARMONY_PLATFORM'});
+ 	}
+ 
+ 	if (app === 'browser' || app === 'browserPrivate') {
+@@ -386,6 +396,14 @@
+ 	browserPrivate: 'browserPrivate',
+ };
+ 
++defineLazyProperty(apps, 'huawei', () => {
++	if (!isHarmonyOS()) {
++		throw new Error(`${platform} is not supported`);
++	}
++
++	return 'com.huawei.hmos.browser/MainAbility';
++});
++
+ defineLazyProperty(apps, 'chrome', () => detectPlatformBinary({
+ 	darwin: 'google chrome',
+ 	win32: 'chrome',
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -1,6 +1,34 @@
+ import {type ChildProcess} from 'node:child_process';
+ 
++/** Want-safe values. Arrays must be nonempty and homogeneous at runtime. */
++export type HarmonyValue = string | number | boolean | readonly string[] | readonly number[] | readonly boolean[] | {readonly [key: string]: HarmonyValue};
++
++export type HarmonyAbilityResult = {
++	readonly resultCode: number;
++	readonly want?: {
++		readonly uri?: string;
++		readonly bundleName?: string;
++		readonly abilityName?: string;
++		readonly parameters?: Readonly<Record<string, HarmonyValue>>;
++	};
++};
++
++export type HarmonyOptions = {
++	/** Explicit parameters understood by the named target Ability. Maximum encoded size: 32 KiB. */
++	readonly parameters?: Readonly<Record<string, HarmonyValue>>;
++	/** Target-defined Want parameter key that receives app.arguments as a string array. */
++	readonly argumentsParameter?: string;
++	/** Wait for a cooperating Ability's result, not for application process exit. */
++	readonly waitForResult?: boolean;
++	/** Result deadline in milliseconds, 100..86400000. Default: 60000. Does not terminate the target. */
++	readonly resultTimeout?: number;
++	/** Receives the real AbilityResult. Its resultCode is not a POSIX exit code. */
++	readonly onResult?: (result: HarmonyAbilityResult) => void | Promise<void>;
++};
++
+ export type Options = {
++	/** HarmonyOS-only, requires an explicit bundle[/AbilityName] and the updated host bridge. */
++	readonly harmony?: HarmonyOptions;
+ 	/**
+ 	Wait for the opened app to exit before fulfilling the promise. If `false` it's fulfilled immediately when opening the app.
+ 
+@@ -65,6 +93,7 @@
+ } & Omit<Options, 'app'>;
+ 
+ export type AppName =
++	| 'huawei'
+ 	| 'chrome'
+ 	| 'brave'
+ 	| 'firefox'
+@@ -99,7 +128,7 @@
+ Uses the command `open` on macOS, `start` on Windows and `xdg-open` on other platforms.
+ 
+ @param target - The thing you want to open. Can be a URL, file, or executable. Opens in the default app for the file type. For example, URLs open in your default browser.
+-@returns The [spawned child process](https://nodejs.org/api/child_process.html#child_process_class_childprocess). You would normally not need to use this for anything, but it can be useful if you'd like to attach custom event listeners or perform other operations directly on the spawned process.
++@returns The [spawned child process](https://nodejs.org/api/child_process.html#child_process_class_childprocess). On HarmonyOS, executable launches and host bridges configured with `OPEN_HARMONY_LAUNCHER` return a real child process; bridge-only and direct Electron shell dispatch return `undefined`. A host launcher process is not the opened Ability's process.
+ 
+ @example
+ ```
+@@ -125,7 +154,7 @@
+ export default function open(
+ 	target: string,
+ 	options?: Options
+-): Promise<ChildProcess>;
++): Promise<ChildProcess | undefined>;
+ 
+ /**
+ Open an app. Cross-platform.
+@@ -133,7 +162,7 @@
+ Uses the command `open` on macOS, `start` on Windows and `xdg-open` on other platforms.
+ 
+ @param name - The app you want to open. Can be either builtin supported `apps` names or other name supported in platform.
+-@returns The [spawned child process](https://nodejs.org/api/child_process.html#child_process_class_childprocess). You would normally not need to use this for anything, but it can be useful if you'd like to attach custom event listeners or perform other operations directly on the spawned process.
++@returns The [spawned child process](https://nodejs.org/api/child_process.html#child_process_class_childprocess). On HarmonyOS, executable launches and host bridges configured with `OPEN_HARMONY_LAUNCHER` return a real child process; bridge-only and direct Electron shell dispatch return `undefined`. A host launcher process is not the opened Ability's process.
+ 
+ @example
+ ```
+@@ -155,4 +184,4 @@
+ await openApp('xcode');
+ ```
+ */
+-export function openApp(name: App['name'], options?: OpenAppOptions): Promise<ChildProcess>;
++export function openApp(name: App['name'], options?: OpenAppOptions): Promise<ChildProcess | undefined>;
+--- a/package.json
++++ b/package.json
+@@ -25,7 +25,10 @@
+ 	"files": [
+ 		"index.js",
+ 		"index.d.ts",
+-		"xdg-open"
++		"xdg-open",
++		"harmony.js",
++		"harmony-ability.js",
++		"harmony-host"
+ 	],
+ 	"keywords": [
+ 		"app",
+--- /dev/null
++++ b/harmony.js
+@@ -0,0 +1,274 @@
++import process from 'node:process';
++import path from 'node:path';
++import fs from 'node:fs/promises';
++import {fileURLToPath} from 'node:url';
++import {createRequire} from 'node:module';
++import {randomUUID} from 'node:crypto';
++import {setTimeout as delay} from 'node:timers/promises';
++import {spawn} from 'node:child_process';
++import {abilityOptions, abilityResult} from './harmony-ability.js';
++
++export const isHarmonyOS = () => ['openharmony', 'ohos'].includes(process.platform)
++	|| (process.platform !== 'darwin' && process.platform !== 'win32' && (
++		typeof process.versions.ohos === 'string'
++		|| process.env.OHOS_PLATFORM === '1'
++		|| process.env.HARMONYOS_PLATFORM === '1'
++	));
++
++const failure = (code, message, cause) => Object.assign(new Error(message, {cause}), {code});
++
++async function openExecutable(options, app, arguments_, isFallbackAttempt) {
++	await fs.access(app, fs.constants.X_OK);
++	const child = spawn(app, [...arguments_, ...(options.target === undefined ? [] : [options.target])], {
++		shell: false,
++		...(!options.wait && {stdio: 'ignore', detached: true}),
++	});
++	return new Promise((resolve, reject) => {
++		child.once('error', reject);
++		if (options.wait || isFallbackAttempt) {
++			child.once('close', (code, signal) => {
++				if (signal || ((options.wait ? !options.allowNonzeroExitCode : isFallbackAttempt) && code !== 0)) {
++					reject(new Error(signal ? `Exited with signal ${signal}` : `Exited with code ${code}`));
++				} else {
++					resolve(child);
++				}
++			});
++		} else {
++			child.once('spawn', () => {
++				child.unref();
++				resolve(child);
++			});
++		}
++	});
++}
++
++function launchBridge(launcher, directory, id) {
++	if (!path.isAbsolute(launcher)) {
++		throw failure('ERR_OPEN_HARMONY_LAUNCHER', 'OPEN_HARMONY_LAUNCHER must be an absolute path to the private HNP launcher.');
++	}
++
++	const child = spawn(launcher, ['--bridge-v1', directory, id], {shell: false, detached: true, stdio: ['pipe', 'pipe', 'pipe']});
++	return new Promise((resolve, reject) => {
++		let settled = false;
++		let output = '';
++		let diagnostic = '';
++		const finish = (error, response) => {
++			if (settled) {
++				return;
++			}
++
++			settled = true;
++			clearTimeout(timer);
++			if (error) {
++				child.kill();
++				reject(error);
++			} else {
++				// Resolve before acknowledging completion, so callers can subscribe to
++				// this real launcher's exit. Its pid is never the target Ability's pid.
++				resolve({
++					child, response, release: () => setImmediate(() => {
++						child.stdin.end('1');
++						child.unref();
++						for (const stream of [child.stdin, child.stdout, child.stderr]) {
++							stream.unref?.();
++						}
++					}),
++				});
++			}
++		};
++
++		const timer = setTimeout(() => finish(failure('ERR_OPEN_HARMONY_TIMEOUT', 'HarmonyOS launcher did not respond within 15 seconds.')), 15_000);
++		child.once('error', error => finish(error));
++		child.stdin.on('error', error => {
++			if (!settled) {
++				finish(error);
++			}
++		});
++		child.stderr.on('data', data => {
++			diagnostic = (diagnostic + data).slice(-4096);
++		});
++		child.stdout.setEncoding('utf8');
++		child.stdout.on('data', data => {
++			output += data;
++			if (output.length > 65_536) {
++				finish(failure('ERR_OPEN_HARMONY_PROTOCOL', 'Oversized launcher response.'));
++			} else if (output.endsWith('\n')) {
++				try {
++					finish(undefined, JSON.parse(output));
++				} catch (error) {
++					finish(failure('ERR_OPEN_HARMONY_PROTOCOL', 'Invalid launcher response.', error));
++				}
++			}
++		});
++		child.once('close', (code, signal) => finish(failure(
++			code === 124 ? 'ERR_OPEN_HARMONY_TIMEOUT' : 'ERR_OPEN_HARMONY_LAUNCHER',
++			`HarmonyOS launcher exited before dispatch acknowledgement (code=${code}, signal=${signal}): ${diagnostic.trim()}`,
++		)));
++	});
++}
++
++async function dispatchToHost(request, ability) {
++	const directory = process.env.OPEN_HARMONY_BRIDGE_DIR;
++	if (!directory || !path.isAbsolute(directory)) {
++		throw failure('ERR_OPEN_HARMONY_HOST_REQUIRED', 'This operation requires a HAP UIAbilityContext host bridge (OPEN_HARMONY_BRIDGE_DIR).');
++	}
++
++	// The directory is private to the hosting application. No shell, public socket,
++	// arbitrary code, or executable path is accepted by this protocol.
++	await fs.mkdir(directory, {recursive: true, mode: 0o700});
++	const id = randomUUID();
++	const pending = path.join(directory, `${id}.tmp`);
++	const input = path.join(directory, `${id}.request.json`);
++	const output = path.join(directory, `${id}.response.json`);
++	const completion = path.join(directory, `${id}.completion.json`);
++	const version = ability ? 2 : 1;
++	const resultDeadline = Date.now() + (ability?.resultTimeout ?? 0);
++	let release;
++	let accepted = false;
++	let completed = false;
++	let child;
++	try {
++		await fs.writeFile(pending, JSON.stringify({
++			version, id, expiresAt: Date.now() + 15_000, ...request,
++			...(ability && {parameters: ability.parameters, waitForResult: ability.waitForResult, resultDeadline}),
++		}), {mode: 0o600, flag: 'wx'});
++		// The optional native HNP performs the rename that submits this request,
++		// then transports the host's real response. No unrelated dummy child.
++		if (process.env.OPEN_HARMONY_LAUNCHER) {
++			const launched = await launchBridge(process.env.OPEN_HARMONY_LAUNCHER, directory, id);
++			release = launched.release;
++			child = launched.child;
++			validateResponse(launched.response, id, version, ability?.waitForResult);
++			accepted = launched.response.phase === 'accepted';
++		} else {
++			await fs.rename(pending, input);
++			const deadline = Date.now() + 15_000;
++			while (Date.now() < deadline) {
++				let response;
++				try {
++				// Polling depends on the previous read and must remain sequential.
++					response = JSON.parse(await fs.readFile(output, 'utf8')); // eslint-disable-line no-await-in-loop
++				} catch (error) {
++					if (error.code !== 'ENOENT') {
++						throw error;
++					}
++				}
++
++				if (response) {
++					validateResponse(response, id, version, ability?.waitForResult);
++					accepted = response.phase === 'accepted';
++					break;
++				}
++
++				await delay(50); // eslint-disable-line no-await-in-loop
++			}
++
++			if (Date.now() >= deadline) {
++				throw failure('ERR_OPEN_HARMONY_TIMEOUT', 'HarmonyOS host bridge did not respond within 15 seconds.');
++			}
++		}
++
++		if (ability?.waitForResult) {
++			if (!accepted) {
++				throw failure('ERR_OPEN_HARMONY_PROTOCOL', 'The host did not accept the cooperative result protocol.');
++			}
++
++			// The native launcher submits the request; it need not remain alive
++			// while a user operates the target Ability. Its PID is not that app's.
++			release?.();
++			release = undefined;
++			const result = await abilityResult(directory, id, resultDeadline);
++			completed = true;
++			await ability.onResult?.(result);
++		}
++
++		return child;
++	} finally {
++		try {
++			if (accepted && !completed) {
++				await fs.writeFile(path.join(directory, `${id}.cancel`), '', {mode: 0o600});
++			}
++
++			await Promise.all([pending, input, output, completion].map(file => fs.rm(file, {force: true})));
++		} finally {
++			release?.();
++		}
++	}
++}
++
++function validateResponse(response, id, version = 1, waitForResult = false) {
++	if (!response || response.version !== version || response.id !== id || typeof response.ok !== 'boolean') {
++		throw failure('ERR_OPEN_HARMONY_PROTOCOL', 'Invalid response from HarmonyOS host bridge.');
++	}
++
++	if (!response.ok) {
++		throw failure(String(response.code || 'ERR_OPEN_HARMONY_OPEN_FAILED'), response.message || 'HarmonyOS failed to open the target.');
++	}
++
++	if (version === 2 && response.phase !== (waitForResult ? 'accepted' : 'completed')) {
++		throw failure('ERR_OPEN_HARMONY_PROTOCOL', 'The host did not acknowledge the requested Ability protocol phase.');
++	}
++}
++
++// eslint-disable-next-line complexity
++export async function openHarmony(options, app, appArguments, isFallbackAttempt = false) {
++	// MacOS-only background/newInstance flags are ignored, as on Linux/Windows.
++	// Explicit executable paths use argv directly; Want parameters are not argv.
++	if (app && path.isAbsolute(app)) {
++		if (options.harmony !== undefined) {
++			throw failure('ERR_OPEN_HARMONY_INVALID_OPTION', 'harmony options apply to named Abilities, not executable paths.');
++		}
++
++		return openExecutable(options, app, appArguments, isFallbackAttempt);
++	}
++
++	const ability = abilityOptions(options, app, appArguments);
++	if (ability?.waitForResult && isFallbackAttempt) {
++		throw failure('ERR_OPEN_HARMONY_INVALID_OPTION', 'Cooperative result requests require a single target, without application fallback.');
++	}
++
++	const unsupported = options.wait ? 'wait for an arbitrary Ability to exit' : undefined;
++	if (unsupported || (appArguments.length > 0 && !options.harmony?.argumentsParameter) || app === 'browserPrivate') {
++		throw failure('ERR_OPEN_HARMONY_UNSUPPORTED_OPTION', `HarmonyOS does not support ${unsupported || (app === 'browserPrivate' ? 'browserPrivate' : 'application arguments')}.`);
++	}
++
++	// `browser` means the system's actual default browser, without desktop CLI
++	// detection. Named apps must be dispatched by the host; never ignore `app`.
++	const app_ = app === 'browser' ? undefined : app;
++	let {target} = options;
++	let kind = 'app';
++	if (target !== undefined) {
++		if (/^[a-z][a-z\d+.-]*:/i.test(target) && !target.startsWith('file:')) {
++			kind = 'url';
++		} else {
++			kind = 'file';
++			target = target.startsWith('file:') ? fileURLToPath(target) : path.resolve(target);
++			await fs.access(target);
++		}
++	}
++
++	if (process.env.OPEN_HARMONY_BRIDGE_DIR || ability) {
++		return dispatchToHost({kind, target, application: app_}, ability);
++	}
++
++	if (!process.versions.electron || app_ || kind === 'app') {
++		return dispatchToHost({kind, target, application: app_});
++	}
++
++	if (process.type && process.type !== 'browser') {
++		throw failure('ERR_OPEN_HARMONY_MAIN_PROCESS', 'Open HarmonyOS targets in the Electron main process.');
++	}
++
++	// Electron's ESM namespace is not consistent across OH distributions. Its
++	// built-in CJS loader is the stable main-process entry, without bundling it.
++	const {shell} = createRequire(import.meta.url)('electron');
++	if (kind === 'url') {
++		await shell.openExternal(target);
++	} else {
++		const error = await shell.openPath(target);
++		if (error) {
++			throw failure('ERR_OPEN_HARMONY_OPEN_FAILED', error);
++		}
++	}
++	// No fake pid or ChildProcess: a Want/shell dispatch creates no child process.
++}
+--- /dev/null
++++ b/harmony-ability.js
+@@ -0,0 +1,153 @@
++import fs from 'node:fs/promises';
++import path from 'node:path';
++import {setTimeout as delay} from 'node:timers/promises';
++import {Buffer} from 'node:buffer';
++
++const invalid = message => Object.assign(new TypeError(message), {code: 'ERR_OPEN_HARMONY_INVALID_OPTION'});
++
++function validateValue(value, ancestors = new Set(), depth = 0) {
++	if (['string', 'boolean'].includes(typeof value) || (typeof value === 'number' && Number.isFinite(value) && !Object.is(value, -0))) {
++		return;
++	}
++
++	if (value === null || typeof value !== 'object' || depth > 16 || ancestors.has(value)) {
++		throw invalid('HarmonyOS parameters require finite, acyclic Want values without null or negative zero (maximum depth 16).');
++	}
++
++	if (!Array.isArray(value) && ![Object.prototype, null].includes(Object.getPrototypeOf(value))) {
++		throw invalid('HarmonyOS parameters must use plain JSON objects and arrays.');
++	}
++
++	if (Object.getOwnPropertySymbols(value).length > 0) {
++		throw invalid('HarmonyOS parameters cannot contain symbol keys.');
++	}
++
++	ancestors.add(value);
++	if (Array.isArray(value)) {
++		const elementType = typeof value[0];
++		if (value.length === 0 || !['string', 'number', 'boolean'].includes(elementType)
++			|| value.some(item => typeof item !== elementType) || Object.keys(value).length !== value.length) {
++			throw invalid('Want arrays must be nonempty, homogeneous strings, numbers or booleans; other arrays may lose data in AbilityKit.');
++		}
++
++		for (let index = 0; index < value.length; index++) {
++			if (!Object.hasOwn(value, index)) {
++				throw invalid('HarmonyOS parameter arrays cannot contain holes.');
++			}
++		}
++	}
++
++	for (const [key, descriptor] of Object.entries(Object.getOwnPropertyDescriptors(value))) {
++		if (descriptor.get || descriptor.set || (!descriptor.enumerable && !(Array.isArray(value) && key === 'length'))) {
++			throw invalid('HarmonyOS parameters cannot contain accessors or non-enumerable values.');
++		}
++
++		validateValue(descriptor.value, ancestors, depth + 1);
++	}
++
++	ancestors.delete(value);
++}
++
++export function abilityOptions(options, app, appArguments) {
++	if (options.harmony === undefined) {
++		return;
++	}
++
++	const config = options.harmony;
++	if (!config || typeof config !== 'object' || Array.isArray(config)
++		|| Object.keys(config).some(key => !['parameters', 'argumentsParameter', 'waitForResult', 'resultTimeout', 'onResult'].includes(key))) {
++		throw invalid('Invalid HarmonyOS options.');
++	}
++
++	if (!app || app === 'browser' || app === 'browserPrivate' || path.isAbsolute(app)) {
++		throw invalid('HarmonyOS Ability options require an explicit bundle[/AbilityName].');
++	}
++
++	const parameters = config.parameters === undefined ? {} : config.parameters;
++	if (typeof parameters !== 'object' || parameters === null || Array.isArray(parameters)) {
++		throw invalid('harmony.parameters must be a JSON object.');
++	}
++
++	validateValue(parameters);
++	// Snapshot the exact wire representation after rejecting lossy JSON values.
++	const copied = JSON.parse(JSON.stringify(parameters)); // eslint-disable-line unicorn/prefer-structured-clone
++	if (config.argumentsParameter !== undefined) {
++		if (typeof config.argumentsParameter !== 'string' || config.argumentsParameter.length === 0
++			|| config.argumentsParameter.length > 128 || Object.hasOwn(copied, config.argumentsParameter)) {
++			throw invalid('harmony.argumentsParameter must be a nonempty key that does not overwrite parameters.');
++		}
++
++		if (appArguments.length === 0 || [...appArguments].some(argument => typeof argument !== 'string')) {
++			throw invalid('Mapped Ability arguments require a nonempty array of strings.');
++		}
++
++		Object.defineProperty(copied, config.argumentsParameter, {value: [...appArguments], enumerable: true});
++	}
++
++	if (Buffer.byteLength(JSON.stringify(copied)) > 32_768) {
++		throw invalid('HarmonyOS parameters exceed the 32 KiB bridge limit.');
++	}
++
++	if (config.waitForResult !== undefined && typeof config.waitForResult !== 'boolean') {
++		throw invalid('harmony.waitForResult must be a boolean.');
++	}
++
++	const waitForResult = config.waitForResult === true;
++	if (config.onResult !== undefined && (typeof config.onResult !== 'function' || !waitForResult)) {
++		throw invalid('harmony.onResult requires waitForResult: true and must be a function.');
++	}
++
++	const resultTimeout = config.resultTimeout === undefined ? 60_000 : config.resultTimeout;
++	if (!Number.isInteger(resultTimeout) || resultTimeout < 100 || resultTimeout > 86_400_000
++		|| (config.resultTimeout !== undefined && !waitForResult)) {
++		throw invalid('harmony.resultTimeout requires waitForResult: true and must be 100..86400000 milliseconds.');
++	}
++
++	return {
++		parameters: copied, waitForResult, resultTimeout, onResult: config.onResult,
++	};
++}
++
++export async function abilityResult(directory, id, deadline) {
++	const file = path.join(directory, `${id}.completion.json`);
++	while (Date.now() < deadline) {
++		let response;
++		try {
++			const stat = await fs.stat(file); // eslint-disable-line no-await-in-loop
++			if (stat.size > 65_536) {
++				throw Object.assign(new Error('Oversized Ability result.'), {code: 'ERR_OPEN_HARMONY_PROTOCOL'});
++			}
++
++			response = JSON.parse(await fs.readFile(file, 'utf8')); // eslint-disable-line no-await-in-loop
++		} catch (error) {
++			if (error.code !== 'ENOENT') {
++				throw error;
++			}
++		}
++
++		if (response) {
++			if (response.version !== 2 || response.id !== id || response.phase !== 'completed' || typeof response.ok !== 'boolean') {
++				throw Object.assign(new Error('Invalid Ability completion response.'), {code: 'ERR_OPEN_HARMONY_PROTOCOL'});
++			}
++
++			if (!response.ok) {
++				throw Object.assign(new Error(response.message || 'Ability result request failed.'), {code: String(response.code || 'ERR_OPEN_HARMONY_OPEN_FAILED')});
++			}
++
++			if (!response.result || !Number.isFinite(response.result.resultCode)) {
++				throw Object.assign(new Error('Invalid AbilityResult resultCode.'), {code: 'ERR_OPEN_HARMONY_PROTOCOL'});
++			}
++
++			if (response.result.want !== undefined && (response.result.want === null
++				|| typeof response.result.want !== 'object' || Array.isArray(response.result.want))) {
++				throw Object.assign(new Error('Invalid AbilityResult Want.'), {code: 'ERR_OPEN_HARMONY_PROTOCOL'});
++			}
++
++			return response.result;
++		}
++
++		await delay(25); // eslint-disable-line no-await-in-loop
++	}
++
++	throw Object.assign(new Error('Timed out waiting for the target Ability result; the target was not terminated.'), {code: 'ERR_OPEN_HARMONY_RESULT_TIMEOUT'});
++}
+--- /dev/null
++++ b/harmony-host/OpenHostBridge.ets
+@@ -0,0 +1,209 @@
++import { common, Want, wantConstant } from '@kit.AbilityKit';
++import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
++import { BusinessError } from '@kit.BasicServicesKit';
++
++class OpenRequest {
++  version: number = 0;
++  id: string = '';
++  kind: string = '';
++  target: string = '';
++  application: string = '';
++  expiresAt: number = 0;
++  parameters?: Record<string, Object>;
++  waitForResult: boolean = false;
++  resultDeadline: number = 0;
++}
++
++class OpenResponse {
++  version: number = 1;
++  id: string = '';
++  ok: boolean = false;
++  phase: string = 'completed';
++  code: string = '';
++  message: string = '';
++  result?: common.AbilityResult;
++}
++
++class ResultJob {
++  deadline: number;
++  canceled: boolean = false;
++  constructor(deadline: number) { this.deadline = deadline; }
++}
++
++class OpenBridgeError extends Error {
++  code: string;
++  constructor(code: string, message: string) {
++    super(message);
++    this.code = code;
++  }
++}
++
++// Protocol 1 remains available. Protocol 2 acknowledges cooperative requests,
++// then publishes their real AbilityResult without blocking other requests.
++export class OpenHostBridge {
++  private context: common.UIAbilityContext;
++  private directory: string;
++  private timer: number = -1;
++  private busy: boolean = false;
++  private jobs: Map<string, ResultJob> = new Map<string, ResultJob>();
++
++  constructor(context: common.UIAbilityContext) {
++    this.context = context;
++    this.directory = context.getApplicationContext().filesDir + '/open-harmony-bridge';
++  }
++
++  start(): void {
++    try { fs.mkdirSync(this.directory, true); }
++    catch (error) {
++      if (!fs.accessSync(this.directory)) { throw new Error((error as BusinessError).message); }
++    }
++    console.info('OPENHOST ready protocol=1,2 directory=' + this.directory);
++    this.timer = setInterval(() => { this.poll(); }, 50);
++  }
++
++  stop(): void {
++    if (this.timer >= 0) { clearInterval(this.timer); this.timer = -1; }
++    this.jobs.clear();
++  }
++
++  private respond(response: OpenResponse, suffix: string): void {
++    const output = this.directory + '/' + response.id + suffix;
++    const file = fs.openSync(output + '.tmp', fs.OpenMode.CREATE | fs.OpenMode.WRITE_ONLY | fs.OpenMode.TRUNC);
++    try { fs.writeSync(file.fd, JSON.stringify(response)); }
++    finally { fs.closeSync(file); }
++    fs.renameSync(output + '.tmp', output);
++  }
++
++  private setError(response: OpenResponse, error: Error): void {
++    response.ok = false;
++    response.message = error.message;
++    if (error instanceof OpenBridgeError) { response.code = error.code; }
++    else { response.code = String((error as BusinessError).code || 'ERR_OPEN_HARMONY_OPEN_FAILED'); }
++  }
++
++  private mime(path: string): string {
++    if (path.endsWith('.png')) { return 'image/png'; }
++    if (path.endsWith('.jpg') || path.endsWith('.jpeg')) { return 'image/jpeg'; }
++    if (path.endsWith('.pdf')) { return 'application/pdf'; }
++    if (path.endsWith('.html')) { return 'text/html'; }
++    if (path.endsWith('.txt')) { return 'text/plain'; }
++    return '*/*';
++  }
++
++  private complete(id: string, result: common.AbilityResult | undefined, error: Error | undefined): void {
++    const job = this.jobs.get(id);
++    if (!job) { return; }
++    this.jobs.delete(id);
++    // Abandon client waiting, never terminate the target application. Suppress
++    // late responses so timed-out calls do not leave orphan result files.
++    if (job.canceled || job.deadline <= Date.now()) {
++      console.info('OPENHOST abandoned result id=' + id);
++      return;
++    }
++    const response = new OpenResponse();
++    response.version = 2;
++    response.id = id;
++    if (error) { this.setError(response, error); }
++    else { response.ok = true; response.result = result; }
++    try {
++      this.respond(response, '.completion.json');
++      console.info('OPENHOST completed id=' + id + ' ok=' + response.ok);
++    } catch (writeError) {
++      console.error('OPENHOST completion write failed id=' + id + ' error=' + JSON.stringify(writeError));
++    }
++  }
++
++  private async dispatch(request: OpenRequest): Promise<string> {
++    if ((request.version !== 1 && request.version !== 2) || request.expiresAt < Date.now()) {
++      throw new OpenBridgeError('ERR_OPEN_HARMONY_PROTOCOL', 'Invalid or expired open request');
++    }
++    if (request.version === 1 && (request.parameters || request.waitForResult)) {
++      throw new OpenBridgeError('ERR_OPEN_HARMONY_PROTOCOL', 'Ability extensions require protocol 2');
++    }
++    const want: Want = {};
++    if (request.application) {
++      const parts = request.application.split('/');
++      if (!new RegExp('^[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z0-9_]+)+$').test(parts[0]) || parts.length > 2) {
++        throw new Error('Use a HarmonyOS bundle name, optionally followed by /AbilityName');
++      }
++      want.bundleName = parts[0];
++      if (parts.length === 2) { want.abilityName = parts[1]; }
++    }
++    if (request.parameters) { want.parameters = request.parameters; }
++    if (request.kind === 'app') {
++      if (!request.application) { throw new Error('Missing application bundle'); }
++      want.action = 'action.system.home';
++      want.entities = ['entity.system.home'];
++    } else if (request.kind === 'url') {
++      want.action = 'ohos.want.action.viewData';
++      want.uri = request.target;
++      if (request.target.startsWith('http:') || request.target.startsWith('https:')) {
++        want.entities = ['entity.system.browsable'];
++      }
++    } else if (request.kind === 'file') {
++      if (!request.target.startsWith('/') || !fs.accessSync(request.target)) { throw new Error('File does not exist'); }
++      want.action = 'ohos.want.action.viewData';
++      want.uri = fileUri.getUriFromPath(request.target);
++      want.type = this.mime(request.target);
++      want.flags = wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION;
++    } else { throw new Error('Unsupported request kind'); }
++    console.info('OPENHOST dispatch id=' + request.id + ' waitForResult=' + request.waitForResult);
++    if (request.waitForResult) {
++      if (!request.application || request.resultDeadline <= Date.now() || request.resultDeadline > Date.now() + 86400000) {
++        throw new OpenBridgeError('ERR_OPEN_HARMONY_INVALID_OPTION', 'Invalid result deadline or target');
++      }
++      // Keep canceled-but-unresolved registrations until the SDK callback, so
++      // repeated timeouts cannot allocate unbounded native result callbacks.
++      if (this.jobs.size >= 16) {
++        throw new OpenBridgeError('ERR_OPEN_HARMONY_BUSY', 'Too many unresolved Ability result requests');
++      }
++      const operation = this.context.startAbilityForResult(want);
++      this.jobs.set(request.id, new ResultJob(request.resultDeadline));
++      operation.then((result: common.AbilityResult) => {
++        this.complete(request.id, result, undefined);
++      }).catch((error: BusinessError) => {
++        this.complete(request.id, undefined, error);
++      });
++      return 'accepted';
++    }
++    await this.context.startAbility(want);
++    return 'completed';
++  }
++
++  private async poll(): Promise<void> {
++    if (this.busy) { return; }
++    this.busy = true;
++    try {
++      this.jobs.forEach((job: ResultJob) => {
++        if (job.deadline <= Date.now()) { job.canceled = true; }
++      });
++      const names = fs.listFileSync(this.directory);
++      for (const name of names) {
++        if (new RegExp('^[0-9a-f-]{36}\\.cancel$').test(name)) {
++          const job = this.jobs.get(name.substring(0, 36));
++          if (job) { job.canceled = true; }
++          fs.unlinkSync(this.directory + '/' + name);
++          continue;
++        }
++        if (!new RegExp('^[0-9a-f-]{36}\\.request\\.json$').test(name)) { continue; }
++        const input = this.directory + '/' + name;
++        const response = new OpenResponse();
++        response.id = name.substring(0, 36);
++        try {
++          const request = JSON.parse(fs.readTextSync(input)) as OpenRequest;
++          response.version = request.version === 2 ? 2 : 1;
++          if (request.id !== response.id) { throw new Error('Request ID mismatch'); }
++          fs.unlinkSync(input);
++          response.phase = await this.dispatch(request);
++          response.ok = true;
++        } catch (error) {
++          this.setError(response, error as Error);
++          console.error('OPENHOST failed id=' + response.id + ' error=' + JSON.stringify(error));
++        }
++        this.respond(response, '.response.json');
++      }
++    } catch (error) {
++      console.error('OPENHOST poll error=' + JSON.stringify(error));
++    } finally { this.busy = false; }
++  }
++}
+--- /dev/null
++++ b/harmony-host/open-launcher.c
+@@ -0,0 +1,76 @@
++/* MIT. Private HNP launcher: submit one host request and relay its response.
++ * This process launches a Want through its owning HAP; it is not the target app.
++ * Build with the OHOS NDK and package as private HNP, never writable app data.
++ */
++#define _POSIX_C_SOURCE 200809L
++#define _DARWIN_C_SOURCE 1
++#define _GNU_SOURCE 1
++#include <errno.h>
++#include <fcntl.h>
++#include <poll.h>
++#include <stdio.h>
++#include <string.h>
++#include <time.h>
++#include <unistd.h>
++
++static long long millis(void) {
++    struct timespec t;
++    if (clock_gettime(CLOCK_MONOTONIC, &t) != 0) return -1;
++    return (long long)t.tv_sec * 1000 + t.tv_nsec / 1000000;
++}
++
++static int write_all(int fd, const char *data, size_t size) {
++    while (size) {
++        ssize_t n = write(fd, data, size);
++        if (n < 0 && errno == EINTR) continue;
++        if (n <= 0) return -1;
++        data += n;
++        size -= (size_t)n;
++    }
++    return 0;
++}
++
++int main(int argc, char **argv) {
++    if (argc != 4 || strcmp(argv[1], "--bridge-v1") != 0 || argv[2][0] != '/' ||
++        strlen(argv[3]) != 36 || strspn(argv[3], "0123456789abcdef-") != 36) {
++        fputs("Usage: open-launcher --bridge-v1 ABSOLUTE_PRIVATE_DIRECTORY UUID\n", stderr);
++        return 64;
++    }
++    char pending[4096], input[4096], output[4096], response[65536];
++    if (snprintf(pending, sizeof pending, "%s/%s.tmp", argv[2], argv[3]) >= (int)sizeof pending ||
++        snprintf(input, sizeof input, "%s/%s.request.json", argv[2], argv[3]) >= (int)sizeof input ||
++        snprintf(output, sizeof output, "%s/%s.response.json", argv[2], argv[3]) >= (int)sizeof output) {
++        fputs("Bridge path too long\n", stderr);
++        return 64;
++    }
++    if (rename(pending, input) != 0) { perror("submit open request"); return 74; }
++    long long deadline = millis() + 14000;
++    for (;;) {
++        int fd = open(output, O_RDONLY | O_NOFOLLOW);
++        if (fd >= 0) {
++            size_t length = 0;
++            while (length < sizeof response) {
++                ssize_t n = read(fd, response + length, sizeof response - length);
++                if (n < 0 && errno == EINTR) continue;
++                if (n < 0) { perror("read host response"); close(fd); return 74; }
++                if (n == 0) break;
++                length += (size_t)n;
++            }
++            close(fd);
++            if (!length || length == sizeof response) { fputs("Invalid host response size\n", stderr); return 74; }
++            if (write_all(STDOUT_FILENO, response, length) || write_all(STDOUT_FILENO, "\n", 1)) return 74;
++            /* Parent acknowledges only after handing the ChildProcess to its caller.
++             * EOF also releases us when the parent exits immediately after await. */
++            struct pollfd ack = { .fd = STDIN_FILENO, .events = POLLIN | POLLHUP };
++            int ready;
++            do { ready = poll(&ack, 1, 5000); } while (ready < 0 && errno == EINTR);
++            char byte;
++            if (ready > 0) (void)read(STDIN_FILENO, &byte, 1);
++            return 0;
++        }
++        if (errno != ENOENT) { perror("open host response"); return 74; }
++        if (millis() >= deadline) { fputs("Host response timed out\n", stderr); return 124; }
++        struct timespec interval = { .tv_sec = 0, .tv_nsec = 20000000 };
++        nanosleep(&interval, NULL);
++    }
++}
+--- /dev/null
++++ b/harmony-host/build-launcher.mjs
+@@ -0,0 +1,37 @@
++import fs from 'node:fs';
++import path from 'node:path';
++import {fileURLToPath} from 'node:url';
++import {spawnSync} from 'node:child_process';
++import {parseArgs} from 'node:util';
++
++const {values} = parseArgs({options: {ndk: {type: 'string'}, out: {type: 'string'}, 'code-sign': {type: 'boolean', default: false}}});
++if (!values.ndk || !values.out) {
++	throw new Error('Usage: node build-launcher.mjs --ndk ABSOLUTE_OHOS_NDK --out OUTPUT_ELF');
++}
++
++const compiler = path.join(values.ndk, 'llvm/bin/aarch64-unknown-linux-ohos-clang');
++const source = fileURLToPath(new URL('open-launcher.c', import.meta.url));
++fs.mkdirSync(path.dirname(path.resolve(values.out)), {recursive: true});
++const arguments_ = [
++	'-std=c11',
++	'-Wall',
++	'-Wextra',
++	'-Werror',
++	'-O2',
++	'-fPIE',
++	'-pie',
++	...(values['code-sign'] ? ['-Wl,--code-sign'] : []),
++	source,
++	'-o',
++	path.resolve(values.out),
++];
++const result = spawnSync(compiler, arguments_, {stdio: 'inherit'});
++if (result.error) {
++	throw result.error;
++}
++
++if (result.status !== 0) {
++	throw new Error(`OHOS launcher compiler exited with code ${result.status}, signal ${result.signal}.`);
++}
++
++fs.chmodSync(values.out, 0o755);
