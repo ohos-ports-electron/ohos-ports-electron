@@ -1,0 +1,107 @@
+name: get-stream build and npm publish
+
+on:
+  pull_request:
+    paths:
+      - 'ports/get-stream/**'
+      - '.github/workflows/get-stream-electron-oh.yml'
+      - '.github/workflows/ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'ports/get-stream/**'
+      - '.github/workflows/get-stream-electron-oh.yml'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: get-stream-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+env:
+  PORT: ports/get-stream/9.0.1
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download locked baseline npm tarball
+        run: |
+          curl -fsSL "$BASELINE_URL" -o "$RUNNER_TEMP/baseline.tgz"
+          echo "$BASELINE_SHA  $RUNNER_TEMP/baseline.tgz" | sha256sum -c -
+        env:
+          BASELINE_URL: https://registry.npmjs.org/get-stream/-/get-stream-9.0.1.tgz
+          BASELINE_SHA: 8e676f6d730ce38f01d0772936df1b33750c38e5dec6ad18c522a6a1622124c6
+      - name: Build the candidate once and bind the current recipe
+        run: |
+          bash "$PORT/build.sh" --output "$RUNNER_TEMP/bundle" --archive "$RUNNER_TEMP/baseline.tgz"
+          python3 "$PORT/electron-oh/tools/release.py" bind --bundle "$RUNNER_TEMP/bundle"
+          python3 "$PORT/electron-oh/tools/release.py" verify --bundle "$RUNNER_TEMP/bundle"
+          python3 "$PORT/electron-oh/tests/release-contract.py"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: get-stream-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bundle
+          if-no-files-found: error
+          retention-days: 30
+
+  compatibility:
+    needs: build
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20.18.1', '22.17.0', '24.11.1', '24.13.0']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: get-stream-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bundle
+      - name: Install and run the get-stream suite on the same tgz
+        run: python3 "$PORT/electron-oh/tools/release.py" host --bundle "$RUNNER_TEMP/bundle"
+
+  publish:
+    needs: [build, compatibility]
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24.20.0'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm install --global npm@12.2.1
+      - uses: actions/download-artifact@v4
+        with:
+          name: get-stream-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bundle
+      - name: Publish frozen bytes and verify latest and beta tags
+        env:
+          ENABLE_ELECTRON_OH_PUBLISH: '1'
+          ELECTRON_OH_BUNDLE: ${{ runner.temp }}/bundle
+          GITHUB_ENVIRONMENT: npm-publish
+        run: bash "$PORT/publish.sh"
