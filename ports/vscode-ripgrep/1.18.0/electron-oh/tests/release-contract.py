@@ -21,4 +21,27 @@ rejected(lambda:m.check_existing_tag('0.0.0-stage',{**lock,'bootstrap':{}}))
 with patch.object(m,'verify',return_value={'integrity':'sha512-unrelated','files':{}}), patch.object(m.subprocess,'run') as installer:
  rejected(lambda:m.host(Path('/nonexistent-validation-bundle')))
  installer.assert_not_called()
-print('Release contract: trusted main only; old channel config/upload/tag write rejected; same-byte package without beta fails')
+class Response(io.BytesIO):status=200
+responses=[]
+for tag in ['latest','beta']:
+ responses.extend([Response(json.dumps({'value':'synthetic-identity-'+tag}).encode()),Response(json.dumps({'token':'synthetic-token-'+tag}).encode()),Response(b'{}')])
+env={**valid,'ACTIONS_ID_TOKEN_REQUEST_URL':'https://example.test/token?x=1&audience=untrusted','ACTIONS_ID_TOKEN_REQUEST_TOKEN':'synthetic-request'}
+output=io.StringIO()
+with patch.dict(m.os.environ,env,clear=True),patch.object(m.urllib.request,'urlopen',side_effect=responses) as opened,contextlib.redirect_stdout(output):m.oidc_tags(['latest','beta'])
+requests=[call.args[0] for call in opened.call_args_list]
+assert [r.get_method() for r in requests]==['GET','POST','PUT','GET','POST','PUT']
+assert 'audience=npm%3Aregistry.npmjs.org' in requests[0].full_url and 'untrusted' not in requests[0].full_url
+assert requests[2].get_header('Authorization')=='Bearer synthetic-token-latest'
+assert requests[5].get_header('Authorization')=='Bearer synthetic-token-beta'
+assert all(json.loads(requests[i].data)==m.VERSION for i in [2,5])
+assert 'synthetic-' not in output.getvalue()
+with patch.dict(m.os.environ,valid,clear=True),patch.object(m.urllib.request,'urlopen') as opened:
+ rejected(lambda:m.oidc_tags(['electron-oh']));opened.assert_not_called()
+ rejected(lambda:m.oidc_tags(['latest']));opened.assert_not_called()
+denied=m.urllib.error.HTTPError('https://example.test',403,'denied',{},None)
+with patch.dict(m.os.environ,env,clear=True),patch.object(m.urllib.request,'urlopen',side_effect=[Response(b'{"value":"synthetic-identity"}'),denied]) as opened:
+ try:m.oidc_tags(['latest'])
+ except m.urllib.error.HTTPError:pass
+ else:raise AssertionError('OIDC rejection must propagate without credential fallback')
+ assert opened.call_count==2
+print('Release contract: trusted main only; old channel rejected; real tag PUT flow requires exchanged identity and never logs credentials')

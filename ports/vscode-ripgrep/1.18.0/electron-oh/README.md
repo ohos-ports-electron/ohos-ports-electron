@@ -24,6 +24,12 @@ locks, the actual npm publish argv and every tag write. latest and beta are
 both read back after upload or same-byte skip. Historical electron-oh tags
 are not modified by this port. Website data and the beta install entry are
 verified independently after Pages deploys. Do not repack to change tags.
+Tag maintenance exchanges the live GitHub OIDC identity for this package and
+performs an idempotent PUT for each required tag, including already-correct
+values. This exercises independent manageDistTags permission even when the
+official npm dist-tag command would return an already-set no-op. The shared
+channel gate runs immediately before each write; no fallback token is used
+and credentials are never printed.
 
 Electron-OH 40: the measured vendor engine stalls synchronous spawnSync child
 reaping. Passing device coverage uses asynchronous child_process.spawn in
