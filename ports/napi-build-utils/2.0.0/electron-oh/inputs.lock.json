@@ -1,0 +1,39 @@
+{
+    "schemaVersion":  1,
+    "baseline":  {
+                     "name":  "napi-build-utils",
+                     "version":  "2.0.0",
+                     "url":  "https://registry.npmjs.org/napi-build-utils/-/napi-build-utils-2.0.0.tgz",
+                     "sha256":  "a597633b66d0406c4ddfcdcd4eb3fa33aa89cb97f9c46fb52aa13ae889046a9e",
+                     "integrity":  "sha512-GEbrYkbfF7MoNaoh2iGG84Mnf/WZfB0GdGEsM8wz7Expx/LlWf5U8t9nvJKXSp3qr5IsEbK04cBGhol/KwOsWA=="
+                 },
+    "candidate":  {
+                      "name":  "@ohos-ports-electron/napi-build-utils",
+                      "version":  "2.0.0-electron-oh.0",
+                      "sha256":  "e757ec960eb35b9382bf207bd3220078b0cbce1af3cdca162b6f595926bb99e5",
+                      "integrity":  "sha512-TogjGXn0QoV/LdukM637lZuIMY680M+E+0jM94rYTEGmhSJzWSSxq/UpoSBKQ9TA1/gUE4G8tusTss2hf37cmA==",
+                      "archiveUrl":  "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/napi-build-utils-evidence-2.0.0-electron-oh.0/napi-build-utils-2.0.0-electron-oh.0.tgz"
+                  },
+    "library":  {
+                    "filesSha256":  {
+                                        ".github/workflows/run-npm-tests.yml":  "c98eb730518078c38edc410a3f1a24916e67786f9adf42c3683a1da2b386c094",
+                                        "index.js":  "83d1f00fe91178a56fd66c130199a44dea3ffd36bd31bf358d53f8ac1fb40fb9",
+                                        "index.md":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                                        "LICENSE":  "9c6a91d2847bd9bfd493c1ca87b9c3f96302cfd069667e6dd4a6278e69a33a31",
+                                        "package.json":  "001ba5640df99785e76b7d407ae35a24c490f145737cf3f194408fb17dfec411",
+                                        "README.md":  "8a372a57ba70da0794958afc07870bd3bd2c8b81099dc0b86badbe7d3f726b64"
+                                    }
+                },
+    "patches":  [
+
+                ],
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+                       "directory":  "ports/napi-build-utils/2.0.0"
+                   },
+    "requiredDistTags":  [
+                             "latest",
+                             "beta"
+                         ]
+}
