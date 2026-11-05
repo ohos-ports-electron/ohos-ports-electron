@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "status": "ready-with-exception",
+  "library": "better-sqlite3-multiple-ciphers@13.0.4-beta.0",
+  "candidate": "@ohos-ports-electron/better-sqlite3-multiple-ciphers@13.0.4-beta.0-electron-oh.0",
+  "candidateSha256": "00c8545dc482eed2ca7a280a87ae8f9f604bf65fca69b5d1b5657df66d5f8d7b",
+  "targets": {
+    "node": {
+      "baseline": {
+        "reportSha256": "9d164fcad1ae15af0e651124c607913b6c72873cec15b2bdff2e7e9bc98f70d4",
+        "packageSha256": "0ad755e2ac1e9efe6feb68903605c2af43ae2eee6a96ae4939f2719f4b20daee",
+        "status": "failed",
+        "coldStarts": [
+          {
+            "pid": 9863,
+            "runId": "3abad123913d6b807ff415d2",
+            "pass": 8,
+            "total": 351
+          },
+          {
+            "pid": 10496,
+            "runId": "529d42d7844c8f41089dcb2e",
+            "pass": 8,
+            "total": 351
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "8e1dc1c8142e90f34b71746ccb15179c913f613130cbbe0de8ca15b4db976a9a",
+        "packageSha256": "00c8545dc482eed2ca7a280a87ae8f9f604bf65fca69b5d1b5657df66d5f8d7b",
+        "status": "passed",
+        "coldStarts": [
+          {
+            "pid": 61675,
+            "runId": "822a9a9dda2d65ec55918451",
+            "pass": 351,
+            "total": 351
+          },
+          {
+            "pid": 62400,
+            "runId": "a0076db1c3b464fb590a8437",
+            "pass": 351,
+            "total": 351
+          }
+        ],
+        "hapSha256": "10b0c68663222dfa201799234ca91ed41534c6c3a61fa3212df137ba2fdbddd6"
+      }
+    },
+    "electron37": {
+      "baseline": {
+        "reportSha256": "b186aef7d24f59a794469a3699b187e00944284ac54fe29b50d1b614c99d2d47",
+        "packageSha256": "0ad755e2ac1e9efe6feb68903605c2af43ae2eee6a96ae4939f2719f4b20daee",
+        "status": "failed",
+        "coldStarts": [
+          {
+            "pid": 14545,
+            "runId": "7db935b033f490436e5700c6",
+            "pass": 9,
+            "total": 351
+          },
+          {
+            "pid": 15775,
+            "runId": "6f164af588e54558bcee2175",
+            "pass": 9,
+            "total": 351
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "854d3b8d91e1e6a4f7ba9c94f2d72c68182244fa4fcf3bd33b7d6a6f8b594fce",
+        "packageSha256": "00c8545dc482eed2ca7a280a87ae8f9f604bf65fca69b5d1b5657df66d5f8d7b",
+        "status": "passed",
+        "coldStarts": [
+          {
+            "pid": 4362,
+            "runId": "2530d08780a77bbf11249eee",
+            "pass": 351,
+            "total": 351
+          },
+          {
+            "pid": 6420,
+            "runId": "0a46466722805cdd00338a61",
+            "pass": 351,
+            "total": 351
+          }
+        ],
+        "hapSha256": "bd3c9e2e7a48b962d79d07fd7ce42f33e80f0a5362ecbaa1aa271bf30855e642"
+      }
+    },
+    "electron40": {
+      "baseline": {
+        "reportSha256": "cc80d91df12f6f801465ff3474a8857ea3b0be422b5bbe6ecbf623608b40dacb",
+        "packageSha256": "0ad755e2ac1e9efe6feb68903605c2af43ae2eee6a96ae4939f2719f4b20daee",
+        "status": "failed",
+        "coldStarts": [
+          {
+            "pid": 18940,
+            "runId": "e2aec8033eb6de6f87095923",
+            "pass": 9,
+            "total": 351
+          },
+          {
+            "pid": 19868,
+            "runId": "50c6ed85b0a3ff4ade70d364",
+            "pass": 9,
+            "total": 351
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "621c3caf53ed18b17d1d8e46c6898b11eabd05d474458c4339281a9f866117a1",
+        "packageSha256": "00c8545dc482eed2ca7a280a87ae8f9f604bf65fca69b5d1b5657df66d5f8d7b",
+        "status": "passed",
+        "coldStarts": [
+          {
+            "pid": 53887,
+            "runId": "cc10be0485418c1e3d255ca0",
+            "pass": 351,
+            "total": 351
+          },
+          {
+            "pid": 54789,
+            "runId": "585178e1530fea0b1fbb77a0",
+            "pass": 351,
+            "total": 351
+          }
+        ],
+        "hapSha256": "672b481f29d5b06542463bc5dc060ecb620347098e89cc9324014edcaaf82a4f"
+      }
+    }
+  },
+  "blocked": {
+    "electron34": {
+      "status": "blocked",
+      "reason": "Deterministic runtime incompatibility: Electron-OH 34 bundles Node 20.18.1 which reports napi=9, but this addon requires Node-API 10 (src/util/constants.cpp holds Napi::Persistent references to strings, which N-API <10 rejects). The Chromium main thread crashes (SIGSEGV/CppCrash) at the first real business load of the addon. Not a port defect and not fixable by the port.",
+      "reportSha256": "c38203c9af4d17476cf05e4007517b02d078ec0e143e5c40b24a38920034a265",
+      "hapSha256": "fb8d327b046bb1fc62dcc0a78e658743eafdcfef29989474ab3a5310dd8f3d04",
+      "crashSignal": "SIGSEGV(SEGV_MAPERR)@0x0000000000000090",
+      "thread": "CrBrowserMain",
+      "hostNode": "20.18.1",
+      "napi": 9
+    }
+  },
+  "archive": {
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/better-sqlite3-multiple-ciphers-evidence-13.0.4-beta.0-electron-oh.0/better-sqlite3-multiple-ciphers-13.0.4-beta.0-electron-oh.0-device-evidence.tar.gz",
+    "note": "uploaded 2026-11-05"
+  },
+  "scope": "recorded device evidence; no fresh device runner in host CI",
+  "nativeAsset": {
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/better-sqlite3-multiple-ciphers-evidence-13.0.4-beta.0-electron-oh.0/better_sqlite3.node"
+  },
+  "frozenCandidateAsset": {
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/better-sqlite3-multiple-ciphers-evidence-13.0.4-beta.0-electron-oh.0/better-sqlite3-multiple-ciphers-13.0.4-beta.0-electron-oh.0-candidate.tgz"
+  }
+}
