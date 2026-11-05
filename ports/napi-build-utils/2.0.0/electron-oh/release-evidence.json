@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "candidateSha256": "e757ec960eb35b9382bf207bd3220078b0cbce1af3cdca162b6f595926bb99e5",
+  "targets": {
+    "node": {
+      "baseline": {
+        "reportSha256": "281c1fa66c0f68f2fc9fd3dd90333fb27f254a4264b92647cba37c70eef9fa24",
+        "packageSha256": "a597633b66d0406c4ddfcdcd4eb3fa33aa89cb97f9c46fb52aa13ae889046a9e",
+        "coldStarts": [
+          {
+            "pid": 45385,
+            "runId": "run-1-b9a82a33516d",
+            "pass": 8,
+            "total": 8
+          },
+          {
+            "pid": 45837,
+            "runId": "run-2-4cc4bdbb7141",
+            "pass": 8,
+            "total": 8
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "e723274c0ed2507e46c1416747bc8e7a9c26712be7786f1519b4b33e00db2ea9",
+        "packageSha256": "e757ec960eb35b9382bf207bd3220078b0cbce1af3cdca162b6f595926bb99e5",
+        "coldStarts": [
+          {
+            "pid": 43617,
+            "runId": "run-1-e4de8739d8ec",
+            "pass": 8,
+            "total": 8
+          },
+          {
+            "pid": 44013,
+            "runId": "run-2-67701050e3f9",
+            "pass": 8,
+            "total": 8
+          }
+        ]
+      }
+    },
+    "electron34": {
+      "baseline": {
+        "reportSha256": "98d8e12317cb1fbcdc1c279b92fe633718f7b8200925b517e615b4f50b526d4f",
+        "packageSha256": "a597633b66d0406c4ddfcdcd4eb3fa33aa89cb97f9c46fb52aa13ae889046a9e",
+        "coldStarts": [
+          {
+            "pid": 60687,
+            "runId": "run-1-b11f67c0fa4a",
+            "pass": 8,
+            "total": 8
+          },
+          {
+            "pid": 61231,
+            "runId": "run-2-a103f9e652cc",
+            "pass": 8,
+            "total": 8
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "326e0667483d58c9165f58ad5195bd71740ad203fd33b31dc78a60ce3ccf7c9f",
+        "packageSha256": "e757ec960eb35b9382bf207bd3220078b0cbce1af3cdca162b6f595926bb99e5",
+        "coldStarts": [
+          {
+            "pid": 51481,
+            "runId": "run-1-583b950a6590",
+            "pass": 8,
+            "total": 8
+          },
+          {
+            "pid": 52030,
+            "runId": "run-2-59ee0bc74733",
+            "pass": 8,
+            "total": 8
+          }
+        ]
+      }
+    },
+    "electron37": {
+      "baseline": {
+        "reportSha256": "3d4393188217bcd134b8937ee4b57703c3c67494c24f7f9501541f4a824779f6",
+        "packageSha256": "a597633b66d0406c4ddfcdcd4eb3fa33aa89cb97f9c46fb52aa13ae889046a9e",
+        "coldStarts": [
+          {
+            "pid": 57928,
+            "runId": "run-1-a0305b33c2df",
+            "pass": 8,
+            "total": 8
+          },
+          {
+            "pid": 58673,
+            "runId": "run-2-37be4ff42117",
+            "pass": 8,
+            "total": 8
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "2b6ba6823bcc33361c34fc83aff1fa1bd030a1ca6744b1eb841e4bb27f2a34e9",
+        "packageSha256": "e757ec960eb35b9382bf207bd3220078b0cbce1af3cdca162b6f595926bb99e5",
+        "coldStarts": [
+          {
+            "pid": 48867,
+            "runId": "run-1-5d2489b226b6",
+            "pass": 8,
+            "total": 8
+          },
+          {
+            "pid": 49464,
+            "runId": "run-2-73c28ab00241",
+            "pass": 8,
+            "total": 8
+          }
+        ]
+      }
+    },
+    "electron40": {
+      "baseline": {
+        "reportSha256": "c1fe85cd67a47d1e989ab90e354b3ff5dddadb9e687c7a2d21333a0d4efd1f75",
+        "packageSha256": "a597633b66d0406c4ddfcdcd4eb3fa33aa89cb97f9c46fb52aa13ae889046a9e",
+        "coldStarts": [
+          {
+            "pid": 64577,
+            "runId": "run-1-c3de5eade054",
+            "pass": 8,
+            "total": 8
+          },
+          {
+            "pid": 65114,
+            "runId": "run-2-b6cc1bfe819a",
+            "pass": 8,
+            "total": 8
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "246922cf7ebd2e0088bc0cdbde80ef617c97090aaa64193cc9cd635deddabba9",
+        "packageSha256": "e757ec960eb35b9382bf207bd3220078b0cbce1af3cdca162b6f595926bb99e5",
+        "coldStarts": [
+          {
+            "pid": 55123,
+            "runId": "run-1-f23662892726",
+            "pass": 8,
+            "total": 8
+          },
+          {
+            "pid": 55837,
+            "runId": "run-2-1f55566ce82b",
+            "pass": 8,
+            "total": 8
+          }
+        ]
+      }
+    }
+  },
+  "archive": {
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/napi-build-utils-evidence-2.0.0-electron-oh.0/napi-build-utils-2.0.0-electron-oh.0-device-evidence.tar.gz",
+    "sha256": "913fa5f756568f929a7581cf180e79e6ca55fb59386f664b43eac89f1887eeb9",
+    "fileCount": 8
+  },
+  "scope": "recorded device evidence; no fresh device runner in host CI"
+}
