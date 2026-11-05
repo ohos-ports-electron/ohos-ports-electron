@@ -150,7 +150,20 @@ def publish(bundle):
         require(current['dist']['integrity'] == manifest['integrity'], 'version exists with other bytes')
         print('already-published; continue byte and tag verification')
     else:
-        subprocess.run(['npm', 'publish', str(bundle / 'candidate.tgz'), '--access', 'public', '--tag', 'beta'], check=True); uploaded = True
+        try:
+            subprocess.run(['npm', 'publish', str(bundle / 'candidate.tgz'), '--access', 'public', '--tag', 'beta'], check=True)
+            uploaded = True
+        except subprocess.CalledProcessError:
+            # First publish may land during the registry scanning window (metadata
+            # not yet visible) and npm reports 409 "cannot publish over previously
+            # staged version" — treat as already-published when integrity matches.
+            for attempt in range(40):
+                current = metadata()
+                if current: break
+                print('Waiting for registry processing', attempt + 1, flush=True); time.sleep(15)
+            require(current is not None, 'publish failed and version is not visible after bounded observation')
+            require(current['dist']['integrity'] == manifest['integrity'], 'publish failed; existing version has other bytes')
+            print('first publish landed during scanning window; continue verification')
         for attempt in range(40):
             current = metadata()
             if current: break
