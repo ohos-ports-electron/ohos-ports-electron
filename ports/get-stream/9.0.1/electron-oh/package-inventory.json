@@ -1,0 +1,16 @@
+{
+    "license": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+    "package.json": "b0bbd9ada3ddc803125cd507abdc0462d3ea1a63c8a18f3c3ca3ca2df9465b46",
+    "README.md": "e81cff237085ad6d7659c08b6fb1cd343f0fa5dfe977b26dd83d246d6d65f7a5",
+    "README.upstream.md": "e9b1b57e9f83b6e157fa0abc034e0d2f0545e75536bf27881b970d1282663307",
+    "source/array-buffer.js": "93ff985879fd735c045393483b0e3d9e4f13a28ddb9e164a76da22e86dd3e0dd",
+    "source/array.js": "3e91266ff1b93cee2970c35074bc532aa42b5100cf1d30556dd69e7a04a4df88",
+    "source/buffer.js": "4b4ee9f513afd00e5045beece283284358439f96ccfa997b2e8eeb42980432f6",
+    "source/contents.js": "5f8b08ca001b0df7f19758f18381e771405a1191e6759dd9fbf819128c7e770f",
+    "source/exports.js": "316dc78b4195aac640040befe5f380b972912f125fb63d1d0d04880481d4a688",
+    "source/index.d.ts": "a140444dcdb7f277f19f8c5c03459e8a393792262d8b8bc88f05af2aef0bf801",
+    "source/index.js": "7d72aea00687761317b5fe5d17ff8b92ffdca21214799212128e57b5d445e72c",
+    "source/stream.js": "76a9853853d757b9155467bd7b68bbe88ad41acfce43006b134540514176fc99",
+    "source/string.js": "0dddf53f72c9b328fa2f6f9e406ad6fea9ad0835caef36a3e855794d03613e60",
+    "source/utils.js": "b977a1ca430f53d10df5552616c0f0071f57e924353fbe14e9a70dc8d6902978"
+}
