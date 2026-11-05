@@ -201,3 +201,13 @@ First account/package creation and later OIDC validation are separate facts.
 The official prebuilt release label v15.0.1 contains core ripgrep 15.0.0; the
 binary's actual version and MIT provenance are preserved in the recipe.
 See [the port](../ports/vscode-ripgrep/1.18.0/README.md).
+
+## prebuild-install
+
+`prebuild-install-electron-oh.yml` builds the locked pure-JavaScript candidate once,
+checks the archived four-target device reports and runs the host-safe prebuild-install
+suite on the exact Node versions recorded by those targets (20.18.1 / 22.17.0 /
+24.11.1 / 24.13.0). Host CI does not run a fresh HarmonyOS device job. Main push
+publication uses `npm-publish`, the same frozen tgz, npm OIDC, and verifies both
+`latest` and `beta`. Configure the package trusted publisher for this exact workflow
+with direct publish and independent dist-tag permissions. See [the port](../ports/prebuild-install/7.1.3/README.md).
