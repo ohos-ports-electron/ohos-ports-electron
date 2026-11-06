@@ -1,0 +1,41 @@
+--- a/package.json
++++ b/package.json
+@@ -1,6 +1,6 @@
+ {
+-  "name": "rxjs",
+-  "version": "7.8.2",
++  "name": "@ohos-ports-electron/rxjs",
++  "version": "7.8.2-electron-oh.0",
+   "description": "Reactive Extensions for modern JavaScript",
+   "main": "./dist/cjs/index.js",
+   "module": "./dist/esm5/index.js",
+@@ -105,7 +105,8 @@
+   },
+   "repository": {
+     "type": "git",
+-    "url": "https://github.com/reactivex/rxjs.git"
++    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
++    "directory": "ports/rxjs/7.8.2"
+   },
+   "keywords": [
+     "Rx",
+@@ -150,7 +151,7 @@
+   "bugs": {
+     "url": "https://github.com/ReactiveX/RxJS/issues"
+   },
+-  "homepage": "https://rxjs.dev",
++  "homepage": "https://github.com/ohos-ports-electron/ohos-ports-electron/tree/main/ports/rxjs/7.8.2",
+   "dependencies": {
+     "tslib": "^2.1.0"
+   },
+@@ -241,5 +242,10 @@
+       "pre-commit": "lint-staged",
+       "commit-msg": "validate-commit-msg"
+     }
++  },
++  "publishConfig": {
++    "registry": "https://registry.npmjs.org",
++    "access": "public",
++    "tag": "beta"
+   }
+ }
