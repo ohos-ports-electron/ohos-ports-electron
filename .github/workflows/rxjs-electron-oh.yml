@@ -1,0 +1,95 @@
+name: rxjs build and npm publish
+
+on:
+  pull_request:
+    paths: ['ports/rxjs/**', '.github/workflows/rxjs-electron-oh.yml']
+  push:
+    branches: [main]
+    paths: ['ports/rxjs/**', '.github/workflows/rxjs-electron-oh.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: rxjs-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+env:
+  PORT: ports/rxjs/7.8.2
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build the candidate once and bind the current recipe
+        run: |
+          bash "$PORT/build.sh" --output "$RUNNER_TEMP/bundle"
+          python3 "$PORT/electron-oh/tools/release.py" bind --bundle "$RUNNER_TEMP/bundle"
+          python3 "$PORT/electron-oh/tools/release.py" verify --bundle "$RUNNER_TEMP/bundle"
+          python3 "$PORT/electron-oh/tests/release-contract.py"
+          python3 "$PORT/electron-oh/tests/test_release_channel.py"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rxjs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bundle
+          if-no-files-found: error
+          retention-days: 30
+
+  compatibility:
+    needs: build
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['18.15.0', '20.18.1', '22.17.0', '24.11.1', '24.13.0']
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          name: rxjs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bundle
+      - name: Install and run rxjs assertions on the same tgz
+        run: python3 "$PORT/electron-oh/tools/release.py" host --bundle "$RUNNER_TEMP/bundle"
+
+  publish:
+    needs: [build, compatibility]
+    if: >-
+      github.repository == 'ohos-ports-electron/ohos-ports-electron' &&
+      github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: npm-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24.20.0'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm install --global npm@12.2.1
+      - uses: actions/download-artifact@v4
+        with:
+          name: rxjs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bundle
+      - name: Publish frozen bytes and verify latest and beta tags
+        env:
+          ENABLE_ELECTRON_OH_PUBLISH: '1'
+          ELECTRON_OH_BUNDLE: ${{ runner.temp }}/bundle
+          GITHUB_ENVIRONMENT: npm-publish
+        run: bash "$PORT/publish.sh"

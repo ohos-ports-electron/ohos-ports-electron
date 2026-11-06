@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "candidateSha256": "d249eb0ca0873459e4619f7077b72840cf2534c759f44e56f82117be7dbda9b1",
+  "targets": {
+    "node": {
+      "baseline": {
+        "reportSha256": "88740eb5588dc9b904352d93b0f67504f9f44f0b2fbdb4686d12cf3160fa4ae3",
+        "packageSha256": "2312f8ffd9726ffd7bd53ea12c5f13663d09a3dc3326f448c70b88f5ef6fac82",
+        "coldStarts": [
+          {
+            "pid": 22416,
+            "runId": "rxjs-1793928348065-22416-97780d3a",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 22554,
+            "runId": "rxjs-1793928351292-22554-f8f20f3f",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "ad2839d54069d3c975d05a934467adfd04840504c033c22386370eb51bc6584a",
+        "packageSha256": "d249eb0ca0873459e4619f7077b72840cf2534c759f44e56f82117be7dbda9b1",
+        "coldStarts": [
+          {
+            "pid": 23260,
+            "runId": "rxjs-1793928417025-23260-ca1d4251",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 23352,
+            "runId": "rxjs-1793928420203-23352-1b08e05f",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      }
+    },
+    "electron25": {
+      "baseline": {
+        "reportSha256": "c9ea370ffa341789441b62b4860ea0b35b4ea695e3aa018faabd493f21aa6f6c",
+        "packageSha256": "2312f8ffd9726ffd7bd53ea12c5f13663d09a3dc3326f448c70b88f5ef6fac82",
+        "coldStarts": [
+          {
+            "pid": 14422,
+            "runId": "rxjs-1793927893065-14422-be812aa8",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 14549,
+            "runId": "rxjs-1793927896177-14549-e6e480dd",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "d3c17b8a9d969b18b767ebf11fe1738d1c7414b66cc743a35d6b7f8a2c428aa9",
+        "packageSha256": "d249eb0ca0873459e4619f7077b72840cf2534c759f44e56f82117be7dbda9b1",
+        "coldStarts": [
+          {
+            "pid": 15416,
+            "runId": "rxjs-1793927930505-15416-c8ee877f",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 15507,
+            "runId": "rxjs-1793927933671-15507-1d1111e9",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      }
+    },
+    "electron34": {
+      "baseline": {
+        "reportSha256": "1414aca1e364818a25a9cfe1952c9ed632aa460edaa11f7cecf221930e2d9534",
+        "packageSha256": "2312f8ffd9726ffd7bd53ea12c5f13663d09a3dc3326f448c70b88f5ef6fac82",
+        "coldStarts": [
+          {
+            "pid": 17719,
+            "runId": "rxjs-1793928065821-17719-7af83230",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 17842,
+            "runId": "rxjs-1793928068986-17842-19bd0f2e",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "f846397eb95ceae82b9e8d773081be61df4df788194c35fc1998fc85edeb4f48",
+        "packageSha256": "d249eb0ca0873459e4619f7077b72840cf2534c759f44e56f82117be7dbda9b1",
+        "coldStarts": [
+          {
+            "pid": 18472,
+            "runId": "rxjs-1793928104236-18472-c3d88d00",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 18556,
+            "runId": "rxjs-1793928107399-18556-f84218ad",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      }
+    },
+    "electron37": {
+      "baseline": {
+        "reportSha256": "3aece72870609fe96b1d290e482dc4216fb31d1611e62d2d1472378438ecf314",
+        "packageSha256": "2312f8ffd9726ffd7bd53ea12c5f13663d09a3dc3326f448c70b88f5ef6fac82",
+        "coldStarts": [
+          {
+            "pid": 11803,
+            "runId": "rxjs-1793927818295-11803-fa0423c0",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 11997,
+            "runId": "rxjs-1793927821036-11997-1210bb0e",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "a9f2a4a2eadef015cba31d82b78b26ef7e38d219e920df940871ace14fc6e8e3",
+        "packageSha256": "d249eb0ca0873459e4619f7077b72840cf2534c759f44e56f82117be7dbda9b1",
+        "coldStarts": [
+          {
+            "pid": 13043,
+            "runId": "rxjs-1793927856238-13043-72f0cea1",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 13109,
+            "runId": "rxjs-1793927859323-13109-b86d9ab3",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      }
+    },
+    "electron40": {
+      "baseline": {
+        "reportSha256": "9c2198ae63fe64b8da80e5c3204671699ce65d7e47c50b667476c1a0d79f230b",
+        "packageSha256": "2312f8ffd9726ffd7bd53ea12c5f13663d09a3dc3326f448c70b88f5ef6fac82",
+        "coldStarts": [
+          {
+            "pid": 20351,
+            "runId": "rxjs-1793928214439-20351-6dcea5e2",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 20446,
+            "runId": "rxjs-1793928217567-20446-d34453f8",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "097594937894f33036c954e51430adacaf17b734a28eae4f1b8f7d5de6846673",
+        "packageSha256": "d249eb0ca0873459e4619f7077b72840cf2534c759f44e56f82117be7dbda9b1",
+        "coldStarts": [
+          {
+            "pid": 21189,
+            "runId": "rxjs-1793928271010-21189-29f433f1",
+            "pass": 43,
+            "total": 43
+          },
+          {
+            "pid": 21306,
+            "runId": "rxjs-1793928274155-21306-31942ca9",
+            "pass": 43,
+            "total": 43
+          }
+        ]
+      }
+    }
+  },
+  "archive": {
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/rxjs-evidence-7.8.2-electron-oh.0/rxjs-7.8.2-electron-oh.0-device-evidence.tar.gz",
+    "sha256": "c01220cc50f174cab87b4bb4712d5c282f68aa1b388691a726a2aee14a34ae81",
+    "fileCount": 145
+  },
+  "scope": "recorded five-target device runs, 43 assertions per cold start; host CI is not fresh device execution"
+}

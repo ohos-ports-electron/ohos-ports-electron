@@ -230,3 +230,13 @@ Only trusted main pushes enter npm-publish. The package-specific Trusted Publish
 `jimp-electron-oh.yml` builds `@ohos-ports-electron/jimp@1.6.1-electron-oh.0` once from the locked published baseline (pure-JS, zero functional patch; only npm identity/repository metadata and README are rewritten), checks its 32-file inventory and recorded four-target/two-cold-start device evidence (independent Node 24.13.0 plus Electron-OH 34.8.6/37.2.0/40.0.1, 45-case roster each), and runs an 11-assertion host regression on the actual observed Node versions. Host CI replays the candidate through npm install; it is not fresh device execution.
 
 Only trusted main pushes enter npm-publish. The package-specific Trusted Publisher must name repository ohos-ports-electron/ohos-ports-electron, workflow jimp-electron-oh.yml and environment npm-publish, with independent direct publish and dist-tag permissions. Hosted Node 24.20.0 / npm 12.2.1 uploads the same frozen tgz using beta, authenticates latest/beta writes and verifies public bytes. Existing newer tags are never rolled back. PR/fork/manual builds cannot publish. The successful release workflow refreshes Pages. [Port and reproduction](../ports/jimp/1.6.1/README.md).
+
+## rxjs
+
+`rxjs-electron-oh.yml` builds the locked pure-JavaScript candidate once,
+checks the archived five-target device reports and runs the rxjs API suite
+on the exact Node versions recorded by those targets. Host CI does not run a
+fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
+frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
+package trusted publisher for this exact workflow with direct publish and
+independent dist-tag permissions. See [the port](../ports/rxjs/7.8.2/README.md).

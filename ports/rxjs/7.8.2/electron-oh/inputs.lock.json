@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "rxjs",
+    "version": "7.8.2",
+    "url": "https://registry.npmjs.org/rxjs/-/rxjs-7.8.2.tgz",
+    "sha256": "2312f8ffd9726ffd7bd53ea12c5f13663d09a3dc3326f448c70b88f5ef6fac82",
+    "integrity": "sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/rxjs",
+    "version": "7.8.2-electron-oh.0",
+    "sha256": "d249eb0ca0873459e4619f7077b72840cf2534c759f44e56f82117be7dbda9b1",
+    "integrity": "sha512-0YOQW65ysoKHr1qeekjxInqihKwmOzrNJZsQbHXeuPaK0iRhpbQkOTS37sr5kTEPBCV5kffZZt+r6LBWnM+3zw=="
+  },
+  "patches": [
+    {
+      "path": "patchs/0001-electron-oh-distribution-metadata.patch",
+      "sha256": "771371774ecdff73db76da87d9a1b4b89b6435efa9635a5d00407e98401a97ff"
+    }
+  ],
+  "readmeSha256": "9dcc857bde14cc8f37ad96e572b77688248f3f35e818894c348a200307bac2e3",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/rxjs/7.8.2"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ],
+  "distTag": "beta"
+}
