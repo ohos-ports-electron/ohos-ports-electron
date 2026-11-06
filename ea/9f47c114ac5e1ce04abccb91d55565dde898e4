@@ -1,0 +1,24 @@
+ports/rxjs/7.8.2/electron-oh/tests/release-contract.py
+  s_63db908b508be6::t_4009a7e6628f3e 57-65
+ports/rxjs/7.8.2/electron-oh/tools/release.py
+  s_63db908b508be6::t_cd8173f3583f8b 166-168
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "ea9f47c114ac5e1ce04abccb91d55565dde898e4",
+  "prompts": {},
+  "sessions": {
+    "s_63db908b508be6": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ae6a-22c1-7632-bccd-45bc096756ff",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
