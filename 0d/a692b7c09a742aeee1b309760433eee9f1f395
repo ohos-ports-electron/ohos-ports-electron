@@ -1,0 +1,62 @@
+.github/workflows/ci.yml
+  s_63db908b508be6::t_68c1caa9cd5d18 41
+.github/workflows/pages-deploy.yml
+  s_63db908b508be6::t_f5de54ab71d96e 19
+.github/workflows/rxjs-electron-oh.yml
+  s_63db908b508be6::t_114adaf7362c43 1-95
+docs/RELEASING.md
+  s_63db908b508be6::t_74aa2e1a10f4f3 233-242
+ports/rxjs/7.8.2/README.md
+  s_63db908b508be6::t_15dd7aad64510e 1-88
+ports/rxjs/7.8.2/build.sh
+  s_63db908b508be6::t_0b543043a5889c 1-4
+ports/rxjs/7.8.2/electron-oh/PACKAGE_README.md
+  s_63db908b508be6::t_37d5e9547bff24 1-29
+ports/rxjs/7.8.2/electron-oh/README.md
+  s_63db908b508be6::t_d24c8aebf55794 1-23
+ports/rxjs/7.8.2/electron-oh/inputs.lock.json
+  s_63db908b508be6::t_278d774e365df4 1-33
+ports/rxjs/7.8.2/electron-oh/package-inventory.json
+  s_63db908b508be6::t_4b9f2ea4be47fe 1-2280
+ports/rxjs/7.8.2/electron-oh/release-evidence.json
+  s_63db908b508be6::t_2f7af27159c48a 1-203
+ports/rxjs/7.8.2/electron-oh/tests/package-lock.json
+  s_63db908b508be6::t_705e1ece262ca7 1-30
+ports/rxjs/7.8.2/electron-oh/tests/release-contract.py
+  s_63db908b508be6::t_97d2bc31effdd9 1-57
+ports/rxjs/7.8.2/electron-oh/tests/suite.cjs
+  s_63db908b508be6::t_45df7666447519 1-64
+ports/rxjs/7.8.2/electron-oh/tests/test_release_channel.py
+  s_63db908b508be6::t_afa2283d5a0d52 1-208
+ports/rxjs/7.8.2/electron-oh/tests/worker.cjs
+  s_63db908b508be6::t_f226e2077010ec 1-7
+ports/rxjs/7.8.2/electron-oh/tools/build.py
+  s_63db908b508be6::t_988b062475214e 1-65
+ports/rxjs/7.8.2/electron-oh/tools/release.py
+  s_63db908b508be6::t_a7e784a0247588 1-181
+ports/rxjs/7.8.2/electron-oh/tools/release_channel.py
+  s_63db908b508be6::t_50f70d65a71e08 1-202
+ports/rxjs/7.8.2/patchs/0001-electron-oh-distribution-metadata.patch
+  s_63db908b508be6::t_8750424e732121 1-41
+ports/rxjs/7.8.2/publish.sh
+  s_63db908b508be6::t_1ee609ead1c35a 1-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "0da692b7c09a742aeee1b309760433eee9f1f395",
+  "prompts": {},
+  "sessions": {
+    "s_63db908b508be6": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1ae6a-22c1-7632-bccd-45bc096756ff",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "overridden_lines": 0
+    }
+  }
+}
