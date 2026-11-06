@@ -54,4 +54,13 @@ class Contract(unittest.TestCase):
   with patch.object(release,'guard'),patch.object(release,'verify',return_value=manifest),patch.object(release,'metadata',return_value=current),patch.object(release,'published_bytes',return_value=raw),patch.object(release,'get',return_value=json.dumps({'dist-tags':{'latest':release.VERSION}}).encode()),patch.object(release,'oidc_tags') as tags,patch.object(release,'wait_for_tags',return_value={'latest':release.VERSION,'beta':release.VERSION}),patch.object(release.subprocess,'run') as upload:
    release.publish(Path('/synthetic'))
   upload.assert_not_called();tags.assert_called_once_with(['latest','beta'])
+ def test_only_real_npm_staging_placeholder_can_advance(self):
+  raw=b'frozen';manifest={'sha256':hashlib.sha256(raw).hexdigest(),'integrity':'locked'};current={'dist':{'integrity':'locked','tarball':'https://example.test/tarball'}}
+  for valid in [True,False]:
+   package={'dist-tags':{'latest':'0.0.0-stage','beta':release.VERSION},'versions':{'0.0.0-stage':{'name':release.NAME,'version':'0.0.0-stage','stub':valid}}}
+   with patch.object(release,'guard'),patch.object(release,'verify',return_value=manifest),patch.object(release,'metadata',return_value=current),patch.object(release,'published_bytes',return_value=raw),patch.object(release,'get',return_value=json.dumps(package).encode()),patch.object(release,'oidc_tags') as tags,patch.object(release,'wait_for_tags',return_value={'latest':release.VERSION,'beta':release.VERSION}):
+    if valid:release.publish(Path('/synthetic'));tags.assert_called_once_with(['latest','beta'])
+    else:
+     with self.assertRaisesRegex(ValueError,'refusing automatic rollback'):release.publish(Path('/synthetic'))
+     tags.assert_not_called()
 if __name__=='__main__':unittest.main()

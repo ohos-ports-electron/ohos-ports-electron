@@ -163,7 +163,9 @@ def publish(bundle):
  # Historical electron-oh tags are preserved; only latest and beta are managed.
  for tag in ['latest','beta']:
   value=package['dist-tags'].get(tag)
-  require(value in [None,VERSION],'tag points to another release; refusing automatic rollback')
+  stub=package.get('versions',{}).get(value,{}) if value=='0.0.0-stage' else {}
+  official_stub=(stub.get('stub') is True and stub.get('name')==NAME and stub.get('version')=='0.0.0-stage')
+  require(value in [None,VERSION] or official_stub,'tag points to another release; refusing automatic rollback')
  oidc_tags(['latest','beta'])
  # Do not delete or update historical legacy tags.
  observed=wait_for_tags()
