@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "electron-is-dev",
+    "version": "3.0.1",
+    "url": "https://registry.npmjs.org/electron-is-dev/-/electron-is-dev-3.0.1.tgz",
+    "sha256": "4ddfdb944d90bd0d78506d1289c58b52edd960b37f02c36d07b128d00bfe3a19",
+    "integrity": "sha512-8TjjAh8Ec51hUi3o4TaU0mD3GMTOESi866oRNavj9A3IQJ7pmv+MJVmdZBFGw4GFT36X7bkqnuDNYvkQgvyI8Q=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/electron-is-dev",
+    "version": "3.0.1-electron-oh.0",
+    "sha256": "14e1d80e683ae24b639bb43cb25efce257f0a5c9a2d6e62ae439db739ffa50ae",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/electron-is-dev-evidence-3.0.1-electron-oh.0/electron-is-dev-3.0.1-electron-oh.0-candidate.tgz",
+    "integrity": "sha512-rm39AnheBIX2PZ8nmX5pNQTdQQizMaacj7iGUIikJI1z6HI4/qmWaNxxwHe6x9mzgL7uI1g1K6nCNBh5JTlq9Q=="
+  },
+  "patches": [],
+  "readmeSha256": "5da1756254a385392463fba12061ba528b5d7799215b62b4e4fedf0836ce2fbc",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/electron-is-dev/3.0.1"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ]
+}
