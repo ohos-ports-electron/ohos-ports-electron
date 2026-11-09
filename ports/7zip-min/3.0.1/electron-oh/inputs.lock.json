@@ -20,7 +20,8 @@
     "name": "@ohos-ports-electron/7zip-min",
     "version": "3.0.1-electron-oh.0",
     "sha256": "317e05cd08c5159bd590c8124638d6b3735b3e65492ddee57d0aee467cfce23c",
-    "integrity": "sha512-kisUfBgbmSH0tLLUCzB/rbUT5BwMZNv0p2Nawa2GtpmcaRibnZLlSnkABQgH8DyXK1FshtfU9ND+6QuBbwAAVw=="
+    "integrity": "sha512-kisUfBgbmSH0tLLUCzB/rbUT5BwMZNv0p2Nawa2GtpmcaRibnZLlSnkABQgH8DyXK1FshtfU9ND+6QuBbwAAVw==",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/7zip-min-evidence-3.0.1-electron-oh.0/7zip-min-3.0.1-electron-oh.0.tgz"
   },
   "library": {
     "filesSha256": {
