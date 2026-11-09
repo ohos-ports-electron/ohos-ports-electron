@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "7zip-min",
+    "version": "3.0.1",
+    "url": "https://registry.npmjs.org/7zip-min/-/7zip-min-3.0.1.tgz",
+    "sha256": "ff8a1607116f661d569a509f34da83ae4f1bef2b482a06cdd4be828990b4aa3c",
+    "integrity": "sha512-WB4VCA/KSKzxhj+BAp8fI3ZYMMAftclkXlUTckuiDacsqyubQxxG3lGcpBcgzWWuJqnfQncEq1xrJpPLSxqsxw=="
+  },
+  "supply": {
+    "name": "@ohos-ports-electron/7zip-bin",
+    "version": "5.2.0-electron-oh.0",
+    "url": "https://registry.npmjs.org/@ohos-ports-electron/7zip-bin/-/7zip-bin-5.2.0-electron-oh.0.tgz",
+    "sha256": "f9106dc4073295557350828e77cb25dc60fb78207ef6c0986c4d51f8fa53bd06",
+    "integrity": "sha512-zUlgvXQ4oGYdoIb5epWffDp7zIM8gZTV69bHljlpeiTLv15+E74+f9MSl5dTWLy+BKMzmMaRBYLSZlPf2ixTpw==",
+    "note": "Published @ohos-ports-electron/7zip-bin port: its openharmony/arm64/7za (a3316c3d...) is the static, self-contained OHOS 7za. The candidate depends on it via npm alias (7zip-bin -> npm:@ohos-ports-electron/7zip-bin@5.2.0-electron-oh.0), so require('7zip-bin').path7za resolves to openharmony/arm64/7za on device (platform openharmony/ohos) and to the shipped linux/x64/7za / win/x64/7za.exe on CI/host.",
+    "7zaSha256": "a3316c3d88682fcd2d42b49a246c15d3674cb3fea357c22e442ce16d498d1ef0"
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/7zip-min",
+    "version": "3.0.1-electron-oh.0",
+    "sha256": "317e05cd08c5159bd590c8124638d6b3735b3e65492ddee57d0aee467cfce23c",
+    "integrity": "sha512-kisUfBgbmSH0tLLUCzB/rbUT5BwMZNv0p2Nawa2GtpmcaRibnZLlSnkABQgH8DyXK1FshtfU9ND+6QuBbwAAVw==",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/7zip-min-evidence-3.0.1-electron-oh.0/7zip-min-3.0.1-electron-oh.0.tgz"
+  },
+  "library": {
+    "filesSha256": {
+      "LICENSE": "8a6e0f20392ecec1d38c75c735944066ffffce4a939dc67a2e74f01f2e51bc4c",
+      "src/index.js": "e7abaefd98227631565716d8b85008ba0709f8b13ae7ee2899d658ad14b25e85",
+      "src/index.mjs": "977936f8177587c66d8f4ecc4623da88658a82a3a03bb6105360bb40ef211dfa",
+      "src/index.d.ts": "5d28c4e6a7b6202e7ea677896c2f3e422c1d3ee7fd443da1179d3dba9a58a5c3",
+      "src/index.d.mts": "9890f13737c285f07250fe7d1e4bd7ca57c84a3b5026e5a0258ec67d73de6459"
+    }
+  },
+  "patches": [],
+  "readmeSha256": "ab7d3c91245b698f1c37477417e730d769c0e2ae49bc916eb15ff75decac7326",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/7zip-min/3.0.1"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ]
+}
