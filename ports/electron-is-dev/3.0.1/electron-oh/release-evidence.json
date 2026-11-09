@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "candidateSha256": "14e1d80e683ae24b639bb43cb25efce257f0a5c9a2d6e62ae439db739ffa50ae",
+  "targets": {
+    "electron34": {
+      "baseline": {
+        "reportSha256": "9f3b587484bd6ebe70156ca51c3425a291e2dc582c058479fc24bd6845f1b724",
+        "packageSha256": "4ddfdb944d90bd0d78506d1289c58b52edd960b37f02c36d07b128d00bfe3a19",
+        "coldStarts": [
+          {
+            "pid": 15891,
+            "runId": "a36460c306ce1d67972a3866",
+            "pass": 10,
+            "total": 10
+          },
+          {
+            "pid": 16628,
+            "runId": "f622b44f050bf67590ec051d",
+            "pass": 10,
+            "total": 10
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "f72abf519374d240e7782690b68e5785469c1de37ad42482d4aa8fc80d4615fa",
+        "packageSha256": "14e1d80e683ae24b639bb43cb25efce257f0a5c9a2d6e62ae439db739ffa50ae",
+        "coldStarts": [
+          {
+            "pid": 31456,
+            "runId": "bfc9b0f3da0fed599181eb86",
+            "pass": 10,
+            "total": 10
+          },
+          {
+            "pid": 32121,
+            "runId": "0aa2cb90ed713591d7e0b6cc",
+            "pass": 10,
+            "total": 10
+          }
+        ]
+      }
+    },
+    "electron37": {
+      "baseline": {
+        "reportSha256": "675def31d2655185a2166b3a8aa7ad7b1b25013b7ca7cca67b1749b0e6af9929",
+        "packageSha256": "4ddfdb944d90bd0d78506d1289c58b52edd960b37f02c36d07b128d00bfe3a19",
+        "coldStarts": [
+          {
+            "pid": 17332,
+            "runId": "022860bec6b4248e7166b357",
+            "pass": 10,
+            "total": 10
+          },
+          {
+            "pid": 18013,
+            "runId": "e993153c8edbbb78577129c9",
+            "pass": 10,
+            "total": 10
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "068570358d9db34b337c3c593888b49965799122711c33d1b5a3f56ab9e8f428",
+        "packageSha256": "14e1d80e683ae24b639bb43cb25efce257f0a5c9a2d6e62ae439db739ffa50ae",
+        "coldStarts": [
+          {
+            "pid": 32912,
+            "runId": "c59dd27ea83e1f502e1a5df8",
+            "pass": 10,
+            "total": 10
+          },
+          {
+            "pid": 33560,
+            "runId": "d66147385e04a40447efcac8",
+            "pass": 10,
+            "total": 10
+          }
+        ]
+      }
+    },
+    "electron40": {
+      "baseline": {
+        "reportSha256": "c6c9bf6c5047857b97075c9403050afb63f8ea65b4a20415ea04f8a8c934d048",
+        "packageSha256": "4ddfdb944d90bd0d78506d1289c58b52edd960b37f02c36d07b128d00bfe3a19",
+        "coldStarts": [
+          {
+            "pid": 18752,
+            "runId": "602c7ef8ff2f335b15b3a3b1",
+            "pass": 10,
+            "total": 10
+          },
+          {
+            "pid": 19404,
+            "runId": "38f6a822a42c322d3b356139",
+            "pass": 10,
+            "total": 10
+          }
+        ]
+      },
+      "candidate": {
+        "reportSha256": "6842d41f2c085f089c4dfb621cdd6032e8addc89024e21c61ce0e0936c629f4f",
+        "packageSha256": "14e1d80e683ae24b639bb43cb25efce257f0a5c9a2d6e62ae439db739ffa50ae",
+        "coldStarts": [
+          {
+            "pid": 34327,
+            "runId": "605c3bbfebad1036ae38a493",
+            "pass": 10,
+            "total": 10
+          },
+          {
+            "pid": 34984,
+            "runId": "fd1e641b24dda22f165b95ee",
+            "pass": 10,
+            "total": 10
+          }
+        ]
+      }
+    }
+  },
+  "archive": {
+    "url": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/electron-is-dev-evidence-3.0.1-electron-oh.0/electron-is-dev-3.0.1-electron-oh.0-device-evidence.tar.gz",
+    "sha256": "aeed1e8b33209b5be01d75b13246950d043c904660bfd4e033d6b77fffcc7651",
+    "fileCount": 8
+  },
+  "nodeRole": {
+    "status": "not-applicable",
+    "reason": "electron-only library; the independent HarmonyOS Node cannot run the value semantics (import throws TypeError, covered by the isDev::throw-not-electron-host roster case through the private-HNP independent-node vehicle)"
+  },
+  "scope": "recorded device evidence; no fresh device runner in host CI"
+}
