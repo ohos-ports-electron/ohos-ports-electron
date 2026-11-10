@@ -84,12 +84,12 @@ class DeclaredUpstream(unittest.TestCase):
 class ProcessCompatibility(unittest.TestCase):
     name = "@ohos-ports-electron/conf"
 
-    def generate(self, annotation, beta="1.0.0-electron-oh.0"):
+    def generate(self, annotation, beta="1.0.0-electron-oh.0", override=None, npm_deprecated=False):
         package = {
             "name": self.name, "latest_version": "2.0.0-electron-oh.0",
             "electron_oh_version": None, "dist_tags": {}, "stable_version": None,
-            "beta_version": beta, "description": "", "deprecated": False,
-            "deprecated_message": None, "npm_url": "https://www.npmjs.com/package/" + self.name,
+            "beta_version": beta, "description": "", "deprecated": npm_deprecated,
+            "deprecated_message": "npm reason" if npm_deprecated else None, "npm_url": "https://www.npmjs.com/package/" + self.name,
             # npm 自带的同名字段不能成为兼容结论。
             "main": True, "renderer": True,
         }
@@ -97,8 +97,11 @@ class ProcessCompatibility(unittest.TestCase):
             mapping = Path(directory) / "process-compatibility.json"
             source = json.dumps({self.name: annotation} if annotation is not None else {})
             mapping.write_text(source)
+            overrides = Path(directory) / "package-overrides.json"
+            overrides.write_text(json.dumps({self.name: override} if override else {}))
             output = Path(directory) / "packages.jsonl"
             with patch.multiple(catalog, PROCESS_COMPATIBILITY_PATH=str(mapping),
+                                PACKAGE_OVERRIDES_PATH=str(overrides),
                                 DATA_DIR=directory, JSONL_PATH=str(output),
                                 INDEX_PATH=str(Path(directory) / "index.json")):
                 result = catalog.generate_output([package], {})
@@ -115,15 +118,18 @@ class ProcessCompatibility(unittest.TestCase):
                 self.assertIsNone(package["main"])
                 self.assertIsNone(package["renderer"])
 
-    def test_beta_version_annotation_survives_repeated_refresh(self):
-        package = self.generate({"version": "1.0.0-electron-oh.0", "main": True, "renderer": False})
+    def test_latest_version_annotation_survives_repeated_refresh(self):
+        package = self.generate({"version": "2.0.0-electron-oh.0", "main": True, "renderer": False})
         self.assertIs(package["main"], True)
         self.assertIs(package["renderer"], False)
 
-    def test_latest_annotation_does_not_apply_to_different_beta(self):
-        package = self.generate({"version": "2.0.0-electron-oh.0", "main": True, "renderer": True})
+    def test_old_beta_annotation_does_not_apply_to_new_latest(self):
+        package = self.generate({"version": "1.0.0-electron-oh.0", "main": True, "renderer": True, "electron": ["37"], "renderer_status": "preliminary", "renderer_note": "old annotation"})
         self.assertIsNone(package["main"])
         self.assertIsNone(package["renderer"])
+        self.assertEqual(package["electron"], [])
+        self.assertIsNone(package["renderer_status"])
+        self.assertIsNone(package["renderer_note"])
 
     def test_without_beta_annotation_matches_latest(self):
         package = self.generate({"version": "2.0.0-electron-oh.0", "main": None, "renderer": True}, beta=None)
@@ -136,6 +142,33 @@ class ProcessCompatibility(unittest.TestCase):
                            {"version": None, "main": True}):
             with self.subTest(annotation=annotation), self.assertRaises(ValueError):
                 self.generate(annotation)
+
+    def test_electron_versions_and_preliminary_conditions_are_preserved(self):
+        package = self.generate({"version": "2.0.0-electron-oh.0", "main": True, "renderer": True,
+                                 "electron": ["34", "37"], "renderer_status": "preliminary",
+                                 "renderer_note": "Use browser build", "evidence": ["record.json"]})
+        self.assertEqual(package["electron"], ["34", "37"])
+        self.assertEqual(package["renderer_status"], "preliminary")
+        self.assertEqual(package["renderer_note"], "Use browser build")
+        self.assertEqual(package["compatibility_evidence"], ["record.json"])
+
+    def test_catalog_deprecation_survives_refresh_independently_of_compatibility(self):
+        package = self.generate(None, override={"deprecated": True, "deprecated_message": "catalog reason"})
+        self.assertIs(package["deprecated"], True)
+        self.assertEqual(package["deprecated_source"], "catalog")
+        self.assertEqual(package["deprecated_message"], "catalog reason")
+
+    def test_npm_deprecation_keeps_its_own_reason(self):
+        package = self.generate(None, override={"deprecated": True, "deprecated_message": "catalog reason"}, npm_deprecated=True)
+        self.assertEqual(package["deprecated_source"], "npm")
+        self.assertEqual(package["deprecated_message"], "npm reason")
+
+    def test_invalid_electron_and_preliminary_metadata_stop_generation(self):
+        for extra in ({"electron": "37"}, {"electron": ["37.2.0"]},
+                      {"renderer_status": "preliminary", "renderer": None},
+                      {"renderer_note": 123}):
+            with self.subTest(extra=extra), self.assertRaises(ValueError):
+                self.generate({"version": "2.0.0-electron-oh.0", **extra})
 
 
 if __name__ == "__main__":

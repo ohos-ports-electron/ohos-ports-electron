@@ -26,7 +26,7 @@ git pull --ff-only
 git switch -c feat/package-site-update
 # 在此分支完成页面或数据采集逻辑的修改后，检查并提交：
 git diff --check
-git add README.md docs/index.html docs/app.js docs/update-packages.py docs/process-compatibility.json docs/data/index.json docs/data/packages.jsonl docs/PLATFORM.md .github/workflows/pages-deploy.yml
+git add README.md docs/index.html docs/app.js docs/update-packages.py docs/process-compatibility.json docs/package-overrides.json docs/COMPATIBILITY.md docs/data/index.json docs/data/packages.jsonl docs/PLATFORM.md .github/workflows/pages-deploy.yml
 git commit -m "feat: update Electron OH package site"
 git push -u origin feat/package-site-update
 gh pr create --repo ohos-ports-electron/ohos-ports-electron --base main --head feat/package-site-update --title "Update Electron OH package site" --body "Update the Electron OH npm package site."
@@ -56,7 +56,9 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 
 采集脚本调用 npm Registry 的 `/-/user/ohos-ports-electron/package` 获取包列表，并按 `@ohos-ports-electron/` 前缀过滤，再获取各包的版本元数据。任一包读取失败会终止本次采集，工作流不会继续部署不完整数据。此包列表接口如发生变化，需要维护采集逻辑。
 
-页面展示 `latest` 和 `beta` 标签当前指向的版本，Electron OH 列统一使用 `beta` 标签；统计和筛选同样按真实 `beta` 标签计算，不根据版本号是否含有 `beta` 推断。安装命令优先使用 `@beta`，没有该标签时使用默认安装。`latest` 是默认安装标签，不代表版本号一定属于 SemVer 正式版。页面不再把仓库是否含有包目录解释为真实的 CI 发布来源。
+页面「版本」展示 `latest` 标签当前指向的具体版本，安装命令固定该版本，不再显示 Electron OH · beta 列。`latest` 是默认安装标签，不代表版本号一定属于 SemVer 正式版。`beta` 等真实 dist-tags 仍保留在采集数据中，供其他使用者查询，但不决定网页安装命令。
+
+「支持的Electron版本」来自人工维护的兼容性映射，展示已有成功验收记录的 Electron 主版本。统计和筛选中的「已标注 Electron 版本」按该字段计算，不根据 npm 版本后缀或构建目标推断。具体发行物、小版本、限制与逐包分析见 [COMPATIBILITY.md](COMPATIBILITY.md)。
 
 直接执行 `npm dist-tag` 修改标签不会触发包发布工作流，也不会立即刷新已部署的静态数据。标签迁移完成后，手动运行 **Refresh and deploy Electron OH package site** 即可同步；否则等待下一次定时刷新。
 
@@ -64,23 +66,28 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 
 ## 进程兼容标注
 
-表格在 Electron OH 版本列之后展示「进程兼容（主进程/渲染进程）」，格式与 [compatible-packages](https://ohos-electron.github.io/compatible-packages/) 一致：`main` 为 `true` 时显示绿色「✅ 主进程」，`renderer` 为 `true` 时显示绿色「✅ 渲染进程」。均未标为 `true` 时显示灰色 `—`，不据此判定不兼容。
+表格在支持的 Electron 版本列之后展示「进程兼容（主进程/渲染进程）」，保留 [compatible-packages](https://ohos-electron.github.io/compatible-packages/) 的进程标签格式：`main` 为 `true` 时显示绿色「✅ 主进程」；`renderer` 为 `true` 时，`renderer_status: preliminary` 显示黄色「△ 渲染进程（初评）」，`verified` 显示绿色「✅ 渲染进程」。悬停可查看对应条件。均未标为 `true` 时显示灰色 `—`，不据此判定不兼容。
 
-人工标注维护在 `docs/process-compatibility.json`，以完整的 npm 包名为键。已为当前线上包预留以下结构，所有值初始为 `null`：
+人工标注维护在 `docs/process-compatibility.json`，以完整的 npm 包名为键。例如：
 
 ```json
 {
   "@ohos-ports-electron/axios": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.21.0-electron-oh.0",
+    "electron": ["25", "34", "37", "40"],
+    "main": true,
+    "renderer": true,
+    "renderer_status": "preliminary",
+    "renderer_note": "需选择浏览器入口，受 Chromium CORS 约束；尚无渲染进程真机验收。"
   }
 }
 ```
 
-`main`、`renderer` 接受布尔值或 `null`；`null` 表示待补充。确认某个进程可用后，将对应字段设为 `true`，并填写实际验证的 `version`（具体版本号，不填 `beta` 标签名）。标注对应安装命令所选版本：有 `beta` 标签时匹配 `beta_version`，否则匹配 `latest_version`；标签指向其他版本后，旧标注不再显示，待复核后更新。
+`main`、`renderer` 接受布尔值或 `null`；`null` 表示待确认。`renderer: false` 本轮表示完整入口不适合普通沙箱渲染页面直接加载，不排除经 preload/IPC 使用主进程能力。填写对应的准确包 `version`，仅与 `latest_version` 匹配时合并；latest 指向其他版本后，旧的进程、Electron 版本和说明均不再显示，待复核后更新。
 
-`docs/update-packages.py` 每次刷新时读取该映射，将 `main`、`renderer` 合并进 `docs/data/packages.jsonl`，不会覆盖人工标注文件。未配置的新包和未匹配版本的包自动输出 `"main": null, "renderer": null`；新增包不必先补映射即可展示。后续维护标注时，在映射中添加该包的条目。不要直接编辑生成的 JSONL 来维护兼容结论。
+`docs/update-packages.py` 每次刷新时读取该映射，将 `main`、`renderer`、`electron`、说明、初评状态及证据来源合并进 `docs/data/packages.jsonl`，不会覆盖人工标注文件。未配置的新包和未匹配版本的包自动输出 `main: null, renderer: null, electron: []`；新增包不必先补映射即可展示。不要直接编辑生成的 JSONL 来维护兼容结论。
+
+`docs/package-overrides.json` 独立维护本站废弃状态，刷新时与 npm 的 deprecated 标记合并，并记录 `deprecated_source`。本站标记不因包版本变化失效；npm 已废弃时优先使用 npm 的原因。该文件当前将 `@ohos-ports-electron/node-machine-id` 标为已废弃，仅影响本站状态、统计和筛选；不执行 npm deprecate 或修改 Registry。
 
 提交映射修改并合入 `main` 后，现有 Pages 工作流会自动刷新和部署，无需增加 npm 字段或更改发布流程。本地预览前运行上述刷新命令即可。
 

@@ -56,7 +56,7 @@ function renderStats() {
   stats.replaceChildren();
   var items = [
     [allPackages.length, '已发布包', ''],
-    [allPackages.filter(function(p) { return p.beta_version; }).length, '有 beta 标签', ''],
+    [allPackages.filter(function(p) { return Array.isArray(p.electron) && p.electron.length; }).length, '已标注 Electron 版本', ''],
     [allPackages.filter(function(p) { return p.deprecated; }).length, '已废弃', 'deprecated']
   ];
   items.forEach(function(item) {
@@ -70,7 +70,7 @@ function getFiltered() {
   var query = document.getElementById('search').value.trim().toLowerCase();
   return allPackages.filter(function(p) {
     if (currentFilter === 'deprecated' && !p.deprecated) return false;
-    if (currentFilter === 'beta' && !p.beta_version) return false;
+    if (currentFilter === 'electron' && (!Array.isArray(p.electron) || !p.electron.length)) return false;
     return !query || [p.name, p.short_name, p.original_name, p.description].some(function(value) {
       return (value || '').toLowerCase().includes(query);
     });
@@ -97,15 +97,32 @@ function versionCell(version, className) {
   return cell;
 }
 
-function electronOhChannel(pkg) {
-  if (pkg.beta_version) return {tag: 'beta', version: pkg.beta_version};
-  return {tag: null, version: null};
+function electronVersionsCell(pkg) {
+  var cell = element('td', 'electron-versions');
+  var versions = Array.isArray(pkg.electron) ? pkg.electron : [];
+  versions.forEach(function(version) {
+    var tag = element('span', 'electron-tag', version);
+    tag.title = pkg.electron_note || '已有成功验收记录的 Electron 主版本；具体小版本及条件见兼容性说明';
+    cell.append(tag);
+  });
+  if (!versions.length) cell.append(element('span', 'process-empty', '—'));
+  return cell;
 }
 
 function processCompatibilityCell(pkg) {
   var cell = element('td', 'process-compatibility');
-  if (pkg.main === true) cell.append(element('span', 'process-tag', '✅ 主进程'));
-  if (pkg.renderer === true) cell.append(element('span', 'process-tag', '✅ 渲染进程'));
+  cell.title = [pkg.main_note && '主进程：' + pkg.main_note, pkg.renderer_note && '渲染进程：' + pkg.renderer_note].filter(Boolean).join('\n');
+  if (pkg.main === true) {
+    var main = element('span', 'process-tag', '✅ 主进程');
+    main.title = pkg.main_note || '已标注支持主进程';
+    cell.append(main);
+  }
+  if (pkg.renderer === true) {
+    var preliminary = pkg.renderer_status === 'preliminary';
+    var renderer = element('span', 'process-tag' + (preliminary ? ' process-preliminary' : ''), preliminary ? '△ 渲染进程（初评）' : '✅ 渲染进程');
+    renderer.title = pkg.renderer_note || '已标注支持渲染进程';
+    cell.append(renderer);
+  }
   if (!cell.children.length) cell.append(element('span', 'process-empty', '—'));
   return cell;
 }
@@ -133,16 +150,15 @@ function renderPage() {
     else original.textContent = '—';
     var status = element('td');
     var badge = element('span', 'badge ' + (p.deprecated ? 'badge-deprecated' : 'badge-normal'), p.deprecated ? '已废弃' : '已发布');
-    if (p.deprecated_message) badge.title = p.deprecated_message;
+    if (p.deprecated_message) badge.title = (p.deprecated_source === 'catalog' ? '本站维护标记：' : '') + p.deprecated_message;
     status.append(badge);
     var install = element('td');
-    var channel = electronOhChannel(p);
-    var command = 'npm i ' + p.name + (channel.tag ? '@' + channel.tag : '');
+    var command = 'npm i ' + p.name + (p.latest_version ? '@' + p.latest_version : '');
     var button = element('button', 'install-cmd', command);
     button.title = '复制安装命令';
     button.addEventListener('click', function() { copyText(command); });
     install.append(button);
-    row.append(name, original, versionCell(p.latest_version, 'stable'), versionCell(channel.version, 'beta'), processCompatibilityCell(p), status, install);
+    row.append(name, original, versionCell(p.latest_version, 'stable'), electronVersionsCell(p), processCompatibilityCell(p), status, install);
     tbody.append(row);
   });
   info.textContent = '共 ' + currentData.length + ' 个包（第 ' + currentPage + '/' + totalPages + ' 页，当前 ' + displayed.length + ' 条）';

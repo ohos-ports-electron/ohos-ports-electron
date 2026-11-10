@@ -1,10 +1,11 @@
 {
   "npm_org": "ohos-ports-electron",
-  "total": 15,
+  "total": 34,
   "electron_oh_count": 0,
-  "beta_count": 15,
-  "ci_count": 15,
+  "beta_count": 34,
+  "electron_count": 34,
+  "ci_count": 34,
   "local_count": 0,
-  "deprecated_count": 0,
-  "last_updated": "2026-11-03T21:45:48+08:00"
+  "deprecated_count": 1,
+  "last_updated": "2026-11-10T21:13:40+08:00"
 }
