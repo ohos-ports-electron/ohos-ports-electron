@@ -81,5 +81,62 @@ class DeclaredUpstream(unittest.TestCase):
         self.assertEqual(self.detail("../../invalid")["original_name"], "vscode-ripgrep")
 
 
+class ProcessCompatibility(unittest.TestCase):
+    name = "@ohos-ports-electron/conf"
+
+    def generate(self, annotation, beta="1.0.0-electron-oh.0"):
+        package = {
+            "name": self.name, "latest_version": "2.0.0-electron-oh.0",
+            "electron_oh_version": None, "dist_tags": {}, "stable_version": None,
+            "beta_version": beta, "description": "", "deprecated": False,
+            "deprecated_message": None, "npm_url": "https://www.npmjs.com/package/" + self.name,
+            # npm 自带的同名字段不能成为兼容结论。
+            "main": True, "renderer": True,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            mapping = Path(directory) / "process-compatibility.json"
+            source = json.dumps({self.name: annotation} if annotation is not None else {})
+            mapping.write_text(source)
+            output = Path(directory) / "packages.jsonl"
+            with patch.multiple(catalog, PROCESS_COMPATIBILITY_PATH=str(mapping),
+                                DATA_DIR=directory, JSONL_PATH=str(output),
+                                INDEX_PATH=str(Path(directory) / "index.json")):
+                result = catalog.generate_output([package], {})
+                self.assertEqual(json.loads(output.read_text()), result[0])
+                # 第二次同步仍应保留标注，且不能改写人工维护的映射。
+                self.assertEqual(catalog.generate_output([package], {}), result)
+                self.assertEqual(mapping.read_text(), source)
+                return result[0]
+
+    def test_missing_or_empty_annotation_stays_unknown(self):
+        for annotation in (None, {"version": None, "main": None, "renderer": None}):
+            with self.subTest(annotation=annotation):
+                package = self.generate(annotation)
+                self.assertIsNone(package["main"])
+                self.assertIsNone(package["renderer"])
+
+    def test_beta_version_annotation_survives_repeated_refresh(self):
+        package = self.generate({"version": "1.0.0-electron-oh.0", "main": True, "renderer": False})
+        self.assertIs(package["main"], True)
+        self.assertIs(package["renderer"], False)
+
+    def test_latest_annotation_does_not_apply_to_different_beta(self):
+        package = self.generate({"version": "2.0.0-electron-oh.0", "main": True, "renderer": True})
+        self.assertIsNone(package["main"])
+        self.assertIsNone(package["renderer"])
+
+    def test_without_beta_annotation_matches_latest(self):
+        package = self.generate({"version": "2.0.0-electron-oh.0", "main": None, "renderer": True}, beta=None)
+        self.assertIsNone(package["main"])
+        self.assertIs(package["renderer"], True)
+
+    def test_invalid_flags_and_unversioned_claims_stop_generation(self):
+        for annotation in ({"version": "1.0.0", "main": "true"},
+                           {"version": "1.0.0", "renderer": 1},
+                           {"version": None, "main": True}):
+            with self.subTest(annotation=annotation), self.assertRaises(ValueError):
+                self.generate(annotation)
+
+
 if __name__ == "__main__":
     unittest.main()
