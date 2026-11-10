@@ -1,172 +1,656 @@
 {
   "@ohos-ports-electron/7zip-bin": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "5.2.0-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "提供 7za/7x 二进制路径，依赖 Node 的 fs/path/process；普通沙箱渲染页面不直接调用本机二进制。",
+    "evidence": [
+      "ports/7zip-bin/5.2.0/electron-oh/release-evidence.json",
+      "ports/7zip-bin/5.2.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/7zip-min": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "3.0.1-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 Node child_process、fs 和 7za 可执行文件；解压缩操作放在主进程。",
+    "evidence": [
+      "ports/7zip-min/3.0.1/electron-oh/release-evidence.json",
+      "ports/7zip-min/3.0.1/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/address": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "2.0.3-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "读取网卡/IP/MAC 依赖 Node os、fs 和系统命令，普通沙箱渲染页面通过 IPC 获取结果。",
+    "evidence": [
+      "ports/address/2.0.3/electron-oh/release-evidence.json",
+      "ports/address/2.0.3/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/axios": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.21.0-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": true,
+    "renderer_status": "preliminary",
+    "renderer_note": "初步源码评估：选择 browser 条件导出或 dist/browser/axios.cjs，使用 XHR/浏览器适配器；受 Chromium CORS 与网络策略约束。现有真机记录只覆盖主进程 HTTP，未覆盖渲染进程 XHR。",
+    "evidence": [
+      "ports/axios/1.21.0/electron-oh/release-evidence.json",
+      "ports/axios/1.21.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/better-sqlite3": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "13.0.3-electron-oh.0",
+    "electron": [
+      "37"
+    ],
+    "electron_note": "仅有 37.2.0 的同包双冷启动主进程证据（18/18）；未把构建目标或 Node 验收当作其他 Electron 版本通过。",
+    "main": true,
+    "main_note": "13.0.3-electron-oh.0 在 Electron-OH 37.2.0 主进程 18/18 两次冷启动通过；已核对 npm integrity 与受测候选包一致。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "SQLite 原生 Node 插件，已有接入方式为主进程管理数据库并通过 IPC 提供业务接口；未标注渲染进程直接装载。",
+    "evidence": [
+      "https://gitcode.com/OhosPortingSource/better-sqlite3/blob/feat/better-sqlite3-13.0.3-electron-oh/electron-oh/13.0.3/reports/new-scope/electron/verification.json",
+      "ports/better-sqlite3/13.0.3/electron-oh/README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/better-sqlite3-multiple-ciphers": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "13.0.4-beta.0-electron-oh.0",
+    "electron": [
+      "37",
+      "40"
+    ],
+    "electron_note": "37/40 成功；34 因 N-API 9 与插件要求 N-API 10 冲突导致真实装载崩溃，排除 34。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "加密 SQLite 原生 Node 插件，依赖 N-API 10；普通沙箱渲染页面通过主进程数据库接口访问。",
+    "evidence": [
+      "ports/better-sqlite3-multiple-ciphers/13.0.4-beta.0/electron-oh/release-evidence.json",
+      "ports/better-sqlite3-multiple-ciphers/13.0.4-beta.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/bytenode": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.7.0-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "字节码加载依赖 Node vm/v8/fs 和模块系统；现有 Electron 主进程验证不等于 electronRenderer 编译/运行路径通过。",
+    "evidence": [
+      "ports/bytenode/1.7.0/electron-oh/release-evidence.json",
+      "ports/bytenode/1.7.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/compressing": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "2.1.3-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "文件压缩依赖 Node fs、zlib 与流；普通沙箱渲染页面通过 IPC 发起操作。",
+    "evidence": [
+      "ports/compressing/2.1.3/electron-oh/release-evidence.json",
+      "ports/compressing/2.1.3/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/conf": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "16.0.0-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "配置持久化依赖 Node 文件系统、路径及加密；现有包说明要求主进程使用，通过 IPC 暴露受限操作。",
+    "evidence": [
+      "ports/conf/16.0.0/electron-oh/release-evidence.json",
+      "ports/conf/16.0.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/electron-context-menu": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "5.1.0-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "使用 Electron Menu/BrowserWindow/webContents 等主进程 API；在主进程为窗口配置菜单。",
+    "evidence": [
+      "ports/electron-context-menu/5.1.0/electron-oh/release-evidence.json",
+      "ports/electron-context-menu/5.1.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/electron-is-dev": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "3.0.1-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 electron.app.isPackaged，包说明明确要求主进程；向渲染页面传递判定结果。",
+    "evidence": [
+      "ports/electron-is-dev/3.0.1/electron-oh/release-evidence.json",
+      "ports/electron-is-dev/3.0.1/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/env-paths": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "4.0.0-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 Node os、path 与 process 环境获取应用目录；普通沙箱渲染页面通过 IPC 获取路径。",
+    "evidence": [
+      "ports/env-paths/4.0.0/electron-oh/release-evidence.json",
+      "ports/env-paths/4.0.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/fs-extra": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "11.4.1-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 Node fs/path/streams；普通沙箱渲染页面通过受限文件操作 IPC 接入。",
+    "evidence": [
+      "ports/fs-extra/11.4.1/electron-oh/release-evidence.json",
+      "ports/fs-extra/11.4.1/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/get-stream": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "9.0.1-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "现有入口及部分返回类型依赖 Node 流和 Buffer；本轮不把 Web Streams 子能力推断成完整渲染进程支持。",
+    "evidence": [
+      "ports/get-stream/9.0.1/electron-oh/release-evidence.json",
+      "ports/get-stream/9.0.1/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/jimp": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.6.1-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": null,
+    "renderer_status": "unverified",
+    "renderer_note": "待确认：已发布包 dist/browser/index.js 实际是 export {} 的占位文件；不能仅依据 browser 条件导出声称可用，需补齐正确浏览器打包与渲染进程测试。",
+    "evidence": [
+      "ports/jimp/1.6.1/electron-oh/release-evidence.json",
+      "ports/jimp/1.6.1/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/napi-build-utils": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "2.0.0-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "用于 Node-API 构建/版本判断，依赖 Node process.versions；普通沙箱渲染页面不是此工具的使用环境。",
+    "evidence": [
+      "ports/napi-build-utils/2.0.0/electron-oh/release-evidence.json",
+      "ports/napi-build-utils/2.0.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/napi-rs-canvas": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.0.2-electron-oh.5",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "验证 25.3.2、34 系列历史发行物、37.2.0、40.0.0 发行物（自报 40.1.0）；37/40 需要按锁定引擎哈希修复宿主 N-API，jitless 条件见包说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "Skia 原生 Node 插件；主进程和 Node Worker 记录不等于渲染进程验证，普通页面应使用 Chromium Canvas 或 IPC。",
+    "evidence": [
+      "ports/napi-rs-canvas/1.0.2/electron-oh/release-evidence.json",
+      "ports/napi-rs-canvas/1.0.2/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/node-gyp-build": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "4.8.4-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "负责寻找和装载 Node 原生插件，依赖 fs/path/process/dlopen；普通沙箱渲染页面不能直接加载。",
+    "evidence": [
+      "ports/node-gyp-build/4.8.4/electron-oh/release-evidence.json",
+      "ports/node-gyp-build/4.8.4/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/node-machine-id": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.1.12-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 Node 文件系统及系统命令获取机器标识；普通沙箱渲染页面通过 IPC 使用。",
+    "evidence": [
+      "ports/node-machine-id/1.1.12/electron-oh/release-evidence.json",
+      "ports/node-machine-id/1.1.12/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/once": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.4.1-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": true,
+    "renderer_status": "preliminary",
+    "renderer_note": "初步源码评估：纯 JavaScript 函数包装，依赖 wrappy；将 CommonJS 入口与 wrappy 一起打包后可在浏览器渲染页面使用，尚未做渲染进程真机验收。",
+    "evidence": [
+      "ports/once/1.4.1/electron-oh/release-evidence.json",
+      "ports/once/1.4.1/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/onnxruntime-node": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.27.0-electron-oh.1",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "验证 25.3.2、34.5.4、37.2.0、40.0.0 发行物（自报 40.1.0）；只表示验收过这些目标，不声称 40.0.1 已通过。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "Node 原生 ONNX Runtime 绑定，普通沙箱渲染页面不能直接加载；在主进程推理后通过 IPC 返回结果。",
+    "evidence": [
+      "ports/onnxruntime-node/1.27.0/electron-oh/release-evidence.json",
+      "ports/onnxruntime-node/1.27.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/open": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "11.0.4-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "现有接入依赖主进程/Node 与 Harmony Host Bridge；不是浏览器 window.open 的替代品。",
+    "evidence": [
+      "ports/open/11.0.4/electron-oh/release-evidence.json",
+      "ports/open/11.0.4/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/prebuild-install": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "7.1.3-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "npm 安装阶段下载/解包预构建产物的 Node CLI，依赖文件系统和网络，不作为渲染页面运行库。",
+    "evidence": [
+      "ports/prebuild-install/7.1.3/electron-oh/release-evidence.json",
+      "ports/prebuild-install/7.1.3/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/rxjs": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "7.8.2-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": true,
+    "renderer_status": "preliminary",
+    "renderer_note": "初步源码评估：使用浏览器 ESM/UMD 构建，核心流和操作符可在渲染页面使用；ajax/WebSocket/DOM/animationFrames 仍取决于浏览器环境，现有真机记录未覆盖这些功能。",
+    "evidence": [
+      "ports/rxjs/7.8.2/electron-oh/release-evidence.json",
+      "ports/rxjs/7.8.2/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/systeminformation": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "5.33.16-electron-oh.0",
+    "electron": [
+      "34",
+      "37"
+    ],
+    "electron_note": "34.8.6、37.2.0 成功；40.0.1 受 SIGCHLD/waitpid 运行时缺陷阻塞，排除 40。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 Node os/fs/child_process 采集系统信息；普通沙箱渲染页面通过主进程 IPC 获取结果。",
+    "evidence": [
+      "ports/systeminformation/5.33.16/electron-oh/release-evidence.json",
+      "ports/systeminformation/5.33.16/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/tar": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "7.5.22-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 Node fs/streams/zlib，普通沙箱渲染页面通过 IPC 发起归档操作。",
+    "evidence": [
+      "ports/tar/7.5.22/electron-oh/release-evidence.json",
+      "ports/tar/7.5.22/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/vscode-deviceid": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "0.1.5-electron-oh.1",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "验证 34.5.4、37.2.0、40.0.0 发行物（自报 40.1.0）；40.0.1 未验证。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 Node fs、环境目录和设备标识逻辑；包说明要求主进程，渲染页面使用受限异步 IPC。",
+    "evidence": [
+      "ports/vscode-deviceid/0.1.5/electron-oh/release-evidence.json",
+      "ports/vscode-deviceid/0.1.5/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/vscode-native-watchdog": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.4.6-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖双 ABI 原生 watchdog 插件及进程监控，Electron 分支明确面向主进程。",
+    "evidence": [
+      "ports/vscode-native-watchdog/1.4.6/electron-oh/release-evidence.json",
+      "ports/vscode-native-watchdog/1.4.6/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/vscode-oniguruma": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "2.0.1-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": null,
+    "renderer_status": "unverified",
+    "renderer_note": "待确认：浏览器原生 WASM 路径及适配后的 CommonJS asm.js 后备模块需分别验证打包；已有主进程/Node Worker 记录不能证明沙箱渲染页面可用。",
+    "evidence": [
+      "ports/vscode-oniguruma/2.0.1/electron-oh/release-evidence.json",
+      "ports/vscode-oniguruma/2.0.1/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/vscode-ripgrep": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.18.0-electron-oh.0",
+    "electron": [
+      "25",
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "提供本机 rg 路径并依赖 Node 子进程执行搜索；普通沙箱渲染页面通过搜索 IPC 接入。",
+    "evidence": [
+      "ports/vscode-ripgrep/1.18.0/electron-oh/release-evidence.json",
+      "ports/vscode-ripgrep/1.18.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/vscode-textmate": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "9.3.2-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": true,
+    "renderer_status": "preliminary",
+    "renderer_note": "初步源码评估：核心发行文件为可打包的通用 JavaScript，渲染页面需自行提供 grammar 数据与浏览器兼容 onigLib；不包含文件读取或 Oniguruma/WASM 在渲染进程已验证的承诺。",
+    "evidence": [
+      "ports/vscode-textmate/9.3.2/electron-oh/release-evidence.json",
+      "ports/vscode-textmate/9.3.2/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/vuex-electron": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "1.0.3-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": null,
+    "renderer_status": "unverified",
+    "renderer_note": "待确认：shared-mutations 有 renderer 模式，但根入口还加载 electron-store，且需 ipcRenderer/preload 桥；现有验收仅覆盖主进程，不能声称整个包在普通沙箱页面可直接加载。",
+    "evidence": [
+      "ports/vuex-electron/1.0.3/electron-oh/release-evidence.json",
+      "ports/vuex-electron/1.0.3/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/which": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "7.0.0-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "同一发行候选包已有 Electron 主进程真机验收记录；Electron 版本及宿主接入条件见证据。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "依赖 Node 文件系统、PATH、权限检查；普通沙箱渲染页面通过主进程查询可执行文件。",
+    "evidence": [
+      "ports/which/7.0.0/electron-oh/release-evidence.json",
+      "ports/which/7.0.0/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   },
   "@ohos-ports-electron/windows-foreground-love": {
-    "version": null,
-    "main": null,
-    "renderer": null
+    "version": "0.6.1-electron-oh.0",
+    "electron": [
+      "34",
+      "37",
+      "40"
+    ],
+    "electron_note": "仅列已有成功验收记录的 Electron 主版本；具体小版本、宿主条件与功能边界见包的 release-evidence 和接入说明。",
+    "main": true,
+    "main_note": "鸿蒙侧兼容 no-op，主进程两次冷启动通过；不提供 Windows 前台窗口能力。",
+    "renderer": false,
+    "renderer_status": "not-applicable",
+    "renderer_note": "Windows 专用前台窗口能力在鸿蒙侧保留兼容 no-op；现有主进程通过不表示鸿蒙拥有同等 Windows 能力。",
+    "evidence": [
+      "ports/windows-foreground-love/0.6.1/electron-oh/release-evidence.json",
+      "ports/windows-foreground-love/0.6.1/electron-oh/PACKAGE_README.md"
+    ],
+    "reviewed_at": "2026-11-10"
   }
 }

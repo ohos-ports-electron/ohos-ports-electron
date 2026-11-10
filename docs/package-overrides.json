@@ -1,0 +1,6 @@
+{
+  "@ohos-ports-electron/node-machine-id": {
+    "deprecated": true,
+    "deprecated_message": "本站维护者已将此包标记为已废弃。"
+  }
+}

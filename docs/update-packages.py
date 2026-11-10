@@ -6,7 +6,8 @@
 1. GET /-/user/<NPM_ORG>/package — 获取包名列表并过滤目标 scope
 2. 并发获取每个包的 packument（dist-tags + description + deprecated）
 3. 保留 latest、beta 和 electron-oh 标签
-4. 从 process-compatibility.json 合并与安装版本匹配的进程兼容标注
+4. 从 process-compatibility.json 合并与 latest 版本匹配的 Electron/进程兼容标注
+5. 从 package-overrides.json 合并本站维护的废弃状态
 
 输出：
 - docs/data/packages.jsonl（每行一个包）
@@ -41,6 +42,7 @@ JSONL_PATH = os.path.join(DATA_DIR, "packages.jsonl")
 INDEX_PATH = os.path.join(DATA_DIR, "index.json")
 README_PATH = os.path.join(REPO_DIR, "README.md")
 PROCESS_COMPATIBILITY_PATH = os.path.join(SCRIPT_DIR, "process-compatibility.json")
+PACKAGE_OVERRIDES_PATH = os.path.join(SCRIPT_DIR, "package-overrides.json")
 
 
 def fetch_json(url, retries=3):
@@ -376,12 +378,41 @@ def load_process_compatibility():
                 raise ValueError(f"{name}: {process} 必须是布尔值或 null")
             if value is not None and version is None:
                 raise ValueError(f"{name}: 标注进程兼容性时必须填写已验证的 version")
+        electron = entry.get("electron", [])
+        if not isinstance(electron, list) or any(not isinstance(v, str) or not re.fullmatch(r"[1-9][0-9]*", v) for v in electron):
+            raise ValueError(f"{name}: electron 必须是 Electron 主版本字符串数组")
+        if electron and version is None:
+            raise ValueError(f"{name}: 标注 Electron 版本时必须填写对应包的 version")
+        renderer_status = entry.get("renderer_status")
+        if renderer_status not in (None, "verified", "preliminary", "unverified", "not-applicable"):
+            raise ValueError(f"{name}: 无效的 renderer_status")
+        if renderer_status in ("verified", "preliminary") and entry.get("renderer") is not True:
+            raise ValueError(f"{name}: renderer_status 与 renderer 标注不一致")
+        for key in ("main_note", "renderer_note", "electron_note"):
+            if key in entry and not isinstance(entry[key], str):
+                raise ValueError(f"{name}: {key} 必须是字符串")
     return compatibility
+
+
+def load_package_overrides():
+    """本站包状态独立于兼容版本，不向 npm Registry 写入。"""
+    with open(PACKAGE_OVERRIDES_PATH, encoding="utf-8") as source:
+        overrides = json.load(source)
+    if not isinstance(overrides, dict):
+        raise ValueError("package-overrides.json 必须是以完整包名为键的对象")
+    for name, entry in overrides.items():
+        if (not name.startswith(NPM_SCOPE) or not isinstance(entry, dict)
+                or entry.get("deprecated") is not True
+                or not isinstance(entry.get("deprecated_message"), str)
+                or not entry["deprecated_message"].strip()):
+            raise ValueError(f"无效的本站废弃状态条目：{name}")
+    return overrides
 
 
 def generate_output(packages, ports_map):
     """生成包明细及统计摘要，并记录本次成功同步的北京时间"""
     compatibility = load_process_compatibility()
+    overrides = load_package_overrides()
     os.makedirs(DATA_DIR, exist_ok=True)
 
     result = []
@@ -389,10 +420,13 @@ def generate_output(packages, ports_map):
         short_name = p.get("short_name") or p["name"].removeprefix(NPM_SCOPE)
         is_ci = short_name in ports_map
         processes = compatibility.get(p["name"], {})
-        # 与页面安装命令一致：优先 beta，否则 latest；旧版本结论不自动沿用。
-        install_version = p.get("beta_version") or p["latest_version"]
+        # 页面版本与安装命令均采用 latest；beta 指向不能借用 latest 的兼容结论。
+        install_version = p["latest_version"]
         if not install_version or processes.get("version") != install_version:
             processes = {}
+        override = overrides.get(p["name"], {})
+        deprecated = p["deprecated"] or override.get("deprecated", False)
+        deprecated_message = p["deprecated_message"] if p["deprecated"] else override.get("deprecated_message")
 
         entry = {
             "name": p["name"],
@@ -406,9 +440,16 @@ def generate_output(packages, ports_map):
             "beta_version": p["beta_version"],
             "main": processes.get("main"),
             "renderer": processes.get("renderer"),
+            "electron": processes.get("electron", []),
+            "electron_note": processes.get("electron_note"),
+            "main_note": processes.get("main_note"),
+            "renderer_note": processes.get("renderer_note"),
+            "renderer_status": processes.get("renderer_status"),
+            "compatibility_evidence": processes.get("evidence", []),
             "description": p["description"],
-            "deprecated": p["deprecated"],
-            "deprecated_message": p["deprecated_message"],
+            "deprecated": deprecated,
+            "deprecated_message": deprecated_message,
+            "deprecated_source": "npm" if p["deprecated"] else "catalog" if deprecated else None,
             "source": "CI发布" if is_ci else "本地发布",
             "npm_url": p["npm_url"],
         }
@@ -438,6 +479,7 @@ def generate_output(packages, ports_map):
         "total": len(result),
         "electron_oh_count": sum(1 for p in result if p["electron_oh_version"]),
         "beta_count": sum(1 for p in result if p["beta_version"]),
+        "electron_count": sum(1 for p in result if p["electron"]),
         "ci_count": ci_count,
         "local_count": local_count,
         "deprecated_count": deprecated_count,
