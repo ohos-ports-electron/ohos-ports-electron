@@ -26,7 +26,7 @@ git pull --ff-only
 git switch -c feat/package-site-update
 # 在此分支完成页面或数据采集逻辑的修改后，检查并提交：
 git diff --check
-git add README.md docs/index.html docs/app.js docs/update-packages.py docs/data/index.json docs/data/packages.jsonl docs/PLATFORM.md .github/workflows/pages-deploy.yml
+git add README.md docs/index.html docs/app.js docs/update-packages.py docs/process-compatibility.json docs/data/index.json docs/data/packages.jsonl docs/PLATFORM.md .github/workflows/pages-deploy.yml
 git commit -m "feat: update Electron OH package site"
 git push -u origin feat/package-site-update
 gh pr create --repo ohos-ports-electron/ohos-ports-electron --base main --head feat/package-site-update --title "Update Electron OH package site" --body "Update the Electron OH npm package site."
@@ -61,6 +61,28 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 直接执行 `npm dist-tag` 修改标签不会触发包发布工作流，也不会立即刷新已部署的静态数据。标签迁移完成后，手动运行 **Refresh and deploy Electron OH package site** 即可同步；否则等待下一次定时刷新。
 
 新增公开包或版本后，运行上述工作流即可刷新；无需手工在 HTML 中添加包条目。尚未批准的 staged 包版本和私有包不会作为本平台的公开数据展示。
+
+## 进程兼容标注
+
+表格在 Electron OH 版本列之后展示「进程兼容（主进程/渲染进程）」，格式与 [compatible-packages](https://ohos-electron.github.io/compatible-packages/) 一致：`main` 为 `true` 时显示绿色「✅ 主进程」，`renderer` 为 `true` 时显示绿色「✅ 渲染进程」。均未标为 `true` 时显示灰色 `—`，不据此判定不兼容。
+
+人工标注维护在 `docs/process-compatibility.json`，以完整的 npm 包名为键。已为当前线上包预留以下结构，所有值初始为 `null`：
+
+```json
+{
+  "@ohos-ports-electron/axios": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  }
+}
+```
+
+`main`、`renderer` 接受布尔值或 `null`；`null` 表示待补充。确认某个进程可用后，将对应字段设为 `true`，并填写实际验证的 `version`（具体版本号，不填 `beta` 标签名）。标注对应安装命令所选版本：有 `beta` 标签时匹配 `beta_version`，否则匹配 `latest_version`；标签指向其他版本后，旧标注不再显示，待复核后更新。
+
+`docs/update-packages.py` 每次刷新时读取该映射，将 `main`、`renderer` 合并进 `docs/data/packages.jsonl`，不会覆盖人工标注文件。未配置的新包和未匹配版本的包自动输出 `"main": null, "renderer": null`；新增包不必先补映射即可展示。后续维护标注时，在映射中添加该包的条目。不要直接编辑生成的 JSONL 来维护兼容结论。
+
+提交映射修改并合入 `main` 后，现有 Pages 工作流会自动刷新和部署，无需增加 npm 字段或更改发布流程。本地预览前运行上述刷新命令即可。
 
 ## 网站与包构建分别维护
 

@@ -1,0 +1,172 @@
+{
+  "@ohos-ports-electron/7zip-bin": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/7zip-min": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/address": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/axios": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/better-sqlite3": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/better-sqlite3-multiple-ciphers": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/bytenode": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/compressing": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/conf": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/electron-context-menu": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/electron-is-dev": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/env-paths": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/fs-extra": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/get-stream": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/jimp": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/napi-build-utils": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/napi-rs-canvas": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/node-gyp-build": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/node-machine-id": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/once": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/onnxruntime-node": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/open": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/prebuild-install": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/rxjs": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/systeminformation": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/tar": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/vscode-deviceid": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/vscode-native-watchdog": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/vscode-oniguruma": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/vscode-ripgrep": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/vscode-textmate": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/vuex-electron": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/which": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  },
+  "@ohos-ports-electron/windows-foreground-love": {
+    "version": null,
+    "main": null,
+    "renderer": null
+  }
+}

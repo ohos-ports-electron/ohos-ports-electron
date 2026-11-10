@@ -6,6 +6,7 @@
 1. GET /-/user/<NPM_ORG>/package — 获取包名列表并过滤目标 scope
 2. 并发获取每个包的 packument（dist-tags + description + deprecated）
 3. 保留 latest、beta 和 electron-oh 标签
+4. 从 process-compatibility.json 合并与安装版本匹配的进程兼容标注
 
 输出：
 - docs/data/packages.jsonl（每行一个包）
@@ -39,6 +40,7 @@ DATA_DIR = os.path.join(SCRIPT_DIR, "data")
 JSONL_PATH = os.path.join(DATA_DIR, "packages.jsonl")
 INDEX_PATH = os.path.join(DATA_DIR, "index.json")
 README_PATH = os.path.join(REPO_DIR, "README.md")
+PROCESS_COMPATIBILITY_PATH = os.path.join(SCRIPT_DIR, "process-compatibility.json")
 
 
 def fetch_json(url, retries=3):
@@ -356,14 +358,41 @@ def infer_platform_original_names(packages):
     return packages
 
 
+def load_process_compatibility():
+    """读取人工维护的进程标注；该文件不由 npm 同步脚本覆盖。"""
+    with open(PROCESS_COMPATIBILITY_PATH, encoding="utf-8") as source:
+        compatibility = json.load(source)
+    if not isinstance(compatibility, dict):
+        raise ValueError("process-compatibility.json 必须是以完整包名为键的对象")
+    for name, entry in compatibility.items():
+        if not name.startswith(NPM_SCOPE) or not isinstance(entry, dict):
+            raise ValueError(f"无效的进程兼容条目：{name}")
+        version = entry.get("version")
+        if version is not None and (not isinstance(version, str) or not version.strip()):
+            raise ValueError(f"{name}: version 必须是版本字符串或 null")
+        for process in ("main", "renderer"):
+            value = entry.get(process)
+            if value is not None and type(value) is not bool:
+                raise ValueError(f"{name}: {process} 必须是布尔值或 null")
+            if value is not None and version is None:
+                raise ValueError(f"{name}: 标注进程兼容性时必须填写已验证的 version")
+    return compatibility
+
+
 def generate_output(packages, ports_map):
     """生成包明细及统计摘要，并记录本次成功同步的北京时间"""
+    compatibility = load_process_compatibility()
     os.makedirs(DATA_DIR, exist_ok=True)
 
     result = []
     for p in packages:
         short_name = p.get("short_name") or p["name"].removeprefix(NPM_SCOPE)
         is_ci = short_name in ports_map
+        processes = compatibility.get(p["name"], {})
+        # 与页面安装命令一致：优先 beta，否则 latest；旧版本结论不自动沿用。
+        install_version = p.get("beta_version") or p["latest_version"]
+        if not install_version or processes.get("version") != install_version:
+            processes = {}
 
         entry = {
             "name": p["name"],
@@ -375,6 +404,8 @@ def generate_output(packages, ports_map):
             "dist_tags": p["dist_tags"],
             "stable_version": p["stable_version"],
             "beta_version": p["beta_version"],
+            "main": processes.get("main"),
+            "renderer": processes.get("renderer"),
             "description": p["description"],
             "deprecated": p["deprecated"],
             "deprecated_message": p["deprecated_message"],
