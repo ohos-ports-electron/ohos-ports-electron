@@ -1,0 +1,39 @@
+docs/test_app.cjs
+  s_c4c19027796d60::t_d6de1179c39e73 69,76,99-105
+docs/PLATFORM.md
+  s_c4c19027796d60::t_d6de1179c39e73 69
+docs/app.js
+  s_c4c19027796d60::t_d6de1179c39e73 122-123
+docs/index.html
+  s_c4c19027796d60::t_d6de1179c39e73 88,107
+docs/COMPATIBILITY.md
+  s_c4c19027796d60::t_d6de1179c39e73 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "5.30.1",
+  "base_commit_sha": "4310e52b577d7b0159e3331645afd0a310e58111",
+  "prompts": {},
+  "sessions": {
+    "s_c4c19027796d60": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c425-ed92-72f2-96c6-3abe5625726e",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "mzsylr <mazheng20@huawei.com>",
+      "total_additions": 15,
+      "total_deletions": 14,
+      "overridden_lines": 0,
+      "turn_models": {
+        "t_d6de1179c39e73": "gpt-6.1-sol"
+      },
+      "model_totals": {
+        "gpt-6.1-sol": {
+          "additions": 15,
+          "deletions": 14
+        }
+      }
+    }
+  }
+}
