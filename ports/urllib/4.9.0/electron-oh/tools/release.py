@@ -144,7 +144,7 @@ def host(bundle):
         (root / 'config.json').write_text(json.dumps(config), encoding='utf-8')
         (root / 'run.cjs').write_text("const {runSuite}=require('./run-suite.cjs');const doc=require('./cases.json');const suite=require('./suite.cjs');(async()=>{const r=await runSuite(doc,suite,'all');process.exit(r.some(x=>x.result!=='pass')?1:0);})().catch(e=>{console.error(e.stack||e);process.exit(2);});", encoding='utf-8')
         subprocess.run([npm_cmd(), 'install', '--no-audit', '--no-fund', '--registry=' + REGISTRY], cwd=root, check=True)
-        subprocess.run(['node', '--jitless', 'run.cjs'], cwd=root, check=True)
+        subprocess.run(['node', 'run.cjs'], cwd=root, check=True)
 
 
 def guard(env=None):
