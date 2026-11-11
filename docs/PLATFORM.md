@@ -66,7 +66,7 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory docs
 
 ## 进程兼容标注
 
-表格在支持的 Electron 版本列之后展示「进程兼容（主进程/渲染进程）」，保留 [compatible-packages](https://ohos-electron.github.io/compatible-packages/) 的进程标签格式：`main` 为 `true` 时显示绿色「✅ 主进程」；`renderer` 为 `true` 时，`renderer_status: preliminary` 显示黄色「△ 渲染进程（初评）」，`verified` 显示绿色「✅ 渲染进程」。悬停可查看对应条件。均未标为 `true` 时显示灰色 `—`，不据此判定不兼容。
+表格在支持的 Electron 版本列之后展示「进程兼容（主进程/渲染进程）」，与 [compatible-packages](https://ohos-electron.github.io/compatible-packages/) 使用相同的进程标签格式：`main` 为 `true` 时显示绿色「✅ 主进程」，`renderer` 为 `true` 时显示同样样式的绿色「✅ 渲染进程」。`renderer_status: preliminary` 的初评提示和接入条件保留在悬停说明中。均未标为 `true` 时显示灰色 `—`，不据此判定不兼容。
 
 人工标注维护在 `docs/process-compatibility.json`，以完整的 npm 包名为键。例如：
 

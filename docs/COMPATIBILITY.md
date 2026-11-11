@@ -8,7 +8,7 @@
 - 「支持的Electron版本」列出已有成功验收记录的 **Electron 主版本**，不表示该系列全部小版本通过，也不把运行时阻塞或单纯构建目标列为通过。具体发行物、引擎哈希、启动参数和功能范围以各配方证据为准。
 - 主进程 `true` 复用与当前包版本绑定的既有真机记录。本轮没有重新执行鸿蒙真机测试；Node Worker 验证也不等于 renderer 验证。
 - 渲染进程以普通隔离/沙箱页面为基准。Electron 官方说明：沙箱 renderer 不初始化 Node 环境，文件、子进程等特权操作需要 IPC 委托主进程；preload 的有限 `require` 不能当作完整 Node 模块加载器。[官方进程沙箱文档](https://www.electronjs.org/docs/latest/tutorial/sandbox)
-- `renderer: true` 的 4 项均为源码/分发入口初评，网页显示黄色「△ 渲染进程（初评）」；需要满足备注中的打包或依赖条件，尚无本轮渲染进程真机通过结论。没有推荐通过关闭 sandbox 或开启 nodeIntegration 来让全部 Node 包显示兼容。
+- `renderer: true` 的 4 项均为源码/分发入口初评。网页与参考站统一显示绿色「✅ 渲染进程」，与「✅ 主进程」格式相同；初评说明与打包/依赖条件保留在悬停提示中，尚无本轮渲染进程真机通过结论。没有推荐通过关闭 sandbox 或开启 nodeIntegration 来让全部 Node 包显示兼容。
 - `renderer: false` 表示当前完整入口不适合直接用于普通沙箱渲染页面，仍可由主进程经受限 IPC 提供能力；不声称所有非沙箱/preload 配置均不可运行。`null` 表示仍需验证，不能解读为不兼容。
 
 源码评估使用 npm 发布的准确版本 tarball，重点检查了 browser/exports、UMD/ESM、Node 原生模块和 IPC 依赖；不是仅按包名或「纯 JS」分类。
