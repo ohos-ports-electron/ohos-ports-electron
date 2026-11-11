@@ -1,0 +1,1798 @@
+{
+  "version": 1,
+  "stage": 3,
+  "host_runtime": "device-node",
+  "modules": [],
+  "cases": [
+    {
+      "name": "test/HttpClient.connect.rejectUnauthorized.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "HttpClient",
+        "HttpClient.request"
+      ],
+      "prd_refs": [
+        "F-11-01",
+        "F-11-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/HttpClient.connect.rejectUnauthorized.test.ts",
+      "title": "test/HttpClient.connect.rejectUnauthorized.test.ts"
+    },
+    {
+      "name": "test/HttpClient.events.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "HttpClient"
+      ],
+      "prd_refs": [
+        "F-14-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/HttpClient.events.test.ts",
+      "title": "test/HttpClient.events.test.ts"
+    },
+    {
+      "name": "test/HttpClient.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "HttpClient",
+        "getDefaultHttpClient",
+        "getGlobalDispatcher",
+        "curl",
+        "HttpClient.request",
+        "HttpClient.getDispatcherPoolStats"
+      ],
+      "prd_refs": [
+        "F-19-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "degraded",
+        "blockers": [
+          "外部公网可达性（registry.npmmirror.com / registry.npmjs.org 用例，设备侧出站网络为运行时前置，非平台能力缺口）",
+          "Unix socket /tmp 路径改写（socket_server.ts:3 硬编码 /tmp/urllib.unix.sock，app 域 TMPDIR 需改写）"
+        ],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available",
+          "source/test/fixtures/socket_server.ts:3",
+          "source/test/index.test.ts:175-188（registry host-only 用例）"
+        ]
+      },
+      "notes": "24 条活跃用例覆盖 curl 别名、allowH2/协议协商、池统计、checkAddress（SSRF）等；F-19-01（checkAddress）为本文件独占覆盖，其余功能点由专项文件承载（F-01-01→index、F-06-01→options.followRedirect、F-12-02→keep-alive-header、F-13-02→urllib.options.allowH2）；allowH2 子用例触达 registry.npmmirror.com → degraded。",
+      "id": "test/HttpClient.test.ts",
+      "title": "test/HttpClient.test.ts"
+    },
+    {
+      "name": "test/diagnostics_channel.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "HttpClient"
+      ],
+      "prd_refs": [
+        "F-14-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/diagnostics_channel.test.ts",
+      "title": "test/diagnostics_channel.test.ts"
+    },
+    {
+      "name": "test/fetch-head-request-should-keepalive.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "fetch"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游 describe.skip 整文件禁用（issue #565，0 活跃断言）——文件级条目保留以对齐上游套件全集、设备侧运行报告 skipped；不认领任何 PRD 功能点（F-17-01 由 fetch.test.ts 独立覆盖）。",
+      "id": "test/fetch-head-request-should-keepalive.test.ts",
+      "title": "test/fetch-head-request-should-keepalive.test.ts"
+    },
+    {
+      "name": "test/fetch.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "fetch",
+        "FetchFactory"
+      ],
+      "prd_refs": [
+        "F-17-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/fetch.test.ts",
+      "title": "test/fetch.test.ts"
+    },
+    {
+      "name": "test/formData-with-BufferStream.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "WebFormData",
+        "HttpClient"
+      ],
+      "prd_refs": [
+        "F-09-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/formData-with-BufferStream.test.ts",
+      "title": "test/formData-with-BufferStream.test.ts"
+    },
+    {
+      "name": "test/head-request-should-keepalive.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "HttpClient",
+        "HttpClient.request"
+      ],
+      "prd_refs": [
+        "F-12-01",
+        "F-12-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/head-request-should-keepalive.test.ts",
+      "title": "test/head-request-should-keepalive.test.ts"
+    },
+    {
+      "name": "test/keep-alive-header.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "HttpClient",
+        "HttpClient.getDispatcherPoolStats"
+      ],
+      "prd_refs": [
+        "F-12-01",
+        "F-12-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "1 条活跃用例，TEST_KEEPALIVE_COUNT 环境变量控制循环次数（默认 3，CI=50）；断言 keep-alive 头、池统计 pending/connected/size 与零 otherSideClosed/readECONNRESET。",
+      "id": "test/keep-alive-header.test.ts",
+      "title": "test/keep-alive-header.test.ts"
+    },
+    {
+      "name": "test/non-ascii-request-header.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-04-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/non-ascii-request-header.test.ts",
+      "title": "test/non-ascii-request-header.test.ts"
+    },
+    {
+      "name": "test/options.auth.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-05-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.auth.test.ts",
+      "title": "test/options.auth.test.ts"
+    },
+    {
+      "name": "test/options.compressed.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-07-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.compressed.test.ts",
+      "title": "test/options.compressed.test.ts"
+    },
+    {
+      "name": "test/options.content.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-05"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.content.test.ts",
+      "title": "test/options.content.test.ts"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should default GET with data and auto convert to query string",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should default GET with data and auto convert to query string",
+      "title": "test/options.data.test.ts > options.data.test.ts > should default GET with data and auto convert to query string"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should not mutate a passed URL object when setting query string",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should not mutate a passed URL object when setting query string",
+      "title": "test/options.data.test.ts > options.data.test.ts > should not mutate a passed URL object when setting query string"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should GET with data work on nestedQuerystring=true",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should GET with data work on nestedQuerystring=true",
+      "title": "test/options.data.test.ts > options.data.test.ts > should GET with data work on nestedQuerystring=true"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should GET /ok?hello=1 with data work on nestedQuerystring=true",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should GET /ok?hello=1 with data work on nestedQuerystring=true",
+      "title": "test/options.data.test.ts > options.data.test.ts > should GET /ok?hello=1 with data work on nestedQuerystring=true"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should HEAD with data and auto convert to query string",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should HEAD with data and auto convert to query string",
+      "title": "test/options.data.test.ts > options.data.test.ts > should HEAD with data and auto convert to query string"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should concat query string and data correctly when GET",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should concat query string and data correctly when GET",
+      "title": "test/options.data.test.ts > options.data.test.ts > should concat query string and data correctly when GET"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should ignore data = buffer on GET request",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should ignore data = buffer on GET request",
+      "title": "test/options.data.test.ts > options.data.test.ts > should ignore data = buffer on GET request"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should ignore data = string on GET request",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should ignore data = string on GET request",
+      "title": "test/options.data.test.ts > options.data.test.ts > should ignore data = string on GET request"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should ignore data = readable on GET request",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should ignore data = readable on GET request",
+      "title": "test/options.data.test.ts > options.data.test.ts > should ignore data = readable on GET request"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should POST with data and auto using application/x-www-form-urlencoded",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should POST with data and auto using application/x-www-form-urlencoded",
+      "title": "test/options.data.test.ts > options.data.test.ts > should POST with data and auto using application/x-www-form-urlencoded"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should PUT with data and auto using application/x-www-form-urlencoded",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should PUT with data and auto using application/x-www-form-urlencoded",
+      "title": "test/options.data.test.ts > options.data.test.ts > should PUT with data and auto using application/x-www-form-urlencoded"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should PATCH with data and auto using application/x-www-form-urlencoded",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should PATCH with data and auto using application/x-www-form-urlencoded",
+      "title": "test/options.data.test.ts > options.data.test.ts > should PATCH with data and auto using application/x-www-form-urlencoded"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should POST with application/x-www-form-urlencoded not support nested object",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should POST with application/x-www-form-urlencoded not support nested object",
+      "title": "test/options.data.test.ts > options.data.test.ts > should POST with application/x-www-form-urlencoded not support nested object"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should POST with application/x-www-form-urlencoded work on nestedQuerystring=true",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should POST with application/x-www-form-urlencoded work on nestedQuerystring=true",
+      "title": "test/options.data.test.ts > options.data.test.ts > should POST with application/x-www-form-urlencoded work on nestedQuerystring=true"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should PUT with data and contentType = json",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should PUT with data and contentType = json",
+      "title": "test/options.data.test.ts > options.data.test.ts > should PUT with data and contentType = json"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should PUT with data and contentType = application/json",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should PUT with data and contentType = application/json",
+      "title": "test/options.data.test.ts > options.data.test.ts > should PUT with data and contentType = application/json"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should auto convert data to json string with charset",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should auto convert data to json string with charset",
+      "title": "test/options.data.test.ts > options.data.test.ts > should auto convert data to json string with charset"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should auto convert data to json string with content-type=application/json",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should auto convert data to json string with content-type=application/json",
+      "title": "test/options.data.test.ts > options.data.test.ts > should auto convert data to json string with content-type=application/json"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should keep data to string when content-type exists",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-05"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should keep data to string when content-type exists",
+      "title": "test/options.data.test.ts > options.data.test.ts > should keep data to string when content-type exists"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should keep data to buffer when content-type exists",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-05"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should keep data to buffer when content-type exists",
+      "title": "test/options.data.test.ts > options.data.test.ts > should keep data to buffer when content-type exists"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should keep data to readable when content-type exists",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-06"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should keep data to readable when content-type exists",
+      "title": "test/options.data.test.ts > options.data.test.ts > should keep data to readable when content-type exists"
+    },
+    {
+      "name": "test/options.data.test.ts > options.data.test.ts > should keep data to readable and not set content-type",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-02-06"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分（vitest verbose 全标题对账键）——F-02 请求体构造各路径独立判定。",
+      "id": "test/options.data.test.ts > options.data.test.ts > should keep data to readable and not set content-type",
+      "title": "test/options.data.test.ts > options.data.test.ts > should keep data to readable and not set content-type"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should dataType is buffer",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should dataType is buffer",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should dataType is buffer"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = buffer",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-06"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = buffer",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = buffer"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = text",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = text",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = text"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = html",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = html",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = html"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = json",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = json",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = json"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should ignore json parse when response empty",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should ignore json parse when response empty",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should ignore json parse when response empty"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should keep exists accept headers when dataType = json",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should keep exists accept headers when dataType = json",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should keep exists accept headers when dataType = json"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should throw with dataType = json when response json format invaild",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should throw with dataType = json when response json format invaild",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should throw with dataType = json when response json format invaild"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = text when response json format invaild",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = text when response json format invaild",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = text when response json format invaild"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should handle GET /wrongjson-gbk with dataType=json and data size > 1024",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should handle GET /wrongjson-gbk with dataType=json and data size > 1024",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should handle GET /wrongjson-gbk with dataType=json and data size > 1024"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = stream",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-10-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = stream",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should work with dataType = stream"
+    },
+    {
+      "name": "test/options.dataType.test.ts > options.dataType.test.ts > should work with streaming = true, alias to data = stream",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-10-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "上游单测逐条拆分——F-03 响应数据类型化各路径独立判定。",
+      "id": "test/options.dataType.test.ts > options.dataType.test.ts > should work with streaming = true, alias to data = stream",
+      "title": "test/options.dataType.test.ts > options.dataType.test.ts > should work with streaming = true, alias to data = stream"
+    },
+    {
+      "name": "test/options.digestAuth.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-05-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "6 条活跃 + 2 条 it.skip（httpbin.org 外网，上游永久跳过）；F-05-02 digest 挑战-响应由前 6 条覆盖。",
+      "id": "test/options.digestAuth.test.ts",
+      "title": "test/options.digestAuth.test.ts"
+    },
+    {
+      "name": "test/options.dispatcher.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "ProxyAgent",
+        "getGlobalDispatcher",
+        "setGlobalDispatcher",
+        "Agent"
+      ],
+      "prd_refs": [
+        "F-15-01",
+        "F-15-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "degraded",
+        "blockers": [
+          "外部公网可达性（registry.npmmirror.com / registry.npmjs.org 用例，设备侧出站网络为运行时前置，非平台能力缺口）",
+          "Unix socket /tmp 路径改写（socket_server.ts:3 硬编码 /tmp/urllib.unix.sock，app 域 TMPDIR 需改写）"
+        ],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available",
+          "source/test/fixtures/socket_server.ts:3",
+          "source/test/index.test.ts:175-188（registry host-only 用例）"
+        ]
+      },
+      "id": "test/options.dispatcher.test.ts",
+      "title": "test/options.dispatcher.test.ts"
+    },
+    {
+      "name": "test/options.files.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-09-01",
+        "F-09-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.files.test.ts",
+      "title": "test/options.files.test.ts"
+    },
+    {
+      "name": "test/options.fixJSONCtlChars.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-05"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.fixJSONCtlChars.test.ts",
+      "title": "test/options.fixJSONCtlChars.test.ts"
+    },
+    {
+      "name": "test/options.followRedirect.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "HttpClient"
+      ],
+      "prd_refs": [
+        "F-06-01",
+        "F-06-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.followRedirect.test.ts",
+      "title": "test/options.followRedirect.test.ts"
+    },
+    {
+      "name": "test/options.gzip.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-07-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.gzip.test.ts",
+      "title": "test/options.gzip.test.ts"
+    },
+    {
+      "name": "test/options.headers.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "USER_AGENT"
+      ],
+      "prd_refs": [
+        "F-01-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.headers.test.ts",
+      "title": "test/options.headers.test.ts"
+    },
+    {
+      "name": "test/options.method.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-01-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.method.test.ts",
+      "title": "test/options.method.test.ts"
+    },
+    {
+      "name": "test/options.opaque.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-14-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.opaque.test.ts",
+      "title": "test/options.opaque.test.ts"
+    },
+    {
+      "name": "test/options.reset.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-12-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.reset.test.ts",
+      "title": "test/options.reset.test.ts"
+    },
+    {
+      "name": "test/options.retry.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-08-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.retry.test.ts",
+      "title": "test/options.retry.test.ts"
+    },
+    {
+      "name": "test/options.signal.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-04-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.signal.test.ts",
+      "title": "test/options.signal.test.ts"
+    },
+    {
+      "name": "test/options.socketErrorRetry.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-08-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.socketErrorRetry.test.ts",
+      "title": "test/options.socketErrorRetry.test.ts"
+    },
+    {
+      "name": "test/options.socketPath.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-13-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "degraded",
+        "blockers": [
+          "外部公网可达性（registry.npmmirror.com / registry.npmjs.org 用例，设备侧出站网络为运行时前置，非平台能力缺口）",
+          "Unix socket /tmp 路径改写（socket_server.ts:3 硬编码 /tmp/urllib.unix.sock，app 域 TMPDIR 需改写）"
+        ],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available",
+          "source/test/fixtures/socket_server.ts:3",
+          "source/test/index.test.ts:175-188（registry host-only 用例）"
+        ]
+      },
+      "notes": "host describe.skipIf(isWindows())（Windows 宿主跳过）；设备 openharmony 非 win32 → 1 条活跃用例正常注册运行（F-13-01）；unix socket 夹具硬编码 /tmp/urllib.unix.sock（fixtures/socket_server.ts:3），设备侧 THDIR 改写。",
+      "id": "test/options.socketPath.test.ts",
+      "title": "test/options.socketPath.test.ts"
+    },
+    {
+      "name": "test/options.stream.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-10-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.stream.test.ts",
+      "title": "test/options.stream.test.ts"
+    },
+    {
+      "name": "test/options.streaming.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-10-01"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.streaming.test.ts",
+      "title": "test/options.streaming.test.ts"
+    },
+    {
+      "name": "test/options.timeout.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "HttpClientRequestTimeoutError",
+        "HttpClientRequestError",
+        "HttpClient"
+      ],
+      "prd_refs": [
+        "F-04-02",
+        "F-04-03"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.timeout.test.ts",
+      "title": "test/options.timeout.test.ts"
+    },
+    {
+      "name": "test/options.timing.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-14-01",
+        "F-14-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.timing.test.ts",
+      "title": "test/options.timing.test.ts"
+    },
+    {
+      "name": "test/options.type.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-01-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.type.test.ts",
+      "title": "test/options.type.test.ts"
+    },
+    {
+      "name": "test/options.writeStream.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-10-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/options.writeStream.test.ts",
+      "title": "test/options.writeStream.test.ts"
+    },
+    {
+      "name": "test/response-charset-gbk.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request"
+      ],
+      "prd_refs": [
+        "F-03-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "notes": "1 条活跃（notfound charset 忽略）+ 2 条 it.skip（GBK 自动解码，上游永久跳过）；F-03-02 由活跃用例与 options.dataType 共同覆盖。",
+      "id": "test/response-charset-gbk.test.ts",
+      "title": "test/response-charset-gbk.test.ts"
+    },
+    {
+      "name": "test/urllib.options.allowH2.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "curl"
+      ],
+      "prd_refs": [
+        "F-13-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "degraded",
+        "blockers": [
+          "外部公网可达性（registry.npmmirror.com / registry.npmjs.org 用例，设备侧出站网络为运行时前置，非平台能力缺口）",
+          "Unix socket /tmp 路径改写（socket_server.ts:3 硬编码 /tmp/urllib.unix.sock，app 域 TMPDIR 需改写）"
+        ],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available",
+          "source/test/fixtures/socket_server.ts:3",
+          "source/test/index.test.ts:175-188（registry host-only 用例）"
+        ]
+      },
+      "id": "test/urllib.options.allowH2.test.ts",
+      "title": "test/urllib.options.allowH2.test.ts"
+    },
+    {
+      "name": "test/urllib.options.rejectUnauthorized-false.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "HttpClient"
+      ],
+      "prd_refs": [
+        "F-11-02"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/urllib.options.rejectUnauthorized-false.test.ts",
+      "title": "test/urllib.options.rejectUnauthorized-false.test.ts"
+    },
+    {
+      "name": "test/user-agent.test.ts",
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "USER_AGENT"
+      ],
+      "prd_refs": [
+        "F-01-04"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/user-agent.test.ts",
+      "title": "test/user-agent.test.ts"
+    },
+    {
+      "name": "test/utils.test.ts",
+      "source": "upstream",
+      "api_refs": [],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available（本地 localhost 服务器 + 纯 JS 依赖，无原生 harness）"
+        ]
+      },
+      "id": "test/utils.test.ts",
+      "title": "test/utils.test.ts"
+    },
+    {
+      "name": "baseline-formdata",
+      "source": "generated",
+      "api_refs": [
+        "FormData"
+      ],
+      "prd_refs": [
+        "F-09-01"
+      ],
+      "host_result": "pass",
+      "validation": "self-validated",
+      "oracle_plan": [
+        {
+          "ref": "cp:1",
+          "symbol": "FormData",
+          "source": "S1",
+          "grade": "n-a",
+          "plane": "state",
+          "ref_note": "出处: prd F-09-01 + src/HttpClient.ts:573-577（args.content 直传 requestOptions.body）；澄清: 类型=multipart/form-data 响应、单位=HTTP 状态码/字节数、结构=服务端 JSON 回显 {contentType,bodyLength,form,files}、失败形态=请求失败抛错；差异面: 无（闸A，库自有观测物——content-type/boundary/bodyLength 均本进程内服务器可观测，不经过 libc 平台语义区）"
+        },
+        {
+          "ref": "cp:2",
+          "symbol": "FormData",
+          "source": "S1",
+          "grade": "n-a",
+          "plane": "state",
+          "ref_note": "出处: prd F-09-01 + src/index.ts:68（FormData 公共导出）；澄清: 类型=multipart 普通字段字符串、单位=UTF-8 解码后的字段值、结构=服务端独立解析器（本用例自写 parseMultipart，与 undici FormData 编码路径对偶）、失败形态=字段缺失/值不一致；差异面: 无（闸A）"
+        },
+        {
+          "ref": "cp:3",
+          "symbol": "FormData",
+          "source": "S1",
+          "grade": "n-a",
+          "plane": "state",
+          "ref_note": "出处: prd F-09-01（服务器解析到的文件内容与文件名一致）+ src/HttpClient.ts:573-577；澄清: 类型=文件字段、单位=文件名/字节长度、结构=服务端解析 files.upfile={filename,size}、失败形态=文件名/长度不一致；差异面: 无（闸A）"
+        }
+      ],
+      "covered_apis_source": [
+        "FormData"
+      ],
+      "id": "baseline-formdata",
+      "title": "baseline-formdata"
+    },
+    {
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "curl",
+        "USER_AGENT",
+        "HttpClient",
+        "getDefaultHttpClient",
+        "MockAgent",
+        "setGlobalDispatcher",
+        "getGlobalDispatcher",
+        "getCookies",
+        "setCookie",
+        "getSetCookies",
+        "deleteCookie",
+        "parseCookie"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "degraded",
+        "blockers": [
+          "外部公网可达性（registry.npmmirror.com / registry.npmjs.org 用例，设备侧出站网络为运行时前置）"
+        ],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available",
+          "source/test/index.test.ts:175-188（registry host-only 用例）"
+        ]
+      },
+      "name": "test/index.test.ts > index.test.ts > getDefaultHttpClient()",
+      "prd_refs": [
+        "F-01-01"
+      ],
+      "notes": "getDefaultHttpClient().request 基础 GET 旅程；host 预跑 pass。",
+      "id": "test/index.test.ts > index.test.ts > getDefaultHttpClient()",
+      "title": "test/index.test.ts > index.test.ts > getDefaultHttpClient()"
+    },
+    {
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "curl",
+        "USER_AGENT",
+        "HttpClient",
+        "getDefaultHttpClient",
+        "MockAgent",
+        "setGlobalDispatcher",
+        "getGlobalDispatcher",
+        "getCookies",
+        "setCookie",
+        "getSetCookies",
+        "deleteCookie",
+        "parseCookie"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "degraded",
+        "blockers": [
+          "外部公网可达性（registry.npmmirror.com / registry.npmjs.org 用例，设备侧出站网络为运行时前置）"
+        ],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available",
+          "source/test/index.test.ts:175-188（registry host-only 用例）"
+        ]
+      },
+      "name": "test/index.test.ts > index.test.ts > urllib.request()",
+      "prd_refs": [
+        "F-01-01",
+        "F-01-03"
+      ],
+      "notes": "urllib.request 基础请求、set-cookie 响应头、curl 别名、URL 对象/url.parse 对象输入；2 条 registry 外部用例（host-only/host:port）degraded。",
+      "id": "test/index.test.ts > index.test.ts > urllib.request()",
+      "title": "test/index.test.ts > index.test.ts > urllib.request()"
+    },
+    {
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "curl",
+        "USER_AGENT",
+        "HttpClient",
+        "getDefaultHttpClient",
+        "MockAgent",
+        "setGlobalDispatcher",
+        "getGlobalDispatcher",
+        "getCookies",
+        "setCookie",
+        "getSetCookies",
+        "deleteCookie",
+        "parseCookie"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "degraded",
+        "blockers": [
+          "外部公网可达性（registry.npmmirror.com / registry.npmjs.org 用例，设备侧出站网络为运行时前置）"
+        ],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available",
+          "source/test/index.test.ts:175-188（registry host-only 用例）"
+        ]
+      },
+      "name": "test/index.test.ts > index.test.ts > default export",
+      "prd_refs": [
+        "F-01-04"
+      ],
+      "notes": "urllib.USER_AGENT 导出检查（/urllib\\// 匹配）。",
+      "id": "test/index.test.ts > index.test.ts > default export",
+      "title": "test/index.test.ts > index.test.ts > default export"
+    },
+    {
+      "source": "upstream",
+      "api_refs": [
+        "request",
+        "curl",
+        "USER_AGENT",
+        "HttpClient",
+        "getDefaultHttpClient",
+        "MockAgent",
+        "setGlobalDispatcher",
+        "getGlobalDispatcher",
+        "getCookies",
+        "setCookie",
+        "getSetCookies",
+        "deleteCookie",
+        "parseCookie"
+      ],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "degraded",
+        "blockers": [
+          "外部公网可达性（registry.npmmirror.com / registry.npmjs.org 用例，设备侧出站网络为运行时前置）"
+        ],
+        "evidence": [
+          "01-scan.json capability_dependencies network=available",
+          "source/test/index.test.ts:175-188（registry host-only 用例）"
+        ]
+      },
+      "name": "test/index.test.ts > index.test.ts > Mocking request",
+      "prd_refs": [
+        "F-16-01"
+      ],
+      "notes": "MockAgent 拦截全景（含 allowH2:false 保留全局 mock 池、自定义 HttpClient 注入 mock dispatcher）。",
+      "id": "test/index.test.ts > index.test.ts > Mocking request",
+      "title": "test/index.test.ts > index.test.ts > Mocking request"
+    }
+  ],
+  "excluded": []
+}
