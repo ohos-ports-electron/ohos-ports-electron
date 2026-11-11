@@ -43,7 +43,6 @@ tr:hover{background:#fafbfc}
 .process-compatibility{min-width:220px}
 .process-tag{display:inline-block;padding:2px 8px;margin:2px 4px 2px 0;border-radius:4px;font-size:12px;font-weight:500;line-height:18px;white-space:nowrap;background:#d1fae5;color:#065f46}
 .process-tag:last-child{margin-right:0}
-.process-preliminary{background:#fef3c7;color:#92400e}
 .process-empty{color:#bbb}
 .electron-versions{min-width:150px}
 .electron-tag{display:inline-block;padding:2px 8px;margin:2px 4px 2px 0;border-radius:4px;font-size:12px;background:#e0e7ff;color:#3730a3;white-space:nowrap}
@@ -86,7 +85,7 @@ tr:hover{background:#fafbfc}
   </div>
   <div class="result-info" id="info" role="status" aria-live="polite"></div>
   <p class="result-info">版本取 npm latest，安装命令固定为该版本。支持的 Electron 版本列出已有成功验收记录的主版本，具体小版本及接入条件见 <a href="https://github.com/ohos-ports-electron/ohos-ports-electron/blob/main/docs/COMPATIBILITY.md" target="_blank" rel="noopener noreferrer">兼容性说明</a>。</p>
-  <p class="result-info">绿色进程标签表示已有支持标注；黄色「渲染进程（初评）」依据源码分析，尚未完成渲染进程真机验收。悬停查看条件；未标注的进程不据此判定不兼容。普通沙箱渲染页面通过 preload/IPC 使用 Node 能力。</p>
+  <p class="result-info">主进程与渲染进程统一使用绿色兼容标签。渲染进程标注含初步源码评估，尚未完成渲染进程真机验收；悬停查看依据和使用条件。未标注的进程不据此判定不兼容。普通沙箱渲染页面通过 preload/IPC 使用 Node 能力。</p>
   <div class="table-wrap">
   <table id="table">
     <thead><tr><th>包名</th><th>原始包名</th><th>版本</th><th>支持的Electron版本</th><th>进程兼容（主进程/渲染进程）</th><th>状态</th><th>安装</th></tr></thead>
@@ -105,6 +104,6 @@ tr:hover{background:#fafbfc}
     <p style="margin-top:8px">npm 数据定时同步；新发布的包会在下次同步后展示。</p>
   </div>
 </div>
-<script src="app.js?v=20261110-compatibility-metadata" defer></script>
+<script src="app.js?v=20261111-unified-process-tags" defer></script>
 </body>
 </html>

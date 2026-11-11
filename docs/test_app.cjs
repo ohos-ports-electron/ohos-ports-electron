@@ -66,14 +66,14 @@ test('supported versions come from annotations and retain their conditions', () 
   assert.equal(context.getFiltered().length, 1);
 });
 
-test('process compatibility requires true and distinguishes preliminary renderers', () => {
+test('process compatibility requires true and uses matching process labels', () => {
   const cases = [
     [{}, ['—']],
     [{main: null, renderer: null}, ['—']],
     [{main: true, renderer: null}, ['✅ 主进程']],
     [{main: null, renderer: true}, ['✅ 渲染进程']],
     [{main: true, renderer: true}, ['✅ 主进程', '✅ 渲染进程']],
-    [{main: true, renderer: true, renderer_status: 'preliminary'}, ['✅ 主进程', '△ 渲染进程（初评）']],
+    [{main: true, renderer: true, renderer_status: 'preliminary'}, ['✅ 主进程', '✅ 渲染进程']],
     [{main: false, renderer: false}, ['—']],
     [{main: 'true', renderer: 1}, ['—']],
   ];
@@ -96,9 +96,11 @@ test('catalog deprecation appears in row, stats and deprecated filter', () => {
   assert.equal(context.getFiltered().length, 1);
 });
 
-test('preliminary badge explains renderer conditions', () => {
-  const {row} = page([{...base, renderer: true, renderer_status: 'preliminary', renderer_note: 'Bundle browser entry; no device acceptance'}]);
-  const badge = row.children[4].children[0];
-  assert.equal(badge.className, 'process-tag process-preliminary');
-  assert.equal(badge.title, 'Bundle browser entry; no device acceptance');
+test('preliminary renderer matches main styling and keeps conditions in tooltip', () => {
+  const {row} = page([{...base, main: true, renderer: true, renderer_status: 'preliminary', renderer_note: 'Bundle browser entry; no device acceptance'}]);
+  const [main, renderer] = row.children[4].children;
+  assert.equal(renderer.className, main.className);
+  assert.equal(renderer.className, 'process-tag');
+  assert.equal(renderer.textContent, '✅ 渲染进程');
+  assert.equal(renderer.title, '初步源码评估，尚未完成渲染进程真机验收。Bundle browser entry; no device acceptance');
 });

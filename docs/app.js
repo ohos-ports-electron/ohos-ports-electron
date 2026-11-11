@@ -119,8 +119,8 @@ function processCompatibilityCell(pkg) {
   }
   if (pkg.renderer === true) {
     var preliminary = pkg.renderer_status === 'preliminary';
-    var renderer = element('span', 'process-tag' + (preliminary ? ' process-preliminary' : ''), preliminary ? '△ 渲染进程（初评）' : '✅ 渲染进程');
-    renderer.title = pkg.renderer_note || '已标注支持渲染进程';
+    var renderer = element('span', 'process-tag', '✅ 渲染进程');
+    renderer.title = (preliminary ? '初步源码评估，尚未完成渲染进程真机验收。' : '') + (pkg.renderer_note || '已标注支持渲染进程');
     cell.append(renderer);
   }
   if (!cell.children.length) cell.append(element('span', 'process-empty', '—'));
