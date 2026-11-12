@@ -1,0 +1,811 @@
+{
+  "version": 1,
+  "stage": 3,
+  "host_runtime": "device-node",
+  "modules": [],
+  "cases": [
+    {
+      "name": "package identity and exports",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 createConnection, TextDocuments, Position, createServerPipeTransport, createServerSocketTransport"
+      ],
+      "api_refs": [
+        "createConnection",
+        "TextDocuments",
+        "Position",
+        "createServerPipeTransport",
+        "createServerSocketTransport"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "package identity and exports",
+      "title": "package identity and exports"
+    },
+    {
+      "name": "protocol message types carry method names",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 InitializeRequest, ShutdownRequest, ExitNotification, HoverRequest, RegistrationType, ProtocolNotificationType"
+      ],
+      "api_refs": [
+        "InitializeRequest",
+        "ShutdownRequest",
+        "ExitNotification",
+        "HoverRequest",
+        "RegistrationType",
+        "ProtocolNotificationType"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "protocol message types carry method names",
+      "title": "protocol message types carry method names"
+    },
+    {
+      "name": "Position and Range create + guards",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 Position, Range"
+      ],
+      "api_refs": [
+        "Position",
+        "Range"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "Position and Range create + guards",
+      "title": "Position and Range create + guards"
+    },
+    {
+      "name": "Location / LocationLink create + guards",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 Location, LocationLink"
+      ],
+      "api_refs": [
+        "Location",
+        "LocationLink"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "Location / LocationLink create + guards",
+      "title": "Location / LocationLink create + guards"
+    },
+    {
+      "name": "Diagnostic and severity enums",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 Diagnostic, DiagnosticSeverity"
+      ],
+      "api_refs": [
+        "Diagnostic",
+        "DiagnosticSeverity"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "Diagnostic and severity enums",
+      "title": "Diagnostic and severity enums"
+    },
+    {
+      "name": "SymbolKind / CompletionItemKind / CodeActionKind enums",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 SymbolKind, CompletionItemKind, CodeActionKind"
+      ],
+      "api_refs": [
+        "SymbolKind",
+        "CompletionItemKind",
+        "CodeActionKind"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "SymbolKind / CompletionItemKind / CodeActionKind enums",
+      "title": "SymbolKind / CompletionItemKind / CodeActionKind enums"
+    },
+    {
+      "name": "LSPErrorCodes and ErrorCodes",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 LSPErrorCodes, ErrorCodes"
+      ],
+      "api_refs": [
+        "LSPErrorCodes",
+        "ErrorCodes"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "LSPErrorCodes and ErrorCodes",
+      "title": "LSPErrorCodes and ErrorCodes"
+    },
+    {
+      "name": "ResponseError carries code and message",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 ResponseError"
+      ],
+      "api_refs": [
+        "ResponseError"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "ResponseError carries code and message",
+      "title": "ResponseError carries code and message"
+    },
+    {
+      "name": "Emitter/Event subscribe-fire-dispose",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 Emitter, Event, Disposable"
+      ],
+      "api_refs": [
+        "Emitter",
+        "Event",
+        "Disposable"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "Emitter/Event subscribe-fire-dispose",
+      "title": "Emitter/Event subscribe-fire-dispose"
+    },
+    {
+      "name": "Disposable.create",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 Disposable"
+      ],
+      "api_refs": [
+        "Disposable"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "Disposable.create",
+      "title": "Disposable.create"
+    },
+    {
+      "name": "CancellationTokenSource and CancellationToken",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 CancellationTokenSource, CancellationToken"
+      ],
+      "api_refs": [
+        "CancellationTokenSource",
+        "CancellationToken"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "CancellationTokenSource and CancellationToken",
+      "title": "CancellationTokenSource and CancellationToken"
+    },
+    {
+      "name": "LinkedMap put-get-has-delete",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 LinkedMap"
+      ],
+      "api_refs": [
+        "LinkedMap"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "LinkedMap put-get-has-delete",
+      "title": "LinkedMap put-get-has-delete"
+    },
+    {
+      "name": "TextEdit and WorkspaceEdit",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 TextEdit, WorkspaceEdit"
+      ],
+      "api_refs": [
+        "TextEdit",
+        "WorkspaceEdit"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "TextEdit and WorkspaceEdit",
+      "title": "TextEdit and WorkspaceEdit"
+    },
+    {
+      "name": "TextDocument create + applyEdits",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 TextDocument"
+      ],
+      "api_refs": [
+        "TextDocument"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "TextDocument create + applyEdits",
+      "title": "TextDocument create + applyEdits"
+    },
+    {
+      "name": "createConnection in-memory RPC round trip",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 createConnection, InitializeRequest, ShutdownRequest"
+      ],
+      "api_refs": [
+        "createConnection",
+        "InitializeRequest",
+        "ShutdownRequest"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "createConnection in-memory RPC round trip",
+      "title": "createConnection in-memory RPC round trip"
+    },
+    {
+      "name": "onRequest / sendRequest custom request",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 createConnection, ProtocolRequestType, Connection.onRequest"
+      ],
+      "api_refs": [
+        "createConnection",
+        "ProtocolRequestType",
+        "Connection.onRequest"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "onRequest / sendRequest custom request",
+      "title": "onRequest / sendRequest custom request"
+    },
+    {
+      "name": "notification round trip",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 createConnection, PublishDiagnosticsNotification, Connection.onNotification"
+      ],
+      "api_refs": [
+        "createConnection",
+        "PublishDiagnosticsNotification",
+        "Connection.onNotification"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "notification round trip",
+      "title": "notification round trip"
+    },
+    {
+      "name": "TextDocuments open/change/close over real connection",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 TextDocuments, DidOpenTextDocumentNotification, DidChangeTextDocumentNotification, DidCloseTextDocumentNotification"
+      ],
+      "api_refs": [
+        "TextDocuments",
+        "DidOpenTextDocumentNotification",
+        "DidChangeTextDocumentNotification",
+        "DidCloseTextDocumentNotification"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "TextDocuments open/change/close over real connection",
+      "title": "TextDocuments open/change/close over real connection"
+    },
+    {
+      "name": "SemanticTokensBuilder emits token data",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 SemanticTokensBuilder, SemanticTokenTypes"
+      ],
+      "api_refs": [
+        "SemanticTokensBuilder",
+        "SemanticTokenTypes"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "SemanticTokensBuilder emits token data",
+      "title": "SemanticTokensBuilder emits token data"
+    },
+    {
+      "name": "URI.is guards",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 URI, DocumentUri"
+      ],
+      "api_refs": [
+        "URI",
+        "DocumentUri"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "URI.is guards",
+      "title": "URI.is guards"
+    },
+    {
+      "name": "Trace and TraceValue constants",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 Trace, TraceValue"
+      ],
+      "api_refs": [
+        "Trace",
+        "TraceValue"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "Trace and TraceValue constants",
+      "title": "Trace and TraceValue constants"
+    },
+    {
+      "name": "ProposedFeatures bundle and feature combinators",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 ProposedFeatures, combineFeatures, combineClientFeatures"
+      ],
+      "api_refs": [
+        "ProposedFeatures",
+        "combineFeatures",
+        "combineClientFeatures"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "ProposedFeatures bundle and feature combinators",
+      "title": "ProposedFeatures bundle and feature combinators"
+    },
+    {
+      "name": "DocumentSymbol shape",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 DocumentSymbol, SymbolKind"
+      ],
+      "api_refs": [
+        "DocumentSymbol",
+        "SymbolKind"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "DocumentSymbol shape",
+      "title": "DocumentSymbol shape"
+    },
+    {
+      "name": "pipe transport factory returns reader/writer",
+      "source": "upstream",
+      "node_library": {
+        "hosts": [
+          "device-node",
+          "electron-oh"
+        ],
+        "process": "main",
+        "reason": "公开 API 代表性功能 + 异常路径 + 资源释放 + 多环境调用（npm 发布布局 lib/common+lib/node，不含 monorepo 上游内部测试；按公开 API 面重建名册）。TextDocuments 标准文档工厂由 vscode-languageserver-textdocument@1.0.16 供给（测试供给，不入候选包）。"
+      },
+      "evidence": [
+        "vscode-languageserver@11.0.0 lib/common/api.js / lib/node/main.js 公开导出 createServerPipeTransport"
+      ],
+      "api_refs": [
+        "createServerPipeTransport"
+      ],
+      "prd_refs": [],
+      "host_result": "not-run",
+      "validation": "upstream-backed",
+      "executability": {
+        "verdict": "runnable",
+        "blockers": [],
+        "evidence": [
+          "纯 ECMAScript 断言：公开 API 直接调用，无外网/特权路径依赖",
+          "device-node 承载独立 Node JS 运行时（app 域 exec + LD_PRELOAD）",
+          "electron-oh 宿主承载 Electron-OH 34/37/40 主进程（--jitless）"
+        ]
+      },
+      "id": "pipe transport factory returns reader/writer",
+      "title": "pipe transport factory returns reader/writer"
+    }
+  ],
+  "excluded": []
+}

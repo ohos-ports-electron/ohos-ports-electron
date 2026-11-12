@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "vscode-languageserver",
+    "version": "11.0.0",
+    "url": "https://registry.npmjs.org/vscode-languageserver/-/vscode-languageserver-11.0.0.tgz",
+    "sha256": "2902c0c2d7dd7041e6805fd74b946bebb6c4c9dc925f10b08fb2e20122eb6152",
+    "integrity": "sha512-dOyMIyq0PNVJhTkj+FZoi3H8N3WffNSZEepfbQT+x2E16x1ONPacSx00DoVRqyVKO7PN35ixj/l2RQwQmStkNg=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/vscode-languageserver",
+    "version": "11.0.0-electron-oh.0",
+    "sha256": "852ee1171e07df616ff09ffb65a0db0ca6932aabcd9b3cd6f0d53e84b6d2f480",
+    "integrity": "sha512-Whg27UJDLBGvfVsBmfLfs7QqHJ9Spv0h2240Ctm6b8DOaTMwjmk3r0G03y2RKeUpBcWtdH0FeH9uGdwITaht6A==",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/vscode-languageserver-evidence-11.0.0-electron-oh.0/vscode-languageserver-11.0.0-electron-oh.0.tgz"
+  },
+  "testSupply": {
+    "name": "vscode-languageserver-textdocument",
+    "version": "1.0.16",
+    "url": "https://registry.npmjs.org/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.16.tgz",
+    "note": "Demo/host-test document factory required by the TextDocuments public contract; not a candidate dependency, does not enter package bytes."
+  },
+  "library": {
+    "filesSha256": {
+      "bin\\installServerIntoExtension": "59abbccf36d1c453c935fb15d594c017d6de7fc2367565fb80710b8dfbb22ad1",
+      "eslint.config.js": "80b0561ab34e2ac7d9970b9840ca3b97aa17fd4075d629f2480ecd65056ff7c3",
+      "lib\\browser\\main.d.ts": "14246cd016d146072475fb648c4e7ca7101bea205972d5ca4412f6e978eff871",
+      "lib\\browser\\main.js": "dbe623d22d19a7570b502afb9f3d2c0700b3d01fc59411f05b850650f4c2b10e",
+      "lib\\common\\api.d.ts": "1fba32af47cb58af40167eb892a47365901951cccd13ae6d5a3cc8a042f211fa",
+      "lib\\common\\api.js": "97d824f6510329d58ed2d15126f827737f05bac0468378102a0a4768e611408e",
+      "lib\\common\\callHierarchy.d.ts": "46a9b0122b230cb2fab65999ba92f98a16fd8f1c25efaed47141cbf5056f6928",
+      "lib\\common\\callHierarchy.js": "21fa60a734543ee72893f8ce24adeabfcf81994c984b576d3fd236cb7f3eb746",
+      "lib\\common\\configuration.d.ts": "7662d6994d28c9ebbe61b88cc35c3d705804351eedbf363df30ea9fe8c4961dc",
+      "lib\\common\\configuration.js": "17c26856bca1546a62038fff0139bdd88821aece5de60a4b89dfc514f351ab9e",
+      "lib\\common\\diagnostic.d.ts": "09060028b8dda33db2e5c3df091a5db2408f2a00570176d44fc16289cb8dd5ac",
+      "lib\\common\\diagnostic.js": "a10b2afe86d851cd5b1ed27cee9b89c968d0d4190745d9c6b8a9f200de7ee373",
+      "lib\\common\\fileOperations.d.ts": "3990ae796cc23fb9829eae206eff1eddded9465504467a4433f2509e18ef1aed",
+      "lib\\common\\fileOperations.js": "35cf5eef80dcf8e83a8d1ec3111535b49922f7dc6b8746ecba799c13425fe992",
+      "lib\\common\\foldingRange.d.ts": "738ea91357debb949cafc6557bf4addf928363453e89c18aa90b3fa1ab222614",
+      "lib\\common\\foldingRange.js": "aebc8d7b7195087f56a7f3a07f0458732d57d0bfc3cc4045c77c080afa3efdc5",
+      "lib\\common\\inlayHint.d.ts": "8274bfd5de49f9f072be2f39c34e390101a8b69844e55eda36c7df23ba6d03e2",
+      "lib\\common\\inlayHint.js": "9762c1bfc957ac810a6f84f229ae06abbd1c506b5fc3da51ea66bda90e8afd5e",
+      "lib\\common\\inlineCompletion.d.ts": "173838811f6dcba587706efd87358f804261549bc02c455d31818328c1af97ad",
+      "lib\\common\\inlineCompletion.js": "ced5e9ec238bba54d61fe2283c33e0a53ecb27ccdfb6134cc67b4925743758c2",
+      "lib\\common\\inlineValue.d.ts": "8a9bd1cf8c1f75435f83595b43737c135e7f73bde39ba4c9339dc6a31e8bb069",
+      "lib\\common\\inlineValue.js": "525265ff5b522f7b14ae9cb4a66f399c9e781f784b7b598ec4fe816b13935f86",
+      "lib\\common\\linkedEditingRange.d.ts": "dd2183708dc64210cc088fd505fe5df8fee4043ac97f4c410dffd54d13e60a37",
+      "lib\\common\\linkedEditingRange.js": "2c01c9c935f813bf8d10bee90cf9848123ad4b2c051849e72ff2fad4cfdc46f1",
+      "lib\\common\\moniker.d.ts": "a980ce9470dc95ac355d7efb729f9cfb0564505eba96da4bbde504299efb833a",
+      "lib\\common\\moniker.js": "57ac20c520def32e8dc1c60908977d35201364c328938534ff85b90ddb2c8c8f",
+      "lib\\common\\notebook.d.ts": "5c74e3eee30bb7899eebe784e3c05cb29f1bed3efb2a3b4599b66173fda4aa30",
+      "lib\\common\\notebook.js": "908e8d5b0fe12b42eb6f178627e68bc4c46f7206819918cec24f199b762db4fa",
+      "lib\\common\\progress.d.ts": "736961478ec12fc42ca14fda0601f303f27b4c88213de46da6652f2bf39d9b78",
+      "lib\\common\\progress.js": "035c57e3f8b4adb962a49def6b1847585193e8bab26968613d56a5726eb9ad52",
+      "lib\\common\\semanticTokens.d.ts": "e14f5833b4192adca5e24554ad8c1d2af037dc4aed38dc2a40fc12206e535e81",
+      "lib\\common\\semanticTokens.js": "8e4337c2f18ae6dbcfb2905e566950a14bc6e0f3a7e7e1ba7f82e5e008283866",
+      "lib\\common\\server.d.ts": "dfb1ce97bcfa5f728a21c804cc2c19f2c9920dbc34890500d993dadc097b5b12",
+      "lib\\common\\server.js": "f9148fc6eda2b8754389d3393af500d1018b1d9b7394c2619c5150980883e67f",
+      "lib\\common\\showDocument.d.ts": "351bbf43d585484825ee6c4b4805aac137ffc8e8a3b9812af99945a202db7c02",
+      "lib\\common\\showDocument.js": "d580228a9b94b273940638f59c6cdbd28c2a8ec29d282b57abd3427d850c627e",
+      "lib\\common\\textDocumentContent.d.ts": "9d6c8f0eec52b29fb678746a495faffca3de59265b94e0b2aa4e7debe39f39f5",
+      "lib\\common\\textDocumentContent.js": "1c08634eea9af91f8bf8c96603c2ba9c8eecd7e2c538f4d59fd41b809c856431",
+      "lib\\common\\textDocuments.d.ts": "5cd572356d74adaf9661e407f7f73e9d9edfb53534ef75dfb13225d0d80f59a2",
+      "lib\\common\\textDocuments.js": "373753b609257081a4d47e2d6a3862e4179c7c1d40cbb97ae1c9abbbc77cbd3b",
+      "lib\\common\\typeHierarchy.d.ts": "f384bb303dbc114af6460e7cb30b766cc92eed33fccb331126b08bb63f15a034",
+      "lib\\common\\typeHierarchy.js": "e59c632ea23ba065653f04398c1c22401aa8c2c63462de2c3ee61b75ab5af5e0",
+      "lib\\common\\utils\\is.d.ts": "98b8e50ce364a3d2f1049c2cc5e585f121442e1888062173b6b6f6d6b4c0bb2e",
+      "lib\\common\\utils\\is.js": "dc7213b0f70a4b771d073692817bf84d88478e16f910278a86d7485968939012",
+      "lib\\common\\workspaceFolder.d.ts": "1fb68106bddae35448e5279095461a4b54c4bbb42787cd629f70924b17e9a11e",
+      "lib\\common\\workspaceFolder.js": "bcfd43e8ad74c596c620038840a1f8f23b5fd2c737b14f38ece433867a6ef3c8",
+      "lib\\node\\files.d.ts": "a58402dc75738c188a741ccca86ccf898b0af98d305ad075c428171f193a6cd5",
+      "lib\\node\\files.js": "6060c8c26271a3931ce18ee72b73746c8f6238c84d8992799666c4b7fa4b7742",
+      "lib\\node\\main.d.ts": "558aa39209491f5835a19fa83bafee8c55f1d342b19d3fcfc8d5dbf1864961c9",
+      "lib\\node\\main.js": "e2361ef40f94b8d3d8a8a5182bbf2cb915704fcd503f8f733743d6ac364a0ee7",
+      "lib\\node\\resolve.d.ts": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "lib\\node\\resolve.js": "ba2c2380af4c7fd0d76affafc30b7956f18604219d9cd8b88900628f7a546bf4",
+      "License.txt": "ec9ee83580841e8eb687aca9867f221503809ba6426c7f876ede17d91b9fcfd0",
+      "thirdpartynotices.txt": "b8be93a14e6d5df97ea340c69529615563aaf2dd7698ae38b3a2758264df9b87",
+      "typings\\thenable.d.ts": "65b9243c80068ec9696b1fbdd23c9acf80d51df02f97b2d7a0514312b0a9fe7d"
+    }
+  },
+  "readmeSha256": "ffa108d359eb9d3cae63a52454fb2f6caf561d43cd2d8e29324af11fa0450079",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/vscode-languageserver/11.0.0"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ]
+}

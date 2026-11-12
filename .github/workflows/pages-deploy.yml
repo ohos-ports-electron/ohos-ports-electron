@@ -43,6 +43,7 @@ on:
       - 'jimp build and npm publish'
       - '7zip-min build and npm publish'
       - 'urllib build and npm publish'
+      - 'vscode-languageserver build and npm publish'
     types: [completed]
   schedule:
     # 每天北京时间凌晨 2:17（UTC 18:17），实际运行时间由 GitHub 调度。

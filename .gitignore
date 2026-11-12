@@ -7,6 +7,7 @@ ports/puppeteer/25.6.0/puppeteer-25.6.0/
 ports/mermaid-cli/11.16.0/mermaid-cli-11.16.0/
 
 ports/*/*/build-workspace/
+ports/*/*/.build/
 **/__pycache__/
 .DS_Store
 ._*
