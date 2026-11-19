@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "vue",
+    "version": "3.5.45",
+    "url": "https://registry.npmjs.org/vue/-/vue-3.5.45.tgz",
+    "sha256": "c2ec36a9b719e4277785f1ad36a1bb0424d8d32f0bea24abcce862e26821d585",
+    "integrity": "sha512-3cvsib8m9c0vB24+MDKsgcW4+Da4xaBl9Z/5Tbm2pmSIsRPxcil4cdXjXlVsmJ2g64XJo5h+IRd7rsdGT9pZaw=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/vue",
+    "version": "3.5.45-electron-oh.0",
+    "sha256": "401f7a4d8c9eacb895352112a0cc14c057b260484674bd72ee6a5399c0fb4bb4",
+    "integrity": "sha512-m8bYouBkqg+1yFvVEP9jGXIS4VjwmvWy9bgOIwjJpQRhXrwj1q+HgWHu/X+R9RbjQsxnUe7cT5+ji72pJOOjOA==",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/vue-evidence-3.5.45-electron-oh.0/vue-3.5.45-electron-oh.0-candidate.tgz"
+  },
+  "patches": [],
+  "readmeSha256": "9dcb4729c557f9891f415a8dd43f4518ad3c240b7d30dc99606534bc31dc7c9a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/vue/3.5.45"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ]
+}
