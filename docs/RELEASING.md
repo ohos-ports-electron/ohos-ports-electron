@@ -240,3 +240,18 @@ fresh HarmonyOS device job. Main push publication uses `npm-publish`, the same
 frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure the
 package trusted publisher for this exact workflow with direct publish and
 independent dist-tag permissions. See [the port](../ports/rxjs/7.8.2/README.md).
+
+## typeorm
+
+`typeorm-electron-oh.yml` builds the locked pure-JavaScript candidate once
+(zero patches; only npm identity/repository metadata and README are rewritten),
+checks the archived three-target device reports and runs the typeorm host suite
+on the engines' Node versions (22.17.0 / 24.11.1 / 24.13.0). Host CI does not
+run a fresh HarmonyOS device job. Main push publication uses `npm-publish`,
+the same frozen tgz, npm OIDC, and verifies both `latest` and `beta`. Configure
+the package trusted publisher for this exact workflow with direct publish and
+independent dist-tag permissions. electron34 is intentionally outside the
+verified matrix: typeorm 1.1.2 requires Node ^20.19.0 (the require(esm)
+backport) while Electron 34 bundles Node 20.18.x, so its ESM-only runtime
+dependencies cannot load on that engine family. See
+[the port](../ports/typeorm/1.1.2/README.md).

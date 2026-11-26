@@ -1,0 +1,30 @@
+{
+    "schemaVersion":  1,
+    "baseline":  {
+                     "name":  "typeorm",
+                     "version":  "1.1.2",
+                     "url":  "https://registry.npmjs.org/typeorm/-/typeorm-1.1.2.tgz",
+                     "sha256":  "63254ab907908ce536025c3be0e70e61c7b2fb9e7589b803cb2db1613734e587",
+                     "integrity":  "sha512-UDQ8++2oFCK4fETiRKEC0eCES/i+/1SB4NBqXWeJNosI1i2SVFCDPhqIsXHWpFzFHTBOA553upQZj0NKVbNdUQ=="
+                 },
+    "candidate":  {
+                      "name":  "@ohos-ports-electron/typeorm",
+                      "version":  "1.1.2-electron-oh.0",
+                      "sha256":  "39a1a771eeae0ab3cda585d07d7519f7c2c5cb96e31bbf6b7b539e5e1bc95cf6",
+                      "integrity":  "sha512-KrBWa1DmZIpk7czgYIus4bvgPlSlt/nzB/s51Fp+J6iZlm1lNFfx7ZUQOVxiLCpNpwr0OufBUK0bqu7X1ae5DA==",
+                      "archiveUrl":  "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/typeorm-evidence-1.1.2-electron-oh.0/candidate.tgz"
+                  },
+    "patches":  [
+
+                ],
+    "readmeSha256":  "45d87ab97c0012b604393c857bdce730df7c9b4388b2cc174b3217a7ec6c58b4",
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+                       "directory":  "ports/typeorm/1.1.2"
+                   },
+    "requiredDistTags":  [
+                             "latest",
+                             "beta"
+                         ]
+}
