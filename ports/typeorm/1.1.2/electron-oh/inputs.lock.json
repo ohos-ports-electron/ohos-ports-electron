@@ -12,7 +12,7 @@
                       "version":  "1.1.2-electron-oh.0",
                       "sha256":  "39a1a771eeae0ab3cda585d07d7519f7c2c5cb96e31bbf6b7b539e5e1bc95cf6",
                       "integrity":  "sha512-KrBWa1DmZIpk7czgYIus4bvgPlSlt/nzB/s51Fp+J6iZlm1lNFfx7ZUQOVxiLCpNpwr0OufBUK0bqu7X1ae5DA==",
-                      "archiveUrl":  "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/typeorm-evidence-1.1.2-electron-oh.0/typeorm-1.1.2-electron-oh.0-candidate.tgz"
+                      "archiveUrl":  "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/typeorm-evidence-1.1.2-electron-oh.0/candidate.tgz"
                   },
     "patches":  [
 
