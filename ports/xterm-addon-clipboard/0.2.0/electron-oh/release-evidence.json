@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "status": "blocked",
+  "candidateSha256": "760509ecdc3904336e36fd0474c2ae204f930881d79653ff21d060855d5159b1",
+  "targets": {},
+  "archive": {
+    "url": "",
+    "sha256": "",
+    "fileCount": 0
+  },
+  "scope": "recorded device evidence; no fresh device runner in host CI",
+  "blocker": "Four-target device verification (node + electron34/electron37/electron40, baseline+candidate, 2 cold starts each) not yet executed and archived; release.py verify refuses to pass until status=ready with all four target reports bound to the frozen candidate."
+}
