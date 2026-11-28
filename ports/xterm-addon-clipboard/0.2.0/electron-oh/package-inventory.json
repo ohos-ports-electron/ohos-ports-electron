@@ -1,0 +1,12 @@
+{
+    "lib/addon-clipboard.js":  "ddae2ca81f1cadfe74d960dd1436eb334606d6aa674cab1f06683cffc22cbec5",
+    "lib/addon-clipboard.js.map":  "73a9c752fb42f9934b73f7635d05b0d4e7881ab88681a534d17047fed84aee68",
+    "lib/addon-clipboard.mjs":  "94afa044240a9af03846383996ec439611239b7ebf38b2b6c9a5ebea7b3d6ccc",
+    "lib/addon-clipboard.mjs.map":  "b2f1256cd4bc41f446c518760d7c3296c6f7e8e87dac09b52fc6a81eb4d5da48",
+    "LICENSE":  "a26afeeba9ab0a19502a73df658d8fb09186d0906c81af6c04d334064971e81f",
+    "package.json":  "a436b70fe807d072fa65d953a943c0f17fc84624ce5d0f319da055a6a17d5239",
+    "README.md":  "f705506443f1401269302f7432bfbb84753a03de0a5d8815471d7c77835e9b67",
+    "README.upstream.md":  "cc5667169e65b7dbbdfb9abcf749d187d29672eeab257e87e3242071e34284c2",
+    "src/ClipboardAddon.ts":  "da3a7f3645c36818e62d5be44ebf6e1bd526c43b13f628e241e21a9f7db1d34a",
+    "typings/addon-clipboard.d.ts":  "8cc5180d345a59128310a228b9b5b6d7cd04b4c4017c06f4237d9b3e1959dc25"
+}

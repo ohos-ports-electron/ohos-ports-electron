@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "name": "@xterm/addon-clipboard",
+    "version": "0.2.0",
+    "url": "https://registry.npmjs.org/@xterm/addon-clipboard/-/addon-clipboard-0.2.0.tgz",
+    "sha256": "3c0556aa54c766fb415354ee179d16f44211708a133ba78c7234c1b7d606de7f",
+    "integrity": "sha512-Dl31BCtBhLaUEECUbEiVcCLvLBbaeGYdT7NofB8OJkGTD3MWgBsaLjXvfGAD4tQNHhm6mbKyYkR7XD8kiZsdNg=="
+  },
+  "candidate": {
+    "name": "@ohos-ports-electron/xterm-addon-clipboard",
+    "version": "0.2.0-electron-oh.0",
+    "sha256": "760509ecdc3904336e36fd0474c2ae204f930881d79653ff21d060855d5159b1",
+    "integrity": "sha512-zpSc8bTM3wJkxd1XvUW0qLPNjKR3uY0m3jBogX/BFRoSzMFvd0rYof/slKinFt91F7ZyzHbZC3TSyXZrnCvt9A==",
+    "archiveUrl": "https://github.com/ohos-ports-electron/ohos-ports-electron/releases/download/xterm-addon-clipboard-evidence-0.2.0-electron-oh.0/@ohos-ports-electron-xterm-addon-clipboard-0.2.0-electron-oh.0.tgz"
+  },
+  "patches": [],
+  "readmeSha256": "f705506443f1401269302f7432bfbb84753a03de0a5d8815471d7c77835e9b67",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohos-ports-electron/ohos-ports-electron.git",
+    "directory": "ports/xterm-addon-clipboard/0.2.0"
+  },
+  "requiredDistTags": [
+    "latest",
+    "beta"
+  ]
+}
