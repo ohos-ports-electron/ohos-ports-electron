@@ -24,5 +24,6 @@
   "requiredDistTags": [
     "latest",
     "beta"
-  ]
+  ],
+  "upstreamName": "@xterm/addon-clipboard"
 }
